@@ -39,6 +39,7 @@ int main (int argc, char *argv[])
     KCmdLineArgs::init( argc, argv, &aboutData );
 
     KApplication app;
+    app.setQuitOnLastWindowClosed(false);
 
     PolicyKitKDE pkKDE;
     return app.exec();
