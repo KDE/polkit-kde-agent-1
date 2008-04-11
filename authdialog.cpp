@@ -33,6 +33,7 @@
 #include <kcombobox.h>
 #include <kpushbutton.h>
 #include <klineedit.h>
+#include <kdebug.h>
 
 /* 
  *  Constructs a AuthDialog which is a child of 'parent', with the 
@@ -45,13 +46,13 @@ AuthDialog::AuthDialog( const QString &header,
             PolKitResult type)
     : QDialog(0), AuthDialogUI()
 {
+    setupUi(this);
+
     if (type == POLKIT_RESULT_UNKNOWN || \
             type == POLKIT_RESULT_NO || \
             type == POLKIT_RESULT_YES || \
             type == POLKIT_RESULT_N_RESULTS )
-    {
-        QString msg = QString("Unexpected PolkitResult type sent: '%1'. Ignoring.").arg(polkit_result_to_string_representation(type));
-    }
+        kDebug() << "Unexpected PolkitResult type sent: " << polkit_result_to_string_representation(type);
 
     KIconLoader* iconloader = KIconLoader::global();
     lblPixmap->setPixmap(iconloader->loadIcon("lock", KIconLoader::Desktop));
@@ -63,23 +64,6 @@ AuthDialog::AuthDialog( const QString &header,
     setType(type);
     setHeader(header);
     setContent();
-}
-
-AuthDialog::AuthDialog( const QString &header,
-            PolKitResult type,
-            const QString &message)
-    : QDialog(0), AuthDialogUI()
-{
-    KIconLoader* iconloader = KIconLoader::global();
-    lblPixmap->setPixmap(iconloader->loadIcon("lock", KIconLoader::Desktop));
-    pbOK->setIconSet(iconloader->loadIcon("ok", KIconLoader::Small));
-    pbCancel->setIconSet(iconloader->loadIcon("cancel", KIconLoader::Small));
-
-    cbUsers->hide();
-
-    setType(type);
-    setHeader(header);
-    setContent(message);
 }
 
 AuthDialog::~AuthDialog()

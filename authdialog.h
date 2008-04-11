@@ -31,7 +31,6 @@ class AuthDialog : public QDialog, public Ui::AuthDialogUI
 {
 public:
     AuthDialog( const QString &header, PolKitResult type);
-    AuthDialog( const QString &header, PolKitResult type, const QString& message);
     ~AuthDialog();
     const char* getPass();
     void setType(PolKitResult type);

@@ -31,6 +31,7 @@
 class PolicyKitKDE : public QObject
 {
     Q_OBJECT
+    Q_CLASSINFO("D-Bus Interface", "org.freedesktop.PolicyKit.AuthenticationAgent")
 
 public:
     PolicyKitKDE(QObject* parent=0L);

@@ -45,17 +45,21 @@ PolicyKitKDE::PolicyKitKDE(QObject* parent)
 {
     Q_ASSERT(!m_self);
     m_self = this;
+    m_error = 0;
 
     (void) new AuthenticationAgentAdaptor(this);
-    QDBusConnection dbus = QDBusConnection::systemBus();
+    if (!QDBusConnection::sessionBus().registerService("org.freedesktop.PolicyKit.AuthenticationAgent"))
+        kError() << "anothe authentication agent already running";
 
-    dbus.registerObject("/", this);
+    if (!QDBusConnection::sessionBus().registerObject("/", this)) {
+        kError() << "unable to register service interface to dbus";
+
+    }
 
     m_context = polkit_context_new();
     if (m_context == NULL)
     {
-        QString msg("Could not get a new PolKitContext.");
-        kDebug() << "Could not get a new PolKitContext";
+        kDebug() << "Could not get a new PolKitContext.";
         return;
     }
 
@@ -67,7 +71,6 @@ PolicyKitKDE::PolicyKitKDE(QObject* parent)
     //TODO: polkit_context_set_io_watch_functions
 
     polkit_context_set_io_watch_functions (m_context, polkit_add_watch, polkit_remove_watch);
-
 
     if (!polkit_context_init (m_context, &m_error))
     {
@@ -165,15 +168,15 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     }
 
     kDebug() << "Getting action message...";
-    const char *message = polkit_policy_file_entry_get_action_message(entry);
-    if (message == NULL)
+    QByteArray message = polkit_policy_file_entry_get_action_message(entry);
+    if (message.isEmpty())
     {
         kWarning() << "Could not get action message for action.";
     //    return false;
     }
     else
     {
-        kDebug() << QString("Message of action: '%1'").arg(message);
+        kDebug() << "Message of action: " << message;
     }
 
     DBusError dbuserror;
