@@ -36,33 +36,16 @@
 
 #include "authdialog.h"
 
-//-----------------------------------------------------------------------------
+PolicyKitKDE* PolicyKitKDE::m_self;
 
-static int polkit_add_watch(PolKitContext *context, int fd)
-{
-    //TODO: delete notify
-
-    QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read);
-    notify->connect(notify, SIGNAL(activated(int)), SLOT(polkit_watch_have_data(PolKitContext *, int)));
-
-    return 0;
-}
-
-static void polkit_remove_watch(PolKitContext *context, int fd)
-{
-}
-
-static void polkit_watch_have_data(PolKitContext *context, int fd)
-{
-    //TODO: check data
-    polkit_context_io_func (context, fd);
-}
-
-//-----------------------------------------------------------------------------
+//----------------------------------------------------------------------------
 
 PolicyKitKDE::PolicyKitKDE(QObject* parent)
     : QObject(parent)
 {
+    Q_ASSERT(!m_self);
+    m_self = this;
+
     (void) new AuthenticationAgentAdaptor(this);
     QDBusConnection dbus = QDBusConnection::systemBus();
 
@@ -99,9 +82,53 @@ PolicyKitKDE::PolicyKitKDE(QObject* parent)
     //TODO: add kill_timer
 }
 
+//----------------------------------------------------------------------------
+
 PolicyKitKDE::~PolicyKitKDE()
 {
+    m_self = 0L;
 }
+
+
+//----------------------------------------------------------------------------
+
+void PolicyKitKDE::watchActivated(int fd)
+{
+    Q_ASSERT(m_watches.contains(fd));
+
+    kDebug() << "watchActivated" << fd;
+
+    polkit_context_io_func (m_context, fd);
+}
+
+//----------------------------------------------------------------------------
+
+int PolicyKitKDE::polkit_add_watch(PolKitContext *context, int fd)
+{
+    kDebug() << "polkit_add_watch" << context << fd;
+    //TODO: delete notify
+
+    QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read);
+    m_self->m_watches[fd] = notify;
+
+    notify->connect(notify, SIGNAL(activated(int)), m_self, SLOT(watchActivated(int)));
+
+    return 0;
+}
+
+
+//----------------------------------------------------------------------------
+
+void PolicyKitKDE::polkit_remove_watch(PolKitContext *context, int fd)
+{
+    kDebug() << "polkit_remove_watch" << context << fd;
+    Q_ASSERT(m_self->m_watches.contains(fd));
+
+    QSocketNotifier* notify = m_self->m_watches.take(fd);
+    delete notify;
+}
+
+//----------------------------------------------------------------------------
 
 bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint pid)
 {
@@ -114,7 +141,7 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
         return false;
     }
 
-    polkit_bool_t setActionResult = polkit_action_set_action_id(action, actionId.ascii());
+    polkit_bool_t setActionResult = polkit_action_set_action_id(action, actionId.toLatin1());
     if (!setActionResult)
     {
         kError() << "Could not set actionid.";

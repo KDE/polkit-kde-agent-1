@@ -23,6 +23,8 @@
 */
 
 #include <QtCore/QObject>
+#include <QtCore/QMap>
+#include <QtCore/QSocketNotifier>
 
 #include <polkit/polkit.h>
 
@@ -37,9 +39,20 @@ public:
 public Q_SLOTS:
     bool ObtainAuthorization(const QString& action_id, uint xid, uint pid);
 
+private Q_SLOTS:
+    void watchActivated(int fd);
+
 private:
     PolKitContext *m_context;
     PolKitError * m_error;
+
+    static PolicyKitKDE* m_self;
+
+    QMap<int, QSocketNotifier*> m_watches;
+
+    static int polkit_add_watch(PolKitContext *context, int fd);
+    static void polkit_remove_watch(PolKitContext *context, int fd);
+    static void polkit_watch_have_data(PolKitContext *context, int fd);
 };
 
 #endif
