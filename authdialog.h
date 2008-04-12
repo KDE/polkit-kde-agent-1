@@ -27,12 +27,11 @@
 
 #include "ui_authdialogui.h"
 
-class AuthDialog : public QDialog, public Ui::AuthDialogUI
+class AuthDialog : public KDialog, public Ui::AuthDialogUI
 {
 public:
     AuthDialog( const QString &header, PolKitResult type);
     ~AuthDialog();
-    const char* getPass();
     void setType(PolKitResult type);
     void setContent(const QString &);
     void setContent();

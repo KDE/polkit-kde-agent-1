@@ -20,7 +20,6 @@
 */
 
 #include "authdialog.h"
-#include "authdialog.moc"
 
 #include <qlabel.h>
 #include <qstring.h>
@@ -44,9 +43,14 @@
  */
 AuthDialog::AuthDialog( const QString &header,
             PolKitResult type)
-    : QDialog(0), AuthDialogUI()
+    : KDialog(0), AuthDialogUI()
 {
-    setupUi(this);
+    setButtons(Ok|Cancel);
+    setCaption(header);
+
+    QWidget* w = new QWidget(this);
+    setupUi(w);
+    setMainWidget(w);
 
     if (type == POLKIT_RESULT_UNKNOWN || \
             type == POLKIT_RESULT_NO || \
@@ -55,9 +59,8 @@ AuthDialog::AuthDialog( const QString &header,
         kDebug() << "Unexpected PolkitResult type sent: " << polkit_result_to_string_representation(type);
 
     KIconLoader* iconloader = KIconLoader::global();
-    lblPixmap->setPixmap(iconloader->loadIcon("lock", KIconLoader::Desktop));
-    pbOK->setIconSet(iconloader->loadIconSet("ok", KIconLoader::Small, 0, false));
-    pbCancel->setIconSet(iconloader->loadIconSet("cancel", KIconLoader::Small, 0, false));
+    lblPixmap->setPixmap(iconloader->loadIcon("dialog-password", KIconLoader::NoGroup,
+                KIconLoader::SizeHuge));
 
     cbUsers->hide();
 
@@ -120,11 +123,6 @@ void AuthDialog::setPasswordFor(bool set, const QString& user)
         lblPassword->setText(i18n("Password for user(%1)").arg(user) + ":");
     else
         lblPassword->setText(i18n("Password") + ":");
-}
-
-const char* AuthDialog::getPass()
-{
-    return lePassword->text();
 }
 
 void AuthDialog::setType(PolKitResult res)
