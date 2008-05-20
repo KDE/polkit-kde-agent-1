@@ -40,6 +40,7 @@ int main (int argc, char *argv[])
 
     KApplication app;
     app.setQuitOnLastWindowClosed(false);
+    app.disableSessionManagement();
 
     PolicyKitKDE pkKDE;
     return app.exec();
