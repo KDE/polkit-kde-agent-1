@@ -64,7 +64,7 @@
      <item>
       <widget class="QLabel" name="lblContent" >
        <property name="text" >
-        <string>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</string>
+        <string></string>
        </property>
        <property name="alignment" >
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
