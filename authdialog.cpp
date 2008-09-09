@@ -120,7 +120,7 @@ void AuthDialog::setPasswordFor(bool set, const QString& user)
     if (set)
         lblPassword->setText(i18n("Password for root") + ":");
     else if (!user.isEmpty())
-        lblPassword->setText(i18n("Password for user(%1)").arg(user) + ":");
+        lblPassword->setText(i18n("Password for user(%1)",user) + ":");
     else
         lblPassword->setText(i18n("Password") + ":");
 }
