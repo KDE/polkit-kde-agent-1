@@ -176,7 +176,7 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     }
 
     kDebug() << "Getting action message...";
-    QByteArray message = polkit_policy_file_entry_get_action_message(entry);
+    QString message = QString::fromLocal8Bit(polkit_policy_file_entry_get_action_message(entry));
     if (message.isEmpty())
     {
         kWarning() << "Could not get action message for action.";
