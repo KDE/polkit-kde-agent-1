@@ -22,9 +22,10 @@
 #include "policykitkde.h"
 #include "authenticationagentadaptor.h"
 
-#include <qapplication.h>
+#include <kapplication.h>
 #include <kdebug.h>
 #include <qstring.h>
+#include <kwindowsystem.h>
 
 #include "qdbusconnection.h"
 
@@ -140,6 +141,8 @@ void PolicyKitKDE::polkit_config_changed( PolKitContext* context, void* )
 
 bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint pid)
 {
+    kDebug() << "Start obtain authorization:" << actionId << wid << pid;
+
     PolKitError *error = NULL;
 
     PolKitAction *action = polkit_action_new();
@@ -213,6 +216,12 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     //TODO: Determine AdminAuthType, user, group...
 
     AuthDialog dia(message, polkitresult);
+    if( wid != 0 )
+        KWindowSystem::setMainWindow( &dia, wid );
+    else
+    {
+        kapp->updateUserTimestamp(); // make it get focus unconditionally :-/
+    }
     dia.exec();
 
     // check again if user is authorized
