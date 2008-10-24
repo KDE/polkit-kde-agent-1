@@ -191,8 +191,8 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     PolKitCaller *caller = polkit_caller_new_from_pid(bus, pid, &dbuserror);
     if (caller == NULL)
     {
-        QDBusError *qerror = new QDBusError((const DBusError *)&dbuserror);
-        kError() << QString("Could not define caller from pid: %1").arg(qerror->message());
+        kError() << QString("Could not define caller from pid: %1")
+            .arg(QDBusError((const DBusError *)&dbuserror).message());
         return false;
     }
 
