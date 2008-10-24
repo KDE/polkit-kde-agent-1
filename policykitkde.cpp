@@ -54,8 +54,9 @@ PolicyKitKDE::PolicyKitKDE(QObject* parent)
 
     if (!QDBusConnection::sessionBus().registerObject("/", this)) {
         kError() << "unable to register service interface to dbus";
-
     }
+    connect( QDBusConnection::sessionBus().interface(), SIGNAL( serviceUnregistered( const QString& )),
+        SLOT( lostService( const QString& )));
 
     m_context = polkit_context_new();
     if (m_context == NULL)
@@ -63,8 +64,6 @@ PolicyKitKDE::PolicyKitKDE(QObject* parent)
         kDebug() << "Could not get a new PolKitContext.";
         return;
     }
-
-    //TODO: handle name owner changed signal
 
     polkit_context_set_load_descriptions(m_context);
 
@@ -91,6 +90,15 @@ PolicyKitKDE::~PolicyKitKDE()
     m_self = 0L;
 }
 
+
+//----------------------------------------------------------------------------
+
+void PolicyKitKDE::lostService( const QString& service )
+{
+    kdDebug() << "LOST:" << service;
+    if( service == "org.freedesktop.PolicyKit.AuthenticationAgent" )
+        ; // TODO hmm, what now?
+}
 
 //----------------------------------------------------------------------------
 

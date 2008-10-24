@@ -42,6 +42,7 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     void watchActivated(int fd);
+    void lostService( const QString& );
 
 private:
     PolKitContext *m_context;
