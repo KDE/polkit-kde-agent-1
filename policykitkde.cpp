@@ -109,14 +109,13 @@ void PolicyKitKDE::watchActivated(int fd)
 int PolicyKitKDE::polkit_add_watch(PolKitContext *context, int fd)
 {
     kDebug() << "polkit_add_watch" << context << fd;
-    //TODO: delete notify
 
     QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read, m_self);
     m_self->m_watches[fd] = notify;
 
     notify->connect(notify, SIGNAL(activated(int)), m_self, SLOT(watchActivated(int)));
 
-    return 0;
+    return fd; // use simply the fd as the unique id for the watch
 }
 
 
