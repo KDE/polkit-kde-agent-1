@@ -212,8 +212,8 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
 
     //TODO: Determine AdminAuthType, user, group...
 
-    AuthDialog* dia = new AuthDialog(message, polkitresult);
-    dia->exec();
+    AuthDialog dia(message, polkitresult);
+    dia.exec();
 
     // check again if user is authorized
     polkitresult = polkit_context_is_caller_authorized(m_context, action, caller, false, &error);
