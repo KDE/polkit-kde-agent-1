@@ -54,6 +54,7 @@ private:
     static int polkit_add_watch(PolKitContext *context, int fd);
     static void polkit_remove_watch(PolKitContext *context, int fd);
     static void polkit_watch_have_data(PolKitContext *context, int fd);
+    static void polkit_config_changed(PolKitContext* context, void* );
 };
 
 #endif

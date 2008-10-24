@@ -67,9 +67,7 @@ PolicyKitKDE::PolicyKitKDE(QObject* parent)
 
     polkit_context_set_load_descriptions(m_context);
 
-    //TODO: polkit_context_set_config_changed
-    //TODO: polkit_context_set_io_watch_functions
-
+    polkit_context_set_config_changed( m_context, polkit_config_changed, NULL );
     polkit_context_set_io_watch_functions (m_context, polkit_add_watch, polkit_remove_watch);
 
     if (!polkit_context_init (m_context, &m_error))
@@ -128,6 +126,14 @@ void PolicyKitKDE::polkit_remove_watch(PolKitContext *context, int fd)
 
     QSocketNotifier* notify = m_self->m_watches.take(fd);
     delete notify;
+}
+
+//----------------------------------------------------------------------------
+
+void PolicyKitKDE::polkit_config_changed( PolKitContext* context, void* )
+{
+    kDebug() << "polkit_config_changed" << context;
+    // Nothing to do here it seems (?).
 }
 
 //----------------------------------------------------------------------------
