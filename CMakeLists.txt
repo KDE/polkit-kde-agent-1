@@ -8,6 +8,7 @@ include_directories(
 set(policykit_SRCS
     authdialog.cpp
     policykitkde.cpp
+    processwatcher.cpp
     main.cpp
 )
 
