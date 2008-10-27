@@ -43,6 +43,7 @@ PolicyKitKDE* PolicyKitKDE::m_self;
 
 PolicyKitKDE::PolicyKitKDE(QObject* parent)
     : QObject(parent)
+    , inProgress( false )
 {
     Q_ASSERT(!m_self);
     m_self = this;
@@ -141,9 +142,16 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
 {
     kDebug() << "Start obtain authorization:" << actionId << wid << pid;
 
-    PolKitError *error = NULL;
+    if( inProgress )
+    {
+        // TODO this is lame
+        sendErrorReply( "pk_auth_in_progress",
+            i18n( "Another client is already authenticating, please try again later." ));
+        return false;
+    }
+    inProgress = true;    
 
-    PolKitAction *action = polkit_action_new();
+    PolKitAction* action = polkit_action_new();
     if (action == NULL)
     {
         kError() << "Could not create new polkit action.";
@@ -203,6 +211,7 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     }
 
     PolKitResult polkitresult;
+    PolKitError *error = NULL;
 
     polkitresult = polkit_context_is_caller_authorized(m_context, action, caller, false, &error);
     if (polkit_error_is_set (error))
@@ -230,5 +239,6 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
         return false;
     }
 
+    inProgress = false;
     return false;
 }

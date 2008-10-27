@@ -25,10 +25,11 @@
 #include <QtCore/QObject>
 #include <QtCore/QMap>
 #include <QtCore/QSocketNotifier>
+#include <QtDBus/QDBusContext>
 
 #include <polkit/polkit.h>
 
-class PolicyKitKDE : public QObject
+class PolicyKitKDE : public QObject, protected QDBusContext
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.freedesktop.PolicyKit.AuthenticationAgent")
@@ -45,6 +46,7 @@ private Q_SLOTS:
 
 private:
     PolKitContext *m_context;
+    bool inProgress;
 
     static PolicyKitKDE* m_self;
 
