@@ -45,7 +45,6 @@ private Q_SLOTS:
 
 private:
     PolKitContext *m_context;
-    PolKitError * m_error;
 
     static PolicyKitKDE* m_self;
 

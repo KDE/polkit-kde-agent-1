@@ -46,7 +46,6 @@ PolicyKitKDE::PolicyKitKDE(QObject* parent)
 {
     Q_ASSERT(!m_self);
     m_self = this;
-    m_error = 0;
 
     (void) new AuthenticationAgentAdaptor(this);
     if (!QDBusConnection::sessionBus().registerService("org.freedesktop.PolicyKit.AuthenticationAgent"))
@@ -68,12 +67,14 @@ PolicyKitKDE::PolicyKitKDE(QObject* parent)
     polkit_context_set_config_changed( m_context, polkit_config_changed, NULL );
     polkit_context_set_io_watch_functions (m_context, polkit_add_watch, polkit_remove_watch);
 
-    if (!polkit_context_init (m_context, &m_error))
+    PolKitError* error = NULL;
+    if (!polkit_context_init (m_context, &error))
     {
         QString msg("Could not initialize PolKitContext");
-        if (polkit_error_is_set(m_error))
+        if (polkit_error_is_set(error))
         {
-            kError() << msg <<  ": " << polkit_error_get_error_message(m_error);
+            kError() << msg <<  ": " << polkit_error_get_error_message(error);
+            polkit_error_free( error );
         }
         else
             kError() << msg;
