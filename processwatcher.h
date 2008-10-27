@@ -26,10 +26,7 @@
 #include <QThread>
 #include <QMutex>
 #include <QMap>
-#include <QAtomic>
-
-struct _PolKitGrant;
-typedef struct _PolKitGrant PolKitGrant;
+#include <QAtomicInt>
 
 class ProcessInfo;
 class QSocketNotifier;
@@ -42,14 +39,15 @@ class ProcessWatch : public QObject
     Q_OBJECT
 
 public:
-    ProcessWatch(PolKitGrant *polkit_grant, pid_t pid);
+    ProcessWatch(pid_t pid);
     ~ProcessWatch();
 
+signals:
+    void terminated( pid_t pid, int exitStatus );
 private slots:
     void childDied();
 
 private:
-    PolKitGrant *polkit_grant;
     QSocketNotifier *deathNotifier;
     int deathPipe[2];
     pid_t pid;

@@ -31,9 +31,6 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-#include <polkit-grant/polkit-grant.h>
-
-
 static qint64 native_write(int fd, const char *data, qint64 len)
 {
     qint64 ret = 0;
@@ -86,8 +83,8 @@ static void sigchld_handler(int signum)
 
 
 
-ProcessWatch::ProcessWatch(PolKitGrant *polkit_grant, pid_t pid)
-    : QObject(0), polkit_grant(polkit_grant), pid(pid)
+ProcessWatch::ProcessWatch(pid_t pid)
+    : QObject(0), pid(pid)
 {
 #ifdef Q_OS_IRIX
     ::socketpair(AF_UNIX, SOCK_STREAM, 0, pipe);
@@ -120,7 +117,7 @@ void ProcessWatch::childDied()
     } while ((waitResult == -1 && errno == EINTR));
 
     if (waitResult > 0) {
-        polkit_grant_child_func(polkit_grant, pid, WEXITSTATUS(exitStatus));
+        emit terminated( pid, WEXITSTATUS(exitStatus));
     }
 }
 
