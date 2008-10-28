@@ -162,6 +162,8 @@ ProcessWatcher::ProcessWatcher()
     native_sigaction(SIGCHLD, &action, &old_action);
 
     old_sigchld_handler = old_action.sa_handler;
+    
+    start();
 }
 
 ProcessWatcher::~ProcessWatcher()
