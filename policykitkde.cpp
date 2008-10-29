@@ -96,88 +96,6 @@ PolicyKitKDE::~PolicyKitKDE()
     m_self = 0L;
 }
 
-
-//----------------------------------------------------------------------------
-
-void PolicyKitKDE::watchActivated(int fd)
-{
-    Q_ASSERT(m_watches.contains(fd));
-
-//    kDebug() << "watchActivated" << fd;
-
-    polkit_grant_io_func (grant, fd);
-}
-
-//----------------------------------------------------------------------------
-
-int PolicyKitKDE::add_io_watch(PolKitGrant* grant, int fd)
-{
-    kDebug() << "add_watch" << grant << fd;
-
-    QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read, m_self);
-    m_self->m_watches[fd] = notify;
-
-    notify->connect(notify, SIGNAL(activated(int)), m_self, SLOT(watchActivated(int)));
-
-    return fd; // use simply the fd as the unique id for the watch
-}
-
-
-//----------------------------------------------------------------------------
-
-void PolicyKitKDE::remove_io_watch(PolKitGrant* grant, int id)
-{
-    assert( id > 0 );
-    kDebug() << "remove_watch" << grant << id;
-    Q_ASSERT(m_self->m_watches.contains(id));
-
-    QSocketNotifier* notify = m_self->m_watches.take(id);
-    delete notify;
-}
-
-//----------------------------------------------------------------------------
-
-int PolicyKitKDE::add_child_watch( PolKitGrant*, pid_t pid )
-{
-    ProcessWatch *watch = new ProcessWatch(pid);
-    connect( watch, SIGNAL( terminated( pid_t, int )), m_self, SLOT( childTerminated( pid_t, int )));
-    // return negative so that remove_watch() can tell io and child watches apart
-    return - ProcessWatcher::instance()->add(watch);
-}
-
-//----------------------------------------------------------------------------
-
-void PolicyKitKDE::remove_child_watch( PolKitGrant*, int id )
-{
-    assert( id < 0 );
-    ProcessWatcher::instance()->remove( -id );
-}
-
-//----------------------------------------------------------------------------
-
-void PolicyKitKDE::childTerminated( pid_t pid, int exitStatus )
-{
-    polkit_grant_child_func( grant, pid, exitStatus );
-}
-
-//----------------------------------------------------------------------------
-
-void PolicyKitKDE::remove_watch( PolKitGrant* grant, int id )
-{
-    if( id > 0 ) // io watches are +, child watches are -
-        remove_io_watch( grant, id );
-    else
-        remove_child_watch( grant, id );
-}
-
-//----------------------------------------------------------------------------
-#if 0
-void PolicyKitKDE::polkit_config_changed( PolKitContext* context, void* )
-{
-    kDebug() << "polkit_config_changed" << context;
-    // Nothing to do here it seems (?).
-}
-#endif
 //----------------------------------------------------------------------------
 
 bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint pid)
@@ -393,3 +311,85 @@ void PolicyKitKDE::conversation_done(PolKitGrant* grant, polkit_bool_t obtainedP
     m_self->obtainedPrivilege = obtainedPrivilege;
     QTimer::singleShot( 0, m_self, SLOT( finishObtainPrivilege()));
 }
+
+//----------------------------------------------------------------------------
+
+void PolicyKitKDE::watchActivated(int fd)
+{
+    Q_ASSERT(m_watches.contains(fd));
+
+//    kDebug() << "watchActivated" << fd;
+
+    polkit_grant_io_func (grant, fd);
+}
+
+//----------------------------------------------------------------------------
+
+int PolicyKitKDE::add_io_watch(PolKitGrant* grant, int fd)
+{
+    kDebug() << "add_watch" << grant << fd;
+
+    QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read, m_self);
+    m_self->m_watches[fd] = notify;
+
+    notify->connect(notify, SIGNAL(activated(int)), m_self, SLOT(watchActivated(int)));
+
+    return fd; // use simply the fd as the unique id for the watch
+}
+
+
+//----------------------------------------------------------------------------
+
+void PolicyKitKDE::remove_io_watch(PolKitGrant* grant, int id)
+{
+    assert( id > 0 );
+    kDebug() << "remove_watch" << grant << id;
+    Q_ASSERT(m_self->m_watches.contains(id));
+
+    QSocketNotifier* notify = m_self->m_watches.take(id);
+    delete notify;
+}
+
+//----------------------------------------------------------------------------
+
+int PolicyKitKDE::add_child_watch( PolKitGrant*, pid_t pid )
+{
+    ProcessWatch *watch = new ProcessWatch(pid);
+    connect( watch, SIGNAL( terminated( pid_t, int )), m_self, SLOT( childTerminated( pid_t, int )));
+    // return negative so that remove_watch() can tell io and child watches apart
+    return - ProcessWatcher::instance()->add(watch);
+}
+
+//----------------------------------------------------------------------------
+
+void PolicyKitKDE::remove_child_watch( PolKitGrant*, int id )
+{
+    assert( id < 0 );
+    ProcessWatcher::instance()->remove( -id );
+}
+
+//----------------------------------------------------------------------------
+
+void PolicyKitKDE::childTerminated( pid_t pid, int exitStatus )
+{
+    polkit_grant_child_func( grant, pid, exitStatus );
+}
+
+//----------------------------------------------------------------------------
+
+void PolicyKitKDE::remove_watch( PolKitGrant* grant, int id )
+{
+    if( id > 0 ) // io watches are +, child watches are -
+        remove_io_watch( grant, id );
+    else
+        remove_child_watch( grant, id );
+}
+
+//----------------------------------------------------------------------------
+#if 0
+void PolicyKitKDE::polkit_config_changed( PolKitContext* context, void* )
+{
+    kDebug() << "polkit_config_changed" << context;
+    // Nothing to do here it seems (?).
+}
+#endif
