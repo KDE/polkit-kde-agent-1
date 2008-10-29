@@ -41,8 +41,7 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-AuthDialog::AuthDialog( const QString &header,
-            PolKitResult type)
+AuthDialog::AuthDialog( const QString &header )
     : KDialog(0), AuthDialogUI()
 {
     setButtons(Ok|Cancel);
@@ -52,21 +51,13 @@ AuthDialog::AuthDialog( const QString &header,
     setupUi(w);
     setMainWidget(w);
 
-    if (type == POLKIT_RESULT_UNKNOWN || \
-            type == POLKIT_RESULT_NO || \
-            type == POLKIT_RESULT_YES || \
-            type == POLKIT_RESULT_N_RESULTS )
-        kDebug() << "Unexpected PolkitResult type sent: " << polkit_result_to_string_representation(type);
-
     KIconLoader* iconloader = KIconLoader::global();
     lblPixmap->setPixmap(iconloader->loadIcon("dialog-password", KIconLoader::NoGroup,
                 KIconLoader::SizeHuge));
 
     cbUsers->hide();
-
-    setType(type);
-    setHeader(header);
-    setContent();
+    lePassword->setFocus();
+    setHeader( header );
 }
 
 AuthDialog::~AuthDialog()
@@ -83,68 +74,21 @@ void AuthDialog::setContent(const QString &msg)
     lblContent->setText(msg);
 }
 
-// set content according to m_type, that is a PolKitResult 
-void AuthDialog::setContent()
+void AuthDialog::setPasswordPrompt(const QString& prompt)
 {
-    QString msg;
-    switch(m_type)
-    {
-        //TODO: Authentication as one of the users below...
-        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH:
-        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION:
-        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS:
-            msg = i18n("An application is attempting to perform an action that requires privileges."
-                    " Authentication as the super user is required to perform this action.");
-            break;
-        default:
-            msg = i18n("An application is attempting to perform an action that requires privileges."
-                    " Authentication is required to perform this action.");
-
-    }
-    lblContent->setText(msg);
+    lblPassword->setText( prompt );
 }
 
-
-void AuthDialog::showUsersCombo()
+QString AuthDialog::password() const
 {
-    cbUsers->show();
+    return lePassword->text();
 }
 
-void AuthDialog::hideUsersCombo()
+void AuthDialog::showKeepPassword( KeepPassword keep )
 {
-    cbUsers->hide();
 }
 
-void AuthDialog::setPasswordFor(bool set, const QString& user)
+KeepPassword AuthDialog::keepPassword() const
 {
-    if (set)
-        lblPassword->setText(i18n("Password for root") + ":");
-    else if (!user.isEmpty())
-        lblPassword->setText(i18n("Password for user(%1)",user) + ":");
-    else
-        lblPassword->setText(i18n("Password") + ":");
-}
-
-void AuthDialog::setType(PolKitResult res)
-{
-    if (res == POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH || \
-            res == POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION || \
-            res == POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS)
-        setPasswordFor(true);
-
-    if (res == POLKIT_RESULT_ONLY_VIA_SELF_AUTH || \
-            res == POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION || \
-            res == POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS)
-        setPasswordFor(false);
-
-    if (res == POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH || res == POLKIT_RESULT_ONLY_VIA_SELF_AUTH)
-    {
-        cbRemember->hide();
-        cbSession->hide();
-    }
-
-    if (res == POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION || res == POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION)
-        cbRemember->hide();
-
-    m_type = res;
+    return KeepPasswordNo; // TODO
 }

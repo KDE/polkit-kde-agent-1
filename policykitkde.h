@@ -27,9 +27,15 @@
 #include <QtCore/QSocketNotifier>
 #include <QtDBus/QDBusContext>
 #include <QtDBus/QDBusMessage>
+#include <QtGui/QWidget>
 
 #include <polkit/polkit.h>
 #include <polkit-grant/polkit-grant.h>
+
+enum KeepPassword
+    {
+    KeepPasswordNo, KeepPasswordSession, KeepPasswordAlways
+    };
 
 class PolicyKitKDE : public QObject, protected QDBusContext
 {
@@ -50,11 +56,16 @@ private Q_SLOTS:
 
 private:
     PolKitContext *m_context;
+    WId parent_wid;
+    QString actionMessage;
     bool inProgress;
     bool done;
     PolKitGrant* grant;
+    PolKitCaller* caller;
+    PolKitAction* action;
     bool obtainedPrivilege;
     bool requireAdmin;
+    KeepPassword keepPassword;
     QDBusMessage mes;
 
     static PolicyKitKDE* m_self;

@@ -27,21 +27,20 @@
 
 #include "ui_authdialogui.h"
 
+#include "policykitkde.h"
+
 class AuthDialog : public KDialog, public Ui::AuthDialogUI
 {
 public:
-    AuthDialog( const QString &header, PolKitResult type);
+    AuthDialog( const QString &header );
     ~AuthDialog();
-    void setType(PolKitResult type);
-    void setContent(const QString &);
-    void setContent();
-    void setHeader(const QString &);
-
+    void setHeader( const QString& header );
+    void setContent( const QString& content );
+    void setPasswordPrompt( const QString& prompt );
+    void showKeepPassword( KeepPassword keep );
+    QString password() const;
+    KeepPassword keepPassword() const;
 private:
-    void showUsersCombo();
-    void hideUsersCombo();
-    void setPasswordFor(bool set, const QString& user = NULL);
-    PolKitResult m_type;
 };
 
 #endif // AUTHDIALOG_H

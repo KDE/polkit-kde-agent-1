@@ -64,7 +64,7 @@
      <item>
       <widget class="QLabel" name="lblContent" >
        <property name="text" >
-        <string></string>
+        <string/>
        </property>
        <property name="alignment" >
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -168,6 +168,7 @@
  </customwidgets>
  <tabstops>
   <tabstop>cbUsers</tabstop>
+  <tabstop>lePassword</tabstop>
   <tabstop>cbRemember</tabstop>
   <tabstop>cbSession</tabstop>
  </tabstops>
