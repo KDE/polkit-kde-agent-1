@@ -114,6 +114,8 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     inProgress = true;    
     obtainedPrivilege = false;
     requireAdmin = false;
+    keepPassword = KeepPasswordNo;
+    cancelled = false;
 
     action = polkit_action_new();
     if (action == NULL)
@@ -155,7 +157,7 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     }
 
     kDebug() << "Getting action message...";
-    actionMessage = QString::fromLocal8Bit(polkit_policy_file_entry_get_action_message(entry));
+    QString actionMessage = QString::fromLocal8Bit(polkit_policy_file_entry_get_action_message(entry));
     if( actionMessage.isEmpty())
     {
         kWarning() << "Could not get action message for action.";
@@ -165,17 +167,22 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     {
         kDebug() << "Message of action: " << actionMessage;
     }
-    vendor = polkit_policy_file_entry_get_action_vendor( entry );
-    vendorUrl = polkit_policy_file_entry_get_action_vendor_url( entry );
-    icon = KIconLoader::global()->loadIcon( polkit_policy_file_entry_get_action_icon_name( entry ),
+    QString vendor = polkit_policy_file_entry_get_action_vendor( entry );
+    KUrl vendorUrl( polkit_policy_file_entry_get_action_vendor_url( entry ));
+    QPixmap icon = KIconLoader::global()->loadIcon( polkit_policy_file_entry_get_action_icon_name( entry ),
         KIconLoader::NoGroup, KIconLoader::SizeHuge, KIconLoader::DefaultState, QStringList(), NULL, true );
     if( icon.isNull())
         icon = KIconLoader::global()->loadIcon( "dialog-password",
         KIconLoader::NoGroup, KIconLoader::SizeHuge );
 
-    parent_wid = wid;
-    if( wid == 0 )
+    dialog = new AuthDialog( actionMessage, icon, vendor, vendorUrl );
+    connect( dialog, SIGNAL( okClicked()), SLOT( dialogAccepted()));
+    connect( dialog, SIGNAL( cancelClicked()), SLOT( dialogCancelled()));
+    if( wid != 0 )
+        KWindowSystem::setMainWindow( dialog, wid );
+    else
         kapp->updateUserTimestamp(); // make it get focus unconditionally :-/
+    parent_wid = wid;
 
     grant = polkit_grant_new();
     polkit_grant_set_functions( grant, add_io_watch, add_child_watch, remove_watch,
@@ -196,8 +203,25 @@ void PolicyKitKDE::finishObtainPrivilege()
 {
     assert( inProgress );
     polkit_grant_unref( grant );
+    if( !cancelled && !obtainedPrivilege )
+    {
+        dialog->clearPassword();
+        // TODO this should probably just show it directly in the dialog, like KPasswordDialog does
+        KMessageBox::sorry( dialog, i18n( "Incorrect password, please try again." ));
+        grant = polkit_grant_new();
+            polkit_grant_set_functions( grant, add_io_watch, add_child_watch, remove_watch,
+            conversation_type, conversation_select_admin_user, conversation_pam_prompt_echo_off,
+            conversation_pam_prompt_echo_on, conversation_pam_error_msg, conversation_pam_text_info,
+            conversation_override_grant_type, conversation_done, this );
+        if( !polkit_grant_initiate_auth( grant, action, caller ))
+        {
+            kError() << "Failed to initiate privilege grant.";
+        }
+        return;
+    }
     polkit_caller_unref( caller );
     polkit_action_unref( action );
+    dialog->deleteLater();
     inProgress = false;
     kdDebug() << "Finish obtain authorization:" << obtainedPrivilege;
     QDBusConnection::sessionBus().send( mes.createReply( obtainedPrivilege ));
@@ -245,30 +269,40 @@ char* PolicyKitKDE::conversation_select_admin_user(PolKitGrant* grant, char** us
 char* PolicyKitKDE::conversation_pam_prompt_echo_off(PolKitGrant* grant, const char* request, void* )
 {
     kDebug() << "conversation_pam_prompt_echo_off" << grant << request;
-    AuthDialog dialog( m_self->actionMessage, m_self->icon, m_self->vendor, m_self->vendorUrl );
     if( m_self->requireAdmin )
     {
-        dialog.setContent( i18n("An application is attempting to perform an action that requires privileges."
+        m_self->dialog->setContent( i18n("An application is attempting to perform an action that requires privileges."
             " Authentication as the super user is required to perform this action." ));
-        dialog.setPasswordPrompt( i18n("Password for root") + ":" );
+        m_self->dialog->setPasswordPrompt( i18n("Password for root") + ":" );
     }
     else
     {
-        dialog.setContent( i18n("An application is attempting to perform an action that requires privileges."
+        m_self->dialog->setContent( i18n("An application is attempting to perform an action that requires privileges."
                     " Authentication is required to perform this action." ));
-        dialog.setPasswordPrompt( i18n("Password") + ":" );
+        m_self->dialog->setPasswordPrompt( i18n("Password") + ":" );
     }
-    dialog.showKeepPassword( m_self->keepPassword );
-    // TODO translate request?
-    if( dialog.exec() == QDialog::Accepted )
-    {
-        m_self->keepPassword = dialog.keepPassword();
-        kDebug() << "Password dialog confirmed.";
-        return strdup( dialog.password().toLocal8Bit());
-    }
+    m_self->dialog->showKeepPassword( m_self->keepPassword );
+    m_self->dialog->show();
+    QEventLoop loop;
+    connect( m_self->dialog, SIGNAL( okClicked()), &loop, SLOT( quit()));
+    connect( m_self->dialog, SIGNAL( cancelClicked()), &loop, SLOT( quit()));
+    loop.exec(); // TODO this really sucks, policykit API is blocking
+    if( m_self->cancelled )
+        return NULL;
+    return strdup( m_self->dialog->password().toLocal8Bit());
+}
+
+void PolicyKitKDE::dialogAccepted()
+{
+    m_self->keepPassword = dialog->keepPassword();
+    kDebug() << "Password dialog confirmed.";
+}
+
+void PolicyKitKDE::dialogCancelled()
+{
+    m_self->cancelled = true;
     kDebug() << "Password dialog cancelled.";
     polkit_grant_cancel_auth( grant );
-    return NULL;
 }
 
 char* PolicyKitKDE::conversation_pam_prompt_echo_on(PolKitGrant* grant, const char* request, void* )
@@ -280,13 +314,15 @@ char* PolicyKitKDE::conversation_pam_prompt_echo_on(PolKitGrant* grant, const ch
 void PolicyKitKDE::conversation_pam_error_msg(PolKitGrant* grant, const char* msg, void* )
 {
     kDebug() << "conversation_pam_error_msg" << grant << msg;
-    KMessageBox::errorWId( m_self->parent_wid, QString::fromLocal8Bit( msg ));
+    KMessageBox::errorWId( m_self->dialog->isVisible() ? m_self->dialog->winId() : m_self->parent_wid,
+        QString::fromLocal8Bit( msg ));
 }
 
 void PolicyKitKDE::conversation_pam_text_info(PolKitGrant* grant, const char* msg, void* )
 {
     kDebug() << "conversation_pam_text_info" << grant << msg;
-    KMessageBox::informationWId( m_self->parent_wid, QString::fromLocal8Bit( msg ));
+    KMessageBox::informationWId( m_self->dialog->isVisible() ? m_self->dialog->winId() : m_self->parent_wid,
+        QString::fromLocal8Bit( msg ));
 }
 
 PolKitResult PolicyKitKDE::conversation_override_grant_type(PolKitGrant* grant, PolKitResult type, void* )
@@ -392,7 +428,7 @@ void PolicyKitKDE::remove_io_watch(PolKitGrant* grant, int id)
     Q_ASSERT(m_self->m_watches.contains(id));
 
     QSocketNotifier* notify = m_self->m_watches.take(id);
-    delete notify;
+    notify->deleteLater();
 }
 
 //----------------------------------------------------------------------------

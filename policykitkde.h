@@ -32,12 +32,12 @@
 #include <polkit/polkit.h>
 #include <polkit-grant/polkit-grant.h>
 
-#include <kurl.h>
-
 enum KeepPassword
     {
     KeepPasswordNo, KeepPasswordSession, KeepPasswordAlways
     };
+
+class AuthDialog;
 
 class PolicyKitKDE : public QObject, protected QDBusContext
 {
@@ -55,16 +55,15 @@ private Q_SLOTS:
     void watchActivated(int fd);
     void childTerminated( pid_t, int );
     void finishObtainPrivilege();
+    void dialogAccepted();
+    void dialogCancelled();
 
 private:
     PolKitContext *m_context;
     WId parent_wid;
-    QString actionMessage;
-    QString vendor;
-    KUrl vendorUrl;
-    QPixmap icon;
+    AuthDialog* dialog;
     bool inProgress;
-    bool done;
+    bool cancelled;
     PolKitGrant* grant;
     PolKitCaller* caller;
     PolKitAction* action;

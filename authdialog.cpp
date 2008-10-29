@@ -62,6 +62,12 @@ AuthDialog::~AuthDialog()
 {
 }
 
+void AuthDialog::accept()
+{
+    // Do nothing, do not close the dialog. This is needed so that the dialog stays
+    return;
+}
+
 void AuthDialog::setHeader(const QString &header)
 {
     lblHeader->setText("<h3>" + header + "</h3>");
@@ -80,6 +86,11 @@ void AuthDialog::setPasswordPrompt(const QString& prompt)
 QString AuthDialog::password() const
 {
     return lePassword->text();
+}
+
+void AuthDialog::clearPassword()
+{
+    lePassword->clear();
 }
 
 void AuthDialog::showKeepPassword( KeepPassword keep )
@@ -114,3 +125,4 @@ KeepPassword AuthDialog::keepPassword() const
         return cbSessionOnly->isChecked() ? KeepPasswordSession : KeepPasswordAlways;
     return KeepPasswordNo;
 }
+

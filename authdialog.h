@@ -39,8 +39,10 @@ public:
     void setPasswordPrompt( const QString& prompt );
     void showKeepPassword( KeepPassword keep );
     QString password() const;
+    void clearPassword();
     KeepPassword keepPassword() const;
-private:
+public slots:
+    virtual void accept();
 };
 
 #endif // AUTHDIALOG_H
