@@ -203,7 +203,7 @@ void PolicyKitKDE::finishObtainPrivilege()
 {
     assert( inProgress );
     polkit_grant_unref( grant );
-    if( !cancelled && !obtainedPrivilege )
+    if( dialog->isVisible() && !cancelled && !obtainedPrivilege )
     {
         dialog->clearPassword();
         // TODO this should probably just show it directly in the dialog, like KPasswordDialog does
