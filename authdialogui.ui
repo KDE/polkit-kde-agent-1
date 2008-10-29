@@ -104,7 +104,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QCheckBox" name="cbSession" >
+        <widget class="QCheckBox" name="cbSessionOnly" >
          <property name="enabled" >
           <bool>false</bool>
          </property>
@@ -170,7 +170,7 @@
   <tabstop>cbUsers</tabstop>
   <tabstop>lePassword</tabstop>
   <tabstop>cbRemember</tabstop>
-  <tabstop>cbSession</tabstop>
+  <tabstop>cbSessionOnly</tabstop>
  </tabstops>
  <includes>
   <include location="local" >kcombobox.h</include>
@@ -180,7 +180,7 @@
   <connection>
    <sender>cbRemember</sender>
    <signal>toggled(bool)</signal>
-   <receiver>cbSession</receiver>
+   <receiver>cbSessionOnly</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >

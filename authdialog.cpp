@@ -86,9 +86,33 @@ QString AuthDialog::password() const
 
 void AuthDialog::showKeepPassword( KeepPassword keep )
 {
+    switch( keep )
+    {
+        case KeepPasswordNo:
+            cbRemember->hide();
+            cbSessionOnly->hide();
+            break;
+        case KeepPasswordSession:
+            cbRemember->setText( i18n( "Remember authorization for this session" ));
+            cbRemember->show();
+            cbSessionOnly->hide();
+            break;
+        case KeepPasswordAlways:
+            cbRemember->setText( i18n( "Remember authorization" ));
+            cbRemember->show();
+            cbSessionOnly->show();
+            break;
+    }
 }
 
 KeepPassword AuthDialog::keepPassword() const
 {
-    return KeepPasswordNo; // TODO
+    if( cbRemember->isHidden()) // cannot make it keep
+        return KeepPasswordNo;
+    if( cbSessionOnly->isHidden()) // can keep only for session
+        return cbRemember->isChecked() ? KeepPasswordSession : KeepPasswordNo;
+    // can keep either way
+    if( cbRemember->isChecked())
+        return cbSessionOnly->isChecked() ? KeepPasswordSession : KeepPasswordAlways;
+    return KeepPasswordNo;
 }

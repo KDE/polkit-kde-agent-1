@@ -309,6 +309,7 @@ PolKitResult PolicyKitKDE::conversation_override_grant_type(PolKitGrant* grant, 
         default:
             abort();
     }
+    kDebug() << "Keep password, session:" << keep_session << ", always:" << keep_always;
     PolKitResult ret;
     switch( type )
     {
