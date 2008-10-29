@@ -32,7 +32,7 @@
 class AuthDialog : public KDialog, public Ui::AuthDialogUI
 {
 public:
-    AuthDialog( const QString &header );
+    AuthDialog( const QString &header, const QPixmap& pix, const QString& vendor, const KUrl& vendorUrl );
     ~AuthDialog();
     void setHeader( const QString& header );
     void setContent( const QString& content );

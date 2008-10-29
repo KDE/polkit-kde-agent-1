@@ -41,7 +41,7 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-AuthDialog::AuthDialog( const QString &header )
+AuthDialog::AuthDialog( const QString &header, const QPixmap& pix, const QString& vendor, const KUrl& vendorUrl )
     : KDialog(0), AuthDialogUI()
 {
     setButtons(Ok|Cancel);
@@ -51,10 +51,8 @@ AuthDialog::AuthDialog( const QString &header )
     setupUi(w);
     setMainWidget(w);
 
-    KIconLoader* iconloader = KIconLoader::global();
-    lblPixmap->setPixmap(iconloader->loadIcon("dialog-password", KIconLoader::NoGroup,
-                KIconLoader::SizeHuge));
-
+    lblPixmap->setPixmap( pix );
+    // TODO vendor info
     cbUsers->hide();
     lePassword->setFocus();
     setHeader( header );

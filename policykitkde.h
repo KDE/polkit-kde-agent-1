@@ -32,6 +32,8 @@
 #include <polkit/polkit.h>
 #include <polkit-grant/polkit-grant.h>
 
+#include <kurl.h>
+
 enum KeepPassword
     {
     KeepPasswordNo, KeepPasswordSession, KeepPasswordAlways
@@ -58,6 +60,9 @@ private:
     PolKitContext *m_context;
     WId parent_wid;
     QString actionMessage;
+    QString vendor;
+    KUrl vendorUrl;
+    QPixmap icon;
     bool inProgress;
     bool done;
     PolKitGrant* grant;

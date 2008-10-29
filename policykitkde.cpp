@@ -165,6 +165,13 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     {
         kDebug() << "Message of action: " << actionMessage;
     }
+    vendor = polkit_policy_file_entry_get_action_vendor( entry );
+    vendorUrl = polkit_policy_file_entry_get_action_vendor_url( entry );
+    icon = KIconLoader::global()->loadIcon( polkit_policy_file_entry_get_action_icon_name( entry ),
+        KIconLoader::NoGroup, KIconLoader::SizeHuge, KIconLoader::DefaultState, QStringList(), NULL, true );
+    if( icon.isNull())
+        icon = KIconLoader::global()->loadIcon( "dialog-password",
+        KIconLoader::NoGroup, KIconLoader::SizeHuge );
 
     parent_wid = wid;
     if( wid == 0 )
@@ -238,7 +245,7 @@ char* PolicyKitKDE::conversation_select_admin_user(PolKitGrant* grant, char** us
 char* PolicyKitKDE::conversation_pam_prompt_echo_off(PolKitGrant* grant, const char* request, void* )
 {
     kDebug() << "conversation_pam_prompt_echo_off" << grant << request;
-    AuthDialog dialog( m_self->actionMessage );
+    AuthDialog dialog( m_self->actionMessage, m_self->icon, m_self->vendor, m_self->vendorUrl );
     if( m_self->requireAdmin )
     {
         dialog.setContent( i18n("An application is attempting to perform an action that requires privileges."
@@ -346,6 +353,7 @@ void PolicyKitKDE::conversation_done(PolKitGrant* grant, polkit_bool_t obtainedP
 {
     kDebug() << "conversation_done" << grant << obtainedPrivilege << invalidData;
     m_self->obtainedPrivilege = obtainedPrivilege;
+    // TODO repeat if not cancelled and failed to obtain privilege?
     QTimer::singleShot( 0, m_self, SLOT( finishObtainPrivilege()));
 }
 
