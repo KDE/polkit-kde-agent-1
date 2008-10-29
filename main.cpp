@@ -36,6 +36,7 @@ int main (int argc, char *argv[])
                         ki18n( "(c) 2005-2007, TUBITAK - UEKAE" ) );
     aboutData.addAuthor( ki18n("Gökçen Eraslan"), ki18n( "KDE 3 Code" ), "gokcen@pardus.org.tr" );
     aboutData.addAuthor( ki18n("Dirk Müller"), ki18n( "Author" ), "mueller@kde.org" );
+    aboutData.addAuthor( ki18n("Luboš Luňák"), ki18n( "Developer" ), "l.lunak@kde.org" );
     KCmdLineArgs::init( argc, argv, &aboutData );
 
     KApplication app;
