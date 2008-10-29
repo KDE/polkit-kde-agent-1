@@ -389,7 +389,6 @@ void PolicyKitKDE::conversation_done(PolKitGrant* grant, polkit_bool_t obtainedP
 {
     kDebug() << "conversation_done" << grant << obtainedPrivilege << invalidData;
     m_self->obtainedPrivilege = obtainedPrivilege;
-    // TODO repeat if not cancelled and failed to obtain privilege?
     QTimer::singleShot( 0, m_self, SLOT( finishObtainPrivilege()));
 }
 
