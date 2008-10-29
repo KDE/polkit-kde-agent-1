@@ -31,7 +31,7 @@
 
 int main (int argc, char *argv[])
 {
-    KAboutData aboutData( "policykit-kde", "", ki18n( "PolicyKit-kde" ), "0.1",
+    KAboutData aboutData( "policykit-kde", "", ki18n( "PolicyKit-kde" ), "0.2",
                         ki18n( "PolicyKit-kde" ), KAboutData::License_GPL,
                         ki18n( "(c) 2005-2007, TUBITAK - UEKAE" ) );
     aboutData.addAuthor( ki18n("Gökçen Eraslan"), ki18n( "KDE 3 Code" ), "gokcen@pardus.org.tr" );
