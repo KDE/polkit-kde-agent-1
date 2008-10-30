@@ -56,6 +56,12 @@ AuthDialog::AuthDialog( const QString &header, const QPixmap& pix, const QString
     cbUsers->hide();
     lePassword->setFocus();
     setHeader( header );
+
+    // placeholders
+    i18n( "Details" );
+    i18n( "Application:" );
+    i18n( "Action:" );
+    i18n( "Vendor:" );
 }
 
 AuthDialog::~AuthDialog()

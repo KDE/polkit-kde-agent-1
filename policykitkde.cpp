@@ -280,6 +280,10 @@ char* PolicyKitKDE::conversation_pam_prompt_echo_off(PolKitGrant* grant, const c
         m_self->dialog->setContent( i18n("An application is attempting to perform an action that requires privileges."
                     " Authentication is required to perform this action." ));
         m_self->dialog->setPasswordPrompt( i18n("Password") + ":" );
+        // placeholders
+        i18n( "An application is attempting to perform an action that requires privileges."
+            " Authentication as one of the users below user is required to perform this action." );
+        i18n( "Password for %1" );
     }
     m_self->dialog->showKeepPassword( m_self->keepPassword );
     m_self->dialog->show();
