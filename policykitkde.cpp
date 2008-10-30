@@ -55,7 +55,7 @@ PolicyKitKDE::PolicyKitKDE(QObject* parent)
 
     (void) new AuthenticationAgentAdaptor(this);
     if (!QDBusConnection::sessionBus().registerService("org.freedesktop.PolicyKit.AuthenticationAgent"))
-        kError() << "anothe authentication agent already running";
+        kError() << "another authentication agent already running";
 
     if (!QDBusConnection::sessionBus().registerObject("/", this)) {
         kError() << "unable to register service interface to dbus";
