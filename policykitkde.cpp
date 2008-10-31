@@ -168,14 +168,20 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
         kDebug() << "Message of action: " << actionMessage;
     }
     QString vendor = polkit_policy_file_entry_get_action_vendor( entry );
-    KUrl vendorUrl( polkit_policy_file_entry_get_action_vendor_url( entry ));
+    QString vendorUrl = polkit_policy_file_entry_get_action_vendor_url( entry );
     QPixmap icon = KIconLoader::global()->loadIcon( polkit_policy_file_entry_get_action_icon_name( entry ),
         KIconLoader::NoGroup, KIconLoader::SizeHuge, KIconLoader::DefaultState, QStringList(), NULL, true );
     if( icon.isNull())
         icon = KIconLoader::global()->loadIcon( "dialog-password",
         KIconLoader::NoGroup, KIconLoader::SizeHuge );
+    QString appname;
+    char tmp[ PATH_MAX ];
+    if( polkit_sysdeps_get_exe_for_pid_with_helper( pid, tmp, sizeof( tmp ) - 1 ) < 0 )
+        appname = i18n( "Unknown" );
+    else
+        appname = QString::fromLocal8Bit( tmp );
 
-    dialog = new AuthDialog( actionMessage, icon, vendor, vendorUrl );
+    dialog = new AuthDialog( actionMessage, icon, appname, actionId, vendor, vendorUrl );
     connect( dialog, SIGNAL( okClicked()), SLOT( dialogAccepted()));
     connect( dialog, SIGNAL( cancelClicked()), SLOT( dialogCancelled()));
     if( wid != 0 )

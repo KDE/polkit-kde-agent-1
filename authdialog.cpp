@@ -33,6 +33,9 @@
 #include <kpushbutton.h>
 #include <klineedit.h>
 #include <kdebug.h>
+#include <ktoolinvocation.h>
+
+#include "ui_authdetails.h"
 
 /* 
  *  Constructs a AuthDialog which is a child of 'parent', with the 
@@ -41,10 +44,11 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-AuthDialog::AuthDialog( const QString &header, const QPixmap& pix, const QString& vendor, const KUrl& vendorUrl )
+AuthDialog::AuthDialog( const QString &header, const QPixmap& pix, const QString& appname, const QString& actionId,
+    const QString& vendor, const QString& vendorUrl )
     : KDialog(0), AuthDialogUI()
 {
-    setButtons(Ok|Cancel);
+    setButtons(Ok|Cancel|Details);
     setCaption(header);
 
     QWidget* w = new QWidget(this);
@@ -52,16 +56,17 @@ AuthDialog::AuthDialog( const QString &header, const QPixmap& pix, const QString
     setMainWidget(w);
 
     lblPixmap->setPixmap( pix );
-    // TODO vendor info
     cbUsers->hide();
     lePassword->setFocus();
     setHeader( header );
-
-    // placeholders
-    i18n( "Details" );
-    i18n( "Application:" );
-    i18n( "Action:" );
-    i18n( "Vendor:" );
+    AuthDetails* details = new AuthDetails( this );
+    details->app_label->setText( appname );
+    // TODO policykit-gnome makes this clickable and lets edit settings for the action
+    details->action_label->setText( actionId );
+    details->vendor_label->setText( vendor );
+    details->vendor_label->setUrl( vendorUrl );
+    setDetailsWidget( details );
+    resize( sizeHint() + QSize( 100, 100 )); // HACK broken QLabel layouting
 }
 
 AuthDialog::~AuthDialog()
@@ -132,3 +137,14 @@ KeepPassword AuthDialog::keepPassword() const
     return KeepPasswordNo;
 }
 
+AuthDetails::AuthDetails( QWidget* parent )
+: QWidget( parent )
+{
+    setupUi( this );
+    connect( vendor_label, SIGNAL( leftClickedUrl( const QString& )), SLOT( openUrl( const QString& )));
+}
+
+void AuthDetails::openUrl( const QString& url )
+{
+    KToolInvocation::invokeBrowser( url );
+}
