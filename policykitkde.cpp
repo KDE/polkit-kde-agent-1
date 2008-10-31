@@ -229,7 +229,7 @@ void PolicyKitKDE::finishObtainPrivilege()
     polkit_action_unref( action );
     dialog->deleteLater();
     inProgress = false;
-    kdDebug() << "Finish obtain authorization:" << obtainedPrivilege;
+    kDebug() << "Finish obtain authorization:" << obtainedPrivilege;
     QDBusConnection::sessionBus().send( mes.createReply( obtainedPrivilege ));
 }
 
@@ -297,6 +297,7 @@ char* PolicyKitKDE::conversation_pam_prompt_echo_off(PolKitGrant* grant, const c
     connect( m_self->dialog, SIGNAL( okClicked()), &loop, SLOT( quit()));
     connect( m_self->dialog, SIGNAL( cancelClicked()), &loop, SLOT( quit()));
     loop.exec(); // TODO this really sucks, policykit API is blocking
+    QTimer::singleShot( 0, m_self, SLOT( finishObtainPrivilege()));
     if( m_self->cancelled )
         return NULL;
     return strdup( m_self->dialog->password().toLocal8Bit());
@@ -318,7 +319,7 @@ void PolicyKitKDE::dialogCancelled()
 char* PolicyKitKDE::conversation_pam_prompt_echo_on(PolKitGrant* grant, const char* request, void* )
 {
     kDebug() << "conversation_pam_prompt_echo_on" << grant << request;
-    return strdup( "test" );
+    return strdup( "test" ); // TODO
 }
 
 void PolicyKitKDE::conversation_pam_error_msg(PolKitGrant* grant, const char* msg, void* )
@@ -399,7 +400,6 @@ void PolicyKitKDE::conversation_done(PolKitGrant* grant, polkit_bool_t obtainedP
 {
     kDebug() << "conversation_done" << grant << obtainedPrivilege << invalidData;
     m_self->obtainedPrivilege = obtainedPrivilege;
-    QTimer::singleShot( 0, m_self, SLOT( finishObtainPrivilege()));
 }
 
 //----------------------------------------------------------------------------
@@ -438,6 +438,7 @@ void PolicyKitKDE::remove_io_watch(PolKitGrant* grant, int id)
 
     QSocketNotifier* notify = m_self->m_watches.take(id);
     notify->deleteLater();
+    notify->setEnabled( false );
 }
 
 //----------------------------------------------------------------------------
