@@ -71,10 +71,8 @@ PolicyKitKDE::PolicyKitKDE(QObject* parent)
 
     polkit_context_set_load_descriptions(m_context);
 
-#if 0 // TODO Does not seem to be needed?
     polkit_context_set_config_changed( m_context, polkit_config_changed, NULL );
-    polkit_context_set_io_watch_functions (m_context, add_io_watch, remove_io_watch);
-#endif
+    polkit_context_set_io_watch_functions (m_context, add_context_io_watch, remove_context_io_watch);
 
     PolKitError* error = NULL;
     if (!polkit_context_init (m_context, &error))
@@ -192,7 +190,7 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     parent_wid = wid;
 
     grant = polkit_grant_new();
-    polkit_grant_set_functions( grant, add_io_watch, add_child_watch, remove_watch,
+    polkit_grant_set_functions( grant, add_grant_io_watch, add_child_watch, remove_watch,
         conversation_type, conversation_select_admin_user, conversation_pam_prompt_echo_off,
         conversation_pam_prompt_echo_on, conversation_pam_error_msg, conversation_pam_text_info,
         conversation_override_grant_type, conversation_done, this );
@@ -216,7 +214,7 @@ void PolicyKitKDE::finishObtainPrivilege()
         // TODO this should probably just show it directly in the dialog, like KPasswordDialog does
         KMessageBox::sorry( dialog, i18n( "Incorrect password, please try again." ));
         grant = polkit_grant_new();
-            polkit_grant_set_functions( grant, add_io_watch, add_child_watch, remove_watch,
+            polkit_grant_set_functions( grant, add_grant_io_watch, add_child_watch, remove_watch,
             conversation_type, conversation_select_admin_user, conversation_pam_prompt_echo_off,
             conversation_pam_prompt_echo_on, conversation_pam_error_msg, conversation_pam_text_info,
             conversation_override_grant_type, conversation_done, this );
@@ -406,7 +404,7 @@ void PolicyKitKDE::conversation_done(PolKitGrant* grant, polkit_bool_t obtainedP
 
 //----------------------------------------------------------------------------
 
-void PolicyKitKDE::watchActivated(int fd)
+void PolicyKitKDE::watchActivatedGrant(int fd)
 {
     Q_ASSERT(m_watches.contains(fd));
 
@@ -417,14 +415,14 @@ void PolicyKitKDE::watchActivated(int fd)
 
 //----------------------------------------------------------------------------
 
-int PolicyKitKDE::add_io_watch(PolKitGrant* grant, int fd)
+int PolicyKitKDE::add_grant_io_watch(PolKitGrant* grant, int fd)
 {
     kDebug() << "add_watch" << grant << fd;
 
     QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read, m_self);
     m_self->m_watches[fd] = notify;
 
-    notify->connect(notify, SIGNAL(activated(int)), m_self, SLOT(watchActivated(int)));
+    notify->connect(notify, SIGNAL(activated(int)), m_self, SLOT(watchActivatedGrant(int)));
 
     return fd; // use simply the fd as the unique id for the watch
 }
@@ -432,10 +430,49 @@ int PolicyKitKDE::add_io_watch(PolKitGrant* grant, int fd)
 
 //----------------------------------------------------------------------------
 
-void PolicyKitKDE::remove_io_watch(PolKitGrant* grant, int id)
+void PolicyKitKDE::remove_grant_io_watch(PolKitGrant* grant, int id)
 {
     assert( id > 0 );
     kDebug() << "remove_watch" << grant << id;
+    Q_ASSERT(m_self->m_watches.contains(id));
+
+    QSocketNotifier* notify = m_self->m_watches.take(id);
+    notify->deleteLater();
+    notify->setEnabled( false );
+}
+
+//----------------------------------------------------------------------------
+
+void PolicyKitKDE::watchActivatedContext(int fd)
+{
+    Q_ASSERT(m_watches.contains(fd));
+
+//    kDebug() << "watchActivated" << fd;
+
+    polkit_context_io_func (m_context, fd);
+}
+
+//----------------------------------------------------------------------------
+
+int PolicyKitKDE::add_context_io_watch(PolKitContext* context, int fd)
+{
+    kDebug() << "add_watch" << context << fd;
+
+    QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read, m_self);
+    m_self->m_watches[fd] = notify;
+
+    notify->connect(notify, SIGNAL(activated(int)), m_self, SLOT(watchActivatedContext(int)));
+
+    return fd; // use simply the fd as the unique id for the watch
+}
+
+
+//----------------------------------------------------------------------------
+
+void PolicyKitKDE::remove_context_io_watch(PolKitContext* context, int id)
+{
+    assert( id > 0 );
+    kDebug() << "remove_watch" << context << id;
     Q_ASSERT(m_self->m_watches.contains(id));
 
     QSocketNotifier* notify = m_self->m_watches.take(id);
@@ -473,16 +510,14 @@ void PolicyKitKDE::childTerminated( pid_t pid, int exitStatus )
 void PolicyKitKDE::remove_watch( PolKitGrant* grant, int id )
 {
     if( id > 0 ) // io watches are +, child watches are -
-        remove_io_watch( grant, id );
+        remove_grant_io_watch( grant, id );
     else
         remove_child_watch( grant, id );
 }
 
 //----------------------------------------------------------------------------
-#if 0
 void PolicyKitKDE::polkit_config_changed( PolKitContext* context, void* )
 {
     kDebug() << "polkit_config_changed" << context;
     // Nothing to do here it seems (?).
 }
-#endif

@@ -52,7 +52,8 @@ public Q_SLOTS:
     bool ObtainAuthorization(const QString& action_id, uint xid, uint pid);
 
 private Q_SLOTS:
-    void watchActivated(int fd);
+    void watchActivatedGrant(int fd);
+    void watchActivatedContext(int fd);
     void childTerminated( pid_t, int );
     void finishObtainPrivilege();
     void dialogAccepted();
@@ -76,9 +77,10 @@ private:
 
     QMap<int, QSocketNotifier*> m_watches;
 
-    static int add_io_watch(PolKitGrant *grant, int fd);
-    static void remove_io_watch(PolKitGrant *grant, int fd);
-    static void io_watch_have_data(PolKitGrant *grant, int fd);
+    static int add_grant_io_watch(PolKitGrant *grant, int fd);
+    static void remove_grant_io_watch(PolKitGrant *grant, int fd);
+    static int add_context_io_watch(PolKitContext *context, int fd);
+    static void remove_context_io_watch(PolKitContext *context, int fd);
     static int add_child_watch(PolKitGrant* grant, pid_t pid);
     static void remove_child_watch(PolKitGrant* grant, int id);
     static void remove_watch(PolKitGrant* grant, int id);
@@ -90,6 +92,7 @@ private:
     static void conversation_pam_text_info(PolKitGrant* grant, const char* msg, void* d );
     static PolKitResult conversation_override_grant_type(PolKitGrant* grant, PolKitResult type, void* d);
     static void conversation_done(PolKitGrant* grant, polkit_bool_t obtainedPrivilege, polkit_bool_t invalidData, void* d);
+    static void polkit_config_changed(PolKitContext* context, void* );
 };
 
 #endif
