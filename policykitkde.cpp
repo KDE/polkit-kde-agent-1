@@ -27,6 +27,7 @@
 #include <kapplication.h>
 #include <kdebug.h>
 #include <qstring.h>
+#include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <kwindowsystem.h>
 
@@ -319,7 +320,8 @@ void PolicyKitKDE::dialogCancelled()
 char* PolicyKitKDE::conversation_pam_prompt_echo_on(PolKitGrant* grant, const char* request, void* )
 {
     kDebug() << "conversation_pam_prompt_echo_on" << grant << request;
-    return strdup( "test" ); // TODO
+    // TODO doesn't set proper parent, and is probably not the right way, but what does actually use this?
+    return strdup( KInputDialog::getText( QString(), QString::fromLocal8Bit( request )).toLocal8Bit());
 }
 
 void PolicyKitKDE::conversation_pam_error_msg(PolKitGrant* grant, const char* msg, void* )
