@@ -24,17 +24,16 @@
 #include "authenticationagentadaptor.h"
 
 #include <assert.h>
-#include <kapplication.h>
-#include <kdebug.h>
-#include <qstring.h>
-#include <kinputdialog.h>
-#include <kmessagebox.h>
-#include <kwindowsystem.h>
+#include <KDebug>
+#include <QString>
+#include <KInputDialog>
+#include <KMessageBox>
+#include <KWindowSystem>
 
 #include "qdbusconnection.h"
 
-#include <qvariant.h>
-#include <qsocketnotifier.h>
+#include <QVariant>
+#include <QSocketNotifier>
 
 //policykit header
 #include <polkit-dbus/polkit-dbus.h>

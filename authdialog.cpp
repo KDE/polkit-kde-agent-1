@@ -21,19 +21,18 @@
 
 #include "authdialog.h"
 
-#include <qlabel.h>
-#include <qstring.h>
-#include <qnamespace.h>
-#include <qcheckbox.h>
+#include <QLabel>
+#include <QString>
+#include <QCheckBox>
 
-#include <kglobal.h>
-#include <klocale.h>
-#include <kiconloader.h>
-#include <kcombobox.h>
-#include <kpushbutton.h>
-#include <klineedit.h>
-#include <kdebug.h>
-#include <ktoolinvocation.h>
+#include <KGlobal>
+#include <KLocale>
+#include <KIconLoader>
+#include <KComboBox>
+#include <KPushButton>
+#include <KLineEdit>
+#include <KDebug>
+#include <KToolInvocation>
 
 #include "ui_authdetails.h"
 
@@ -50,6 +49,7 @@ AuthDialog::AuthDialog( const QString &header, const QPixmap& pix, const QString
 {
     setButtons(Ok|Cancel|Details);
     setCaption(header);
+    setWindowIcon( pix );
 
     QWidget* w = new QWidget(this);
     setupUi(w);

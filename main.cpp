@@ -19,13 +19,13 @@
 */
 
 
-#include <qstring.h>
+#include <QString>
 #include <QDebug>
 
-#include <kcmdlineargs.h>
-#include <kaboutdata.h>
-#include <kapplication.h>
-#include <klocale.h>
+#include <KCmdLineArgs>
+#include <KAboutData>
+#include <KApplication>
+#include <KLocale>
 
 #include "authdialog.h"
 #include "policykitkde.h"
