@@ -22,7 +22,8 @@
 
 */
 
-#include <QtCore/QObject>
+#include <KUniqueApplication>
+
 #include <QtCore/QMap>
 #include <QtCore/QSocketNotifier>
 #include <QtDBus/QDBusContext>
@@ -39,7 +40,7 @@ enum KeepPassword
 
 class AuthDialog;
 
-class PolicyKitKDE : public QObject, protected QDBusContext
+class PolicyKitKDE : public KUniqueApplication, protected QDBusContext
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.freedesktop.PolicyKit.AuthenticationAgent")

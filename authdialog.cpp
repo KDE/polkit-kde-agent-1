@@ -66,7 +66,9 @@ AuthDialog::AuthDialog( const QString &header, const QPixmap& pix, const QString
     details->vendor_label->setText( vendor );
     details->vendor_label->setUrl( vendorUrl );
     setDetailsWidget( details );
-    resize( sizeHint() + QSize( 100, 100 )); // HACK broken QLabel layouting
+    //size got from minimum size on qtdesigner
+    setMinimumSize( QSize(318, 190) );
+//     resize( sizeHint() + QSize( 100, 100 )); // HACK broken QLabel layouting
 }
 
 AuthDialog::~AuthDialog()

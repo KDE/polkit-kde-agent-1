@@ -20,6 +20,7 @@
 
 
 #include <qstring.h>
+#include <QDebug>
 
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
@@ -39,10 +40,13 @@ int main (int argc, char *argv[])
     aboutData.addAuthor( ki18n("Luboš Luňák"), ki18n( "Developer" ), "l.lunak@kde.org" );
     KCmdLineArgs::init( argc, argv, &aboutData );
 
-    KApplication app;
-    app.setQuitOnLastWindowClosed(false);
-    app.disableSessionManagement();
+    if ( !PolicyKitKDE::start() )
+    {
+	qDebug() << "PolicyKitKDE is already running!";
+	return 0;
+    }
 
-    PolicyKitKDE pkKDE;
+    PolicyKitKDE app;
+
     return app.exec();
 }

@@ -48,9 +48,10 @@ PolicyKitKDE* PolicyKitKDE::m_self;
 //----------------------------------------------------------------------------
 
 PolicyKitKDE::PolicyKitKDE(QObject* parent)
-    : QObject(parent)
+    : KUniqueApplication()
     , inProgress( false )
 {
+    Q_UNUSED(parent);
     Q_ASSERT(!m_self);
     m_self = this;
 
