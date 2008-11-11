@@ -18,6 +18,6 @@ qt4_add_dbus_adaptor(policykit_SRCS org.freedesktop.PolicyKit.AuthenticationAgen
 kde4_add_ui_files(policykit_SRCS authdialogui.ui authdetails.ui)
 
 kde4_add_executable(polkit-kde-manager ${policykit_SRCS})
-target_link_libraries(polkit-kde-manager ${KDE4_KDEUI_LIBS} ${QT_QT3SUPPORT_LIBRARY} polkit-dbus polkit-grant)
+target_link_libraries(polkit-kde-manager ${KDE4_KDEUI_LIBS} polkit-dbus polkit-grant)
 
 install(TARGETS polkit-kde-manager DESTINATION ${INSTALL_TARGETS_DEFAULT_ARGS})
