@@ -425,6 +425,7 @@ int PolicyKitKDE::add_grant_io_watch(PolKitGrant* grant, int fd)
     notify->connect(notify, SIGNAL(activated(int)), m_self, SLOT(watchActivatedGrant(int)));
 
     return fd; // use simply the fd as the unique id for the watch
+    // TODO this will be insufficient if there will be more watches for the same fd
 }
 
 
