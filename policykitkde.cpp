@@ -434,7 +434,8 @@ void PolicyKitKDE::remove_grant_io_watch(PolKitGrant* grant, int id)
 {
     assert( id > 0 );
     kDebug() << "remove_watch" << grant << id;
-    Q_ASSERT(m_self->m_watches.contains(id));
+    if( !m_self->m_watches.contains(id))
+        return; // policykit likes to do this more than once
 
     QSocketNotifier* notify = m_self->m_watches.take(id);
     notify->deleteLater();
@@ -473,7 +474,8 @@ void PolicyKitKDE::remove_context_io_watch(PolKitContext* context, int id)
 {
     assert( id > 0 );
     kDebug() << "remove_watch" << context << id;
-    Q_ASSERT(m_self->m_watches.contains(id));
+    if( !m_self->m_watches.contains(id))
+        return; // policykit likes to do this more than once
 
     QSocketNotifier* notify = m_self->m_watches.take(id);
     notify->deleteLater();
