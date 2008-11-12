@@ -296,7 +296,6 @@ char* PolicyKitKDE::conversation_pam_prompt_echo_off(PolKitGrant* grant, const c
     connect( m_self->dialog, SIGNAL( okClicked()), &loop, SLOT( quit()));
     connect( m_self->dialog, SIGNAL( cancelClicked()), &loop, SLOT( quit()));
     loop.exec(); // TODO this really sucks, policykit API is blocking
-    QTimer::singleShot( 0, m_self, SLOT( finishObtainPrivilege()));
     if( m_self->cancelled )
         return NULL;
     return strdup( m_self->dialog->password().toLocal8Bit());
@@ -400,6 +399,7 @@ void PolicyKitKDE::conversation_done(PolKitGrant* grant, polkit_bool_t obtainedP
 {
     kDebug() << "conversation_done" << grant << obtainedPrivilege << invalidData;
     m_self->obtainedPrivilege = obtainedPrivilege;
+    QTimer::singleShot( 0, m_self, SLOT( finishObtainPrivilege()));
 }
 
 //----------------------------------------------------------------------------
