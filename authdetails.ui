@@ -5,9 +5,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>148</width>
+    <width>182</width>
     <height>73</height>
    </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy vsizetype="MinimumExpanding" hsizetype="MinimumExpanding" >
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
@@ -61,7 +67,7 @@
   <customwidget>
    <class>KUrlLabel</class>
    <extends>QLabel</extends>
-   <header location="global" >kurllabel.h</header>
+   <header>kurllabel.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

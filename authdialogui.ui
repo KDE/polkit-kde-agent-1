@@ -10,7 +10,7 @@
    </rect>
   </property>
   <property name="sizePolicy" >
-   <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+   <sizepolicy vsizetype="MinimumExpanding" hsizetype="MinimumExpanding" >
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -25,12 +25,6 @@
    <string>Authentication Required</string>
   </property>
   <layout class="QGridLayout" >
-   <property name="margin" >
-    <number>0</number>
-   </property>
-   <property name="spacing" >
-    <number>0</number>
-   </property>
    <item rowspan="4" row="0" column="0" >
     <layout class="QVBoxLayout" >
      <item>
@@ -65,6 +59,12 @@
     <layout class="QVBoxLayout" >
      <item>
       <widget class="QLabel" name="lblHeader" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="MinimumExpanding" hsizetype="MinimumExpanding" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text" >
         <string>&lt;h3>&lt;b>Header is here! &lt;/b>&lt;/h3></string>
        </property>
