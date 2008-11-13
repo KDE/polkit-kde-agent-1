@@ -40,12 +40,14 @@ enum KeepPassword
 
 class AuthDialog;
 
-class PolicyKitKDE : public KUniqueApplication, protected QDBusContext
+class PolicyKitKDE : public QObject, protected QDBusContext
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.freedesktop.PolicyKit.AuthenticationAgent")
 
 public:
+    static PolicyKitKDE *instance();
+
     PolicyKitKDE(QObject* parent=0L);
     ~PolicyKitKDE();
 
@@ -73,8 +75,6 @@ private:
     bool requireAdmin;
     KeepPassword keepPassword;
     QDBusMessage mes;
-
-    static PolicyKitKDE* m_self;
 
     QMap<int, QSocketNotifier*> m_watches;
 

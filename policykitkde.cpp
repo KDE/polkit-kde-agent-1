@@ -2,6 +2,7 @@
     Copyright (C) 2007-2008 Gökçen Eraslan <gokcen@pardus.org.tr>
     Copyright (C) 2008 Dirk Mueller <mueller@kde.org>
     Copyright (C) 2008 Lubos Lunak <l.lunak@kde.org>
+    Copyright (C) 2008 Dario Freddi <drf54321@gmail.com>
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public
@@ -42,17 +43,35 @@
 #include "authdialog.h"
 #include "processwatcher.h"
 
-PolicyKitKDE* PolicyKitKDE::m_self;
+class PolicyKitKDEHelper
+{
+  public:
+    PolicyKitKDEHelper() : q(0) {}
+    ~PolicyKitKDEHelper() { delete q; }
+    PolicyKitKDE *q;
+};
+
+K_GLOBAL_STATIC(PolicyKitKDEHelper, s_globalPolicyKitKDE)
+
+PolicyKitKDE *PolicyKitKDE::instance()
+{
+    if (!s_globalPolicyKitKDE->q) {
+        new PolicyKitKDE;
+    }
+
+    return s_globalPolicyKitKDE->q;
+}
 
 //----------------------------------------------------------------------------
 
 PolicyKitKDE::PolicyKitKDE(QObject* parent)
-    : KUniqueApplication()
+    : QObject(parent)
     , inProgress( false )
 {
-    Q_UNUSED(parent);
-    Q_ASSERT(!m_self);
-    m_self = this;
+    Q_ASSERT(!s_globalPolicyKitKDE->q);
+    s_globalPolicyKitKDE->q = this;
+
+    kDebug() << "Constructing PolicyKitKDE singleton";
 
     (void) new AuthenticationAgentAdaptor(this);
     if (!QDBusConnection::sessionBus().registerService("org.freedesktop.PolicyKit.AuthenticationAgent"))
@@ -94,7 +113,6 @@ PolicyKitKDE::PolicyKitKDE(QObject* parent)
 
 PolicyKitKDE::~PolicyKitKDE()
 {
-    m_self = 0L;
 }
 
 //----------------------------------------------------------------------------
@@ -110,7 +128,7 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
             i18n( "Another client is already authenticating, please try again later." ));
         return false;
     }
-    inProgress = true;    
+    inProgress = true;
     obtainedPrivilege = false;
     requireAdmin = false;
     keepPassword = KeepPasswordNo;
@@ -235,30 +253,30 @@ void PolicyKitKDE::finishObtainPrivilege()
 void PolicyKitKDE::conversation_type( PolKitGrant* grant, PolKitResult type, void* )
 {
     kDebug() << "conversation_type" << grant << type;
-    m_self->requireAdmin = false;
-    m_self->keepPassword = KeepPasswordNo;
+    PolicyKitKDE::instance()->requireAdmin = false;
+    PolicyKitKDE::instance()->keepPassword = KeepPasswordNo;
     switch( type )
     {
         case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT:
         case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH:
-            m_self->requireAdmin = true;
+            PolicyKitKDE::instance()->requireAdmin = true;
             break;
         case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION:
-            m_self->requireAdmin = true;
-            m_self->keepPassword = KeepPasswordSession;
+            PolicyKitKDE::instance()->requireAdmin = true;
+            PolicyKitKDE::instance()->keepPassword = KeepPasswordSession;
             break;
         case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS:
-            m_self->requireAdmin = true;
-            m_self->keepPassword = KeepPasswordAlways;
+            PolicyKitKDE::instance()->requireAdmin = true;
+            PolicyKitKDE::instance()->keepPassword = KeepPasswordAlways;
             break;
         case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT:
         case POLKIT_RESULT_ONLY_VIA_SELF_AUTH:
             break;
         case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION:
-            m_self->keepPassword = KeepPasswordSession;
+            PolicyKitKDE::instance()->keepPassword = KeepPasswordSession;
             break;
         case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS:
-            m_self->keepPassword = KeepPasswordAlways;
+            PolicyKitKDE::instance()->keepPassword = KeepPasswordAlways;
             break;
         default:
             abort();
@@ -274,42 +292,42 @@ char* PolicyKitKDE::conversation_select_admin_user(PolKitGrant* grant, char** us
 char* PolicyKitKDE::conversation_pam_prompt_echo_off(PolKitGrant* grant, const char* request, void* )
 {
     kDebug() << "conversation_pam_prompt_echo_off" << grant << request;
-    if( m_self->requireAdmin )
+    if( PolicyKitKDE::instance()->requireAdmin )
     {
-        m_self->dialog->setContent( i18n("An application is attempting to perform an action that requires privileges."
+        PolicyKitKDE::instance()->dialog->setContent( i18n("An application is attempting to perform an action that requires privileges."
             " Authentication as the super user is required to perform this action." ));
-        m_self->dialog->setPasswordPrompt( i18n("Password for root") + ":" );
+        PolicyKitKDE::instance()->dialog->setPasswordPrompt( i18n("Password for root") + ":" );
     }
     else
     {
-        m_self->dialog->setContent( i18n("An application is attempting to perform an action that requires privileges."
+        PolicyKitKDE::instance()->dialog->setContent( i18n("An application is attempting to perform an action that requires privileges."
                     " Authentication is required to perform this action." ));
-        m_self->dialog->setPasswordPrompt( i18n("Password") + ":" );
+        PolicyKitKDE::instance()->dialog->setPasswordPrompt( i18n("Password") + ":" );
         // placeholders
         i18n( "An application is attempting to perform an action that requires privileges."
             " Authentication as one of the users below user is required to perform this action." );
         i18n( "Password for %1" );
     }
-    m_self->dialog->showKeepPassword( m_self->keepPassword );
-    m_self->dialog->show();
+    PolicyKitKDE::instance()->dialog->showKeepPassword( PolicyKitKDE::instance()->keepPassword );
+    PolicyKitKDE::instance()->dialog->show();
     QEventLoop loop;
-    connect( m_self->dialog, SIGNAL( okClicked()), &loop, SLOT( quit()));
-    connect( m_self->dialog, SIGNAL( cancelClicked()), &loop, SLOT( quit()));
+    connect( PolicyKitKDE::instance()->dialog, SIGNAL( okClicked()), &loop, SLOT( quit()));
+    connect( PolicyKitKDE::instance()->dialog, SIGNAL( cancelClicked()), &loop, SLOT( quit()));
     loop.exec(); // TODO this really sucks, policykit API is blocking
-    if( m_self->cancelled )
+    if( PolicyKitKDE::instance()->cancelled )
         return NULL;
-    return strdup( m_self->dialog->password().toLocal8Bit());
+    return strdup( PolicyKitKDE::instance()->dialog->password().toLocal8Bit());
 }
 
 void PolicyKitKDE::dialogAccepted()
 {
-    m_self->keepPassword = dialog->keepPassword();
+    PolicyKitKDE::instance()->keepPassword = dialog->keepPassword();
     kDebug() << "Password dialog confirmed.";
 }
 
 void PolicyKitKDE::dialogCancelled()
 {
-    m_self->cancelled = true;
+    PolicyKitKDE::instance()->cancelled = true;
     kDebug() << "Password dialog cancelled.";
     polkit_grant_cancel_auth( grant );
 }
@@ -324,14 +342,14 @@ char* PolicyKitKDE::conversation_pam_prompt_echo_on(PolKitGrant* grant, const ch
 void PolicyKitKDE::conversation_pam_error_msg(PolKitGrant* grant, const char* msg, void* )
 {
     kDebug() << "conversation_pam_error_msg" << grant << msg;
-    KMessageBox::errorWId( m_self->dialog->isVisible() ? m_self->dialog->winId() : m_self->parent_wid,
+    KMessageBox::errorWId( PolicyKitKDE::instance()->dialog->isVisible() ? PolicyKitKDE::instance()->dialog->winId() : PolicyKitKDE::instance()->parent_wid,
         QString::fromLocal8Bit( msg ));
 }
 
 void PolicyKitKDE::conversation_pam_text_info(PolKitGrant* grant, const char* msg, void* )
 {
     kDebug() << "conversation_pam_text_info" << grant << msg;
-    KMessageBox::informationWId( m_self->dialog->isVisible() ? m_self->dialog->winId() : m_self->parent_wid,
+    KMessageBox::informationWId( PolicyKitKDE::instance()->dialog->isVisible() ? PolicyKitKDE::instance()->dialog->winId() : PolicyKitKDE::instance()->parent_wid,
         QString::fromLocal8Bit( msg ));
 }
 
@@ -349,14 +367,14 @@ PolKitResult PolicyKitKDE::conversation_override_grant_type(PolKitGrant* grant, 
             break;
         case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION:
         case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION:
-            if( m_self->keepPassword == KeepPasswordSession )
+            if( PolicyKitKDE::instance()->keepPassword == KeepPasswordSession )
                 keep_session = true;
             break;
         case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS:
         case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS:
-            if( m_self->keepPassword == KeepPasswordAlways )
+            if( PolicyKitKDE::instance()->keepPassword == KeepPasswordAlways )
                 keep_always = true;
-            else if( m_self->keepPassword == KeepPasswordSession )
+            else if( PolicyKitKDE::instance()->keepPassword == KeepPasswordSession )
                 keep_session = true;
             break;
         default:
@@ -398,8 +416,8 @@ void PolicyKitKDE::conversation_done(PolKitGrant* grant, polkit_bool_t obtainedP
     polkit_bool_t invalidData, void* )
 {
     kDebug() << "conversation_done" << grant << obtainedPrivilege << invalidData;
-    m_self->obtainedPrivilege = obtainedPrivilege;
-    QTimer::singleShot( 0, m_self, SLOT( finishObtainPrivilege()));
+    PolicyKitKDE::instance()->obtainedPrivilege = obtainedPrivilege;
+    QTimer::singleShot( 0, PolicyKitKDE::instance(), SLOT( finishObtainPrivilege()));
 }
 
 //----------------------------------------------------------------------------
@@ -419,10 +437,10 @@ int PolicyKitKDE::add_grant_io_watch(PolKitGrant* grant, int fd)
 {
     kDebug() << "add_watch" << grant << fd;
 
-    QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read, m_self);
-    m_self->m_watches[fd] = notify;
+    QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read, PolicyKitKDE::instance());
+    PolicyKitKDE::instance()->m_watches[fd] = notify;
 
-    notify->connect(notify, SIGNAL(activated(int)), m_self, SLOT(watchActivatedGrant(int)));
+    notify->connect(notify, SIGNAL(activated(int)), PolicyKitKDE::instance(), SLOT(watchActivatedGrant(int)));
 
     return fd; // use simply the fd as the unique id for the watch
     // TODO this will be insufficient if there will be more watches for the same fd
@@ -435,10 +453,10 @@ void PolicyKitKDE::remove_grant_io_watch(PolKitGrant* grant, int id)
 {
     assert( id > 0 );
     kDebug() << "remove_watch" << grant << id;
-    if( !m_self->m_watches.contains(id))
+    if( !PolicyKitKDE::instance()->m_watches.contains(id))
         return; // policykit likes to do this more than once
 
-    QSocketNotifier* notify = m_self->m_watches.take(id);
+    QSocketNotifier* notify = PolicyKitKDE::instance()->m_watches.take(id);
     notify->deleteLater();
     notify->setEnabled( false );
 }
@@ -460,10 +478,10 @@ int PolicyKitKDE::add_context_io_watch(PolKitContext* context, int fd)
 {
     kDebug() << "add_watch" << context << fd;
 
-    QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read, m_self);
-    m_self->m_watches[fd] = notify;
+    QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read, PolicyKitKDE::instance());
+    PolicyKitKDE::instance()->m_watches[fd] = notify;
 
-    notify->connect(notify, SIGNAL(activated(int)), m_self, SLOT(watchActivatedContext(int)));
+    notify->connect(notify, SIGNAL(activated(int)), PolicyKitKDE::instance(), SLOT(watchActivatedContext(int)));
 
     return fd; // use simply the fd as the unique id for the watch
 }
@@ -475,10 +493,10 @@ void PolicyKitKDE::remove_context_io_watch(PolKitContext* context, int id)
 {
     assert( id > 0 );
     kDebug() << "remove_watch" << context << id;
-    if( !m_self->m_watches.contains(id))
+    if( !PolicyKitKDE::instance()->m_watches.contains(id))
         return; // policykit likes to do this more than once
 
-    QSocketNotifier* notify = m_self->m_watches.take(id);
+    QSocketNotifier* notify = PolicyKitKDE::instance()->m_watches.take(id);
     notify->deleteLater();
     notify->setEnabled( false );
 }
@@ -488,7 +506,7 @@ void PolicyKitKDE::remove_context_io_watch(PolKitContext* context, int id)
 int PolicyKitKDE::add_child_watch( PolKitGrant*, pid_t pid )
 {
     ProcessWatch *watch = new ProcessWatch(pid);
-    connect( watch, SIGNAL( terminated( pid_t, int )), m_self, SLOT( childTerminated( pid_t, int )));
+    connect( watch, SIGNAL( terminated( pid_t, int )), PolicyKitKDE::instance(), SLOT( childTerminated( pid_t, int )));
     // return negative so that remove_watch() can tell io and child watches apart
     return - ProcessWatcher::instance()->add(watch);
 }

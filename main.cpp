@@ -1,5 +1,6 @@
 /*  This file is part of the KDE project
     Copyright (C) 2007-2008 Gökçen Eraslan <gokcen@pardus.org.tr>
+    Copyright (C) 2008 Dario Freddi <drf54321@gmail.com>
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public
@@ -24,7 +25,7 @@
 
 #include <KCmdLineArgs>
 #include <KAboutData>
-#include <KApplication>
+#include <KUniqueApplication>
 #include <KLocale>
 
 #include "authdialog.h"
@@ -40,13 +41,16 @@ int main (int argc, char *argv[])
     aboutData.addAuthor( ki18n("Luboš Luňák"), ki18n( "Developer" ), "l.lunak@kde.org" );
     KCmdLineArgs::init( argc, argv, &aboutData );
 
-    if ( !PolicyKitKDE::start() )
-    {
-	qDebug() << "PolicyKitKDE is already running!";
-	return 0;
+    if (!KUniqueApplication::start()) {
+        fprintf(stderr, "PolicyKitKDE is already running!");
+        return 0;
     }
 
-    PolicyKitKDE app;
+    KUniqueApplication a;
+    a.setQuitOnLastWindowClosed(false);
+    a.disableSessionManagement();
 
-    return app.exec();
+    PolicyKitKDE::instance();
+
+    return a.exec();
 }
