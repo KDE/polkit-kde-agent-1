@@ -4,6 +4,7 @@
 /*  This file is part of the KDE project
     Copyright (C) 2007-2008 Gökçen Eraslan <gokcen@pardus.org.tr>
     Copyright (C) 2008 Dirk Mueller <mueller@kde.org>
+    Copyright (C) 2008 Dario Freddi <drf54321@gmail.com>
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public
