@@ -292,6 +292,7 @@ char* PolicyKitKDE::conversation_select_admin_user(PolKitGrant* grant, char** us
 char* PolicyKitKDE::conversation_pam_prompt_echo_off(PolKitGrant* grant, const char* request, void* )
 {
     kDebug() << "conversation_pam_prompt_echo_off" << grant << request;
+    // TODO actually use 'request'?
     if( PolicyKitKDE::instance()->requireAdmin )
     {
         PolicyKitKDE::instance()->dialog->setContent( i18n("An application is attempting to perform an action that requires privileges."
