@@ -42,7 +42,7 @@ int main (int argc, char *argv[])
     KCmdLineArgs::init( argc, argv, &aboutData );
 
     if (!KUniqueApplication::start()) {
-        fprintf(stderr, "PolicyKitKDE is already running!");
+        fprintf(stderr, "PolicyKitKDE is already running!\n");
         return 0;
     }
 
