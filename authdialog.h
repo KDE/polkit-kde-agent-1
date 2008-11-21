@@ -55,6 +55,7 @@ public:
     AuthDetails( QWidget* parent );
 private slots:
     void openUrl( const QString& );
+    void openAction( const QString& );
 };
 
 #endif // AUTHDIALOG_H

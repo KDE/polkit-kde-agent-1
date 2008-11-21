@@ -24,6 +24,7 @@
 #include <QLabel>
 #include <QString>
 #include <QCheckBox>
+#include <QProcess>
 
 #include <KGlobal>
 #include <KLocale>
@@ -63,6 +64,7 @@ AuthDialog::AuthDialog( const QString &header, const QPixmap& pix, const QString
     details->app_label->setText( appname );
     // TODO policykit-gnome makes this clickable and lets edit settings for the action
     details->action_label->setText( actionId );
+    details->action_label->setUrl( actionId );
     details->vendor_label->setText( vendor );
     details->vendor_label->setUrl( vendorUrl );
     setDetailsWidget( details );
@@ -144,9 +146,15 @@ AuthDetails::AuthDetails( QWidget* parent )
 {
     setupUi( this );
     connect( vendor_label, SIGNAL( leftClickedUrl( const QString& )), SLOT( openUrl( const QString& )));
+    connect( action_label, SIGNAL( leftClickedUrl( const QString& )), SLOT( openAction( const QString& )));
 }
 
 void AuthDetails::openUrl( const QString& url )
 {
     KToolInvocation::invokeBrowser( url );
+}
+
+void AuthDetails::openAction(const QString &url)
+{
+    QProcess::execute("polkit-kde-authorization", QStringList() << url);
 }
