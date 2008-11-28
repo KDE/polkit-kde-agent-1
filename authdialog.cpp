@@ -26,12 +26,8 @@
 #include <QCheckBox>
 #include <QProcess>
 
-#include <KGlobal>
 #include <KLocale>
-#include <KIconLoader>
-#include <KComboBox>
 #include <KPushButton>
-#include <KLineEdit>
 #include <KDebug>
 #include <KToolInvocation>
 

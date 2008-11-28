@@ -30,10 +30,10 @@
 #include <KInputDialog>
 #include <KMessageBox>
 #include <KWindowSystem>
+#include <KApplication>
 
 #include "qdbusconnection.h"
 
-#include <QVariant>
 #include <QSocketNotifier>
 
 //policykit header

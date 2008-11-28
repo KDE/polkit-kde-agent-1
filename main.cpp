@@ -20,8 +20,6 @@
 */
 
 
-#include <QString>
-#include <QDebug>
 
 #include <KCmdLineArgs>
 #include <KAboutData>

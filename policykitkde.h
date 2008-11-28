@@ -23,7 +23,6 @@
 
 */
 
-#include <KUniqueApplication>
 
 #include <QtCore/QMap>
 #include <QtCore/QSocketNotifier>

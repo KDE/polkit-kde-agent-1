@@ -28,7 +28,6 @@
 #include <QMap>
 #include <QAtomicInt>
 
-class ProcessInfo;
 class QSocketNotifier;
 
 /**

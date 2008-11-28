@@ -22,7 +22,6 @@
 
 #include "processwatcher.h"
 
-#include <QApplication>
 #include <QSocketNotifier>
 
 #include <errno.h>
