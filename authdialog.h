@@ -30,7 +30,7 @@
 
 #include "policykitkde.h"
 
-class AuthDialog : public KDialog, public Ui::AuthDialogUI
+class AuthDialog : public KDialog, private Ui::AuthDialogUI
 {
 Q_OBJECT
 public:
@@ -42,7 +42,7 @@ public:
     void setPasswordPrompt( const QString& prompt );
     void showKeepPassword( KeepPassword keep );
     QString password() const;
-    void clearPassword();
+    void incorrectPassword();
     KeepPassword keepPassword() const;
 public slots:
     virtual void accept();

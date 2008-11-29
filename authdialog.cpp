@@ -67,6 +67,8 @@ AuthDialog::AuthDialog( const QString &header, const QPixmap& pix, const QString
     //size got from minimum size on qtdesigner
     setMinimumSize( w->minimumSize() + QSize(110, 100) );
 //     resize( sizeHint() + QSize( 100, 100 )); // HACK broken QLabel layouting
+
+    errorMessageKTW->hide();
 }
 
 AuthDialog::~AuthDialog()
@@ -99,9 +101,15 @@ QString AuthDialog::password() const
     return lePassword->text();
 }
 
-void AuthDialog::clearPassword()
+void AuthDialog::incorrectPassword()
 {
     lePassword->clear();
+    errorMessageKTW->setText( i18n("Incorrect password, please try again."), KTitleWidget::ErrorMessage );
+    QFont bold = font();
+    bold.setBold( true );
+    lblPassword->setFont(bold);
+    lePassword->clear();
+    lePassword->setFocus();
 }
 
 void AuthDialog::showKeepPassword( KeepPassword keep )

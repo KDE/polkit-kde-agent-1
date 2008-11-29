@@ -228,9 +228,7 @@ void PolicyKitKDE::finishObtainPrivilege()
     polkit_grant_unref( grant );
     if( dialog->isVisible() && !cancelled && !obtainedPrivilege )
     {
-        dialog->clearPassword();
-        // TODO this should probably just show it directly in the dialog, like KPasswordDialog does
-        KMessageBox::sorry( dialog, i18n( "Incorrect password, please try again." ));
+        dialog->incorrectPassword();
         grant = polkit_grant_new();
             polkit_grant_set_functions( grant, add_grant_io_watch, add_child_watch, remove_watch,
             conversation_type, conversation_select_admin_user, conversation_pam_prompt_echo_off,
