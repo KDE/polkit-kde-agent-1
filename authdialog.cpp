@@ -33,9 +33,9 @@
 
 #include "ui_authdetails.h"
 
-/* 
- *  Constructs a AuthDialog which is a child of 'parent', with the 
- *  name 'name' and widget flags set to 'f' 
+/*
+ *  Constructs a AuthDialog which is a child of 'parent', with the
+ *  name 'name' and widget flags set to 'f'
  *
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
@@ -160,5 +160,5 @@ void AuthDetails::openUrl( const QString& url )
 
 void AuthDetails::openAction(const QString &url)
 {
-    QProcess::execute("polkit-kde-authorization", QStringList() << url);
+    QProcess::startDetached("polkit-kde-authorization", QStringList() << url);
 }
