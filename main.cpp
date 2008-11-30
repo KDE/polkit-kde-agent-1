@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
     aboutData.addAuthor(ki18n("Gökçen Eraslan"), ki18n("KDE 3 Code"), "gokcen@pardus.org.tr");
     aboutData.addAuthor(ki18n("Dirk Müller"), ki18n("Author"), "mueller@kde.org");
     aboutData.addAuthor(ki18n("Luboš Luňák"), ki18n("Developer"), "l.lunak@kde.org");
+    aboutData.addAuthor(ki18n("Dario Freddi"), ki18n("Developer"), "drf54321@gmail.com");
     KCmdLineArgs::init(argc, argv, &aboutData);
 
     if (!KUniqueApplication::start()) {
@@ -47,8 +48,6 @@ int main(int argc, char *argv[])
     KUniqueApplication a;
     a.setQuitOnLastWindowClosed(false);
     a.disableSessionManagement();
-
-    PolicyKitKDE::instance();
 
     return a.exec();
 }
