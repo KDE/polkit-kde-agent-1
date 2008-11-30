@@ -29,15 +29,15 @@
 #include "authdialog.h"
 #include "policykitkde.h"
 
-int main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-    KAboutData aboutData( "policykit-kde", "", ki18n( "PolicyKit-KDE" ), "0.2",
-                        ki18n( "PolicyKit-KDE" ), KAboutData::License_GPL,
-                        ki18n( "(c) 2005-2007, TUBITAK - UEKAE" ) );
-    aboutData.addAuthor( ki18n("Gökçen Eraslan"), ki18n( "KDE 3 Code" ), "gokcen@pardus.org.tr" );
-    aboutData.addAuthor( ki18n("Dirk Müller"), ki18n( "Author" ), "mueller@kde.org" );
-    aboutData.addAuthor( ki18n("Luboš Luňák"), ki18n( "Developer" ), "l.lunak@kde.org" );
-    KCmdLineArgs::init( argc, argv, &aboutData );
+    KAboutData aboutData("policykit-kde", "", ki18n("PolicyKit-KDE"), "0.2",
+                         ki18n("PolicyKit-KDE"), KAboutData::License_GPL,
+                         ki18n("(c) 2005-2007, TUBITAK - UEKAE"));
+    aboutData.addAuthor(ki18n("Gökçen Eraslan"), ki18n("KDE 3 Code"), "gokcen@pardus.org.tr");
+    aboutData.addAuthor(ki18n("Dirk Müller"), ki18n("Author"), "mueller@kde.org");
+    aboutData.addAuthor(ki18n("Luboš Luňák"), ki18n("Developer"), "l.lunak@kde.org");
+    KCmdLineArgs::init(argc, argv, &aboutData);
 
     if (!KUniqueApplication::start()) {
         fprintf(stderr, "PolicyKitKDE is already running!\n");

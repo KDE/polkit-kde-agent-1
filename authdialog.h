@@ -32,15 +32,15 @@
 
 class AuthDialog : public KDialog, private Ui::AuthDialogUI
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-    AuthDialog( const QString &header, const QPixmap& pix, const QString& appname, const QString& actionId,
-        const QString& vendor, const QString& vendorUrl );
+    AuthDialog(const QString &header, const QPixmap& pix, const QString& appname, const QString& actionId,
+               const QString& vendor, const QString& vendorUrl);
     ~AuthDialog();
-    void setHeader( const QString& header );
-    void setContent( const QString& content );
-    void setPasswordPrompt( const QString& prompt );
-    void showKeepPassword( KeepPassword keep );
+    void setHeader(const QString& header);
+    void setContent(const QString& content);
+    void setPasswordPrompt(const QString& prompt);
+    void showKeepPassword(KeepPassword keep);
     QString password() const;
     void incorrectPassword();
     KeepPassword keepPassword() const;
@@ -50,12 +50,12 @@ public slots:
 
 class AuthDetails : public QWidget, public Ui::AuthDetails
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-    AuthDetails( QWidget* parent );
+    AuthDetails(QWidget* parent);
 private slots:
-    void openUrl( const QString& );
-    void openAction( const QString& );
+    void openUrl(const QString&);
+    void openAction(const QString&);
 };
 
 #endif // AUTHDIALOG_H

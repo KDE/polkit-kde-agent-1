@@ -6,7 +6,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
- * License version 2 or at your option version 3 as published 
+ * License version 2 or at your option version 3 as published
  * by the Free Software Foundation.
  *
  * This program is distributed in the hope that it will be useful,
@@ -42,7 +42,7 @@ public:
     ~ProcessWatch();
 
 signals:
-    void terminated( pid_t pid, int exitStatus );
+    void terminated(pid_t pid, int exitStatus);
 private slots:
     void childDied();
 
@@ -51,7 +51,7 @@ private:
     int deathPipe[2];
     pid_t pid;
 
-friend class ProcessWatcher;
+    friend class ProcessWatcher;
 };
 
 

@@ -6,7 +6,7 @@
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
- * License version 2 or at your option version 3 as published 
+ * License version 2 or at your option version 3 as published
  * by the Free Software Foundation.
  *
  * This program is distributed in the hope that it will be useful,
@@ -83,7 +83,7 @@ static void sigchld_handler(int signum)
 
 
 ProcessWatch::ProcessWatch(pid_t pid)
-    : QObject(0), pid(pid)
+        : QObject(0), pid(pid)
 {
 #ifdef Q_OS_IRIX
     ::socketpair(AF_UNIX, SOCK_STREAM, 0, pipe);
@@ -116,7 +116,7 @@ void ProcessWatch::childDied()
     } while ((waitResult == -1 && errno == EINTR));
 
     if (waitResult > 0) {
-        emit terminated( pid, WEXITSTATUS(exitStatus));
+        emit terminated(pid, WEXITSTATUS(exitStatus));
     }
 }
 
@@ -161,7 +161,7 @@ ProcessWatcher::ProcessWatcher()
     native_sigaction(SIGCHLD, &action, &old_action);
 
     old_sigchld_handler = old_action.sa_handler;
-    
+
     start();
 }
 
@@ -199,7 +199,7 @@ void ProcessWatcher::remove(int serial)
         return;
 
     children.remove(serial);
-    delete watch; 
+    delete watch;
 }
 
 void ProcessWatcher::run()

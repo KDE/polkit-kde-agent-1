@@ -33,10 +33,9 @@
 #include <polkit/polkit.h>
 #include <polkit-grant/polkit-grant.h>
 
-enum KeepPassword
-    {
+enum KeepPassword {
     KeepPasswordNo, KeepPasswordSession, KeepPasswordAlways
-    };
+};
 
 class AuthDialog;
 
@@ -48,7 +47,7 @@ class PolicyKitKDE : public QObject, protected QDBusContext
 public:
     static PolicyKitKDE *instance();
 
-    PolicyKitKDE(QObject* parent=0L);
+    PolicyKitKDE(QObject* parent = 0L);
     ~PolicyKitKDE();
 
 public Q_SLOTS:
@@ -57,7 +56,7 @@ public Q_SLOTS:
 private Q_SLOTS:
     void watchActivatedGrant(int fd);
     void watchActivatedContext(int fd);
-    void childTerminated( pid_t, int );
+    void childTerminated(pid_t, int);
     void finishObtainPrivilege();
     void dialogAccepted();
     void dialogCancelled();
@@ -87,13 +86,13 @@ private:
     static void remove_watch(PolKitGrant* grant, int id);
     static void conversation_type(PolKitGrant* grant, PolKitResult type, void* d);
     static char* conversation_select_admin_user(PolKitGrant* grant, char** users, void* d);
-    static char* conversation_pam_prompt_echo_off(PolKitGrant* grant, const char* request, void* d );
-    static char* conversation_pam_prompt_echo_on(PolKitGrant* grant, const char* request, void* d );
-    static void conversation_pam_error_msg(PolKitGrant* grant, const char* msg, void* d );
-    static void conversation_pam_text_info(PolKitGrant* grant, const char* msg, void* d );
+    static char* conversation_pam_prompt_echo_off(PolKitGrant* grant, const char* request, void* d);
+    static char* conversation_pam_prompt_echo_on(PolKitGrant* grant, const char* request, void* d);
+    static void conversation_pam_error_msg(PolKitGrant* grant, const char* msg, void* d);
+    static void conversation_pam_text_info(PolKitGrant* grant, const char* msg, void* d);
     static PolKitResult conversation_override_grant_type(PolKitGrant* grant, PolKitResult type, void* d);
     static void conversation_done(PolKitGrant* grant, polkit_bool_t obtainedPrivilege, polkit_bool_t invalidData, void* d);
-    static void polkit_config_changed(PolKitContext* context, void* );
+    static void polkit_config_changed(PolKitContext* context, void*);
 };
 
 #endif

@@ -40,32 +40,32 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-AuthDialog::AuthDialog( const QString &header, const QPixmap& pix, const QString& appname, const QString& actionId,
-    const QString& vendor, const QString& vendorUrl )
-    : KDialog(0), AuthDialogUI()
+AuthDialog::AuthDialog(const QString &header, const QPixmap& pix, const QString& appname, const QString& actionId,
+                       const QString& vendor, const QString& vendorUrl)
+        : KDialog(0), AuthDialogUI()
 {
-    setButtons(Ok|Cancel|Details);
+    setButtons(Ok | Cancel | Details);
     setCaption(header);
-    setWindowIcon( pix );
+    setWindowIcon(pix);
 
     QWidget* w = new QWidget(this);
     setupUi(w);
     setMainWidget(w);
 
-    lblPixmap->setPixmap( pix );
+    lblPixmap->setPixmap(pix);
     cbUsers->hide();
     lePassword->setFocus();
-    setHeader( header );
-    AuthDetails* details = new AuthDetails( this );
-    details->app_label->setText( appname );
+    setHeader(header);
+    AuthDetails* details = new AuthDetails(this);
+    details->app_label->setText(appname);
     // TODO policykit-gnome makes this clickable and lets edit settings for the action
-    details->action_label->setText( actionId );
-    details->action_label->setUrl( actionId );
-    details->vendor_label->setText( vendor );
-    details->vendor_label->setUrl( vendorUrl );
-    setDetailsWidget( details );
+    details->action_label->setText(actionId);
+    details->action_label->setUrl(actionId);
+    details->vendor_label->setText(vendor);
+    details->vendor_label->setUrl(vendorUrl);
+    setDetailsWidget(details);
     //size got from minimum size on qtdesigner
-    setMinimumSize( w->minimumSize() + QSize(110, 100) );
+    setMinimumSize(w->minimumSize() + QSize(110, 100));
 //     resize( sizeHint() + QSize( 100, 100 )); // HACK broken QLabel layouting
 
     errorMessageKTW->hide();
@@ -93,7 +93,7 @@ void AuthDialog::setContent(const QString &msg)
 
 void AuthDialog::setPasswordPrompt(const QString& prompt)
 {
-    lblPassword->setText( prompt );
+    lblPassword->setText(prompt);
 }
 
 QString AuthDialog::password() const
@@ -104,58 +104,57 @@ QString AuthDialog::password() const
 void AuthDialog::incorrectPassword()
 {
     lePassword->clear();
-    errorMessageKTW->setText( i18n("Incorrect password, please try again."), KTitleWidget::ErrorMessage );
+    errorMessageKTW->setText(i18n("Incorrect password, please try again."), KTitleWidget::ErrorMessage);
     QFont bold = font();
-    bold.setBold( true );
+    bold.setBold(true);
     lblPassword->setFont(bold);
     lePassword->clear();
     lePassword->setFocus();
 }
 
-void AuthDialog::showKeepPassword( KeepPassword keep )
+void AuthDialog::showKeepPassword(KeepPassword keep)
 {
-    switch( keep )
-    {
-        case KeepPasswordNo:
-            cbRemember->hide();
-            cbSessionOnly->hide();
-            break;
-        case KeepPasswordSession:
-            cbRemember->setText( i18n( "Remember authorization for this session" ));
-            cbRemember->show();
-            cbSessionOnly->hide();
-            break;
-        case KeepPasswordAlways:
-            cbRemember->setText( i18n( "Remember authorization" ));
-            cbRemember->show();
-            cbSessionOnly->show();
-            break;
+    switch (keep) {
+    case KeepPasswordNo:
+        cbRemember->hide();
+        cbSessionOnly->hide();
+        break;
+    case KeepPasswordSession:
+        cbRemember->setText(i18n("Remember authorization for this session"));
+        cbRemember->show();
+        cbSessionOnly->hide();
+        break;
+    case KeepPasswordAlways:
+        cbRemember->setText(i18n("Remember authorization"));
+        cbRemember->show();
+        cbSessionOnly->show();
+        break;
     }
 }
 
 KeepPassword AuthDialog::keepPassword() const
 {
-    if( cbRemember->isHidden()) // cannot make it keep
+    if (cbRemember->isHidden()) // cannot make it keep
         return KeepPasswordNo;
-    if( cbSessionOnly->isHidden()) // can keep only for session
+    if (cbSessionOnly->isHidden()) // can keep only for session
         return cbRemember->isChecked() ? KeepPasswordSession : KeepPasswordNo;
     // can keep either way
-    if( cbRemember->isChecked())
+    if (cbRemember->isChecked())
         return cbSessionOnly->isChecked() ? KeepPasswordSession : KeepPasswordAlways;
     return KeepPasswordNo;
 }
 
-AuthDetails::AuthDetails( QWidget* parent )
-: QWidget( parent )
+AuthDetails::AuthDetails(QWidget* parent)
+        : QWidget(parent)
 {
-    setupUi( this );
-    connect( vendor_label, SIGNAL( leftClickedUrl( const QString& )), SLOT( openUrl( const QString& )));
-    connect( action_label, SIGNAL( leftClickedUrl( const QString& )), SLOT( openAction( const QString& )));
+    setupUi(this);
+    connect(vendor_label, SIGNAL(leftClickedUrl(const QString&)), SLOT(openUrl(const QString&)));
+    connect(action_label, SIGNAL(leftClickedUrl(const QString&)), SLOT(openAction(const QString&)));
 }
 
-void AuthDetails::openUrl( const QString& url )
+void AuthDetails::openUrl(const QString& url)
 {
-    KToolInvocation::invokeBrowser( url );
+    KToolInvocation::invokeBrowser(url);
 }
 
 void AuthDetails::openAction(const QString &url)
