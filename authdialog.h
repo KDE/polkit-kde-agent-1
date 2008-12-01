@@ -34,11 +34,9 @@ class AuthDialog : public KDialog, private Ui::AuthDialog
 {
     Q_OBJECT
 public:
-    AuthDialog(const QString &header, const QPixmap& pix, const QString& appname, const QString& actionId,
-               const QString& vendor, const QString& vendorUrl);
+    AuthDialog(PolKitPolicyFileEntry *entry, uint pid);
     ~AuthDialog();
 
-    void setHeader(const QString& header);
     void setContent(const QString& content);
     void setPasswordPrompt(const QString& prompt);
     void showKeepPassword(KeepPassword keep);

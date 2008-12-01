@@ -31,7 +31,6 @@
 #include <KInputDialog>
 #include <KMessageBox>
 #include <KWindowSystem>
-// #include <KApplication>
 
 #include "qdbusconnection.h"
 
@@ -44,26 +43,7 @@
 #include "authdialog.h"
 #include "processwatcher.h"
 
-class PolicyKitKDEHelper
-{
-public:
-    PolicyKitKDEHelper() : q(0) {}
-    ~PolicyKitKDEHelper() {
-        delete q;
-    }
-    PolicyKitKDE *q;
-};
-
-K_GLOBAL_STATIC(PolicyKitKDEHelper, s_globalPolicyKitKDE)
-
-PolicyKitKDE *PolicyKitKDE::instance()
-{
-    if (!s_globalPolicyKitKDE->q) {
-        new PolicyKitKDE;
-    }
-
-    return s_globalPolicyKitKDE->q;
-}
+PolicyKitKDE *PolicyKitKDE::m_self;
 
 //----------------------------------------------------------------------------
 
@@ -71,8 +51,8 @@ PolicyKitKDE::PolicyKitKDE()
         : KUniqueApplication()
         , inProgress(false)
 {
-    Q_ASSERT(!s_globalPolicyKitKDE->q);
-    s_globalPolicyKitKDE->q = this;
+    Q_ASSERT(!m_self);
+    m_self = this;
 
     setQuitOnLastWindowClosed(true);
     kDebug() << "Constructing PolicyKitKDE singleton";
@@ -93,7 +73,7 @@ PolicyKitKDE::PolicyKitKDE()
 
     polkit_context_set_load_descriptions(m_context);
 
-    polkit_context_set_config_changed(m_context, polkit_config_changed, NULL);
+    polkit_context_set_config_changed(m_context, polkit_config_changed, this);
     polkit_context_set_io_watch_functions(m_context, add_context_io_watch, remove_context_io_watch);
 
     PolKitError* error = NULL;
@@ -122,10 +102,10 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     kDebug() << "Start obtain authorization:" << actionId << wid << pid;
 
     if (inProgress) {
-        // TODO this is lame
-        sendErrorReply("pk_auth_in_progress",
+        sendErrorReply("org.freedesktop.DBus.GLib.UnmappedError.PolkitKdeManagerError.Code1",
                        i18n("Another client is already authenticating, please try again later."));
-        return false;
+        kDebug() << "Another client is already authenticating, please try again later.";
+        return true;
     }
     inProgress = true;
     obtainedPrivilege = false;
@@ -167,29 +147,7 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
         //    return false;
     }
 
-    kDebug() << "Getting action message...";
-    QString actionMessage = QString::fromLocal8Bit(polkit_policy_file_entry_get_action_message(entry));
-    if (actionMessage.isEmpty()) {
-        kWarning() << "Could not get action message for action.";
-        //    return false;
-    } else {
-        kDebug() << "Message of action: " << actionMessage;
-    }
-    QString vendor = polkit_policy_file_entry_get_action_vendor(entry);
-    QString vendorUrl = polkit_policy_file_entry_get_action_vendor_url(entry);
-    QPixmap icon = KIconLoader::global()->loadIcon(polkit_policy_file_entry_get_action_icon_name(entry),
-                   KIconLoader::NoGroup, KIconLoader::SizeHuge, KIconLoader::DefaultState, QStringList(), NULL, true);
-    if (icon.isNull())
-        icon = KIconLoader::global()->loadIcon("dialog-password",
-                                               KIconLoader::NoGroup, KIconLoader::SizeHuge);
-    QString appname;
-    char tmp[ PATH_MAX ];
-    if (polkit_sysdeps_get_exe_for_pid_with_helper(pid, tmp, sizeof(tmp) - 1) < 0)
-        appname = i18n("Unknown");
-    else
-        appname = QString::fromLocal8Bit(tmp);
-
-    dialog = new AuthDialog(actionMessage, icon, appname, actionId, vendor, vendorUrl);
+    dialog = new AuthDialog(entry, pid);
     connect(dialog, SIGNAL(okClicked()), SLOT(dialogAccepted()));
     connect(dialog, SIGNAL(cancelClicked()), SLOT(dialogCancelled()));
     if (wid != 0)
@@ -306,13 +264,13 @@ char* PolicyKitKDE::conversation_pam_prompt_echo_off(PolKitGrant *grant, const c
 
 void PolicyKitKDE::dialogAccepted()
 {
-    PolicyKitKDE::instance()->keepPassword = dialog->keepPassword();
+    keepPassword = dialog->keepPassword();
     kDebug() << "Password dialog confirmed.";
 }
 
 void PolicyKitKDE::dialogCancelled()
 {
-    PolicyKitKDE::instance()->cancelled = true;
+    cancelled = true;
     kDebug() << "Password dialog cancelled.";
     polkit_grant_cancel_auth(grant);
 }
@@ -424,10 +382,10 @@ int PolicyKitKDE::add_grant_io_watch(PolKitGrant* grant, int fd)
 {
     kDebug() << "add_watch" << grant << fd;
 
-    QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read, PolicyKitKDE::instance());
-    PolicyKitKDE::instance()->m_watches[fd] = notify;
+    QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read, m_self);
+    m_self->m_watches[fd] = notify;
 
-    notify->connect(notify, SIGNAL(activated(int)), PolicyKitKDE::instance(), SLOT(watchActivatedGrant(int)));
+    notify->connect(notify, SIGNAL(activated(int)), m_self, SLOT(watchActivatedGrant(int)));
 
     return fd; // use simply the fd as the unique id for the watch
     // TODO this will be insufficient if there will be more watches for the same fd
@@ -440,10 +398,10 @@ void PolicyKitKDE::remove_grant_io_watch(PolKitGrant* grant, int id)
 {
     assert(id > 0);
     kDebug() << "remove_watch" << grant << id;
-    if (!PolicyKitKDE::instance()->m_watches.contains(id))
+    if (!m_self->m_watches.contains(id))
         return; // policykit likes to do this more than once
 
-    QSocketNotifier* notify = PolicyKitKDE::instance()->m_watches.take(id);
+    QSocketNotifier* notify = m_self->m_watches.take(id);
     notify->deleteLater();
     notify->setEnabled(false);
 }
@@ -465,10 +423,10 @@ int PolicyKitKDE::add_context_io_watch(PolKitContext* context, int fd)
 {
     kDebug() << "add_watch" << context << fd;
 
-    QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read, PolicyKitKDE::instance());
-    PolicyKitKDE::instance()->m_watches[fd] = notify;
+    QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read, m_self);
+    m_self->m_watches[fd] = notify;
 
-    notify->connect(notify, SIGNAL(activated(int)), PolicyKitKDE::instance(), SLOT(watchActivatedContext(int)));
+    notify->connect(notify, SIGNAL(activated(int)), m_self, SLOT(watchActivatedContext(int)));
 
     return fd; // use simply the fd as the unique id for the watch
 }
@@ -480,10 +438,10 @@ void PolicyKitKDE::remove_context_io_watch(PolKitContext* context, int id)
 {
     assert(id > 0);
     kDebug() << "remove_watch" << context << id;
-    if (!PolicyKitKDE::instance()->m_watches.contains(id))
+    if (!m_self->m_watches.contains(id))
         return; // policykit likes to do this more than once
 
-    QSocketNotifier* notify = PolicyKitKDE::instance()->m_watches.take(id);
+    QSocketNotifier* notify = m_self->m_watches.take(id);
     notify->deleteLater();
     notify->setEnabled(false);
 }
@@ -493,7 +451,7 @@ void PolicyKitKDE::remove_context_io_watch(PolKitContext* context, int id)
 int PolicyKitKDE::add_child_watch(PolKitGrant*, pid_t pid)
 {
     ProcessWatch *watch = new ProcessWatch(pid);
-    connect(watch, SIGNAL(terminated(pid_t, int)), PolicyKitKDE::instance(), SLOT(childTerminated(pid_t, int)));
+    connect(watch, SIGNAL(terminated(pid_t, int)), m_self, SLOT(childTerminated(pid_t, int)));
     // return negative so that remove_watch() can tell io and child watches apart
     return - ProcessWatcher::instance()->add(watch);
 }
@@ -524,7 +482,7 @@ void PolicyKitKDE::remove_watch(PolKitGrant* grant, int id)
 }
 
 //----------------------------------------------------------------------------
-void PolicyKitKDE::polkit_config_changed(PolKitContext* context, void*)
+void PolicyKitKDE::polkit_config_changed(PolKitContext *context, void *)
 {
     kDebug() << "polkit_config_changed" << context;
     // Nothing to do here it seems (?).

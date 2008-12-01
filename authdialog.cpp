@@ -22,13 +22,8 @@
 
 #include "authdialog.h"
 
-#include <QLabel>
-#include <QString>
-#include <QCheckBox>
 #include <QProcess>
 
-#include <KLocale>
-#include <KPushButton>
 #include <KDebug>
 #include <KToolInvocation>
 
@@ -41,26 +36,52 @@
  *  The dialog will by default be modeless, unless you set 'modal' to
  *  TRUE to construct a modal dialog.
  */
-AuthDialog::AuthDialog(const QString &header, const QPixmap& pix, const QString& appname, const QString& actionId,
-                       const QString& vendor, const QString& vendorUrl)
+AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
         : KDialog(0)
 {
     setupUi( mainWidget() );
 
     setButtons(Ok | Cancel | Details);
-    setCaption(header);
-    setWindowIcon(pix);
 
-    lblPixmap->setPixmap(pix);
+    kDebug() << "Getting action message...";
+    QString actionMessage = QString::fromLocal8Bit(polkit_policy_file_entry_get_action_message(entry));
+    if (actionMessage.isEmpty()) {
+        kWarning() << "Could not get action message for action.";
+        lblHeader->hide();
+    } else {
+        kDebug() << "Message of action: " << actionMessage;
+        lblHeader->setText("<h3>" + actionMessage + "</h3>");
+        setCaption(actionMessage);
+    }
+
+    QPixmap icon = KIconLoader::global()->loadIcon(polkit_policy_file_entry_get_action_icon_name(entry),
+                   KIconLoader::NoGroup, KIconLoader::SizeHuge, KIconLoader::DefaultState, QStringList(), NULL, true);
+    if (icon.isNull())
+        icon = KIconLoader::global()->loadIcon("dialog-password",
+                                               KIconLoader::NoGroup, KIconLoader::SizeHuge);
+    setWindowIcon(icon);
+    lblPixmap->setPixmap(icon);
+
     cbUsers->hide();
     lePassword->setFocus();
-    setHeader(header);
+
     AuthDetails* details = new AuthDetails(this);
+
+    QString appname;
+    char tmp[ PATH_MAX ];
+    if (polkit_sysdeps_get_exe_for_pid_with_helper(pid, tmp, sizeof(tmp) - 1) < 0)
+        appname = i18n("Unknown");
+    else
+        appname = QString::fromLocal8Bit(tmp);
+
     details->app_label->setText(appname);
+
+    QString actionId = polkit_policy_file_entry_get_id(entry);
     details->action_label->setText(actionId);
     details->action_label->setUrl(actionId);
-    details->vendor_label->setText(vendor);
-    details->vendor_label->setUrl(vendorUrl);
+
+    details->vendor_label->setText(polkit_policy_file_entry_get_action_vendor(entry));
+    details->vendor_label->setUrl(polkit_policy_file_entry_get_action_vendor_url(entry));
     setDetailsWidget(details);
 
 //     resize( sizeHint() + QSize( 100, 100 )); // HACK broken QLabel layouting
@@ -78,10 +99,10 @@ void AuthDialog::accept()
     return;
 }
 
-void AuthDialog::setHeader(const QString &header)
-{
-    lblHeader->setText("<h3>" + header + "</h3>");
-}
+// void AuthDialog::setHeader(const QString &header)
+// {
+//     lblHeader->setText("<h3>" + header + "</h3>");
+// }
 
 void AuthDialog::setContent(const QString &msg)
 {

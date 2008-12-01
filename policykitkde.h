@@ -46,8 +46,6 @@ class PolicyKitKDE : public KUniqueApplication, protected QDBusContext
     Q_CLASSINFO("D-Bus Interface", "org.freedesktop.PolicyKit.AuthenticationAgent")
 
 public:
-    static PolicyKitKDE *instance();
-
     PolicyKitKDE();
     virtual ~PolicyKitKDE();
 
@@ -75,6 +73,8 @@ private:
     bool requireAdmin;
     KeepPassword keepPassword;
     QDBusMessage mes;
+
+    static PolicyKitKDE *m_self;
 
     QMap<int, QSocketNotifier*> m_watches;
 

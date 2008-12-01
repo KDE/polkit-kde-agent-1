@@ -44,5 +44,7 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    return PolicyKitKDE::instance()->exec();
+    PolicyKitKDE a;
+
+    return a.exec();
 }
