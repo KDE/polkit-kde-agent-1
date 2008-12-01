@@ -25,18 +25,19 @@
 
 #include <QtCore/QObject>
 
-#include "ui_authdialogui.h"
+#include "ui_authdialog.h"
 #include "ui_authdetails.h"
 
 #include "policykitkde.h"
 
-class AuthDialog : public KDialog, private Ui::AuthDialogUI
+class AuthDialog : public KDialog, private Ui::AuthDialog
 {
     Q_OBJECT
 public:
     AuthDialog(const QString &header, const QPixmap& pix, const QString& appname, const QString& actionId,
                const QString& vendor, const QString& vendorUrl);
     ~AuthDialog();
+
     void setHeader(const QString& header);
     void setContent(const QString& content);
     void setPasswordPrompt(const QString& prompt);
@@ -44,6 +45,7 @@ public:
     QString password() const;
     void incorrectPassword();
     KeepPassword keepPassword() const;
+
 public slots:
     virtual void accept();
 };
@@ -53,6 +55,7 @@ class AuthDetails : public QWidget, public Ui::AuthDetails
     Q_OBJECT
 public:
     AuthDetails(QWidget* parent);
+
 private slots:
     void openUrl(const QString&);
     void openAction(const QString&);

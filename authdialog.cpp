@@ -1,6 +1,7 @@
 /*  This file is part of the KDE project
     Copyright (C) 2007-2008 Gökçen Eraslan <gokcen@pardus.org.tr>
     Copyright (C) 2008 Dirk Mueller <mueller@kde.org>
+    Copyright (C) 2008 Daniel Nicoletti <dantti85-pk@yahoo.com.br>
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public
@@ -42,15 +43,13 @@
  */
 AuthDialog::AuthDialog(const QString &header, const QPixmap& pix, const QString& appname, const QString& actionId,
                        const QString& vendor, const QString& vendorUrl)
-        : KDialog(0), AuthDialogUI()
+        : KDialog(0)
 {
+    setupUi( mainWidget() );
+
     setButtons(Ok | Cancel | Details);
     setCaption(header);
     setWindowIcon(pix);
-
-    QWidget* w = new QWidget(this);
-    setupUi(w);
-    setMainWidget(w);
 
     lblPixmap->setPixmap(pix);
     cbUsers->hide();
@@ -58,14 +57,12 @@ AuthDialog::AuthDialog(const QString &header, const QPixmap& pix, const QString&
     setHeader(header);
     AuthDetails* details = new AuthDetails(this);
     details->app_label->setText(appname);
-    // TODO policykit-gnome makes this clickable and lets edit settings for the action
     details->action_label->setText(actionId);
     details->action_label->setUrl(actionId);
     details->vendor_label->setText(vendor);
     details->vendor_label->setUrl(vendorUrl);
     setDetailsWidget(details);
-    //size got from minimum size on qtdesigner
-    setMinimumSize(w->minimumSize() + QSize(110, 100));
+
 //     resize( sizeHint() + QSize( 100, 100 )); // HACK broken QLabel layouting
 
     errorMessageKTW->hide();

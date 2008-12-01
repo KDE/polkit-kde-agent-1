@@ -3,6 +3,7 @@
     Copyright (C) 2008 Dirk Mueller <mueller@kde.org>
     Copyright (C) 2008 Lubos Lunak <l.lunak@kde.org>
     Copyright (C) 2008 Dario Freddi <drf54321@gmail.com>
+    Copyright (C) 2008 Daniel Nicoletti <dantti85-pk@yahoo.com.br>
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public
@@ -30,7 +31,7 @@
 #include <KInputDialog>
 #include <KMessageBox>
 #include <KWindowSystem>
-#include <KApplication>
+// #include <KApplication>
 
 #include "qdbusconnection.h"
 
@@ -66,13 +67,14 @@ PolicyKitKDE *PolicyKitKDE::instance()
 
 //----------------------------------------------------------------------------
 
-PolicyKitKDE::PolicyKitKDE(QObject* parent)
-        : QObject(parent)
+PolicyKitKDE::PolicyKitKDE()
+        : KUniqueApplication()
         , inProgress(false)
 {
     Q_ASSERT(!s_globalPolicyKitKDE->q);
     s_globalPolicyKitKDE->q = this;
 
+    setQuitOnLastWindowClosed(true);
     kDebug() << "Constructing PolicyKitKDE singleton";
 
     (void) new AuthenticationAgentAdaptor(this);
@@ -193,7 +195,7 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     if (wid != 0)
         KWindowSystem::setMainWindow(dialog, wid);
     else
-        kapp->updateUserTimestamp(); // make it get focus unconditionally :-/
+        updateUserTimestamp(); // make it get focus unconditionally :-/
     parent_wid = wid;
 
     grant = polkit_grant_new();
@@ -234,32 +236,33 @@ void PolicyKitKDE::finishObtainPrivilege()
     QDBusConnection::sessionBus().send(mes.createReply(obtainedPrivilege));
 }
 
-void PolicyKitKDE::conversation_type(PolKitGrant* grant, PolKitResult type, void*)
+void PolicyKitKDE::conversation_type(PolKitGrant *grant, PolKitResult type, void *user_data)
 {
+    PolicyKitKDE *self = (PolicyKitKDE *) user_data;
     kDebug() << "conversation_type" << grant << type;
-    PolicyKitKDE::instance()->requireAdmin = false;
-    PolicyKitKDE::instance()->keepPassword = KeepPasswordNo;
+    self->requireAdmin = false;
+    self->keepPassword = KeepPasswordNo;
     switch (type) {
     case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT:
     case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH:
-        PolicyKitKDE::instance()->requireAdmin = true;
+        self->requireAdmin = true;
         break;
     case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION:
-        PolicyKitKDE::instance()->requireAdmin = true;
-        PolicyKitKDE::instance()->keepPassword = KeepPasswordSession;
+        self->requireAdmin = true;
+        self->keepPassword = KeepPasswordSession;
         break;
     case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS:
-        PolicyKitKDE::instance()->requireAdmin = true;
-        PolicyKitKDE::instance()->keepPassword = KeepPasswordAlways;
+        self->requireAdmin = true;
+        self->keepPassword = KeepPasswordAlways;
         break;
     case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT:
     case POLKIT_RESULT_ONLY_VIA_SELF_AUTH:
         break;
     case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION:
-        PolicyKitKDE::instance()->keepPassword = KeepPasswordSession;
+        self->keepPassword = KeepPasswordSession;
         break;
     case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS:
-        PolicyKitKDE::instance()->keepPassword = KeepPasswordAlways;
+        self->keepPassword = KeepPasswordAlways;
         break;
     default:
         abort();
@@ -272,32 +275,33 @@ char* PolicyKitKDE::conversation_select_admin_user(PolKitGrant* grant, char** us
     return strdup(users[ 0 ]);   // TODO
 }
 
-char* PolicyKitKDE::conversation_pam_prompt_echo_off(PolKitGrant* grant, const char* request, void*)
+char* PolicyKitKDE::conversation_pam_prompt_echo_off(PolKitGrant *grant, const char *request, void *user_data)
 {
+    PolicyKitKDE *self = (PolicyKitKDE *) user_data;
     kDebug() << "conversation_pam_prompt_echo_off" << grant << request;
     // TODO actually use 'request'?
-    if (PolicyKitKDE::instance()->requireAdmin) {
-        PolicyKitKDE::instance()->dialog->setContent(i18n("An application is attempting to perform an action that requires privileges."
+    if (self->requireAdmin) {
+        self->dialog->setContent(i18n("An application is attempting to perform an action that requires privileges."
                 " Authentication as the super user is required to perform this action."));
-        PolicyKitKDE::instance()->dialog->setPasswordPrompt(i18n("Password for root:"));
+        self->dialog->setPasswordPrompt(i18n("Password for root:"));
     } else {
-        PolicyKitKDE::instance()->dialog->setContent(i18n("An application is attempting to perform an action that requires privileges."
+        self->dialog->setContent(i18n("An application is attempting to perform an action that requires privileges."
                 " Authentication is required to perform this action."));
-        PolicyKitKDE::instance()->dialog->setPasswordPrompt(i18n("Password:"));
+        self->dialog->setPasswordPrompt(i18n("Password:"));
         // placeholders
         i18n("An application is attempting to perform an action that requires privileges."
              " Authentication as one of the users below user is required to perform this action.");
         i18n("Password for %1");
     }
-    PolicyKitKDE::instance()->dialog->showKeepPassword(PolicyKitKDE::instance()->keepPassword);
-    PolicyKitKDE::instance()->dialog->show();
+    self->dialog->showKeepPassword(self->keepPassword);
+    self->dialog->show();
     QEventLoop loop;
-    connect(PolicyKitKDE::instance()->dialog, SIGNAL(okClicked()), &loop, SLOT(quit()));
-    connect(PolicyKitKDE::instance()->dialog, SIGNAL(cancelClicked()), &loop, SLOT(quit()));
+    connect(self->dialog, SIGNAL(okClicked()), &loop, SLOT(quit()));
+    connect(self->dialog, SIGNAL(cancelClicked()), &loop, SLOT(quit()));
     loop.exec(); // TODO this really sucks, policykit API is blocking
-    if (PolicyKitKDE::instance()->cancelled)
+    if (self->cancelled)
         return NULL;
-    return strdup(PolicyKitKDE::instance()->dialog->password().toLocal8Bit());
+    return strdup(self->dialog->password().toLocal8Bit());
 }
 
 void PolicyKitKDE::dialogAccepted()
@@ -320,22 +324,25 @@ char* PolicyKitKDE::conversation_pam_prompt_echo_on(PolKitGrant* grant, const ch
     return strdup(KInputDialog::getText(QString(), QString::fromLocal8Bit(request)).toLocal8Bit());
 }
 
-void PolicyKitKDE::conversation_pam_error_msg(PolKitGrant* grant, const char* msg, void*)
+void PolicyKitKDE::conversation_pam_error_msg(PolKitGrant *grant, const char *msg, void *user_data)
 {
+    PolicyKitKDE *self = (PolicyKitKDE *) user_data;
     kDebug() << "conversation_pam_error_msg" << grant << msg;
-    KMessageBox::errorWId(PolicyKitKDE::instance()->dialog->isVisible() ? PolicyKitKDE::instance()->dialog->winId() : PolicyKitKDE::instance()->parent_wid,
+    KMessageBox::errorWId(self->dialog->isVisible() ? self->dialog->winId() : self->parent_wid,
                           QString::fromLocal8Bit(msg));
 }
 
-void PolicyKitKDE::conversation_pam_text_info(PolKitGrant* grant, const char* msg, void*)
+void PolicyKitKDE::conversation_pam_text_info(PolKitGrant *grant, const char *msg, void *user_data)
 {
+    PolicyKitKDE *self = (PolicyKitKDE *) user_data;
     kDebug() << "conversation_pam_text_info" << grant << msg;
-    KMessageBox::informationWId(PolicyKitKDE::instance()->dialog->isVisible() ? PolicyKitKDE::instance()->dialog->winId() : PolicyKitKDE::instance()->parent_wid,
+    KMessageBox::informationWId(self->dialog->isVisible() ? self->dialog->winId() : self->parent_wid,
                                 QString::fromLocal8Bit(msg));
 }
 
-PolKitResult PolicyKitKDE::conversation_override_grant_type(PolKitGrant* grant, PolKitResult type, void*)
+PolKitResult PolicyKitKDE::conversation_override_grant_type(PolKitGrant *grant, PolKitResult type, void *user_data)
 {
+    PolicyKitKDE *self = (PolicyKitKDE *) user_data;
     kDebug() << "conversation_override_grant_type" << grant << type;
     bool keep_session = false;
     bool keep_always = false;
@@ -347,14 +354,14 @@ PolKitResult PolicyKitKDE::conversation_override_grant_type(PolKitGrant* grant, 
         break;
     case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION:
     case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION:
-        if (PolicyKitKDE::instance()->keepPassword == KeepPasswordSession)
+        if (self->keepPassword == KeepPasswordSession)
             keep_session = true;
         break;
     case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS:
     case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS:
-        if (PolicyKitKDE::instance()->keepPassword == KeepPasswordAlways)
+        if (self->keepPassword == KeepPasswordAlways)
             keep_always = true;
-        else if (PolicyKitKDE::instance()->keepPassword == KeepPasswordSession)
+        else if (self->keepPassword == KeepPasswordSession)
             keep_session = true;
         break;
     default:
@@ -392,11 +399,12 @@ PolKitResult PolicyKitKDE::conversation_override_grant_type(PolKitGrant* grant, 
 }
 
 void PolicyKitKDE::conversation_done(PolKitGrant* grant, polkit_bool_t obtainedPrivilege,
-                                     polkit_bool_t invalidData, void*)
+                                     polkit_bool_t invalidData, void *user_data)
 {
+    PolicyKitKDE *self = (PolicyKitKDE *) user_data;
     kDebug() << "conversation_done" << grant << obtainedPrivilege << invalidData;
-    PolicyKitKDE::instance()->obtainedPrivilege = obtainedPrivilege;
-    QTimer::singleShot(0, PolicyKitKDE::instance(), SLOT(finishObtainPrivilege()));
+    self->obtainedPrivilege = obtainedPrivilege;
+    QTimer::singleShot(0, self, SLOT(finishObtainPrivilege()));
 }
 
 //----------------------------------------------------------------------------
@@ -405,8 +413,8 @@ void PolicyKitKDE::watchActivatedGrant(int fd)
 {
     Q_ASSERT(m_watches.contains(fd));
 
-//    kDebug() << "watchActivated" << fd;
-
+   kDebug() << "watchActivated" << fd;
+    //TODO this emmits a CRITICAL on terminal
     polkit_grant_io_func(grant, fd);
 }
 

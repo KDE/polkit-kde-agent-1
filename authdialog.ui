@@ -1,8 +1,8 @@
 <ui version="4.0" >
- <class>AuthDialogUI</class>
- <widget class="QWidget" name="AuthDialogUI" >
+ <class>AuthDialog</class>
+ <widget class="QWidget" name="AuthDialog" >
   <property name="windowModality" >
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry" >
    <rect>

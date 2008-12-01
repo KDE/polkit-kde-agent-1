@@ -1,6 +1,7 @@
 /*  This file is part of the KDE project
     Copyright (C) 2007-2008 Gökçen Eraslan <gokcen@pardus.org.tr>
     Copyright (C) 2008 Dario Freddi <drf54321@gmail.com>
+    Copyright (C) 2008 Daniel Nicoletti <dantti85-pk@yahoo.com.br>
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public
@@ -19,14 +20,11 @@
 
 */
 
-
-
 #include <KCmdLineArgs>
 #include <KAboutData>
 #include <KUniqueApplication>
 #include <KLocale>
 
-#include "authdialog.h"
 #include "policykitkde.h"
 
 int main(int argc, char *argv[])
@@ -38,16 +36,13 @@ int main(int argc, char *argv[])
     aboutData.addAuthor(ki18n("Dirk Müller"), ki18n("Author"), "mueller@kde.org");
     aboutData.addAuthor(ki18n("Luboš Luňák"), ki18n("Developer"), "l.lunak@kde.org");
     aboutData.addAuthor(ki18n("Dario Freddi"), ki18n("Developer"), "drf54321@gmail.com");
+    aboutData.addAuthor(ki18n("Daniel Nicoletti"), ki18n("Developer"), "dantti85-pk@yahoo.com.br");
     KCmdLineArgs::init(argc, argv, &aboutData);
 
-    if (!KUniqueApplication::start()) {
+    if (!PolicyKitKDE::start()) {
         fprintf(stderr, "PolicyKitKDE is already running!\n");
         return 0;
     }
 
-    KUniqueApplication a;
-    a.setQuitOnLastWindowClosed(false);
-    a.disableSessionManagement();
-
-    return a.exec();
+    return PolicyKitKDE::instance()->exec();
 }

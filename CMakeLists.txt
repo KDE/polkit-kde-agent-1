@@ -16,7 +16,7 @@ set(policykit_SRCS
 qt4_add_dbus_adaptor(policykit_SRCS org.freedesktop.PolicyKit.AuthenticationAgent.xml
    policykitkde.h PolicyKitKDE)
 
-kde4_add_ui_files(policykit_SRCS authdialogui.ui authdetails.ui)
+kde4_add_ui_files(policykit_SRCS authdialog.ui authdetails.ui)
 
 kde4_add_executable(polkit-kde-manager ${policykit_SRCS})
 
