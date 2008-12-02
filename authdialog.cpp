@@ -39,7 +39,7 @@
 AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
         : KDialog(0)
 {
-    setupUi( mainWidget() );
+    setupUi(mainWidget());
 
     setButtons(Ok | Cancel | Details);
 

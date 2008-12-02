@@ -43,6 +43,8 @@
 #include "authdialog.h"
 #include "processwatcher.h"
 
+#define THIRTY_SECONDS 30000
+
 PolicyKitKDE *PolicyKitKDE::m_self;
 
 //----------------------------------------------------------------------------
@@ -86,13 +88,18 @@ PolicyKitKDE::PolicyKitKDE()
             kError() << msg;
     }
     //TODO: polkit_tracker?
-    //TODO: add kill_timer?
+
+    m_killT = new QTimer(this);
+    connect(m_killT, SIGNAL(timeout()), this, SLOT(quit()));
+    m_killT->start(THIRTY_SECONDS);
+    kDebug() << "Kill timer set to " << THIRTY_SECONDS << " milliseconds";
 }
 
 //----------------------------------------------------------------------------
 
 PolicyKitKDE::~PolicyKitKDE()
 {
+    kDebug() << "Exit";
 }
 
 //----------------------------------------------------------------------------
@@ -167,6 +174,7 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     }
     mes = message();
     setDelayedReply(true);
+    m_killT->stop();
     return false;
 }
 
@@ -190,6 +198,7 @@ void PolicyKitKDE::finishObtainPrivilege()
     polkit_action_unref(action);
     dialog->deleteLater();
     inProgress = false;
+    m_killT->start(THIRTY_SECONDS);
     kDebug() << "Finish obtain authorization:" << obtainedPrivilege;
     QDBusConnection::sessionBus().send(mes.createReply(obtainedPrivilege));
 }

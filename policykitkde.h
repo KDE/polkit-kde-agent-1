@@ -63,12 +63,13 @@ private Q_SLOTS:
 private:
     PolKitContext *m_context;
     WId parent_wid;
-    AuthDialog* dialog;
+    AuthDialog *dialog;
+    QTimer *m_killT;
     bool inProgress;
     bool cancelled;
-    PolKitGrant* grant;
-    PolKitCaller* caller;
-    PolKitAction* action;
+    PolKitGrant *grant;
+    PolKitCaller *caller;
+    PolKitAction *action;
     bool obtainedPrivilege;
     bool requireAdmin;
     KeepPassword keepPassword;
