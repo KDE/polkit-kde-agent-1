@@ -40,7 +40,7 @@
 #include <polkit-dbus/polkit-dbus.h>
 #include <polkit-grant/polkit-grant.h>
 
-#include "authdialog.h"
+#include "AuthDialog.h"
 #include "processwatcher.h"
 
 #define THIRTY_SECONDS 30000
@@ -155,10 +155,17 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     }
 
     dialog = new AuthDialog(entry, pid);
+//         AuthDialogs *dl = new AuthDialogs(entry, pid);
+//     dl->show();
+//     m_dialog = new AuthDialogs(entry, pid);
     connect(dialog, SIGNAL(okClicked()), SLOT(dialogAccepted()));
     connect(dialog, SIGNAL(cancelClicked()), SLOT(dialogCancelled()));
-    if (wid != 0)
+//     connect(m_dialog, SIGNAL(okClicked()), SLOT(dialogAccepted()));
+//     connect(m_dialog, SIGNAL(cancelClicked()), SLOT(dialogCancelled()));
+    if (wid != 0) {
         KWindowSystem::setMainWindow(dialog, wid);
+//         KWindowSystem::setMainWindow(m_dialog, wid);
+    }
     else
         updateUserTimestamp(); // make it get focus unconditionally :-/
     parent_wid = wid;
@@ -251,10 +258,18 @@ char* PolicyKitKDE::conversation_pam_prompt_echo_off(PolKitGrant *grant, const c
         self->dialog->setContent(i18n("An application is attempting to perform an action that requires privileges."
                 " Authentication as the super user is required to perform this action."));
         self->dialog->setPasswordPrompt(i18n("Password for root:"));
+
+//         self->m_dialog->setContent(i18n("An application is attempting to perform an action that requires privileges."
+//                 " Authentication as the super user is required to perform this action."));
+//         self->m_dialog->setPasswordPrompt(i18n("Password for root:"));
     } else {
         self->dialog->setContent(i18n("An application is attempting to perform an action that requires privileges."
                 " Authentication is required to perform this action."));
         self->dialog->setPasswordPrompt(i18n("Password:"));
+
+//         self->m_dialog->setContent(i18n("An application is attempting to perform an action that requires privileges."
+//                 " Authentication is required to perform this action."));
+//         self->m_dialog->setPasswordPrompt(i18n("Password:"));
         // placeholders
         i18n("An application is attempting to perform an action that requires privileges."
              " Authentication as one of the users below user is required to perform this action.");
@@ -262,6 +277,7 @@ char* PolicyKitKDE::conversation_pam_prompt_echo_off(PolKitGrant *grant, const c
     }
     self->dialog->showKeepPassword(self->keepPassword);
     self->dialog->show();
+//     self->m_dialog->show();
     QEventLoop loop;
     connect(self->dialog, SIGNAL(okClicked()), &loop, SLOT(quit()));
     connect(self->dialog, SIGNAL(cancelClicked()), &loop, SLOT(quit()));

@@ -1,5 +1,6 @@
 /*  This file is part of the KDE project
     Copyright (C) 2007-2008 Gökçen Eraslan <gokcen@pardus.org.tr>
+    Copyright (C) 2008 Daniel Nicoletti <dantti85-pk@yahoo.com.br>
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public
@@ -25,7 +26,7 @@
 
 #include <QtCore/QObject>
 
-#include "ui_authdialog.h"
+#include "ui_AuthDialog.h"
 #include "ui_authdetails.h"
 
 #include "policykitkde.h"
@@ -48,11 +49,11 @@ public slots:
     virtual void accept();
 };
 
-class AuthDetails : public QWidget, public Ui::AuthDetails
+class AuthDetails : public QWidget, private Ui::AuthDetails
 {
     Q_OBJECT
 public:
-    AuthDetails(QWidget* parent);
+    AuthDetails(PolKitPolicyFileEntry *entry, uint pid, QWidget *parent);
 
 private slots:
     void openUrl(const QString&);

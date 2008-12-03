@@ -20,14 +20,12 @@
 
 */
 
-#include "authdialog.h"
+#include "AuthDialog.h"
 
 #include <QProcess>
 
 #include <KDebug>
 #include <KToolInvocation>
-
-#include "ui_authdetails.h"
 
 /*
  *  Constructs a AuthDialog which is a child of 'parent', with the
@@ -40,7 +38,6 @@ AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
         : KDialog(0)
 {
     setupUi(mainWidget());
-
     setButtons(Ok | Cancel | Details);
 
     kDebug() << "Getting action message...";
@@ -65,26 +62,8 @@ AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
     cbUsers->hide();
     lePassword->setFocus();
 
-    AuthDetails* details = new AuthDetails(this);
-
-    QString appname;
-    char tmp[ PATH_MAX ];
-    if (polkit_sysdeps_get_exe_for_pid_with_helper(pid, tmp, sizeof(tmp) - 1) < 0)
-        appname = i18n("Unknown");
-    else
-        appname = QString::fromLocal8Bit(tmp);
-
-    details->app_label->setText(appname);
-
-    QString actionId = polkit_policy_file_entry_get_id(entry);
-    details->action_label->setText(actionId);
-    details->action_label->setUrl(actionId);
-
-    details->vendor_label->setText(polkit_policy_file_entry_get_action_vendor(entry));
-    details->vendor_label->setUrl(polkit_policy_file_entry_get_action_vendor_url(entry));
+    AuthDetails *details = new AuthDetails(entry, pid, this);
     setDetailsWidget(details);
-
-//     resize( sizeHint() + QSize( 100, 100 )); // HACK broken QLabel layouting
 
     errorMessageKTW->hide();
 }
@@ -98,11 +77,6 @@ void AuthDialog::accept()
     // Do nothing, do not close the dialog. This is needed so that the dialog stays
     return;
 }
-
-// void AuthDialog::setHeader(const QString &header)
-// {
-//     lblHeader->setText("<h3>" + header + "</h3>");
-// }
 
 void AuthDialog::setContent(const QString &msg)
 {
@@ -134,13 +108,15 @@ void AuthDialog::showKeepPassword(KeepPassword keep)
 {
     switch (keep) {
     case KeepPasswordNo:
-        cbRemember->hide();
-        cbSessionOnly->hide();
+        delete cbRemember;
+//         cbRemember->hide();
+        delete cbSessionOnly;
+//         cbSessionOnly->hide();
         break;
     case KeepPasswordSession:
         cbRemember->setText(i18n("Remember authorization for this session"));
         cbRemember->show();
-        cbSessionOnly->hide();
+        delete cbSessionOnly;
         break;
     case KeepPasswordAlways:
         cbRemember->setText(i18n("Remember authorization"));
@@ -162,10 +138,27 @@ KeepPassword AuthDialog::keepPassword() const
     return KeepPasswordNo;
 }
 
-AuthDetails::AuthDetails(QWidget* parent)
+AuthDetails::AuthDetails(PolKitPolicyFileEntry *entry, uint pid, QWidget *parent)
         : QWidget(parent)
 {
     setupUi(this);
+
+    QString appname;
+    char tmp[ PATH_MAX ];
+    if (polkit_sysdeps_get_exe_for_pid_with_helper(pid, tmp, sizeof(tmp) - 1) < 0)
+        appname = i18n("Unknown");
+    else
+        appname = QString::fromLocal8Bit(tmp);
+
+    app_label->setText(appname);
+
+    QString actionId = polkit_policy_file_entry_get_id(entry);
+    action_label->setText(actionId);
+    action_label->setUrl(actionId);
+
+    vendor_label->setText(polkit_policy_file_entry_get_action_vendor(entry));
+    vendor_label->setUrl(polkit_policy_file_entry_get_action_vendor_url(entry));
+
     connect(vendor_label, SIGNAL(leftClickedUrl(const QString&)), SLOT(openUrl(const QString&)));
     connect(action_label, SIGNAL(leftClickedUrl(const QString&)), SLOT(openAction(const QString&)));
 }
@@ -179,3 +172,5 @@ void AuthDetails::openAction(const QString &url)
 {
     QProcess::startDetached("polkit-kde-authorization", QStringList() << url);
 }
+
+#include "AuthDialog.moc"
