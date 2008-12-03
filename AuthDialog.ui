@@ -85,7 +85,7 @@
         </sizepolicy>
        </property>
        <property name="text" >
-        <string>&lt;i>Content&lt;/></string>
+        <string>&lt;i>Content&lt;i/></string>
        </property>
        <property name="wordWrap" >
         <bool>true</bool>
