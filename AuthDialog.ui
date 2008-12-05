@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>285</width>
-    <height>181</height>
+    <width>335</width>
+    <height>193</height>
    </rect>
   </property>
   <property name="sizePolicy" >
@@ -87,15 +87,9 @@
        <property name="wordWrap" >
         <bool>true</bool>
        </property>
-       <property name="buddy" >
-        <cstring>lePassword</cstring>
-       </property>
       </widget>
      </item>
     </layout>
-   </item>
-   <item row="1" column="1" colspan="3" >
-    <widget class="KComboBox" name="cbUsers" />
    </item>
    <item row="2" column="1" colspan="3" >
     <widget class="KTitleWidget" name="errorMessageKTW" />
@@ -122,6 +116,16 @@
      <property name="text" >
       <string>Remember authorization</string>
      </property>
+     <property name="checked" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="2" colspan="2" >
+    <widget class="QCheckBox" name="cbSessionOnly" >
+     <property name="text" >
+      <string>For this session only</string>
+     </property>
     </widget>
    </item>
    <item row="5" column="1" >
@@ -140,25 +144,17 @@
      </property>
     </spacer>
    </item>
-   <item row="5" column="2" colspan="2" >
-    <widget class="QCheckBox" name="cbSessionOnly" >
-     <property name="text" >
-      <string>For this session only</string>
-     </property>
-    </widget>
+   <item row="1" column="1" colspan="3" >
+    <widget class="KComboBox" name="userCB" />
    </item>
   </layout>
-  <zorder>lblPixmap</zorder>
-  <zorder>lblHeader</zorder>
-  <zorder>verticalSpacer</zorder>
   <zorder>errorMessageKTW</zorder>
   <zorder>lblPassword</zorder>
   <zorder>lePassword</zorder>
-  <zorder>lblContent</zorder>
   <zorder>cbRemember</zorder>
   <zorder>cbSessionOnly</zorder>
   <zorder>horizontalSpacer</zorder>
-  <zorder>cbUsers</zorder>
+  <zorder>userCB</zorder>
  </widget>
  <customwidgets>
   <customwidget>

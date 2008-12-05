@@ -38,22 +38,27 @@ public:
     AuthDialog(PolKitPolicyFileEntry *entry, uint pid);
     ~AuthDialog();
 
-    void setContent(const QString& content);
-    void setPasswordPrompt(const QString& prompt);
+    void setRequest(QString request, bool requireAdmin);
     void showKeepPassword(KeepPassword keep);
     QString password() const;
     void incorrectPassword();
     KeepPassword keepPassword() const;
+    void createUserCB(char **admin_users);
+
+    QString m_appname;
 
 public slots:
     virtual void accept();
+
+private slots:
+    void on_userCB_currentIndexChanged(int index);
 };
 
 class AuthDetails : public QWidget, private Ui::AuthDetails
 {
     Q_OBJECT
 public:
-    AuthDetails(PolKitPolicyFileEntry *entry, uint pid, QWidget *parent);
+    AuthDetails(PolKitPolicyFileEntry *entry, QString appname, QWidget *parent);
 
 private slots:
     void openUrl(const QString&);

@@ -60,16 +60,22 @@ PolicyKitKDE::PolicyKitKDE()
     kDebug() << "Constructing PolicyKitKDE singleton";
 
     (void) new AuthenticationAgentAdaptor(this);
-    if (!QDBusConnection::sessionBus().registerService("org.freedesktop.PolicyKit.AuthenticationAgent"))
+    if (!QDBusConnection::sessionBus().registerService("org.freedesktop.PolicyKit.AuthenticationAgent")) {
         kError() << "another authentication agent already running";
+        QTimer::singleShot(0, this, SLOT(quit()));
+        return;
+    }
 
     if (!QDBusConnection::sessionBus().registerObject("/", this)) {
         kError() << "unable to register service interface to dbus";
+        QTimer::singleShot(0, this, SLOT(quit()));
+        return;
     }
 
     m_context = polkit_context_new();
     if (m_context == NULL) {
         kDebug() << "Could not get a new PolKitContext.";
+        QTimer::singleShot(0, this, SLOT(quit()));
         return;
     }
 
@@ -86,8 +92,9 @@ PolicyKitKDE::PolicyKitKDE()
             polkit_error_free(error);
         } else
             kError() << msg;
+        QTimer::singleShot(0, this, SLOT(quit()));
+        return;
     }
-    //TODO: polkit_tracker?
 
     m_killT = new QTimer(this);
     connect(m_killT, SIGNAL(timeout()), this, SLOT(quit()));
@@ -112,7 +119,7 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
         sendErrorReply("org.freedesktop.DBus.GLib.UnmappedError.PolkitKdeManagerError.Code1",
                        i18n("Another client is already authenticating, please try again later."));
         kDebug() << "Another client is already authenticating, please try again later.";
-        return true;
+        return false;
     }
     inProgress = true;
     obtainedPrivilege = false;
@@ -129,6 +136,7 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
         kError() << "Could not set actionid.";
         return false;
     }
+
     DBusError dbuserror;
     dbus_error_init(&dbuserror);
     DBusConnection *bus = dbus_bus_get(DBUS_BUS_SYSTEM, &dbuserror);
@@ -136,6 +144,7 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     if (caller == NULL) {
         kError() << QString("Could not define caller from pid: %1")
         .arg(QDBusError((const DBusError *)&dbuserror).message());
+        dbus_connection_unref(bus);
         // TODO this all leaks and is probably pretty paranoid
         return false;
     }
@@ -144,30 +153,30 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
     PolKitPolicyCache *cache = polkit_context_get_policy_cache(m_context);
     if (cache == NULL) {
         kWarning() << "Could not get policy cache.";
-        //    return false;
+        return false;
     }
 
     kDebug() << "Getting policy cache entry for an action...";
     PolKitPolicyFileEntry *entry = polkit_policy_cache_get_entry(cache, action);
     if (entry == NULL) {
         kWarning() << "Could not get policy entry for action.";
-        //    return false;
+        return false;
+    }
+
+    if (polkit_policy_file_entry_get_action_message(entry) == NULL) {
+        kWarning() << "No message markup for given action";
+        return false;
     }
 
     dialog = new AuthDialog(entry, pid);
-//         AuthDialogs *dl = new AuthDialogs(entry, pid);
-//     dl->show();
-//     m_dialog = new AuthDialogs(entry, pid);
     connect(dialog, SIGNAL(okClicked()), SLOT(dialogAccepted()));
     connect(dialog, SIGNAL(cancelClicked()), SLOT(dialogCancelled()));
-//     connect(m_dialog, SIGNAL(okClicked()), SLOT(dialogAccepted()));
-//     connect(m_dialog, SIGNAL(cancelClicked()), SLOT(dialogCancelled()));
     if (wid != 0) {
         KWindowSystem::setMainWindow(dialog, wid);
-//         KWindowSystem::setMainWindow(m_dialog, wid);
     }
     else
         updateUserTimestamp(); // make it get focus unconditionally :-/
+
     parent_wid = wid;
 
     grant = polkit_grant_new();
@@ -177,6 +186,7 @@ bool PolicyKitKDE::ObtainAuthorization(const QString& actionId, uint wid, uint p
                                conversation_override_grant_type, conversation_done, this);
     if (!polkit_grant_initiate_auth(grant, action, caller)) {
         kError() << "Failed to initiate privilege grant.";
+        polkit_grant_unref (grant);
         return false;
     }
     mes = message();
@@ -243,41 +253,25 @@ void PolicyKitKDE::conversation_type(PolKitGrant *grant, PolKitResult type, void
     }
 }
 
-char* PolicyKitKDE::conversation_select_admin_user(PolKitGrant* grant, char** users, void*)
+char* PolicyKitKDE::conversation_select_admin_user(PolKitGrant *grant, char **admin_users, void *user_data)
 {
-    kDebug() << "conversation_select_admin_user" << grant << users[ 0 ];
-    return strdup(users[ 0 ]);   // TODO
+    PolicyKitKDE *self = (PolicyKitKDE *) user_data;
+    kDebug() << "conversation_select_admin_user" << grant;
+    self->dialog->createUserCB(admin_users);
+    /* if we've already selected the admin user.. then reuse the same one (this
+     * is mainly when the user entered the wrong password)
+     */
+    return strdup(admin_users[ 0 ]);   // TODO
 }
 
 char* PolicyKitKDE::conversation_pam_prompt_echo_off(PolKitGrant *grant, const char *request, void *user_data)
 {
     PolicyKitKDE *self = (PolicyKitKDE *) user_data;
-    kDebug() << "conversation_pam_prompt_echo_off" << grant << request;
-    // TODO actually use 'request'?
-    if (self->requireAdmin) {
-        self->dialog->setContent(i18n("An application is attempting to perform an action that requires privileges."
-                " Authentication as the super user is required to perform this action."));
-        self->dialog->setPasswordPrompt(i18n("Password for root:"));
-
-//         self->m_dialog->setContent(i18n("An application is attempting to perform an action that requires privileges."
-//                 " Authentication as the super user is required to perform this action."));
-//         self->m_dialog->setPasswordPrompt(i18n("Password for root:"));
-    } else {
-        self->dialog->setContent(i18n("An application is attempting to perform an action that requires privileges."
-                " Authentication is required to perform this action."));
-        self->dialog->setPasswordPrompt(i18n("Password:"));
-
-//         self->m_dialog->setContent(i18n("An application is attempting to perform an action that requires privileges."
-//                 " Authentication is required to perform this action."));
-//         self->m_dialog->setPasswordPrompt(i18n("Password:"));
-        // placeholders
-        i18n("An application is attempting to perform an action that requires privileges."
-             " Authentication as one of the users below user is required to perform this action.");
-        i18n("Password for %1");
-    }
+    kDebug() << "conversation_pam_prompt_echo_off" << grant << request << "end";
+    self->dialog->setRequest(request, self->requireAdmin);
     self->dialog->showKeepPassword(self->keepPassword);
     self->dialog->show();
-//     self->m_dialog->show();
+
     QEventLoop loop;
     connect(self->dialog, SIGNAL(okClicked()), &loop, SLOT(quit()));
     connect(self->dialog, SIGNAL(cancelClicked()), &loop, SLOT(quit()));

@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>273</width>
-    <height>64</height>
+    <height>80</height>
    </rect>
   </property>
   <property name="sizePolicy" >
@@ -16,45 +16,64 @@
    </sizepolicy>
   </property>
   <layout class="QGridLayout" name="gridLayout" >
-   <item row="0" column="0" >
+   <item row="1" column="0" >
     <widget class="QLabel" name="label" >
      <property name="text" >
       <string>Application:</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="2" colspan="2" >
-    <widget class="QLabel" name="app_label" >
-     <property name="text" >
-      <string>Application:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" >
+   <item row="2" column="0" >
     <widget class="QLabel" name="label_3" >
      <property name="text" >
       <string>Action:</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="0" >
-    <widget class="QLabel" name="label_5" >
+   <item row="3" column="0" >
+    <widget class="QLabel" name="vendorL" >
      <property name="text" >
       <string>Vendor:</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="2" colspan="2" >
-    <widget class="KUrlLabel" name="vendor_label" >
+   <item row="3" column="1" colspan="3" >
+    <widget class="KUrlLabel" name="vendorUL" >
      <property name="text" >
       <string>Vendor:</string>
      </property>
+     <property name="tipText" >
+      <string/>
+     </property>
+     <property name="useTips" >
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
-   <item row="1" column="2" colspan="2" >
+   <item row="2" column="1" colspan="3" >
     <widget class="KUrlLabel" name="action_label" >
      <property name="text" >
       <string>Action:</string>
+     </property>
+     <property name="tipText" >
+      <string/>
+     </property>
+     <property name="useTips" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="4" >
+    <widget class="Line" name="line" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" colspan="3" >
+    <widget class="QLabel" name="app_label" >
+     <property name="text" >
+      <string>Application:</string>
      </property>
     </widget>
    </item>
