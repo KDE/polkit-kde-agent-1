@@ -166,7 +166,12 @@ void AuthDialog::createUserCB(char **admin_users)
             else
                 display = user.loginName();
 
-            userCB->addItem(display, user.uid());
+            // load user icon face
+            if (user.faceIconPath().isEmpty()) {
+                userCB->addItem(display, user.uid());
+            } else {
+                userCB->addItem(KIcon(user.faceIconPath()), display, user.uid());
+            }
         }
 
         // Show the widget
