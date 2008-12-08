@@ -38,20 +38,30 @@ public:
     AuthDialog(PolKitPolicyFileEntry *entry, uint pid);
     ~AuthDialog();
 
-    void setRequest(QString request, bool requireAdmin);
-    void showKeepPassword(KeepPassword keep);
+    void setRequest(QString request, bool requiresAdmin);
+    void setPasswordShowChars(bool showChars);
+    void setOptions(KeepPassword keep, bool requiresAdmin, QStringList adminUsers);
     QString password() const;
     void incorrectPassword();
     KeepPassword keepPassword() const;
-    void createUserCB(char **admin_users);
+
+
+    QString adminUserSelected() const;
+    QString selectCurrentAdminUser();
 
     QString m_appname;
+
+signals:
+    void adminUserSelected(QString adminUser);
 
 public slots:
     virtual void accept();
 
 private slots:
     void on_userCB_currentIndexChanged(int index);
+
+private:
+    void createUserCB(QStringList adminUsers);
 };
 
 class AuthDetails : public QWidget, private Ui::AuthDetails

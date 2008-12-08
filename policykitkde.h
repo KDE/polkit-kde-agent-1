@@ -50,15 +50,17 @@ public:
     virtual ~PolicyKitKDE();
 
 public Q_SLOTS:
-    bool ObtainAuthorization(const QString& action_id, uint xid, uint pid);
+    bool ObtainAuthorization(const QString &action_id, uint xid, uint pid);
 
 private Q_SLOTS:
     void watchActivatedGrant(int fd);
     void watchActivatedContext(int fd);
     void childTerminated(pid_t, int);
+    void tryAgain();
     void finishObtainPrivilege();
     void dialogAccepted();
     void dialogCancelled();
+    void userSelected(QString adminUser);
 
 private:
     PolKitContext *m_context;
@@ -66,35 +68,50 @@ private:
     AuthDialog *dialog;
     QTimer *m_killT;
     bool inProgress;
-    bool cancelled;
     PolKitGrant *grant;
     PolKitCaller *caller;
     PolKitAction *action;
-    bool obtainedPrivilege;
-    bool requireAdmin;
     KeepPassword keepPassword;
-    QDBusMessage mes;
+    QDBusMessage reply;
+    QStringList m_adminUsers;
+    QString m_adminUserSelected;
+    QEventLoop *m_dialogEventLoop;
+
+    int  m_numTries;
+    bool m_wasCancelled;
+    bool m_wasBogus;
+    bool m_newUserSelected;
+    bool m_gainedPrivilege;
+    bool m_requiresAdmin;
 
     static PolicyKitKDE *m_self;
 
     QMap<int, QSocketNotifier*> m_watches;
 
-    static int add_grant_io_watch(PolKitGrant *grant, int fd);
+    static int add_io_watch(PolKitGrant *grant, int fd);
     static void remove_grant_io_watch(PolKitGrant *grant, int fd);
-    static int add_context_io_watch(PolKitContext *context, int fd);
-    static void remove_context_io_watch(PolKitContext *context, int fd);
+
+    static int pk_io_add_watch(PolKitContext *context, int fd);
+    static void pk_io_remove_watch(PolKitContext *context, int fd);
+
     static int add_child_watch(PolKitGrant* grant, pid_t pid);
     static void remove_child_watch(PolKitGrant* grant, int id);
+
     static void remove_watch(PolKitGrant* grant, int id);
-    static void conversation_type(PolKitGrant* grant, PolKitResult type, void* d);
-    static char* conversation_select_admin_user(PolKitGrant* grant, char** users, void* d);
-    static char* conversation_pam_prompt_echo_off(PolKitGrant* grant, const char* request, void* d);
-    static char* conversation_pam_prompt_echo_on(PolKitGrant* grant, const char* request, void* d);
-    static void conversation_pam_error_msg(PolKitGrant* grant, const char* msg, void* d);
-    static void conversation_pam_text_info(PolKitGrant* grant, const char* msg, void* d);
-    static PolKitResult conversation_override_grant_type(PolKitGrant* grant, PolKitResult type, void* d);
-    static void conversation_done(PolKitGrant* grant, polkit_bool_t obtainedPrivilege, polkit_bool_t invalidData, void* d);
-    static void polkit_config_changed(PolKitContext* context, void*);
+
+    static void conversation_type(PolKitGrant *grant, PolKitResult type, void *user_data);
+    static char* conversation_select_admin_user(PolKitGrant *grant, char **users, void *user_data);
+
+    static char* conversation_pam_prompt(PolKitGrant *grant, const char *request, void *user_data, bool echoOn);
+    static char* conversation_pam_prompt_echo_off(PolKitGrant *grant, const char *request, void *user_data);
+    static char* conversation_pam_prompt_echo_on(PolKitGrant *grant, const char *request, void *user_data);
+
+    static void conversation_pam_error_msg(PolKitGrant *grant, const char *msg, void *user_data);
+    static void conversation_pam_text_info(PolKitGrant *grant, const char *msg, void *user_data);
+
+    static PolKitResult conversation_override_grant_type(PolKitGrant *grant, PolKitResult type, void *user_data);
+    static void conversation_done(PolKitGrant *grant, polkit_bool_t obtainedPrivilege, polkit_bool_t invalidData, void *user_data);
+    static void polkit_config_changed(PolKitContext *ontext, void *user_data);
 };
 
 #endif
