@@ -97,7 +97,7 @@ void AuthDialog::setRequest(QString request, bool requiresAdmin)
         if (requiresAdmin) {
             if (!userCB->itemData(userCB->currentIndex()).isNull()) {
                 lblPassword->setText(i18n("Password for %1:",
-                      KUser::KUser(userCB->itemData(userCB->currentIndex()).toUInt()).loginName()));
+                      userCB->itemData(userCB->currentIndex()).toString()));
             } else {
                     lblPassword->setText(i18n("Password for root:"));
             }
@@ -108,7 +108,7 @@ void AuthDialog::setRequest(QString request, bool requiresAdmin)
         if (requiresAdmin) {
             if (!userCB->itemData(userCB->currentIndex()).isNull()) {
                 lblPassword->setText(i18n("Password or swipe finger for %1:",
-                      KUser::KUser(userCB->itemData(userCB->currentIndex()).toUInt()).loginName()));
+                      userCB->itemData(userCB->currentIndex()).toString()));
             } else {
                 lblPassword->setText(i18n("Password or swipe finger for root:"));
             }
@@ -204,14 +204,17 @@ void AuthDialog::createUserCB(QStringList adminUsers)
 
             // load user icon face
             if (user.faceIconPath().isEmpty()) {
-                userCB->addItem(display, user.uid());
+                // DO NOT store UID as polkit get's confused in the case wheter
+                // you have another user with the same ID (ie root)
+                userCB->addItem(display, user.loginName());
             } else {
-                userCB->addItem(KIcon(user.faceIconPath()), display, user.uid());
+                userCB->addItem(KIcon(user.faceIconPath()), display, user.loginName());
             }
         }
 
-        // Show the widget
+        // Show the widget and set focus
         userCB->show();
+        userCB->setFocus();
     }
 }
 
@@ -220,14 +223,14 @@ QString AuthDialog::adminUserSelected() const
     if (userCB->itemData(userCB->currentIndex()).isNull())
         return QString();
     else
-        return KUser::KUser(userCB->itemData(userCB->currentIndex()).toUInt()).loginName();
+        return userCB->itemData(userCB->currentIndex()).toString();
 }
 
 QString AuthDialog::selectCurrentAdminUser()
 {
     KUser currentUser;
     for (int i = 1; i < userCB->count(); i++) {
-        if (userCB->itemData(i).toUInt() == currentUser.uid()) {
+        if (userCB->itemData(i).toString() == currentUser.loginName()) {
             userCB->setCurrentIndex(i);
             return currentUser.loginName();
         }
