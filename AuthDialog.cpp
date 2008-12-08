@@ -240,7 +240,6 @@ QString AuthDialog::selectCurrentAdminUser()
 
 void AuthDialog::on_userCB_currentIndexChanged(int index)
 {
-    kDebug() << index;
     // itemData is Null when "Select user" is selected
     if (userCB->itemData(index).isNull()) {
         lePassword->setEnabled(false);
@@ -256,6 +255,8 @@ void AuthDialog::on_userCB_currentIndexChanged(int index)
         enableButtonOk(true);
         // We need this to restart the auth with the new user
         emit adminUserSelected(adminUserSelected());
+        // git password label focus
+        lePassword->setFocus();
     }
 }
 

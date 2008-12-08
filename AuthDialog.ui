@@ -168,6 +168,12 @@
    <header>ktitlewidget.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>userCB</tabstop>
+  <tabstop>lePassword</tabstop>
+  <tabstop>cbRemember</tabstop>
+  <tabstop>cbSessionOnly</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -177,8 +183,8 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>145</x>
-     <y>133</y>
+     <x>259</x>
+     <y>161</y>
     </hint>
     <hint type="destinationlabel" >
      <x>161</x>
