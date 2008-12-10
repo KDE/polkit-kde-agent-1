@@ -187,7 +187,7 @@ void AuthDialog::createUserCB(QStringList adminUsers)
         userCB->addItem(i18n("Select user"));
 
         // For each user
-        foreach (QString adminUser, adminUsers) {
+        foreach (const QString &adminUser, adminUsers) {
             // First check to see if the user is valid
             KUser user = KUser::KUser(adminUser);
             if (!user.isValid()) {
