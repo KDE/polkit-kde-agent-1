@@ -38,9 +38,9 @@ public:
     AuthDialog(PolKitPolicyFileEntry *entry, uint pid);
     ~AuthDialog();
 
-    void setRequest(QString request, bool requiresAdmin);
+    void setRequest(const QString &request, bool requiresAdmin);
     void setPasswordShowChars(bool showChars);
-    void setOptions(KeepPassword keep, bool requiresAdmin, QStringList adminUsers);
+    void setOptions(KeepPassword keep, bool requiresAdmin, const QStringList &adminUsers);
     QString password() const;
     void incorrectPassword();
     KeepPassword keepPassword() const;
@@ -52,7 +52,7 @@ public:
     QString m_appname;
 
 signals:
-    void adminUserSelected(QString adminUser);
+    void adminUserSelected(const QString &adminUser);
 
 public slots:
     virtual void accept();
@@ -61,14 +61,14 @@ private slots:
     void on_userCB_currentIndexChanged(int index);
 
 private:
-    void createUserCB(QStringList adminUsers);
+    void createUserCB(const QStringList &adminUsers);
 };
 
 class AuthDetails : public QWidget, private Ui::AuthDetails
 {
     Q_OBJECT
 public:
-    AuthDetails(PolKitPolicyFileEntry *entry, QString appname, QWidget *parent);
+    AuthDetails(PolKitPolicyFileEntry *entry, const QString &appname, QWidget *parent);
 
 private slots:
     void openUrl(const QString&);

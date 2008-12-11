@@ -2,6 +2,7 @@
     Copyright (C) 2007-2008 Gökçen Eraslan <gokcen@pardus.org.tr>
     Copyright (C) 2008 Dirk Mueller <mueller@kde.org>
     Copyright (C) 2008 Daniel Nicoletti <dantti85-pk@yahoo.com.br>
+    Copyright (C) 2008 Dario Freddi <drf54321@gmail.com>
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public
@@ -90,9 +91,9 @@ void AuthDialog::accept()
     return;
 }
 
-void AuthDialog::setRequest(QString request, bool requiresAdmin)
+void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
 {
-    if (request.left(9).compare("password:", Qt::CaseInsensitive) == 0) {
+    if (request.startsWith("password:", Qt::CaseInsensitive) == 0) {
         if (requiresAdmin) {
             if (!userCB->itemData(userCB->currentIndex()).isNull()) {
                 lblPassword->setText(i18n("Password for %1:",
@@ -103,7 +104,7 @@ void AuthDialog::setRequest(QString request, bool requiresAdmin)
         } else {
             lblPassword->setText(i18n("Password:"));
         }
-    } else if (request.left(25).compare("password or swipe finger:", Qt::CaseInsensitive) == 0) {
+    } else if (request.startsWith("password or swipe finger:", Qt::CaseInsensitive) == 0) {
         if (requiresAdmin) {
             if (!userCB->itemData(userCB->currentIndex()).isNull()) {
                 lblPassword->setText(i18n("Password or swipe finger for %1:",
@@ -120,7 +121,7 @@ void AuthDialog::setRequest(QString request, bool requiresAdmin)
 
 }
 
-void AuthDialog::setOptions(KeepPassword keep, bool requiresAdmin, QStringList adminUsers)
+void AuthDialog::setOptions(KeepPassword keep, bool requiresAdmin, const QStringList &adminUsers)
 {
     switch (keep) {
     case KeepPasswordNo:
@@ -172,7 +173,7 @@ void AuthDialog::setOptions(KeepPassword keep, bool requiresAdmin, QStringList a
     }
 }
 
-void AuthDialog::createUserCB(QStringList adminUsers)
+void AuthDialog::createUserCB(const QStringList &adminUsers)
 {
     /* if we've already built the list of admin users once, then avoid
         * doing it again.. (this is mainly used when the user entered the
@@ -295,7 +296,7 @@ KeepPassword AuthDialog::keepPassword() const
     return KeepPasswordNo;
 }
 
-AuthDetails::AuthDetails(PolKitPolicyFileEntry *entry, QString appname, QWidget *parent)
+AuthDetails::AuthDetails(PolKitPolicyFileEntry *entry, const QString &appname, QWidget *parent)
         : QWidget(parent)
 {
     setupUi(this);
