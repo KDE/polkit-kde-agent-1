@@ -65,10 +65,9 @@ AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
     char tmp[ PATH_MAX ];
     if (polkit_sysdeps_get_exe_for_pid_with_helper(pid, tmp, sizeof(tmp) - 1) < 0) {
         m_appname.clear();
-        AuthDetails *details = new AuthDetails(entry, i18n("Unknown"), this);
+        AuthDetails *details = new AuthDetails(entry, i18nc("Unknown action", "Unknown"), this);
         setDetailsWidget(details);
-    }
-    else {
+    } else {
         m_appname = QString::fromLocal8Bit(tmp);
         AuthDetails *details = new AuthDetails(entry, m_appname, this);
         setDetailsWidget(details);
@@ -97,18 +96,18 @@ void AuthDialog::setRequest(QString request, bool requiresAdmin)
         if (requiresAdmin) {
             if (!userCB->itemData(userCB->currentIndex()).isNull()) {
                 lblPassword->setText(i18n("Password for %1:",
-                      userCB->itemData(userCB->currentIndex()).toString()));
+                                          userCB->itemData(userCB->currentIndex()).toString()));
             } else {
-                    lblPassword->setText(i18n("Password for root:"));
+                lblPassword->setText(i18n("Password for root:"));
             }
         } else {
-                lblPassword->setText(i18n("Password:"));
+            lblPassword->setText(i18n("Password:"));
         }
     } else if (request.left(25).compare("password or swipe finger:", Qt::CaseInsensitive) == 0) {
         if (requiresAdmin) {
             if (!userCB->itemData(userCB->currentIndex()).isNull()) {
                 lblPassword->setText(i18n("Password or swipe finger for %1:",
-                      userCB->itemData(userCB->currentIndex()).toString()));
+                                          userCB->itemData(userCB->currentIndex()).toString()));
             } else {
                 lblPassword->setText(i18n("Password or swipe finger for root:"));
             }
@@ -124,20 +123,20 @@ void AuthDialog::setRequest(QString request, bool requiresAdmin)
 void AuthDialog::setOptions(KeepPassword keep, bool requiresAdmin, QStringList adminUsers)
 {
     switch (keep) {
-        case KeepPasswordNo:
-            cbRemember->hide();
-            cbSessionOnly->hide();
-            break;
-        case KeepPasswordSession:
-            cbRemember->setText(i18n("Remember authorization for this session"));
-            cbRemember->show();
-            cbSessionOnly->hide();;
-            break;
-        case KeepPasswordAlways:
-            cbRemember->setText(i18n("Remember authorization"));
-            cbRemember->show();
-            cbSessionOnly->show();
-            break;
+    case KeepPasswordNo:
+        cbRemember->hide();
+        cbSessionOnly->hide();
+        break;
+    case KeepPasswordSession:
+        cbRemember->setText(i18n("Remember authorization for this session"));
+        cbRemember->show();
+        cbSessionOnly->hide();;
+        break;
+    case KeepPasswordAlways:
+        cbRemember->setText(i18n("Remember authorization"));
+        cbRemember->show();
+        cbSessionOnly->show();
+        break;
     }
 
     if (requiresAdmin) {
@@ -146,30 +145,30 @@ void AuthDialog::setOptions(KeepPassword keep, bool requiresAdmin, QStringList a
             // Check to see if the authentication is provided through group of admin users
             if (adminUsers.count()) {
                 lblContent->setText(i18n("An application is attempting to perform an action that requires privileges."
-                        " Authentication as one of the users below is required to perform this action."));
+                                         " Authentication as one of the users below is required to perform this action."));
                 createUserCB(adminUsers);
             } else {
                 lblContent->setText(i18n("An application is attempting to perform an action that requires privileges."
-                        " Authentication as the super user is required to perform this action."));
+                                         " Authentication as the super user is required to perform this action."));
             }
         } else {
             // Check to see if the authentication is provided through group of admin users
             if (adminUsers.count()) {
                 lblContent->setText(i18n("The application %1 is attempting to perform an action that requires privileges."
-                        " Authentication as one of the users below is required to perform this action.", m_appname));
+                                         " Authentication as one of the users below is required to perform this action.", m_appname));
                 createUserCB(adminUsers);
             } else {
                 lblContent->setText(i18n("The application %1 is attempting to perform an action that requires privileges."
-                        " Authentication as the super user is required to perform this action.", m_appname));
+                                         " Authentication as the super user is required to perform this action.", m_appname));
             }
         }
     } else {
         if (m_appname.isEmpty())
             lblContent->setText(i18n("An application is attempting to perform an action that requires privileges."
-                    " Authentication is required to perform this action."));
+                                     " Authentication is required to perform this action."));
         else
             lblContent->setText(i18n("The application %1 is attempting to perform an action that requires privileges."
-                    " Authentication is required to perform this action.", m_appname));
+                                     " Authentication is required to perform this action.", m_appname));
     }
 }
 
@@ -179,7 +178,7 @@ void AuthDialog::createUserCB(QStringList adminUsers)
         * doing it again.. (this is mainly used when the user entered the
         * wrong password and the dialog is recycled)
         */
-    if (adminUsers.count() && (userCB->count() - 1) != adminUsers.count() ) {
+    if (adminUsers.count() && (userCB->count() - 1) != adminUsers.count()) {
         // Clears the combobox as some user might be added
         userCB->clear();
 
@@ -187,7 +186,7 @@ void AuthDialog::createUserCB(QStringList adminUsers)
         userCB->addItem(i18n("Select user"));
 
         // For each user
-        foreach (const QString &adminUser, adminUsers) {
+        foreach(const QString &adminUser, adminUsers) {
             // First check to see if the user is valid
             KUser user = KUser::KUser(adminUser);
             if (!user.isValid()) {
@@ -198,13 +197,13 @@ void AuthDialog::createUserCB(QStringList adminUsers)
             // Display user Full Name IF available
             QString display;
             if (!user.property(KUser::FullName).toString().isEmpty())
-                display = user.property(KUser::FullName).toString() + " (" + user.loginName() + ")";
+                display = user.property(KUser::FullName).toString() + " (" + user.loginName() + ')';
             else
                 display = user.loginName();
 
             // load user icon face
             if (user.faceIconPath().isEmpty()) {
-                // DO NOT store UID as polkit get's confused in the case wheter
+                // DO NOT store UID as polkit get's confused in the case whether
                 // you have another user with the same ID (ie root)
                 userCB->addItem(display, user.loginName());
             } else {
