@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     KCmdLineArgs::init(argc, argv, &aboutData);
 
     if (!PolicyKitKDE::start()) {
-        fprintf(stderr, "PolicyKitKDE is already running!\n");
+        qWarning("PolicyKitKDE is already running!\n");
         return 0;
     }
 

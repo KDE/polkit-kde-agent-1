@@ -402,7 +402,7 @@ char* PolicyKitKDE::conversation_pam_prompt(PolKitGrant *polkit_grant, const cha
 char* PolicyKitKDE::conversation_pam_prompt_echo_off(PolKitGrant *polkit_grant, const char *request, void *user_data)
 {
     return conversation_pam_prompt(polkit_grant, request, user_data, false);
-};
+}
 
 char* PolicyKitKDE::conversation_pam_prompt_echo_on(PolKitGrant *polkit_grant, const char *request, void *user_data)
 {
