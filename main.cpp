@@ -22,7 +22,6 @@
 
 #include <KCmdLineArgs>
 #include <KAboutData>
-#include <KUniqueApplication>
 #include <KLocale>
 
 #include "policykitkde.h"

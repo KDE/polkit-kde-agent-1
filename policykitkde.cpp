@@ -27,7 +27,6 @@
 
 #include <KDebug>
 #include <QString>
-#include <KInputDialog>
 #include <KMessageBox>
 #include <KWindowSystem>
 
