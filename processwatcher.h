@@ -27,7 +27,7 @@
 #include <QMutex>
 #include <QMap>
 #include <QAtomicInt>
-
+#include <sys/types.h>
 class QSocketNotifier;
 
 /**
