@@ -180,7 +180,8 @@ bool PolicyKitKDE::ObtainAuthorization(const QString &actionId, uint wid, uint p
     message().setDelayedReply(true);
     reply = message().createReply();
 
-    QDBusConnection::sessionBus().send(reply);
+    // Needed to don't need to return imediately
+    setDelayedReply(true);
 
     m_killT->stop();
     m_numTries = 0;
@@ -288,29 +289,29 @@ void PolicyKitKDE::conversation_type(PolKitGrant *grant, PolKitResult type, void
     self->m_requiresAdmin = false;
     self->keepPassword = KeepPasswordNo;
     switch (type) {
-    case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT:
-    case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH:
-        self->m_requiresAdmin = true;
-        break;
-    case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION:
-        self->m_requiresAdmin = true;
-        self->keepPassword = KeepPasswordSession;
-        break;
-    case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS:
-        self->m_requiresAdmin = true;
-        self->keepPassword = KeepPasswordAlways;
-        break;
-    case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT:
-    case POLKIT_RESULT_ONLY_VIA_SELF_AUTH:
-        break;
-    case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION:
-        self->keepPassword = KeepPasswordSession;
-        break;
-    case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS:
-        self->keepPassword = KeepPasswordAlways;
-        break;
-    default:
-        abort();
+        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT:
+        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH:
+            self->m_requiresAdmin = true;
+            break;
+        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION:
+            self->m_requiresAdmin = true;
+            self->keepPassword = KeepPasswordSession;
+            break;
+        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS:
+            self->m_requiresAdmin = true;
+            self->keepPassword = KeepPasswordAlways;
+            break;
+        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT:
+        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH:
+            break;
+        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION:
+            self->keepPassword = KeepPasswordSession;
+            break;
+        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS:
+            self->keepPassword = KeepPasswordAlways;
+            break;
+        default:
+            abort();
     }
 
     self->dialog->setOptions(self->keepPassword, self->m_requiresAdmin, self->m_adminUsers);
@@ -370,7 +371,6 @@ void PolicyKitKDE::dialogCancelled()
 {
     m_wasCancelled = true;
     kDebug() << "Password dialog cancelled.";
-//     polkit_grant_cancel_auth(grant);
 }
 
 char* PolicyKitKDE::conversation_pam_prompt(PolKitGrant *polkit_grant, const char *request, void *user_data, bool echoOn)
@@ -450,57 +450,57 @@ PolKitResult PolicyKitKDE::conversation_override_grant_type(PolKitGrant *polkit_
     bool keep_always = false;
 
     switch (type) {
-    case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT:
-    case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT:
-    case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH:
-    case POLKIT_RESULT_ONLY_VIA_SELF_AUTH:
-        break;
-    case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION:
-    case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION:
-        if (self->keepPassword == KeepPasswordSession)
-            keep_session = true;
-        break;
-    case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS:
-    case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS:
-        if (self->keepPassword == KeepPasswordAlways)
-            keep_always = true;
-        else if (self->keepPassword == KeepPasswordSession)
-            keep_session = true;
-        break;
-    default:
-        abort();
+        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT:
+        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT:
+        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH:
+        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH:
+            break;
+        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION:
+        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION:
+            if (self->keepPassword == KeepPasswordSession)
+                keep_session = true;
+            break;
+        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS:
+        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS:
+            if (self->keepPassword == KeepPasswordAlways)
+                keep_always = true;
+            else if (self->keepPassword == KeepPasswordSession)
+                keep_session = true;
+            break;
+        default:
+            abort();
     }
     kDebug() << "Keep password, always:" << keep_always << ", session:" << keep_session;
     PolKitResult ret;
     switch (type) {
-    case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT:
-        ret = POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT;
-        break;
-    case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH:
-    case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION:
-    case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS:
-        if (keep_session)
-            ret = POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION;
-        else if (keep_always)
-            ret = POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS;
-        else
-            ret = POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH;
-        break;
-    case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT:
-        ret = POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT;
-        break;
-    case POLKIT_RESULT_ONLY_VIA_SELF_AUTH:
-    case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION:
-    case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS:
-        if (keep_session)
-            ret = POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION;
-        else if (keep_always)
-            ret = POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS;
-        else
-            ret = POLKIT_RESULT_ONLY_VIA_SELF_AUTH;
-        break;
-    default:
-        abort();
+        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT:
+            ret = POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT;
+            break;
+        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH:
+        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION:
+        case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS:
+            if (keep_session)
+                ret = POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION;
+            else if (keep_always)
+                ret = POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS;
+            else
+                ret = POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH;
+            break;
+        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT:
+            ret = POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT;
+            break;
+        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH:
+        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION:
+        case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS:
+            if (keep_session)
+                ret = POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION;
+            else if (keep_always)
+                ret = POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS;
+            else
+                ret = POLKIT_RESULT_ONLY_VIA_SELF_AUTH;
+            break;
+        default:
+            abort();
     }
     return ret;
 }
@@ -619,7 +619,7 @@ int PolicyKitKDE::add_child_watch(PolKitGrant*, pid_t pid)
 
 void PolicyKitKDE::remove_child_watch(PolKitGrant*, int id)
 {
-//     assert(id < 0);
+    Q_ASSERT(id < 0);
     ProcessWatcher::instance()->remove(-id);
 }
 
@@ -634,10 +634,12 @@ void PolicyKitKDE::childTerminated(pid_t pid, int exitStatus)
 
 void PolicyKitKDE::remove_watch(PolKitGrant* grant, int id)
 {
-    if (id > 0)  // io watches are +, child watches are -
+    // io watches are +, child watches are -
+    if (id > 0) {
         remove_grant_io_watch(grant, id);
-    else
+    } else {
         remove_child_watch(grant, id);
+    }
 }
 
 //----------------------------------------------------------------------------
