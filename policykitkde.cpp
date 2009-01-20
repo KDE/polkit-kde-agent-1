@@ -172,8 +172,9 @@ bool PolicyKitKDE::ObtainAuthorization(const QString &actionId, uint wid, uint p
     connect(dialog, SIGNAL(adminUserSelected(QString)), SLOT(userSelected(QString)));
     if (wid != 0) {
         KWindowSystem::setMainWindow(dialog, wid);
-    } else
+    } else {
         updateUserTimestamp(); // make it get focus unconditionally :-/
+    }
 
     parent_wid = wid;
 

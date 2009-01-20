@@ -30,18 +30,12 @@
 #include <KToolInvocation>
 #include <KUser>
 
-/*
- *  Constructs a AuthDialog which is a child of 'parent', with the
- *  name 'name' and widget flags set to 'f'
- *
- *  The dialog will by default be modeless, unless you set 'modal' to
- *  TRUE to construct a modal dialog.
- */
 AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
         : KDialog(0, Qt::Dialog | Qt::WindowStaysOnTopHint | Qt::CustomizeWindowHint)
 {
     setupUi(mainWidget());
-
+    // the dialog needs to be modal to darken the parent window
+    setModal(true);
     setButtons(Ok | Cancel | Details);
 
     kDebug() << "Getting action message...";
