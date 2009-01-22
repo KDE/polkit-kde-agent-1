@@ -49,10 +49,10 @@ public:
     PolicyKitKDE();
     virtual ~PolicyKitKDE();
 
-public Q_SLOTS:
+public slots:
     bool ObtainAuthorization(const QString &action_id, uint xid, uint pid);
 
-private Q_SLOTS:
+private slots:
     void watchActivatedGrant(int fd);
     void watchActivatedContext(int fd);
     void childTerminated(pid_t, int);
