@@ -31,11 +31,14 @@ int main(int argc, char *argv[])
     KAboutData aboutData("policykit-kde", "", ki18n("PolicyKit-KDE"), "0.2",
                          ki18n("PolicyKit-KDE"), KAboutData::License_GPL,
                          ki18n("(c) 2005-2007, TUBITAK - UEKAE"));
-    aboutData.addAuthor(ki18n("Gökçen Eraslan"), ki18n("KDE 3 Code"), "gokcen@pardus.org.tr");
-    aboutData.addAuthor(ki18n("Dirk Müller"), ki18n("Author"), "mueller@kde.org");
+    aboutData.addAuthor(ki18n("Daniel Nicoletti"), ki18n("Maintainer"), "dantti85-pk@yahoo.com.br");
     aboutData.addAuthor(ki18n("Luboš Luňák"), ki18n("Developer"), "l.lunak@kde.org");
     aboutData.addAuthor(ki18n("Dario Freddi"), ki18n("Developer"), "drf54321@gmail.com");
-    aboutData.addAuthor(ki18n("Daniel Nicoletti"), ki18n("Developer"), "dantti85-pk@yahoo.com.br");
+    aboutData.addAuthor(ki18n("Alessandro Diafera"), ki18n("Developer"), "alediafera@gmail.com");
+    aboutData.addAuthor(ki18n("Lukas Appelhans"), ki18n("Developer"), "l.appelhans@gmx.de");
+    aboutData.addAuthor(ki18n("Gökçen Eraslan"), ki18n("KDE 3 Code"), "gokcen@pardus.org.tr");
+    aboutData.addAuthor(ki18n("Dirk Müller"), ki18n("Original Author"), "mueller@kde.org");
+
     KCmdLineArgs::init(argc, argv, &aboutData);
 
     if (!PolicyKitKDE::start()) {
