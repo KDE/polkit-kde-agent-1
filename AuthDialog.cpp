@@ -49,11 +49,21 @@ AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
         setCaption(actionMessage);
     }
 
-    QPixmap icon = KIconLoader::global()->loadIcon(polkit_policy_file_entry_get_action_icon_name(entry),
+    QString actionIconName(polkit_policy_file_entry_get_action_icon_name(entry));
+    QPixmap icon = KIconLoader::global()->loadIcon(actionIconName,
                    KIconLoader::NoGroup, KIconLoader::SizeHuge, KIconLoader::DefaultState, QStringList(), NULL, true);
-    if (icon.isNull())
+    KIcon kicon;
+    if (icon.isNull()) {
         icon = KIconLoader::global()->loadIcon("dialog-password",
                                                KIconLoader::NoGroup, KIconLoader::SizeHuge);
+        
+    } else {
+            icon = KIconLoader::global()->loadIcon("dialog-password",
+                                               KIconLoader::NoGroup, KIconLoader::SizeHuge, KIconLoader::DefaultState , QStringList() << "" <<actionIconName);
+//         kicon = KIcon("dialog-password", KIconLoader::global(), QStringList() << polkit_policy_file_entry_get_action_icon_name(entry));
+    }
+
+    
     setWindowIcon(icon);
     lblPixmap->setPixmap(icon);
 
