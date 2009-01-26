@@ -24,6 +24,7 @@
 #include "AuthDialog.h"
 
 #include <QProcess>
+#include <QPainter>
 
 #include <KDebug>
 
@@ -49,21 +50,30 @@ AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
         setCaption(actionMessage);
     }
 
-    QString actionIconName(polkit_policy_file_entry_get_action_icon_name(entry));
-    QPixmap icon = KIconLoader::global()->loadIcon(actionIconName,
-                   KIconLoader::NoGroup, KIconLoader::SizeHuge, KIconLoader::DefaultState, QStringList(), NULL, true);
-    KIcon kicon;
-    if (icon.isNull()) {
-        icon = KIconLoader::global()->loadIcon("dialog-password",
-                                               KIconLoader::NoGroup, KIconLoader::SizeHuge);
-        
-    } else {
-            icon = KIconLoader::global()->loadIcon("dialog-password",
-                                               KIconLoader::NoGroup, KIconLoader::SizeHuge, KIconLoader::DefaultState , QStringList() << "" <<actionIconName);
-//         kicon = KIcon("dialog-password", KIconLoader::global(), QStringList() << polkit_policy_file_entry_get_action_icon_name(entry));
+    QPixmap icon = KIconLoader::global()->loadIcon("dialog-password",
+                                                   KIconLoader::NoGroup,
+                                                   KIconLoader::SizeHuge,
+                                                   KIconLoader::DefaultState);
+
+    QPainter painter(&icon);
+    const int iconSize = icon.size().width();
+
+    int overlaySize = 32;
+    const QPixmap pixmap = KIconLoader::global()->loadIcon(polkit_policy_file_entry_get_action_icon_name(entry),
+                                                           KIconLoader::NoGroup,
+                                                           overlaySize,
+                                                           KIconLoader::DefaultState,
+                                                           QStringList(),
+                                                           0,
+                                                           true);
+    if (!pixmap.isNull()) {
+        QPoint startPoint;
+        // bottom right corner
+        startPoint = QPoint(iconSize - overlaySize - 2,
+                            iconSize - overlaySize - 2);
+        painter.drawPixmap(startPoint, pixmap);
     }
 
-    
     setWindowIcon(icon);
     lblPixmap->setPixmap(icon);
 
