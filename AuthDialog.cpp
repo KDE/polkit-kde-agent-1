@@ -318,13 +318,13 @@ AuthDetails::AuthDetails(PolKitPolicyFileEntry *entry, const QString &appname, Q
 
     app_label->setText(appname);
 
-    action_label->setText(polkit_policy_file_entry_get_action_description(entry));
+    action_label->setText(QString::fromLocal8Bit(polkit_policy_file_entry_get_action_description(entry)));
     QString actionId = polkit_policy_file_entry_get_id(entry);
     action_label->setTipText(i18n("Click to edit %1", actionId));
     action_label->setUrl(actionId);
 
-    QString vendor    = polkit_policy_file_entry_get_action_vendor(entry);
-    QString vendorUrl = polkit_policy_file_entry_get_action_vendor_url(entry);
+    QString vendor    = QString::fromLocal8Bit(polkit_policy_file_entry_get_action_vendor(entry));
+    QString vendorUrl = QString::fromLocal8Bit(polkit_policy_file_entry_get_action_vendor_url(entry));
     if (!vendor.isEmpty()) {
         vendorUL->setText(vendor);
         vendorUL->setTipText(i18n("Click to open %1", vendorUrl));
