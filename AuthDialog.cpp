@@ -108,7 +108,7 @@ void AuthDialog::accept()
 void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
 {
     kDebug() << request;
-    if (request.startsWith("password:", Qt::CaseInsensitive)) {
+    if (request.startsWith(QLatin1String("password:"), Qt::CaseInsensitive)) {
         if (requiresAdmin) {
             if (!userCB->itemData(userCB->currentIndex()).isNull()) {
                 lblPassword->setText(i18n("Password for %1:",
@@ -119,7 +119,7 @@ void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
         } else {
             lblPassword->setText(i18n("Password:"));
         }
-    } else if (request.startsWith("password or swipe finger:", Qt::CaseInsensitive)) {
+    } else if (request.startsWith(QLatin1String("password or swipe finger:"), Qt::CaseInsensitive)) {
         if (requiresAdmin) {
             if (!userCB->itemData(userCB->currentIndex()).isNull()) {
                 lblPassword->setText(i18n("Password or swipe finger for %1:",
