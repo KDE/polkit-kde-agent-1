@@ -32,7 +32,7 @@
 #include <KUser>
 
 AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
-        : KDialog(0, Qt::Dialog | Qt::WindowStaysOnTopHint | Qt::CustomizeWindowHint)
+        : KDialog(0, Qt::Dialog | Qt::CustomizeWindowHint)
 {
     setupUi(mainWidget());
     // the dialog needs to be modal to darken the parent window
@@ -50,15 +50,17 @@ AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
         setCaption(actionMessage);
     }
 
+    // loads the standard key icon
     QPixmap icon = KIconLoader::global()->loadIcon("dialog-password",
                                                    KIconLoader::NoGroup,
                                                    KIconLoader::SizeHuge,
                                                    KIconLoader::DefaultState);
-
+    // create a paiter to paint the action icon over the key icon
     QPainter painter(&icon);
     const int iconSize = icon.size().width();
-
+    // the the emblem icon to size 32
     int overlaySize = 32;
+    // try to load the action icon
     const QPixmap pixmap = KIconLoader::global()->loadIcon(polkit_policy_file_entry_get_action_icon_name(entry),
                                                            KIconLoader::NoGroup,
                                                            overlaySize,
@@ -66,6 +68,8 @@ AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
                                                            QStringList(),
                                                            0,
                                                            true);
+    // if we're able to load the action icon paint it over the
+    // key icon.
     if (!pixmap.isNull()) {
         QPoint startPoint;
         // bottom right corner
