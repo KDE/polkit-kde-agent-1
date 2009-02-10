@@ -96,7 +96,13 @@ AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
     lePassword->setFocus();
 
     errorMessageKTW->hide();
-    connect(userCB, SIGNAL(currentIndexChanged(int)), this, SLOT(on_userCB_currentIndexChanged(int)));
+
+    m_userModelSIM = new QStandardItemModel(this);
+    m_userModelSIM->setSortRole(Qt::UserRole);
+    userCB->setModel(m_userModelSIM);
+
+    connect(userCB, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(on_userCB_currentIndexChanged(int)));
 }
 
 AuthDialog::~AuthDialog()
@@ -112,24 +118,28 @@ void AuthDialog::accept()
 void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
 {
     kDebug() << request;
+    QVariant userLogin;
+    userLogin = m_userModelSIM->data(
+                        m_userModelSIM->index(userCB->currentIndex(), 0), Qt::UserRole);
     if (request.startsWith(QLatin1String("password:"), Qt::CaseInsensitive)) {
         if (requiresAdmin) {
-            if (!userCB->itemData(userCB->currentIndex()).isNull()) {
-                lblPassword->setText(i18n("Password for %1:",
-                                          userCB->itemData(userCB->currentIndex()).toString()));
-            } else {
+            if (userLogin.isNull()) {
                 lblPassword->setText(i18n("Password for root:"));
+            } else {
+                lblPassword->setText(i18n("Password for %1:",
+                                          userLogin.toString()));
             }
         } else {
             lblPassword->setText(i18n("Password:"));
         }
-    } else if (request.startsWith(QLatin1String("password or swipe finger:"), Qt::CaseInsensitive)) {
+    } else if (request.startsWith(QLatin1String("password or swipe finger:"),
+                                                        Qt::CaseInsensitive)) {
         if (requiresAdmin) {
-            if (!userCB->itemData(userCB->currentIndex()).isNull()) {
-                lblPassword->setText(i18n("Password or swipe finger for %1:",
-                                          userCB->itemData(userCB->currentIndex()).toString()));
-            } else {
+            if (userLogin.isNull()) {
                 lblPassword->setText(i18n("Password or swipe finger for root:"));
+            } else {
+                lblPassword->setText(i18n("Password or swipe finger for %1:",
+                                          userLogin.toString()));
             }
         } else {
             lblPassword->setText(i18n("Password or swipe finger:"));
@@ -143,20 +153,20 @@ void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
 void AuthDialog::setOptions(KeepPassword keep, bool requiresAdmin, const QStringList &adminUsers)
 {
     switch (keep) {
-    case KeepPasswordNo:
-        cbRemember->hide();
-        cbSessionOnly->hide();
-        break;
-    case KeepPasswordSession:
-        cbRemember->setText(i18n("Remember authorization for this session"));
-        cbRemember->show();
-        cbSessionOnly->hide();;
-        break;
-    case KeepPasswordAlways:
-        cbRemember->setText(i18n("Remember authorization"));
-        cbRemember->show();
-        cbSessionOnly->show();
-        break;
+        case KeepPasswordNo:
+            cbRemember->hide();
+            cbSessionOnly->hide();
+            break;
+        case KeepPasswordSession:
+            cbRemember->setText(i18n("Remember authorization for this session"));
+            cbRemember->show();
+            cbSessionOnly->hide();;
+            break;
+        case KeepPasswordAlways:
+            cbRemember->setText(i18n("Remember authorization"));
+            cbRemember->show();
+            cbSessionOnly->show();
+            break;
     }
 
     if (requiresAdmin) {
@@ -199,11 +209,13 @@ void AuthDialog::createUserCB(const QStringList &adminUsers)
         * wrong password and the dialog is recycled)
         */
     if (adminUsers.count() && (userCB->count() - 1) != adminUsers.count()) {
-        // Clears the combobox as some user might be added
-        userCB->clear();
+        // Clears the combobox in the case some user be added
+        m_userModelSIM->clear();
 
         // Adds a Dummy user
-        userCB->addItem(i18n("Select user"));
+        QStandardItem *selectItem;
+        m_userModelSIM->appendRow(selectItem = new QStandardItem(i18n("Select user")));
+        selectItem->setSelectable(false);
 
         // For each user
         foreach(const QString &adminUser, adminUsers) {
@@ -216,19 +228,23 @@ void AuthDialog::createUserCB(const QStringList &adminUsers)
 
             // Display user Full Name IF available
             QString display;
-            if (!user.property(KUser::FullName).toString().isEmpty())
+            if (!user.property(KUser::FullName).toString().isEmpty()) {
                 display = user.property(KUser::FullName).toString() + " (" + user.loginName() + ')';
-            else
+            } else {
                 display = user.loginName();
+            }
+
+            QStandardItem *item = new QStandardItem(display);
+            // DO NOT store UID as polkit get's confused in the case whether
+            // you have another user with the same ID (ie root)
+            item->setData(user.loginName(), Qt::UserRole);
 
             // load user icon face
-            if (user.faceIconPath().isEmpty()) {
-                // DO NOT store UID as polkit get's confused in the case whether
-                // you have another user with the same ID (ie root)
-                userCB->addItem(display, user.loginName());
-            } else {
-                userCB->addItem(KIcon(user.faceIconPath()), display, user.loginName());
+            if (!user.faceIconPath().isEmpty()) {
+                item->setIcon(KIcon(user.faceIconPath()));
             }
+            // appends the user item
+            m_userModelSIM->appendRow(item);
         }
 
         // Show the widget and set focus
@@ -239,17 +255,24 @@ void AuthDialog::createUserCB(const QStringList &adminUsers)
 
 QString AuthDialog::adminUserSelected() const
 {
-    if (userCB->itemData(userCB->currentIndex()).isNull())
+    QVariant userLogin;
+    userLogin = m_userModelSIM->data(
+                        m_userModelSIM->index(userCB->currentIndex(), 0), Qt::UserRole);
+    if (userLogin.isNull()) {
         return QString();
-    else
-        return userCB->itemData(userCB->currentIndex()).toString();
+    } else {
+        return userLogin.toString();
+    }
 }
 
 QString AuthDialog::selectCurrentAdminUser()
 {
     KUser currentUser;
     for (int i = 1; i < userCB->count(); i++) {
-        if (userCB->itemData(i).toString() == currentUser.loginName()) {
+        QVariant userLogin;
+        userLogin = m_userModelSIM->data(
+                        m_userModelSIM->index(i, 0), Qt::UserRole);
+        if (userLogin.toString() == currentUser.loginName()) {
             userCB->setCurrentIndex(i);
             return currentUser.loginName();
         }
@@ -259,8 +282,11 @@ QString AuthDialog::selectCurrentAdminUser()
 
 void AuthDialog::on_userCB_currentIndexChanged(int index)
 {
+    QVariant userLogin;
+    userLogin = m_userModelSIM->data(
+                        m_userModelSIM->index(index, 0), Qt::UserRole);
     // itemData is Null when "Select user" is selected
-    if (userCB->itemData(index).isNull()) {
+    if (userLogin.isNull()) {
         lePassword->setEnabled(false);
         lblPassword->setEnabled(false);
         cbRemember->setEnabled(false);

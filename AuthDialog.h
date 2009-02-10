@@ -25,6 +25,7 @@
 #include <polkit/polkit.h>
 
 #include <QtCore/QObject>
+#include <QStandardItemModel>
 
 #include "ui_AuthDialog.h"
 #include "ui_authdetails.h"
@@ -61,6 +62,8 @@ private slots:
     void on_userCB_currentIndexChanged(int index);
 
 private:
+    QStandardItemModel *m_userModelSIM;
+
     void createUserCB(const QStringList &adminUsers);
 };
 
