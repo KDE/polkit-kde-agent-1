@@ -40,7 +40,7 @@ AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
     setButtons(Ok | Cancel | Details);
 
     kDebug() << "Getting action message...";
-    QString actionMessage = QString::fromLocal8Bit(polkit_policy_file_entry_get_action_message(entry));
+    QString actionMessage = QString::fromUtf8(polkit_policy_file_entry_get_action_message(entry));
     if (actionMessage.isEmpty()) {
         kWarning() << "Could not get action message for action.";
         lblHeader->hide();
@@ -87,7 +87,7 @@ AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
         AuthDetails *details = new AuthDetails(entry, i18nc("Unknown action", "Unknown"), this);
         setDetailsWidget(details);
     } else {
-        m_appname = QString::fromLocal8Bit(tmp);
+        m_appname = QString::fromUtf8(tmp);
         AuthDetails *details = new AuthDetails(entry, m_appname, this);
         setDetailsWidget(details);
     }
@@ -348,13 +348,13 @@ AuthDetails::AuthDetails(PolKitPolicyFileEntry *entry, const QString &appname, Q
 
     app_label->setText(appname);
 
-    action_label->setText(QString::fromLocal8Bit(polkit_policy_file_entry_get_action_description(entry)));
+    action_label->setText(QString::fromUtf8(polkit_policy_file_entry_get_action_description(entry)));
     QString actionId = polkit_policy_file_entry_get_id(entry);
     action_label->setTipText(i18n("Click to edit %1", actionId));
     action_label->setUrl(actionId);
 
-    QString vendor    = QString::fromLocal8Bit(polkit_policy_file_entry_get_action_vendor(entry));
-    QString vendorUrl = QString::fromLocal8Bit(polkit_policy_file_entry_get_action_vendor_url(entry));
+    QString vendor    = QString::fromUtf8(polkit_policy_file_entry_get_action_vendor(entry));
+    QString vendorUrl = QString::fromUtf8(polkit_policy_file_entry_get_action_vendor_url(entry));
     if (!vendor.isEmpty()) {
         vendorUL->setText(vendor);
         vendorUL->setTipText(i18n("Click to open %1", vendorUrl));
