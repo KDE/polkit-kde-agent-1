@@ -32,7 +32,8 @@
 #include <KUser>
 
 AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
-        : KDialog(0, Qt::Dialog | Qt::CustomizeWindowHint)
+        : KDialog(0, Qt::Dialog | Qt::CustomizeWindowHint),
+          m_entry(entry)
 {
     setupUi(mainWidget());
     // the dialog needs to be modal to darken the parent window
@@ -150,23 +151,43 @@ void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
 
 }
 
-void AuthDialog::setOptions(KeepPassword keep, bool requiresAdmin, const QStringList &adminUsers)
+void AuthDialog::setOptions(PolicyKitKDE::KeepPassword keep, bool requiresAdmin, const QStringList &adminUsers)
 {
     switch (keep) {
-        case KeepPasswordNo:
+        case PolicyKitKDE::KeepPasswordNo:
             cbRemember->hide();
             cbSessionOnly->hide();
             break;
-        case KeepPasswordSession:
+        case PolicyKitKDE::KeepPasswordSession:
             cbRemember->setText(i18n("Remember authorization for this session"));
             cbRemember->show();
             cbSessionOnly->hide();;
             break;
-        case KeepPasswordAlways:
+        case PolicyKitKDE::KeepPasswordAlways:
             cbRemember->setText(i18n("Remember authorization"));
             cbRemember->show();
             cbSessionOnly->show();
             break;
+    }
+
+    // Check the blacklist to grab if user unchecked the "remember authorization" check box
+    PolicyKitKDE::KeepPassword keepPassword;
+    keepPassword = PolicyKitKDE::readDefaultKeepPassword(polkit_policy_file_entry_get_id(m_entry), keep);
+    if (keepPassword != keep) {
+        switch (keepPassword) {
+            case PolicyKitKDE::KeepPasswordNo:
+                cbRemember->setChecked(false);
+                cbSessionOnly->setChecked(false);
+                break;
+            case PolicyKitKDE::KeepPasswordSession:
+                cbRemember->setChecked(true);
+                cbSessionOnly->setChecked(true);
+                break;
+            case PolicyKitKDE::KeepPasswordAlways:
+                cbRemember->setChecked(true);
+                cbSessionOnly->setChecked(false);
+                break;
+        }
     }
 
     if (requiresAdmin) {
@@ -329,16 +350,23 @@ void AuthDialog::setPasswordShowChars(bool showChars)
         lePassword->setEchoMode(QLineEdit::Password);
 }
 
-KeepPassword AuthDialog::keepPassword() const
+PolicyKitKDE::KeepPassword AuthDialog::keepPassword() const
 {
-    if (cbRemember->isHidden()) // cannot make it keep
-        return KeepPasswordNo;
-    if (cbSessionOnly->isHidden()) // can keep only for session
-        return cbRemember->isChecked() ? KeepPasswordSession : KeepPasswordNo;
+    if (cbRemember->isHidden()) {
+        // cannot make it keep
+        return PolicyKitKDE::KeepPasswordNo;
+    }
+    if (cbSessionOnly->isHidden()) {
+        // can keep only for session
+        return cbRemember->isChecked() ? PolicyKitKDE::KeepPasswordSession :
+                                         PolicyKitKDE::KeepPasswordNo;
+    }
     // can keep either way
-    if (cbRemember->isChecked())
-        return cbSessionOnly->isChecked() ? KeepPasswordSession : KeepPasswordAlways;
-    return KeepPasswordNo;
+    if (cbRemember->isChecked()) {
+        return cbSessionOnly->isChecked() ? PolicyKitKDE::KeepPasswordSession :
+                                            PolicyKitKDE::KeepPasswordAlways;
+    }
+    return PolicyKitKDE::KeepPasswordNo;
 }
 
 AuthDetails::AuthDetails(PolKitPolicyFileEntry *entry, const QString &appname, QWidget *parent)

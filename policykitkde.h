@@ -34,20 +34,25 @@
 #include <polkit/polkit.h>
 #include <polkit-grant/polkit-grant.h>
 
-enum KeepPassword {
-    KeepPasswordNo, KeepPasswordSession, KeepPasswordAlways
-};
-
 class AuthDialog;
 
 class PolicyKitKDE : public KUniqueApplication, protected QDBusContext
 {
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.freedesktop.PolicyKit.AuthenticationAgent")
+    Q_ENUMS(KeepPassword)
 
 public:
     PolicyKitKDE();
     virtual ~PolicyKitKDE();
+
+    enum KeepPassword {
+        KeepPasswordNo,
+        KeepPasswordSession,
+        KeepPasswordAlways
+    };
+
+    static KeepPassword readDefaultKeepPassword(const QString &actionId, const KeepPassword defaultValue);
 
 public slots:
     bool ObtainAuthorization(const QString &action_id, uint xid, uint pid);
@@ -64,18 +69,18 @@ private slots:
 
 private:
     PolKitContext *m_context;
-    WId parent_wid;
-    AuthDialog *dialog;
-    QTimer *m_killT;
-    bool inProgress;
-    PolKitGrant *grant;
-    PolKitCaller *caller;
-    PolKitAction *action;
-    KeepPassword keepPassword;
-    QDBusMessage reply;
-    QStringList m_adminUsers;
-    QString m_adminUserSelected;
-    QEventLoop *m_dialogEventLoop;
+    WId           parent_wid;
+    AuthDialog    *dialog;
+    QTimer        *m_killT;
+    bool          inProgress;
+    PolKitGrant   *grant;
+    PolKitCaller  *caller;
+    PolKitAction  *m_pkAction;
+    KeepPassword  m_keepPassword;
+    QDBusMessage  reply;
+    QStringList   m_adminUsers;
+    QString       m_adminUserSelected;
+    QEventLoop    *m_dialogEventLoop;
 
     int  m_numTries;
     bool m_wasCancelled;

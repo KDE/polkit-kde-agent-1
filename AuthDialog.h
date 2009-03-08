@@ -41,11 +41,10 @@ public:
 
     void setRequest(const QString &request, bool requiresAdmin);
     void setPasswordShowChars(bool showChars);
-    void setOptions(KeepPassword keep, bool requiresAdmin, const QStringList &adminUsers);
+    void setOptions(PolicyKitKDE::KeepPassword keep, bool requiresAdmin, const QStringList &adminUsers);
     QString password() const;
     void incorrectPassword();
-    KeepPassword keepPassword() const;
-
+    PolicyKitKDE::KeepPassword keepPassword() const;
 
     QString adminUserSelected() const;
     QString selectCurrentAdminUser();
@@ -63,6 +62,7 @@ private slots:
 
 private:
     QStandardItemModel *m_userModelSIM;
+    PolKitPolicyFileEntry *m_entry;
 
     void createUserCB(const QStringList &adminUsers);
 };

@@ -43,6 +43,8 @@
 
 #define THIRTY_SECONDS 30000
 
+KCONFIGGROUP_DECLARE_ENUM_QOBJECT(PolicyKitKDE,KeepPassword)
+
 PolicyKitKDE *PolicyKitKDE::m_self;
 
 //----------------------------------------------------------------------------
@@ -123,14 +125,14 @@ bool PolicyKitKDE::ObtainAuthorization(const QString &actionId, uint wid, uint p
     inProgress = true;
     m_gainedPrivilege = false;
     m_requiresAdmin = false;
-    keepPassword = KeepPasswordNo;
+    m_keepPassword = KeepPasswordNo;
 
-    action = polkit_action_new();
-    if (action == NULL) {
+    m_pkAction = polkit_action_new();
+    if (m_pkAction == NULL) {
         kError() << "Could not create new polkit action.";
         return false;
     }
-    if (!polkit_action_set_action_id(action, actionId.toLatin1())) {
+    if (!polkit_action_set_action_id(m_pkAction, actionId.toLatin1())) {
         kError() << "Could not set actionid.";
         return false;
     }
@@ -155,7 +157,7 @@ bool PolicyKitKDE::ObtainAuthorization(const QString &actionId, uint wid, uint p
     }
 
     kDebug() << "Getting policy cache entry for an action...";
-    PolKitPolicyFileEntry *entry = polkit_policy_cache_get_entry(cache, action);
+    PolKitPolicyFileEntry *entry = polkit_policy_cache_get_entry(cache, m_pkAction);
     if (entry == NULL) {
         kWarning() << "Could not get policy entry for action.";
         return false;
@@ -210,7 +212,7 @@ void PolicyKitKDE::tryAgain()
     m_wasBogus = false;
     m_newUserSelected = false;
 
-    if (!polkit_grant_initiate_auth(grant, action, caller)) {
+    if (!polkit_grant_initiate_auth(grant, m_pkAction, caller)) {
         kWarning() << "Failed to initiate privilege grant.";
         // send the reply over D-Bus:
         reply << true;
@@ -218,6 +220,9 @@ void PolicyKitKDE::tryAgain()
         return;
     }
 }
+
+
+
 
 void PolicyKitKDE::finishObtainPrivilege()
 {
@@ -246,14 +251,13 @@ void PolicyKitKDE::finishObtainPrivilege()
     }
 
     if (m_gainedPrivilege) {
-        /* add to blacklist if the user unchecked the "remember authorization" check box */
-        //TODO store the user's preference
-//             if ((ud->remember_always &&
-//                     !polkit_gnome_auth_dialog_get_remember_always (POLKIT_GNOME_AUTH_DIALOG (ud->dialog))) ||
-//                 (ud->remember_session &&
-//                     !polkit_gnome_auth_dialog_get_remember_session (POLKIT_GNOME_AUTH_DIALOG (ud->dialog)))) {
-//                     add_to_blacklist (ud, action_id);
-//             }
+        // add to blacklist if the user unchecked the "remember authorization" check box
+        char *action_id;
+        polkit_action_get_action_id(m_pkAction, &action_id);
+        // here we store the action preference
+        KConfig config;
+        KConfigGroup actionsPreferences(&config, "ActionsPreferences");
+        writeEntry(actionsPreferences, action_id, m_keepPassword);
     }
 
     // send the reply over D-Bus:
@@ -268,12 +272,15 @@ void PolicyKitKDE::finishObtainPrivilege()
     m_adminUsers.clear();
     m_adminUserSelected.clear();
 
-    if (grant != NULL)
+    if (grant != NULL) {
         polkit_grant_unref(grant);
-    if (action != NULL)
-        polkit_action_unref(action);
-    if (caller != NULL)
+    }
+    if (m_pkAction != NULL) {
+        polkit_action_unref(m_pkAction);
+    }
+    if (caller != NULL) {
         polkit_caller_unref(caller);
+    }
 
     grant = NULL;
 
@@ -282,13 +289,20 @@ void PolicyKitKDE::finishObtainPrivilege()
     kDebug() << "Finish obtain authorization:" << m_gainedPrivilege;
 }
 
+PolicyKitKDE::KeepPassword PolicyKitKDE::readDefaultKeepPassword(const QString &actionId, const KeepPassword defaultValue)
+{
+    KConfig config;
+    KConfigGroup actionsPreferences(&config, "ActionsPreferences");
+    return readEntry(actionsPreferences, actionId.toLatin1(), defaultValue);
+}
+
 void PolicyKitKDE::conversation_type(PolKitGrant *grant, PolKitResult type, void *user_data)
 {
     PolicyKitKDE *self = (PolicyKitKDE *) user_data;
     kDebug() << "conversation_type" << grant << type;
 
     self->m_requiresAdmin = false;
-    self->keepPassword = KeepPasswordNo;
+    self->m_keepPassword = KeepPasswordNo;
     switch (type) {
         case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT:
         case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH:
@@ -296,26 +310,26 @@ void PolicyKitKDE::conversation_type(PolKitGrant *grant, PolKitResult type, void
             break;
         case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION:
             self->m_requiresAdmin = true;
-            self->keepPassword = KeepPasswordSession;
+            self->m_keepPassword = KeepPasswordSession;
             break;
         case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS:
             self->m_requiresAdmin = true;
-            self->keepPassword = KeepPasswordAlways;
+            self->m_keepPassword = KeepPasswordAlways;
             break;
         case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT:
         case POLKIT_RESULT_ONLY_VIA_SELF_AUTH:
             break;
         case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION:
-            self->keepPassword = KeepPasswordSession;
+            self->m_keepPassword = KeepPasswordSession;
             break;
         case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS:
-            self->keepPassword = KeepPasswordAlways;
+            self->m_keepPassword = KeepPasswordAlways;
             break;
         default:
             abort();
     }
 
-    self->dialog->setOptions(self->keepPassword, self->m_requiresAdmin, self->m_adminUsers);
+    self->dialog->setOptions(self->m_keepPassword, self->m_requiresAdmin, self->m_adminUsers);
 }
 
 char* PolicyKitKDE::conversation_select_admin_user(PolKitGrant *polkit_grant, char **admin_users, void *user_data)
@@ -335,7 +349,7 @@ char* PolicyKitKDE::conversation_select_admin_user(PolKitGrant *polkit_grant, ch
         adminUsers << admin_users[i];
     }
     self->m_adminUsers = adminUsers;
-    self->dialog->setOptions(self->keepPassword, self->m_requiresAdmin, self->m_adminUsers);
+    self->dialog->setOptions(self->m_keepPassword, self->m_requiresAdmin, self->m_adminUsers);
 
     // if we are running as one of the users in adminUsers then preselect that user...
     if (!(currentAdminUser = self->dialog->selectCurrentAdminUser()).isEmpty()) {
@@ -364,7 +378,7 @@ char* PolicyKitKDE::conversation_select_admin_user(PolKitGrant *polkit_grant, ch
 
 void PolicyKitKDE::dialogAccepted()
 {
-    keepPassword = dialog->keepPassword();
+    m_keepPassword = dialog->keepPassword();
     kDebug() << "Password dialog confirmed.";
 }
 
@@ -380,7 +394,7 @@ char* PolicyKitKDE::conversation_pam_prompt(PolKitGrant *polkit_grant, const cha
     PolicyKitKDE *self = (PolicyKitKDE *) user_data;
     kDebug() << QString("request=%1, echo_on=%2").arg(request).arg(echoOn);
     self->dialog->setRequest(request, self->m_requiresAdmin);
-    self->dialog->setOptions(self->keepPassword, self->m_requiresAdmin, self->m_adminUsers);
+    self->dialog->setOptions(self->m_keepPassword, self->m_requiresAdmin, self->m_adminUsers);
     self->dialog->setPasswordShowChars(echoOn);
     self->dialog->show();
 
@@ -458,14 +472,14 @@ PolKitResult PolicyKitKDE::conversation_override_grant_type(PolKitGrant *polkit_
             break;
         case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION:
         case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION:
-            if (self->keepPassword == KeepPasswordSession)
+            if (self->m_keepPassword == KeepPasswordSession)
                 keep_session = true;
             break;
         case POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS:
         case POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS:
-            if (self->keepPassword == KeepPasswordAlways)
+            if (self->m_keepPassword == KeepPasswordAlways)
                 keep_always = true;
-            else if (self->keepPassword == KeepPasswordSession)
+            else if (self->m_keepPassword == KeepPasswordSession)
                 keep_session = true;
             break;
         default:
@@ -506,8 +520,10 @@ PolKitResult PolicyKitKDE::conversation_override_grant_type(PolKitGrant *polkit_
     return ret;
 }
 
-void PolicyKitKDE::conversation_done(PolKitGrant *polkit_grant, polkit_bool_t gainedPrivilege,
-                                     polkit_bool_t inputWasBogus, void *user_data)
+void PolicyKitKDE::conversation_done(PolKitGrant *polkit_grant,
+                                     polkit_bool_t gainedPrivilege,
+                                     polkit_bool_t inputWasBogus,
+                                     void *user_data)
 {
     Q_UNUSED(polkit_grant);
     PolicyKitKDE *self = (PolicyKitKDE *) user_data;
