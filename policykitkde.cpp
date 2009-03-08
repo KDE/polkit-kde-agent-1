@@ -77,6 +77,9 @@ PolicyKitKDE::PolicyKitKDE()
 
     m_context = polkit_context_new();
     polkit_context_set_load_descriptions(m_context);
+    // we must pass the created context with the
+    // polkit_context_set_load_descriptions() before the
+    // lib inits it.
     Context::instance(m_context);
 
     if (Context::instance()->hasError()) {
