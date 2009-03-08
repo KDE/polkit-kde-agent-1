@@ -31,7 +31,6 @@
 #include <QtDBus/QDBusMessage>
 #include <QtGui/QWidget>
 
-#include <polkit/polkit.h>
 #include <polkit-grant/polkit-grant.h>
 
 class AuthDialog;
@@ -96,9 +95,6 @@ private:
     static int add_io_watch(PolKitGrant *grant, int fd);
     static void remove_grant_io_watch(PolKitGrant *grant, int fd);
 
-    static int pk_io_add_watch(PolKitContext *context, int fd);
-    static void pk_io_remove_watch(PolKitContext *context, int fd);
-
     static int add_child_watch(PolKitGrant* grant, pid_t pid);
     static void remove_child_watch(PolKitGrant* grant, int id);
 
@@ -116,7 +112,6 @@ private:
 
     static PolKitResult conversation_override_grant_type(PolKitGrant *grant, PolKitResult type, void *user_data);
     static void conversation_done(PolKitGrant *grant, polkit_bool_t obtainedPrivilege, polkit_bool_t invalidData, void *user_data);
-    static void polkit_config_changed(PolKitContext *ontext, void *user_data);
 };
 
 #endif

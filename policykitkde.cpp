@@ -35,13 +35,16 @@
 #include <QSocketNotifier>
 
 //policykit header
-#include <polkit-dbus/polkit-dbus.h>
-#include <polkit-grant/polkit-grant.h>
+// #include <polkit-dbus/polkit-dbus.h>
+
+#include <Context>
 
 #include "AuthDialog.h"
 #include "processwatcher.h"
 
 #define THIRTY_SECONDS 30000
+
+using namespace PolkitQt;
 
 KCONFIGGROUP_DECLARE_ENUM_QOBJECT(PolicyKitKDE,KeepPassword)
 
@@ -73,25 +76,10 @@ PolicyKitKDE::PolicyKitKDE()
     }
 
     m_context = polkit_context_new();
-    if (m_context == NULL) {
-        kDebug() << "Could not get a new PolKitContext.";
-        QTimer::singleShot(0, this, SLOT(quit()));
-        return;
-    }
-
     polkit_context_set_load_descriptions(m_context);
+    Context::instance(m_context);
 
-    polkit_context_set_config_changed(m_context, polkit_config_changed, this);
-    polkit_context_set_io_watch_functions(m_context, pk_io_add_watch, pk_io_remove_watch);
-
-    PolKitError* error = NULL;
-    if (!polkit_context_init(m_context, &error)) {
-        QString msg("Could not initialize PolKitContext");
-        if (polkit_error_is_set(error)) {
-            kError() << msg <<  ": " << polkit_error_get_error_message(error);
-            polkit_error_free(error);
-        } else
-            kError() << msg;
+    if (Context::instance()->hasError()) {
         QTimer::singleShot(0, this, SLOT(quit()));
         return;
     }
@@ -341,8 +329,9 @@ char* PolicyKitKDE::conversation_select_admin_user(PolKitGrant *polkit_grant, ch
     /* if we've already selected the admin user.. then reuse the same one (this
      * is mainly when the user entered the wrong password)
      */
-    if (!(currentAdminUser = self->dialog->adminUserSelected()).isEmpty())
+    if (!(currentAdminUser = self->dialog->adminUserSelected()).isEmpty()) {
         return strdup(currentAdminUser.toLocal8Bit());
+    }
 
     QStringList adminUsers;
     for (int i = 0; admin_users[i] != NULL; i++) {
@@ -595,35 +584,6 @@ void PolicyKitKDE::watchActivatedContext(int fd)
 
 //----------------------------------------------------------------------------
 
-int PolicyKitKDE::pk_io_add_watch(PolKitContext* context, int fd)
-{
-    kDebug() << "add_watch" << context << fd;
-
-    QSocketNotifier *notify = new QSocketNotifier(fd, QSocketNotifier::Read, m_self);
-    m_self->m_watches[fd] = notify;
-
-    notify->connect(notify, SIGNAL(activated(int)), m_self, SLOT(watchActivatedContext(int)));
-
-    return fd; // use simply the fd as the unique id for the watch
-}
-
-
-//----------------------------------------------------------------------------
-
-void PolicyKitKDE::pk_io_remove_watch(PolKitContext* context, int id)
-{
-//     assert(id > 0);
-    kDebug() << "remove_watch" << context << id;
-    if (!m_self->m_watches.contains(id))
-        return; // policykit likes to do this more than once
-
-    QSocketNotifier* notify = m_self->m_watches.take(id);
-    notify->deleteLater();
-    notify->setEnabled(false);
-}
-
-//----------------------------------------------------------------------------
-
 int PolicyKitKDE::add_child_watch(PolKitGrant*, pid_t pid)
 {
     ProcessWatch *watch = new ProcessWatch(pid);
@@ -657,12 +617,4 @@ void PolicyKitKDE::remove_watch(PolKitGrant* grant, int id)
     } else {
         remove_child_watch(grant, id);
     }
-}
-
-//----------------------------------------------------------------------------
-void PolicyKitKDE::polkit_config_changed(PolKitContext *context, void *user_data)
-{
-    Q_UNUSED(context);
-    Q_UNUSED(user_data);
-    kDebug() << "PolicyKit reports that the config have changed";
 }

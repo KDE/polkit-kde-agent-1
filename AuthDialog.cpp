@@ -263,6 +263,8 @@ void AuthDialog::createUserCB(const QStringList &adminUsers)
             // load user icon face
             if (!user.faceIconPath().isEmpty()) {
                 item->setIcon(KIcon(user.faceIconPath()));
+            } else {
+                item->setIcon(KIcon("user-identity"));
             }
             // appends the user item
             m_userModelSIM->appendRow(item);

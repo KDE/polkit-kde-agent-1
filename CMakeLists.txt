@@ -13,6 +13,9 @@ kde4_add_ui_files(policykit_SRCS AuthDialog.ui authdetails.ui)
 kde4_add_executable(polkit-kde-manager ${policykit_SRCS})
 
 target_link_libraries(polkit-kde-manager ${KDE4_KDEUI_LIBS}
-${POLKITDBUS_LIBRARIES} ${POLKITGRANT_LIBRARIES} ${POLKIT_LIBRARIES})
+                                         ${POLKITDBUS_LIBRARIES}
+                                         ${POLKITGRANT_LIBRARIES}
+                                         ${POLKIT_LIBRARIES}
+                                         ${POLKITQT_CORE_LIBRARY})
 
 install(TARGETS polkit-kde-manager DESTINATION ${LIBEXEC_INSTALL_DIR})
