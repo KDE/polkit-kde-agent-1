@@ -35,7 +35,7 @@
 #include <QSocketNotifier>
 
 //policykit header
-// #include <polkit-dbus/polkit-dbus.h>
+#include <polkit-dbus/polkit-dbus.h>
 
 #include <Context>
 
