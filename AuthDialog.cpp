@@ -32,7 +32,7 @@
 #include <KUser>
 
 AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
-        : KDialog(0, Qt::Dialog | Qt::CustomizeWindowHint),
+        : KDialog(0, Qt::Dialog),
           m_entry(entry)
 {
     setupUi(mainWidget());
