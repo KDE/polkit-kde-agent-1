@@ -235,7 +235,7 @@ void AuthDialog::createUserCB(const QStringList &adminUsers)
 
         // Adds a Dummy user
         QStandardItem *selectItem;
-        m_userModelSIM->appendRow(selectItem = new QStandardItem(i18n("Select user")));
+        m_userModelSIM->appendRow(selectItem = new QStandardItem(i18n("Select User")));
         selectItem->setSelectable(false);
 
         // For each user
