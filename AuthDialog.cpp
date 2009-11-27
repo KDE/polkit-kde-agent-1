@@ -23,75 +23,58 @@
 
 #include "AuthDialog.h"
 
-#include <QProcess>
-#include <QPainter>
+#include <QtCore/QProcess>
+#include <QtGui/QPainter>
+#include <QtGui/QStandardItemModel>
 
 #include <KDebug>
 
 #include <KToolInvocation>
 #include <KUser>
 
-AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
-        : KDialog(0, Qt::Dialog),
-          m_entry(entry)
+#include <PolkitQt/Authority>
+#include <PolkitQt/Details>
+
+Q_DECLARE_METATYPE(PolkitQt::Identity *);
+
+AuthDialog::AuthDialog(const QString &actionId,
+                       const QString &message,
+                       const QString &iconName,
+                       PolkitQt::Details *details,
+                       QList<PolkitQt::Identity *> identities)
+        : KDialog(0, Qt::Dialog)
 {
+    qRegisterMetaType<PolkitQt::Identity *> ("PolkitQt::Identity *");
     setupUi(mainWidget());
     // the dialog needs to be modal to darken the parent window
     setModal(true);
     setButtons(Ok | Cancel | Details);
 
-    kDebug() << "Getting action message...";
-    QString actionMessage = QString::fromUtf8(polkit_policy_file_entry_get_action_message(entry));
-    if (actionMessage.isEmpty()) {
+    if (message.isEmpty()) {
         kWarning() << "Could not get action message for action.";
         lblHeader->hide();
     } else {
-        kDebug() << "Message of action: " << actionMessage;
-        lblHeader->setText("<h3>" + actionMessage + "</h3>");
-        setCaption(actionMessage);
+        kDebug() << "Message of action: " << message;
+        lblHeader->setText("<h3>" + message + "</h3>");
+        setCaption(message);
     }
 
-    // loads the standard key icon
-    QPixmap icon = KIconLoader::global()->loadIcon("dialog-password",
-                                                   KIconLoader::NoGroup,
-                                                   KIconLoader::SizeHuge,
-                                                   KIconLoader::DefaultState);
-    // create a paiter to paint the action icon over the key icon
-    QPainter painter(&icon);
-    const int iconSize = icon.size().width();
-    // the the emblem icon to size 32
-    int overlaySize = 32;
-    // try to load the action icon
-    const QPixmap pixmap = KIconLoader::global()->loadIcon(polkit_policy_file_entry_get_action_icon_name(entry),
-                                                           KIconLoader::NoGroup,
-                                                           overlaySize,
-                                                           KIconLoader::DefaultState,
-                                                           QStringList(),
-                                                           0,
-                                                           true);
-    // if we're able to load the action icon paint it over the
-    // key icon.
-    if (!pixmap.isNull()) {
-        QPoint startPoint;
-        // bottom right corner
-        startPoint = QPoint(iconSize - overlaySize - 2,
-                            iconSize - overlaySize - 2);
-        painter.drawPixmap(startPoint, pixmap);
-    }
+    KIcon icon = KIcon("dialog-password", 0, QStringList() << iconName);
 
     setWindowIcon(icon);
-    lblPixmap->setPixmap(icon);
+    lblPixmap->setPixmap(icon.pixmap(QSize(KIconLoader::SizeHuge, KIconLoader::SizeHuge)));
 
-    char tmp[ PATH_MAX ];
-    if (polkit_sysdeps_get_exe_for_pid_with_helper(pid, tmp, sizeof(tmp) - 1) < 0) {
-        m_appname.clear();
-        AuthDetails *details = new AuthDetails(entry, i18nc("Unknown action", "Unknown"), this);
-        setDetailsWidget(details);
-    } else {
-        m_appname = QString::fromUtf8(tmp);
-        AuthDetails *details = new AuthDetails(entry, m_appname, this);
-        setDetailsWidget(details);
+    // find action description for actionId
+    foreach(PolkitQt::ActionDescription *desc, PolkitQt::Authority::instance()->enumerateActionsSync()) {
+        if (desc && actionId == desc->actionId()) {
+            m_actionDescription = desc;
+            kDebug() << "Action description has been found" ;
+            break;
+        }
     }
+
+    AuthDetails *detailsDialog = new AuthDetails(details, m_actionDescription, m_appname, this);
+    setDetailsWidget(detailsDialog);
 
     userCB->hide();
     lePassword->setFocus();
@@ -100,10 +83,21 @@ AuthDialog::AuthDialog(PolKitPolicyFileEntry *entry, uint pid)
 
     m_userModelSIM = new QStandardItemModel(this);
     m_userModelSIM->setSortRole(Qt::UserRole);
-    userCB->setModel(m_userModelSIM);
 
-    connect(userCB, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(on_userCB_currentIndexChanged(int)));
+    // If there is more than 1 identity we will show the combobox for user selection
+    if (identities.size() > 1) {
+        userCB->setModel(m_userModelSIM);
+
+        connect(userCB, SIGNAL(currentIndexChanged(int)),
+                this, SLOT(on_userCB_currentIndexChanged(int)));
+
+        createUserCB(identities);
+    } else {
+        userCB->setCurrentIndex(0);
+        QStandardItem *item = new QStandardItem("");
+        item->setData(qVariantFromValue<PolkitQt::Identity *> (identities[0]), Qt::UserRole);
+        m_userModelSIM->appendRow(item);
+    }
 }
 
 AuthDialog::~AuthDialog()
@@ -119,28 +113,26 @@ void AuthDialog::accept()
 void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
 {
     kDebug() << request;
-    QVariant userLogin;
-    userLogin = m_userModelSIM->data(
-                        m_userModelSIM->index(userCB->currentIndex(), 0), Qt::UserRole);
+    PolkitQt::Identity *identity = adminUserSelected();
     if (request.startsWith(QLatin1String("password:"), Qt::CaseInsensitive)) {
         if (requiresAdmin) {
-            if (userLogin.isNull()) {
+            if (identity == NULL) {
                 lblPassword->setText(i18n("Password for root:"));
             } else {
                 lblPassword->setText(i18n("Password for %1:",
-                                          userLogin.toString()));
+                                          identity->toString().remove("unix-user:")));
             }
         } else {
             lblPassword->setText(i18n("Password:"));
         }
     } else if (request.startsWith(QLatin1String("password or swipe finger:"),
-                                                        Qt::CaseInsensitive)) {
+                                  Qt::CaseInsensitive)) {
         if (requiresAdmin) {
-            if (userLogin.isNull()) {
+            if (identity == NULL) {
                 lblPassword->setText(i18n("Password or swipe finger for root:"));
             } else {
                 lblPassword->setText(i18n("Password or swipe finger for %1:",
-                                          userLogin.toString()));
+                                          identity->toString().remove("unix-user:")));
             }
         } else {
             lblPassword->setText(i18n("Password or swipe finger:"));
@@ -151,85 +143,19 @@ void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
 
 }
 
-void AuthDialog::setOptions(PolicyKitKDE::KeepPassword keep, bool requiresAdmin, const QStringList &adminUsers)
+void AuthDialog::setOptions()
 {
-    switch (keep) {
-        case PolicyKitKDE::KeepPasswordNo:
-            cbRemember->hide();
-            cbSessionOnly->hide();
-            break;
-        case PolicyKitKDE::KeepPasswordSession:
-            cbRemember->setText(i18n("Remember authorization for this session"));
-            cbRemember->show();
-            cbSessionOnly->hide();;
-            break;
-        case PolicyKitKDE::KeepPasswordAlways:
-            cbRemember->setText(i18n("Remember authorization"));
-            cbRemember->show();
-            cbSessionOnly->show();
-            break;
-    }
-
-    // Check the blacklist to grab if user unchecked the "remember authorization" check box
-    PolicyKitKDE::KeepPassword keepPassword;
-    keepPassword = PolicyKitKDE::readDefaultKeepPassword(polkit_policy_file_entry_get_id(m_entry), keep);
-    if (keepPassword != keep) {
-        switch (keepPassword) {
-            case PolicyKitKDE::KeepPasswordNo:
-                cbRemember->setChecked(false);
-                cbSessionOnly->setChecked(false);
-                break;
-            case PolicyKitKDE::KeepPasswordSession:
-                cbRemember->setChecked(true);
-                cbSessionOnly->setChecked(true);
-                break;
-            case PolicyKitKDE::KeepPasswordAlways:
-                cbRemember->setChecked(true);
-                cbSessionOnly->setChecked(false);
-                break;
-        }
-    }
-
-    if (requiresAdmin) {
-        // Check to see if we have the application name
-        if (m_appname.isEmpty()) {
-            // Check to see if the authentication is provided through group of admin users
-            if (adminUsers.count()) {
-                lblContent->setText(i18n("An application is attempting to perform an action that requires privileges."
-                                         " Authentication as one of the users below is required to perform this action."));
-                createUserCB(adminUsers);
-            } else {
-                lblContent->setText(i18n("An application is attempting to perform an action that requires privileges."
-                                         " Authentication as the super user is required to perform this action."));
-            }
-        } else {
-            // Check to see if the authentication is provided through group of admin users
-            if (adminUsers.count()) {
-                lblContent->setText(i18n("The application %1 is attempting to perform an action that requires privileges."
-                                         " Authentication as one of the users below is required to perform this action.", m_appname));
-                createUserCB(adminUsers);
-            } else {
-                lblContent->setText(i18n("The application %1 is attempting to perform an action that requires privileges."
-                                         " Authentication as the super user is required to perform this action.", m_appname));
-            }
-        }
-    } else {
-        if (m_appname.isEmpty())
-            lblContent->setText(i18n("An application is attempting to perform an action that requires privileges."
-                                     " Authentication is required to perform this action."));
-        else
-            lblContent->setText(i18n("The application %1 is attempting to perform an action that requires privileges."
-                                     " Authentication is required to perform this action.", m_appname));
-    }
+    lblContent->setText(i18n("An application is attempting to perform an action that requires privileges."
+                             " Authentication is required to perform this action."));
 }
 
-void AuthDialog::createUserCB(const QStringList &adminUsers)
+void AuthDialog::createUserCB(QList<PolkitQt::Identity *> identities)
 {
     /* if we've already built the list of admin users once, then avoid
         * doing it again.. (this is mainly used when the user entered the
         * wrong password and the dialog is recycled)
         */
-    if (adminUsers.count() && (userCB->count() - 1) != adminUsers.count()) {
+    if (identities.count() && (userCB->count() - 1) != identities.count()) {
         // Clears the combobox in the case some user be added
         m_userModelSIM->clear();
 
@@ -237,11 +163,13 @@ void AuthDialog::createUserCB(const QStringList &adminUsers)
         QStandardItem *selectItem;
         m_userModelSIM->appendRow(selectItem = new QStandardItem(i18n("Select User")));
         selectItem->setSelectable(false);
+        selectItem->setData(QVariant(), Qt::UserRole);
 
         // For each user
-        foreach(const QString &adminUser, adminUsers) {
+        foreach(PolkitQt::Identity *identity, identities) {
             // First check to see if the user is valid
-            KUser user = KUser::KUser(adminUser);
+            qDebug() << "User: " << identity;
+            KUser user = KUser::KUser(identity->toString().remove("unix-user:"));
             if (!user.isValid()) {
                 kWarning() << "User invalid: " << user.loginName();
                 continue;
@@ -256,9 +184,7 @@ void AuthDialog::createUserCB(const QStringList &adminUsers)
             }
 
             QStandardItem *item = new QStandardItem(display);
-            // DO NOT store UID as polkit get's confused in the case whether
-            // you have another user with the same ID (ie root)
-            item->setData(user.loginName(), Qt::UserRole);
+            item->setData(qVariantFromValue<PolkitQt::Identity *> (identity), Qt::UserRole);
 
             // load user icon face
             if (!user.faceIconPath().isEmpty()) {
@@ -276,53 +202,26 @@ void AuthDialog::createUserCB(const QStringList &adminUsers)
     }
 }
 
-QString AuthDialog::adminUserSelected() const
+PolkitQt::Identity *AuthDialog::adminUserSelected()
 {
-    QVariant userLogin;
-    userLogin = m_userModelSIM->data(
-                        m_userModelSIM->index(userCB->currentIndex(), 0), Qt::UserRole);
-    if (userLogin.isNull()) {
-        return QString();
-    } else {
-        return userLogin.toString();
-    }
+    return qVariantValue<PolkitQt::Identity *> (m_userModelSIM->data(
+                m_userModelSIM->index(userCB->currentIndex(), 0), Qt::UserRole));
 }
 
-QString AuthDialog::selectCurrentAdminUser()
+void AuthDialog::on_userCB_currentIndexChanged(int /*index*/)
 {
-    KUser currentUser;
-    for (int i = 1; i < userCB->count(); i++) {
-        QVariant userLogin;
-        userLogin = m_userModelSIM->data(
-                        m_userModelSIM->index(i, 0), Qt::UserRole);
-        if (userLogin.toString() == currentUser.loginName()) {
-            userCB->setCurrentIndex(i);
-            return currentUser.loginName();
-        }
-    }
-    return QString();
-}
-
-void AuthDialog::on_userCB_currentIndexChanged(int index)
-{
-    QVariant userLogin;
-    userLogin = m_userModelSIM->data(
-                        m_userModelSIM->index(index, 0), Qt::UserRole);
+    PolkitQt::Identity *identity = adminUserSelected();
     // itemData is Null when "Select user" is selected
-    if (userLogin.isNull()) {
+    if (identity == NULL) {
         lePassword->setEnabled(false);
         lblPassword->setEnabled(false);
-        cbRemember->setEnabled(false);
-        cbSessionOnly->setEnabled(false);
         enableButtonOk(false);
     } else {
         lePassword->setEnabled(true);
         lblPassword->setEnabled(true);
-        cbRemember->setEnabled(true);
-        cbSessionOnly->setEnabled(true);
         enableButtonOk(true);
         // We need this to restart the auth with the new user
-        emit adminUserSelected(adminUserSelected());
+        emit adminUserSelected(identity);
         // git password label focus
         lePassword->setFocus();
     }
@@ -333,10 +232,10 @@ QString AuthDialog::password() const
     return lePassword->text();
 }
 
-void AuthDialog::incorrectPassword()
+void AuthDialog::authenticationFailure()
 {
     lePassword->clear();
-    errorMessageKTW->setText(i18n("Incorrect password, please try again."), KTitleWidget::ErrorMessage);
+    errorMessageKTW->setText(i18n("Authentication failure, please try again."), KTitleWidget::ErrorMessage);
     QFont bold = font();
     bold.setBold(true);
     lblPassword->setFont(bold);
@@ -344,58 +243,49 @@ void AuthDialog::incorrectPassword()
     lePassword->setFocus();
 }
 
-void AuthDialog::setPasswordShowChars(bool showChars)
-{
-    if (showChars)
-        lePassword->setEchoMode(QLineEdit::Normal);
-    else
-        lePassword->setEchoMode(QLineEdit::Password);
-}
-
-PolicyKitKDE::KeepPassword AuthDialog::keepPassword() const
-{
-    if (cbRemember->isHidden()) {
-        // cannot make it keep
-        return PolicyKitKDE::KeepPasswordNo;
-    }
-    if (cbSessionOnly->isHidden()) {
-        // can keep only for session
-        return cbRemember->isChecked() ? PolicyKitKDE::KeepPasswordSession :
-                                         PolicyKitKDE::KeepPasswordNo;
-    }
-    // can keep either way
-    if (cbRemember->isChecked()) {
-        return cbSessionOnly->isChecked() ? PolicyKitKDE::KeepPasswordSession :
-                                            PolicyKitKDE::KeepPasswordAlways;
-    }
-    return PolicyKitKDE::KeepPasswordNo;
-}
-
-AuthDetails::AuthDetails(PolKitPolicyFileEntry *entry, const QString &appname, QWidget *parent)
+AuthDetails::AuthDetails(PolkitQt::Details *details,
+                         PolkitQt::ActionDescription *actionDescription,
+                         const QString &appname,
+                         QWidget *parent)
         : QWidget(parent)
 {
     setupUi(this);
 
     app_label->setText(appname);
 
-    action_label->setText(QString::fromUtf8(polkit_policy_file_entry_get_action_description(entry)));
-    QString actionId = polkit_policy_file_entry_get_id(entry);
-    action_label->setTipText(i18n("Click to edit %1", actionId));
-    action_label->setUrl(actionId);
+    foreach(const QString &key, details->getKeys()) {
+        int row = gridLayout->rowCount() + 1;
 
-    QString vendor    = QString::fromUtf8(polkit_policy_file_entry_get_action_vendor(entry));
-    QString vendorUrl = QString::fromUtf8(polkit_policy_file_entry_get_action_vendor_url(entry));
-    if (!vendor.isEmpty()) {
-        vendorUL->setText(vendor);
-        vendorUL->setTipText(i18n("Click to open %1", vendorUrl));
-        vendorUL->setUrl(vendorUrl);
-    } else if (!vendorUrl.isEmpty()) {
-        vendorUL->setText(vendorUrl);
-        vendorUL->setTipText(i18n("Click to open %1", vendorUrl));
-        vendorUL->setUrl(vendorUrl);
-    } else {
-        vendorL->hide();
-        vendorUL->hide();
+        QLabel *keyLabel = new QLabel(this);
+        keyLabel->setText(key + ":");
+        gridLayout->addWidget(keyLabel, row, 0);
+
+        QLabel *valueLabel = new QLabel(this);
+        valueLabel->setText(details->lookup(key));
+        gridLayout->addWidget(valueLabel, row, 1);
+    }
+
+    if (actionDescription) {
+        action_label->setText(actionDescription->description());
+
+        action_label->setTipText(i18n("Click to edit %1", actionDescription->actionId()));
+        action_label->setUrl(actionDescription->actionId());
+
+        QString vendor    = actionDescription->vendorName();
+        QString vendorUrl = actionDescription->vendorUrl();
+
+        if (!vendor.isEmpty()) {
+            vendorUL->setText(vendor);
+            vendorUL->setTipText(i18n("Click to open %1", vendorUrl));
+            vendorUL->setUrl(vendorUrl);
+        } else if (!vendorUrl.isEmpty()) {
+            vendorUL->setText(vendorUrl);
+            vendorUL->setTipText(i18n("Click to open %1", vendorUrl));
+            vendorUL->setUrl(vendorUrl);
+        } else {
+            vendorL->hide();
+            vendorUL->hide();
+        }
     }
 
     connect(vendorUL, SIGNAL(leftClickedUrl(const QString&)), SLOT(openUrl(const QString&)));
