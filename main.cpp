@@ -1,7 +1,5 @@
 /*  This file is part of the KDE project
-    Copyright (C) 2007-2008 Gökçen Eraslan <gokcen@pardus.org.tr>
-    Copyright (C) 2008 Dario Freddi <drf54321@gmail.com>
-    Copyright (C) 2008 Daniel Nicoletti <dantti85-pk@yahoo.com.br>
+    Copyright (C) 2009 Jaroslav Reznik <jreznik@redhat.com>
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public
@@ -28,16 +26,10 @@
 
 int main(int argc, char *argv[])
 {
-    KAboutData aboutData("policykit-kde", "", ki18n("PolicyKit-KDE"), "0.2",
-                         ki18n("PolicyKit-KDE"), KAboutData::License_GPL,
-                         ki18n("(c) 2005-2007, TUBITAK - UEKAE"));
-    aboutData.addAuthor(ki18n("Daniel Nicoletti"), ki18n("Maintainer"), "dantti85-pk@yahoo.com.br");
-    aboutData.addAuthor(ki18n("Luboš Luňák"), ki18n("Developer"), "l.lunak@kde.org");
-    aboutData.addAuthor(ki18n("Dario Freddi"), ki18n("Developer"), "drf54321@gmail.com");
-    aboutData.addAuthor(ki18n("Alessandro Diafera"), ki18n("Developer"), "alediafera@gmail.com");
-    aboutData.addAuthor(ki18n("Lukas Appelhans"), ki18n("Developer"), "l.appelhans@gmx.de");
-    aboutData.addAuthor(ki18n("Gökçen Eraslan"), ki18n("KDE 3 Code"), "gokcen@pardus.org.tr");
-    aboutData.addAuthor(ki18n("Dirk Müller"), ki18n("Original Author"), "mueller@kde.org");
+    KAboutData aboutData("policykit1-kde", "polkit-kde-authentication-agent-1", ki18n("PolicyKit1-KDE"), "0.1",
+                         ki18n("PolicyKit1-KDE"), KAboutData::License_GPL,
+                         ki18n("(c) 2009 Red Hat, Inc."));
+    aboutData.addAuthor(ki18n("Jaroslav Reznik"), ki18n("Maintainer"), "jreznik@redhat.com");
 
     KCmdLineArgs::init(argc, argv, &aboutData);
 
@@ -46,7 +38,6 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    PolicyKitKDE a;
-
-    return a.exec();
+    PolicyKitKDE agent;
+    agent.exec();
 }
