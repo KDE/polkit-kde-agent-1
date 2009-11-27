@@ -257,7 +257,8 @@ AuthDetails::AuthDetails(PolkitQt::Details *details,
         int row = gridLayout->rowCount() + 1;
 
         QLabel *keyLabel = new QLabel(this);
-        keyLabel->setText(key + ":");
+        keyLabel->setText(i18nc("%1 is the name of a detail about the current action "
+                                "provided by polkit", "%1:", key));
         gridLayout->addWidget(keyLabel, row, 0);
 
         QLabel *valueLabel = new QLabel(this);
