@@ -2,9 +2,15 @@
 [Desktop Entry]
 Name=PolicyKit Authentication Agent
 Name[da]=PolicyKit autentificeringsagent
+Name[en_GB]=PolicyKit Authentication Agent
+Name[pt]=Agente de Autenticação do PolicyKit
+Name[sv]=Policykit behörighetskontrollverktyg
 Name[uk]=Агент розпізнавання PolicyKit
 Comment=PolicyKit Authentication Agent
 Comment[da]=PolicyKit autentificeringsagent
+Comment[en_GB]=PolicyKit Authentication Agent
+Comment[pt]=Agente de Autenticação do PolicyKit
+Comment[sv]=Policykit behörighetskontrollverktyg
 Comment[uk]=Агент розпізнавання PolicyKit
 Exec=/usr/libexec/kde4/polkit-kde-authentication-agent-1
 Terminal=false
