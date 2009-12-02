@@ -1,21 +1,28 @@
 set(policykit_SRCS
-    AuthDialog.cpp
     policykitkde.cpp
-    processwatcher.cpp
+    policykitlistener.cpp
     main.cpp
+    AuthDialog.cpp
 )
-
-qt4_add_dbus_adaptor(policykit_SRCS org.freedesktop.PolicyKit.AuthenticationAgent.xml
-   policykitkde.h PolicyKitKDE)
 
 kde4_add_ui_files(policykit_SRCS AuthDialog.ui authdetails.ui)
 
-kde4_add_executable(polkit-kde-manager ${policykit_SRCS})
+kde4_add_executable(polkit-kde-authentication-agent-1 ${policykit_SRCS})
 
-target_link_libraries(polkit-kde-manager ${KDE4_KDEUI_LIBS}
-                                         ${POLKITDBUS_LIBRARIES}
-                                         ${POLKITGRANT_LIBRARIES}
-                                         ${POLKIT_LIBRARIES}
-                                         ${POLKITQT_CORE_LIBRARY})
+target_link_libraries(polkit-kde-authentication-agent-1
+                                         ${KDE4_KDEUI_LIBS}
+                                         ${POLKITQT1_LIBRARIES}
+)
 
-install(TARGETS polkit-kde-manager DESTINATION ${LIBEXEC_INSTALL_DIR})
+configure_file(polkit-kde-authentication-agent-1.desktop.in ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop)
+
+install(TARGETS polkit-kde-authentication-agent-1 DESTINATION ${LIBEXEC_INSTALL_DIR})
+
+# Install .desktop file to the XDG_CONFIG_DIRS if exists, to the /etc/xdg/autostart otherwise
+set (DESKTOP_INSTALL_DIR $ENV{XDG_CONFIG_DIRS})
+if (DESKTOP_INSTALL_DIR)
+else (DESKTOP_INSTALL_DIR)
+  set (DESKTOP_INSTALL_DIR /etc/xdg/autostart)
+endif (DESKTOP_INSTALL_DIR)
+
+install(FILES ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop DESTINATION ${DESKTOP_INSTALL_DIR})
