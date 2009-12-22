@@ -53,7 +53,7 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
 
     if (m_inProgress) {
         result->setError(i18n("Another client is already authenticating, please try again later."));
-        result->complete();
+        result->setCompleted();
         kDebug() << "Another client is already authenticating, please try again later.";
         return;
     }
@@ -122,9 +122,9 @@ void PolicyKitListener::finishObtainPrivilege()
     }
 
     if (!m_session.isNull()) {
-        m_session.data()->result()->complete();
+        m_session.data()->result()->setCompleted();
     } else {
-        m_result->complete();
+        m_result->setCompleted();
     }
 
     if (m_dialog) {
@@ -178,7 +178,7 @@ void PolicyKitListener::dialogAccepted()
 {
     kDebug() << "Dialog accepted";
 
-    m_session->response(m_dialog->password());
+    m_session->setResponse(m_dialog->password());
 }
 
 void PolicyKitListener::dialogCanceled()
