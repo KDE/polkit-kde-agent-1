@@ -22,37 +22,40 @@
 #ifndef AUTHDIALOG_H
 #define AUTHDIALOG_H
 
-#include <polkit/polkit.h>
-
-#include <QtCore/QObject>
-#include <QStandardItemModel>
-
 #include "ui_AuthDialog.h"
 #include "ui_authdetails.h"
 
-#include "policykitkde.h"
+class QStandardItemModel;
+
+namespace PolkitQt1
+{
+class Details;
+class Identity;
+class ActionDescription;
+}
 
 class AuthDialog : public KDialog, private Ui::AuthDialog
 {
     Q_OBJECT
 public:
-    AuthDialog(PolKitPolicyFileEntry *entry, uint pid);
+    AuthDialog(const QString &actionId,
+               const QString &message,
+               const QString &iconName,
+               PolkitQt1::Details *details,
+               QList<PolkitQt1::Identity *> identities);
     ~AuthDialog();
 
     void setRequest(const QString &request, bool requiresAdmin);
-    void setPasswordShowChars(bool showChars);
-    void setOptions(PolicyKitKDE::KeepPassword keep, bool requiresAdmin, const QStringList &adminUsers);
+    void setOptions();
     QString password() const;
-    void incorrectPassword();
-    PolicyKitKDE::KeepPassword keepPassword() const;
+    void authenticationFailure();
 
-    QString adminUserSelected() const;
-    QString selectCurrentAdminUser();
+    PolkitQt1::Identity *adminUserSelected();
 
-    QString m_appname;
+    PolkitQt1::ActionDescription *m_actionDescription;
 
 signals:
-    void adminUserSelected(const QString &adminUser);
+    void adminUserSelected(PolkitQt1::Identity *);
 
 public slots:
     virtual void accept();
@@ -62,16 +65,19 @@ private slots:
 
 private:
     QStandardItemModel *m_userModelSIM;
-    PolKitPolicyFileEntry *m_entry;
+    QString m_appname;
 
-    void createUserCB(const QStringList &adminUsers);
+    void createUserCB(QList<PolkitQt1::Identity *> identities);
 };
 
 class AuthDetails : public QWidget, private Ui::AuthDetails
 {
     Q_OBJECT
 public:
-    AuthDetails(PolKitPolicyFileEntry *entry, const QString &appname, QWidget *parent);
+    AuthDetails(PolkitQt1::Details *details,
+                PolkitQt1::ActionDescription *actionDescription,
+                const QString &appname,
+                QWidget *parent);
 
 private slots:
     void openUrl(const QString&);

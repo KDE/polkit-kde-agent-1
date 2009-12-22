@@ -32,19 +32,19 @@
 #include <KToolInvocation>
 #include <KUser>
 
-#include <PolkitQt/Authority>
-#include <PolkitQt/Details>
+#include <PolkitQt1/Authority>
+#include <PolkitQt1/Details>
 
-Q_DECLARE_METATYPE(PolkitQt::Identity *);
+Q_DECLARE_METATYPE(PolkitQt1::Identity *);
 
 AuthDialog::AuthDialog(const QString &actionId,
                        const QString &message,
                        const QString &iconName,
-                       PolkitQt::Details *details,
-                       QList<PolkitQt::Identity *> identities)
+                       PolkitQt1::Details *details,
+                       QList<PolkitQt1::Identity *> identities)
         : KDialog(0, Qt::Dialog)
 {
-    qRegisterMetaType<PolkitQt::Identity *> ("PolkitQt::Identity *");
+    qRegisterMetaType<PolkitQt1::Identity *> ("PolkitQt1::Identity *");
     setupUi(mainWidget());
     // the dialog needs to be modal to darken the parent window
     setModal(true);
@@ -65,7 +65,7 @@ AuthDialog::AuthDialog(const QString &actionId,
     lblPixmap->setPixmap(icon.pixmap(QSize(KIconLoader::SizeHuge, KIconLoader::SizeHuge)));
 
     // find action description for actionId
-    foreach(PolkitQt::ActionDescription *desc, PolkitQt::Authority::instance()->enumerateActionsSync()) {
+    foreach(PolkitQt1::ActionDescription *desc, PolkitQt1::Authority::instance()->enumerateActionsSync()) {
         if (desc && actionId == desc->actionId()) {
             m_actionDescription = desc;
             kDebug() << "Action description has been found" ;
@@ -95,7 +95,7 @@ AuthDialog::AuthDialog(const QString &actionId,
     } else {
         userCB->setCurrentIndex(0);
         QStandardItem *item = new QStandardItem("");
-        item->setData(qVariantFromValue<PolkitQt::Identity *> (identities[0]), Qt::UserRole);
+        item->setData(qVariantFromValue<PolkitQt1::Identity *> (identities[0]), Qt::UserRole);
         m_userModelSIM->appendRow(item);
     }
 }
@@ -113,7 +113,7 @@ void AuthDialog::accept()
 void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
 {
     kDebug() << request;
-    PolkitQt::Identity *identity = adminUserSelected();
+    PolkitQt1::Identity *identity = adminUserSelected();
     if (request.startsWith(QLatin1String("password:"), Qt::CaseInsensitive)) {
         if (requiresAdmin) {
             if (identity == NULL) {
@@ -149,7 +149,7 @@ void AuthDialog::setOptions()
                              " Authentication is required to perform this action."));
 }
 
-void AuthDialog::createUserCB(QList<PolkitQt::Identity *> identities)
+void AuthDialog::createUserCB(QList<PolkitQt1::Identity *> identities)
 {
     /* if we've already built the list of admin users once, then avoid
         * doing it again.. (this is mainly used when the user entered the
@@ -166,7 +166,7 @@ void AuthDialog::createUserCB(QList<PolkitQt::Identity *> identities)
         selectItem->setData(QVariant(), Qt::UserRole);
 
         // For each user
-        foreach(PolkitQt::Identity *identity, identities) {
+        foreach(PolkitQt1::Identity *identity, identities) {
             // First check to see if the user is valid
             qDebug() << "User: " << identity;
             KUser user = KUser::KUser(identity->toString().remove("unix-user:"));
@@ -184,7 +184,7 @@ void AuthDialog::createUserCB(QList<PolkitQt::Identity *> identities)
             }
 
             QStandardItem *item = new QStandardItem(display);
-            item->setData(qVariantFromValue<PolkitQt::Identity *> (identity), Qt::UserRole);
+            item->setData(qVariantFromValue<PolkitQt1::Identity *> (identity), Qt::UserRole);
 
             // load user icon face
             if (!user.faceIconPath().isEmpty()) {
@@ -202,15 +202,15 @@ void AuthDialog::createUserCB(QList<PolkitQt::Identity *> identities)
     }
 }
 
-PolkitQt::Identity *AuthDialog::adminUserSelected()
+PolkitQt1::Identity *AuthDialog::adminUserSelected()
 {
-    return qVariantValue<PolkitQt::Identity *> (m_userModelSIM->data(
+    return qVariantValue<PolkitQt1::Identity *> (m_userModelSIM->data(
                 m_userModelSIM->index(userCB->currentIndex(), 0), Qt::UserRole));
 }
 
 void AuthDialog::on_userCB_currentIndexChanged(int /*index*/)
 {
-    PolkitQt::Identity *identity = adminUserSelected();
+    PolkitQt1::Identity *identity = adminUserSelected();
     // itemData is Null when "Select user" is selected
     if (identity == NULL) {
         lePassword->setEnabled(false);
@@ -243,8 +243,8 @@ void AuthDialog::authenticationFailure()
     lePassword->setFocus();
 }
 
-AuthDetails::AuthDetails(PolkitQt::Details *details,
-                         PolkitQt::ActionDescription *actionDescription,
+AuthDetails::AuthDetails(PolkitQt1::Details *details,
+                         PolkitQt1::ActionDescription *actionDescription,
                          const QString &appname,
                          QWidget *parent)
         : QWidget(parent)
