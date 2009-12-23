@@ -78,6 +78,7 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
     m_dialog->setOptions();
     m_dialog->show();
     m_dialog->raise();
+    KWindowSystem::raiseWindow(m_dialog.data()->winId());
 
     m_numTries = 0;
     tryAgain();
