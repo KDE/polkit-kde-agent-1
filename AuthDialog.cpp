@@ -59,10 +59,36 @@ AuthDialog::AuthDialog(const QString &actionId,
         setCaption(message);
     }
 
-    KIcon icon = KIcon("dialog-password", 0, QStringList() << iconName);
+    // loads the standard key icon
+    QPixmap icon = KIconLoader::global()->loadIcon("dialog-password",
+                                                    KIconLoader::NoGroup,
+                                                    KIconLoader::SizeHuge,
+                                                    KIconLoader::DefaultState);
+    // create a painter to paint the action icon over the key icon
+    QPainter painter(&icon);
+    const int iconSize = icon.size().width();
+    // the the emblem icon to size 32
+    int overlaySize = 32;
+    // try to load the action icon
+    const QPixmap pixmap = KIconLoader::global()->loadIcon(iconName,
+                                                           KIconLoader::NoGroup,
+                                                           overlaySize,
+                                                           KIconLoader::DefaultState,
+                                                           QStringList(),
+                                                           0,
+                                                           true);
+    // if we're able to load the action icon paint it over the
+    // key icon.
+    if (!pixmap.isNull()) {
+        QPoint startPoint;
+        // bottom right corner
+        startPoint = QPoint(iconSize - overlaySize - 2,
+                            iconSize - overlaySize - 2);
+        painter.drawPixmap(startPoint, pixmap);
+    }
 
     setWindowIcon(icon);
-    lblPixmap->setPixmap(icon.pixmap(QSize(KIconLoader::SizeHuge, KIconLoader::SizeHuge)));
+    lblPixmap->setPixmap(icon);
 
     // find action description for actionId
     foreach(PolkitQt1::ActionDescription *desc, PolkitQt1::Authority::instance()->enumerateActionsSync()) {
