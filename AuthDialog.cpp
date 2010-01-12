@@ -195,7 +195,7 @@ void AuthDialog::createUserCB(QList<PolkitQt1::Identity *> identities)
         foreach(PolkitQt1::Identity *identity, identities) {
             // First check to see if the user is valid
             qDebug() << "User: " << identity;
-            KUser user = KUser::KUser(identity->toString().remove("unix-user:"));
+            KUser user(identity->toString().remove("unix-user:"));
             if (!user.isValid()) {
                 kWarning() << "User invalid: " << user.loginName();
                 continue;
