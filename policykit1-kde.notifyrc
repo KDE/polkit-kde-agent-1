@@ -1,0 +1,9 @@
+[Global]
+IconName=dialog-password
+Comment=PolicyKit authentication dialog
+Name=policykit1-kde
+
+[Event/authenticate]
+Name=authenticate
+Comment=You are required to authenticate
+Action=Popup

@@ -22,7 +22,6 @@
 #include "AuthDialog.h"
 
 #include <KDebug>
-#include <KWindowSystem>
 
 #include <PolkitQt1/Agent/Listener>
 #include <PolkitQt1/Agent/Session>
@@ -77,8 +76,6 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
 
     m_dialog->setOptions();
     m_dialog->show();
-    m_dialog->raise();
-    KWindowSystem::raiseWindow(m_dialog.data()->winId());
 
     m_numTries = 0;
     tryAgain();
@@ -127,10 +124,11 @@ void PolicyKitListener::finishObtainPrivilege()
     } else {
         m_result->setCompleted();
     }
+    m_session->deleteLater();
 
     if (m_dialog) {
-        m_dialog.data()->hide();
-        m_dialog.data()->deleteLater();
+        m_dialog->deleteLater();
+        m_dialog = 0;
     }
 
     m_inProgress = false;
@@ -179,7 +177,8 @@ void PolicyKitListener::dialogAccepted()
 {
     kDebug() << "Dialog accepted";
 
-    m_session->setResponse(m_dialog->password());
+    if (m_dialog)
+        m_session->setResponse(m_dialog->password());
 }
 
 void PolicyKitListener::dialogCanceled()

@@ -35,6 +35,9 @@
 #include <PolkitQt1/Authority>
 #include <PolkitQt1/Details>
 
+#include <KWindowSystem>
+#include <KNotification>
+
 Q_DECLARE_METATYPE(PolkitQt1::Identity *);
 
 AuthDialog::AuthDialog(const QString &actionId,
@@ -57,6 +60,7 @@ AuthDialog::AuthDialog(const QString &actionId,
         kDebug() << "Message of action: " << message;
         lblHeader->setText("<h3>" + message + "</h3>");
         setCaption(message);
+        m_message = message;
     }
 
     // loads the standard key icon
@@ -194,7 +198,7 @@ void AuthDialog::createUserCB(QList<PolkitQt1::Identity *> identities)
         // For each user
         foreach(PolkitQt1::Identity *identity, identities) {
             // First check to see if the user is valid
-            qDebug() << "User: " << identity;
+            kDebug() << "User: " << identity;
             KUser user(identity->toString().remove("unix-user:"));
             if (!user.isValid()) {
                 kWarning() << "User invalid: " << user.loginName();
@@ -267,6 +271,37 @@ void AuthDialog::authenticationFailure()
     lblPassword->setFont(bold);
     lePassword->clear();
     lePassword->setFocus();
+}
+
+void AuthDialog::showEvent(QShowEvent *event)
+{
+    KDialog::showEvent(event);
+    if (winId() != KWindowSystem::activeWindow())
+    {
+        KNotification *notification = new KNotification("authenticate", this,
+                                                        KNotification::Persistent | KNotification::CloseWhenWidgetActivated);
+        kDebug() << "Notificate: " << notification->eventId();
+        notification->setText(m_message);
+        QPixmap icon = KIconLoader::global()->loadIcon("dialog-password",
+                                                        KIconLoader::NoGroup,
+                                                        KIconLoader::SizeHuge,
+                                                        KIconLoader::DefaultState);
+        notification->setPixmap(icon);
+        notification->setActions(QStringList() << i18n("Switch to dialog") << i18n("Cancel"));
+
+        connect(notification, SIGNAL(activated(unsigned int)), this, SLOT(notificationActivated(unsigned int)));
+        notification->sendEvent();
+    }
+
+}
+
+void AuthDialog::notificationActivated(unsigned int action)
+{
+    kDebug() << "notificationActivated: " << action;
+    if (action == 1)
+    {
+        KWindowSystem::forceActiveWindow(winId());
+    }
 }
 
 AuthDetails::AuthDetails(PolkitQt1::Details *details,

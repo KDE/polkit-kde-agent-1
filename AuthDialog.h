@@ -62,12 +62,15 @@ public slots:
 
 private slots:
     void on_userCB_currentIndexChanged(int index);
+    void notificationActivated(unsigned int action);
 
 private:
     QStandardItemModel *m_userModelSIM;
     QString m_appname;
+    QString m_message;
 
     void createUserCB(QList<PolkitQt1::Identity *> identities);
+    void showEvent(QShowEvent *);
 };
 
 class AuthDetails : public QWidget, private Ui::AuthDetails
