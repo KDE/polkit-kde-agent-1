@@ -1,9 +1,13 @@
 [Global]
 IconName=dialog-password
 Comment=PolicyKit authentication dialog
+Comment[x-test]=xxPolicyKit authentication dialogxx
 Name=policykit1-kde
+Name[x-test]=xxpolicykit1-kdexx
 
 [Event/authenticate]
 Name=authenticate
+Name[x-test]=xxauthenticatexx
 Comment=You are required to authenticate
+Comment[x-test]=xxYou are required to authenticatexx
 Action=Popup
