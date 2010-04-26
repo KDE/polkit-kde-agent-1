@@ -127,6 +127,7 @@ void PolicyKitListener::finishObtainPrivilege()
     m_session->deleteLater();
 
     if (m_dialog) {
+        m_dialog->hide();
         m_dialog->deleteLater();
         m_dialog = 0;
     }
