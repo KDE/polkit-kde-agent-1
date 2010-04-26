@@ -137,6 +137,7 @@ AuthDialog::~AuthDialog()
 void AuthDialog::accept()
 {
     // Do nothing, do not close the dialog. This is needed so that the dialog stays
+    lePassword->setEnabled(false);
     return;
 }
 
@@ -269,6 +270,7 @@ void AuthDialog::authenticationFailure()
     QFont bold = font();
     bold.setBold(true);
     lblPassword->setFont(bold);
+    lePassword->setEnabled(true);
     lePassword->clear();
     lePassword->setFocus();
 }
