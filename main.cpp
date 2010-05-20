@@ -39,5 +39,6 @@ int main(int argc, char *argv[])
     }
 
     PolicyKitKDE agent;
+    agent.disableSessionManagement();
     agent.exec();
 }
