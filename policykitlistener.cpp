@@ -22,6 +22,7 @@
 #include "AuthDialog.h"
 
 #include <KDebug>
+#include <KWindowSystem>
 
 #include <PolkitQt1/Agent/Listener>
 #include <PolkitQt1/Agent/Session>
@@ -76,6 +77,7 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
 
     m_dialog->setOptions();
     m_dialog->show();
+    KWindowSystem::forceActiveWindow(m_dialog->winId());
 
     m_numTries = 0;
     tryAgain();
