@@ -49,7 +49,8 @@ AuthDialog::AuthDialog(const QString &actionId,
 {
     qRegisterMetaType<PolkitQt1::Identity *> ("PolkitQt1::Identity *");
     setupUi(mainWidget());
-    // the dialog needs to be modal to darken the parent window
+    // TODO: Need to parent this dialog to the window that made the Polkit
+    // request for setting this dialog as modal to do anything.
     setModal(true);
     setButtons(Ok | Cancel | Details);
 
