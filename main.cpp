@@ -30,6 +30,7 @@ int main(int argc, char *argv[])
                          ki18n("PolicyKit1-KDE"), KAboutData::License_GPL,
                          ki18n("(c) 2009 Red Hat, Inc."));
     aboutData.addAuthor(ki18n("Jaroslav Reznik"), ki18n("Maintainer"), "jreznik@redhat.com");
+    aboutData.setProductName("policykit-kde/polkit-kde-authentication-agent-1");
 
     KCmdLineArgs::init(argc, argv, &aboutData);
 
