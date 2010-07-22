@@ -266,7 +266,6 @@ QString AuthDialog::password() const
 
 void AuthDialog::authenticationFailure()
 {
-    lePassword->clear();
     errorMessageKTW->setText(i18n("Authentication failure, please try again."), KTitleWidget::ErrorMessage);
     QFont bold = font();
     bold.setBold(true);
