@@ -317,7 +317,7 @@ AuthDetails::AuthDetails(PolkitQt1::Details *details,
 
     app_label->setText(appname);
 
-    foreach(const QString &key, details->keys()) {
+    foreach(const QString &key, details->keys()) { //krazy:exclude=foreach (Details is not a map/hash, but rather a method)
         int row = gridLayout->rowCount() + 1;
 
         QLabel *keyLabel = new QLabel(this);
