@@ -158,7 +158,8 @@ void PolicyKitListener::request(const QString &request, bool echo)
     kDebug() << "Request: " << request;
 
     if (m_dialog) {
-        m_dialog->setRequest(request, echo);
+        m_dialog->setRequest(request, m_selectedUser && 
+                m_selectedUser->toString() == "unix-user:root");
     }
 }
 
