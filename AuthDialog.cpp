@@ -216,7 +216,7 @@ void AuthDialog::createUserCB(QList<PolkitQt1::Identity *> identities)
             }
 
             QStandardItem *item = new QStandardItem(display);
-            item->setData(qVariantFromValue<PolkitQt1::Identity *> (identity), Qt::UserRole);
+            item->setData(qVariantFromValue<QString> (identity->toString()), Qt::UserRole);
 
             // load user icon face
             if (!user.faceIconPath().isEmpty()) {
@@ -236,8 +236,8 @@ void AuthDialog::createUserCB(QList<PolkitQt1::Identity *> identities)
 
 PolkitQt1::Identity *AuthDialog::adminUserSelected()
 {
-    return qVariantValue<PolkitQt1::Identity *> (m_userModelSIM->data(
-                m_userModelSIM->index(userCB->currentIndex(), 0), Qt::UserRole));
+    return PolkitQt1::Identity::fromString(qVariantValue<QString> (
+                m_userModelSIM->item(userCB->currentIndex())->data(Qt::UserRole)));
 }
 
 void AuthDialog::on_userCB_currentIndexChanged(int /*index*/)
