@@ -28,8 +28,7 @@ PolicyKitKDE::PolicyKitKDE()
 {
     setQuitOnLastWindowClosed(false);
 
-    PolkitQt1::UnixSessionSubject *session;
-    session = new PolkitQt1::UnixSessionSubject(getpid());
+    PolkitQt1::UnixSessionSubject session(getpid());
 
     bool result = m_listener->registerListener(session, "/org/kde/PolicyKit1/AuthenticationAgent");
 

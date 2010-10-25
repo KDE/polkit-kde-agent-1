@@ -44,9 +44,9 @@ PolicyKitListener::~PolicyKitListener()
 void PolicyKitListener::initiateAuthentication(const QString &actionId,
         const QString &message,
         const QString &iconName,
-        PolkitQt1::Details *details,
+        const PolkitQt1::Details &details,
         const QString &cookie,
-        QList<PolkitQt1::Identity *> identities,
+        const PolkitQt1::Identity::List &identities,
         PolkitQt1::Agent::AsyncResult* result)
 {
     kDebug() << "Initiating authentication";
@@ -64,8 +64,6 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
     m_session = 0;
     if (identities.length() == 1) {
         m_selectedUser = identities[0];
-    } else {
-        m_selectedUser = 0;
     }
 
     m_inProgress = true;
@@ -73,7 +71,7 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
     m_dialog = new AuthDialog(actionId, message, iconName, details, identities);
     connect(m_dialog, SIGNAL(okClicked()), SLOT(dialogAccepted()));
     connect(m_dialog, SIGNAL(cancelClicked()), SLOT(dialogCanceled()));
-    connect(m_dialog, SIGNAL(adminUserSelected(PolkitQt1::Identity *)), SLOT(userSelected(PolkitQt1::Identity *)));
+    connect(m_dialog, SIGNAL(adminUserSelected(PolkitQt1::Identity)), SLOT(userSelected(PolkitQt1::Identity)));
 
     m_dialog->setOptions();
     m_dialog->show();
@@ -90,7 +88,7 @@ void PolicyKitListener::tryAgain()
     m_wasCancelled = false;
 
     // We will create new session only when some user is selected
-    if (m_selectedUser != 0) {
+    if (m_selectedUser.isValid()) {
         m_session = new Session(m_selectedUser, m_cookie, m_result);
         connect(m_session, SIGNAL(request(QString, bool)), this, SLOT(request(QString, bool)));
         connect(m_session, SIGNAL(completed(bool)), this, SLOT(completed(bool)));
@@ -106,7 +104,7 @@ void PolicyKitListener::finishObtainPrivilege()
     kDebug() << "Finishing obtaining privileges";
 
     // Number of tries increase only when some user is selected
-    if (m_selectedUser != 0) {
+    if (m_selectedUser.isValid()) {
         m_numTries++;
     }
 
@@ -131,7 +129,6 @@ void PolicyKitListener::finishObtainPrivilege()
     if (m_dialog) {
         m_dialog->hide();
         m_dialog->deleteLater();
-        m_dialog = 0;
     }
 
     m_inProgress = false;
@@ -158,8 +155,8 @@ void PolicyKitListener::request(const QString &request, bool echo)
     kDebug() << "Request: " << request;
 
     if (m_dialog) {
-        m_dialog->setRequest(request, m_selectedUser && 
-                m_selectedUser->toString() == "unix-user:root");
+        m_dialog->setRequest(request, m_selectedUser.isValid() && 
+                m_selectedUser.toString() == "unix-user:root");
     }
 }
 
@@ -197,7 +194,7 @@ void PolicyKitListener::dialogCanceled()
     finishObtainPrivilege();
 }
 
-void PolicyKitListener::userSelected(PolkitQt1::Identity *identity)
+void PolicyKitListener::userSelected(const PolkitQt1::Identity &identity)
 {
     m_selectedUser = identity;
     // If some user is selected we must destroy existing session

@@ -39,9 +39,9 @@ public slots:
     void initiateAuthentication(const QString &actionId,
                                 const QString &message,
                                 const QString &iconName,
-                                PolkitQt1::Details *details,
+                                const PolkitQt1::Details &details,
                                 const QString &cookie,
-                                QList<PolkitQt1::Identity *> identities,
+                                const PolkitQt1::Identity::List &identities,
                                 PolkitQt1::Agent::AsyncResult* result);
     bool initiateAuthenticationFinish();
     void cancelAuthentication();
@@ -60,15 +60,15 @@ private:
     bool m_gainedAuthorization;
     bool m_wasCancelled;
     int m_numTries;
-    QList<PolkitQt1::Identity *> m_identities;
+    PolkitQt1::Identity::List m_identities;
     PolkitQt1::Agent::AsyncResult* m_result;
     QString m_cookie;
-    PolkitQt1::Identity *m_selectedUser;
+    PolkitQt1::Identity m_selectedUser;
 
 private slots:
     void dialogAccepted();
     void dialogCanceled();
-    void userSelected(PolkitQt1::Identity *identity);
+    void userSelected(const PolkitQt1::Identity &identity);
 };
 
 #endif

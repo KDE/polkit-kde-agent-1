@@ -1,6 +1,7 @@
 /*  This file is part of the KDE project
     Copyright (C) 2007-2008 Gökçen Eraslan <gokcen@pardus.org.tr>
     Copyright (C) 2008 Daniel Nicoletti <dantti85-pk@yahoo.com.br>
+    Copyright (C) 2010 Dario Freddi <drf@kde.org>
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public
@@ -25,13 +26,14 @@
 #include "ui_AuthDialog.h"
 #include "ui_authdetails.h"
 
+#include <PolkitQt1/Identity>
+#include <PolkitQt1/ActionDescription>
+
 class QStandardItemModel;
 
 namespace PolkitQt1
 {
 class Details;
-class Identity;
-class ActionDescription;
 }
 
 class AuthDialog : public KDialog, private Ui::AuthDialog
@@ -41,8 +43,8 @@ public:
     AuthDialog(const QString &actionId,
                const QString &message,
                const QString &iconName,
-               PolkitQt1::Details *details,
-               QList<PolkitQt1::Identity *> identities);
+               const PolkitQt1::Details &details,
+               const PolkitQt1::Identity::List &identities);
     ~AuthDialog();
 
     void setRequest(const QString &request, bool requiresAdmin);
@@ -50,12 +52,12 @@ public:
     QString password() const;
     void authenticationFailure();
 
-    PolkitQt1::Identity *adminUserSelected();
+    PolkitQt1::Identity adminUserSelected() const;
 
-    PolkitQt1::ActionDescription *m_actionDescription;
+    PolkitQt1::ActionDescription m_actionDescription;
 
 signals:
-    void adminUserSelected(PolkitQt1::Identity *);
+    void adminUserSelected(PolkitQt1::Identity);
 
 public slots:
     virtual void accept();
@@ -69,7 +71,7 @@ private:
     QString m_appname;
     QString m_message;
 
-    void createUserCB(QList<PolkitQt1::Identity *> identities);
+    void createUserCB(const PolkitQt1::Identity::List &identities);
     void showEvent(QShowEvent *);
 };
 
@@ -77,8 +79,8 @@ class AuthDetails : public QWidget, private Ui::AuthDetails
 {
     Q_OBJECT
 public:
-    AuthDetails(PolkitQt1::Details *details,
-                PolkitQt1::ActionDescription *actionDescription,
+    AuthDetails(const PolkitQt1::Details &details,
+                const PolkitQt1::ActionDescription &actionDescription,
                 const QString &appname,
                 QWidget *parent);
 

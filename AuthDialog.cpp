@@ -2,7 +2,7 @@
     Copyright (C) 2007-2008 Gökçen Eraslan <gokcen@pardus.org.tr>
     Copyright (C) 2008 Dirk Mueller <mueller@kde.org>
     Copyright (C) 2008 Daniel Nicoletti <dantti85-pk@yahoo.com.br>
-    Copyright (C) 2008 Dario Freddi <drf54321@gmail.com>
+    Copyright (C) 2008-2010 Dario Freddi <drf@kde.org>
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public
@@ -38,16 +38,16 @@
 #include <KWindowSystem>
 #include <KNotification>
 
-Q_DECLARE_METATYPE(PolkitQt1::Identity *);
+Q_DECLARE_METATYPE(PolkitQt1::Identity);
 
 AuthDialog::AuthDialog(const QString &actionId,
                        const QString &message,
                        const QString &iconName,
-                       PolkitQt1::Details *details,
-                       QList<PolkitQt1::Identity *> identities)
+                       const PolkitQt1::Details &details,
+                       const PolkitQt1::Identity::List &identities)
         : KDialog(0, Qt::Dialog)
 {
-    qRegisterMetaType<PolkitQt1::Identity *> ("PolkitQt1::Identity *");
+    qRegisterMetaType<PolkitQt1::Identity> ();
     setupUi(mainWidget());
     // TODO: Need to parent this dialog to the window that made the Polkit
     // request for setting this dialog as modal to do anything.
@@ -96,8 +96,8 @@ AuthDialog::AuthDialog(const QString &actionId,
     lblPixmap->setPixmap(icon);
 
     // find action description for actionId
-    foreach(PolkitQt1::ActionDescription *desc, PolkitQt1::Authority::instance()->enumerateActionsSync()) {
-        if (desc && actionId == desc->actionId()) {
+    foreach(const PolkitQt1::ActionDescription &desc, PolkitQt1::Authority::instance()->enumerateActionsSync()) {
+        if (actionId == desc.actionId()) {
             m_actionDescription = desc;
             kDebug() << "Action description has been found" ;
             break;
@@ -126,7 +126,7 @@ AuthDialog::AuthDialog(const QString &actionId,
     } else {
         userCB->setCurrentIndex(0);
         QStandardItem *item = new QStandardItem("");
-        item->setData(qVariantFromValue<PolkitQt1::Identity *> (identities[0]), Qt::UserRole);
+        item->setData(qVariantFromValue<PolkitQt1::Identity> (identities[0]), Qt::UserRole);
         m_userModelSIM->appendRow(item);
     }
 }
@@ -145,14 +145,14 @@ void AuthDialog::accept()
 void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
 {
     kDebug() << request;
-    PolkitQt1::Identity *identity = adminUserSelected();
+    PolkitQt1::Identity identity = adminUserSelected();
     if (request.startsWith(QLatin1String("password:"), Qt::CaseInsensitive)) {
         if (requiresAdmin) {
-            if (identity == NULL) {
+            if (!identity.isValid()) {
                 lblPassword->setText(i18n("Password for root:"));
             } else {
                 lblPassword->setText(i18n("Password for %1:",
-                                          identity->toString().remove("unix-user:")));
+                                          identity.toString().remove("unix-user:")));
             }
         } else {
             lblPassword->setText(i18n("Password:"));
@@ -160,11 +160,11 @@ void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
     } else if (request.startsWith(QLatin1String("password or swipe finger:"),
                                   Qt::CaseInsensitive)) {
         if (requiresAdmin) {
-            if (identity == NULL) {
+            if (!identity.isValid()) {
                 lblPassword->setText(i18n("Password or swipe finger for root:"));
             } else {
                 lblPassword->setText(i18n("Password or swipe finger for %1:",
-                                          identity->toString().remove("unix-user:")));
+                                          identity.toString().remove("unix-user:")));
             }
         } else {
             lblPassword->setText(i18n("Password or swipe finger:"));
@@ -181,7 +181,7 @@ void AuthDialog::setOptions()
                              " Authentication is required to perform this action."));
 }
 
-void AuthDialog::createUserCB(QList<PolkitQt1::Identity *> identities)
+void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
 {
     /* if we've already built the list of admin users once, then avoid
         * doing it again.. (this is mainly used when the user entered the
@@ -198,10 +198,10 @@ void AuthDialog::createUserCB(QList<PolkitQt1::Identity *> identities)
         selectItem->setData(QVariant(), Qt::UserRole);
 
         // For each user
-        foreach(PolkitQt1::Identity *identity, identities) {
+        foreach(const PolkitQt1::Identity &identity, identities) {
             // First check to see if the user is valid
-            kDebug() << "User: " << identity;
-            KUser user(identity->toString().remove("unix-user:"));
+            kDebug() << "User: " << identity.toString();
+            KUser user(identity.toString().remove("unix-user:"));
             if (!user.isValid()) {
                 kWarning() << "User invalid: " << user.loginName();
                 continue;
@@ -216,7 +216,7 @@ void AuthDialog::createUserCB(QList<PolkitQt1::Identity *> identities)
             }
 
             QStandardItem *item = new QStandardItem(display);
-            item->setData(qVariantFromValue<QString> (identity->toString()), Qt::UserRole);
+            item->setData(qVariantFromValue<QString> (identity.toString()), Qt::UserRole);
 
             // load user icon face
             if (!user.faceIconPath().isEmpty()) {
@@ -234,7 +234,7 @@ void AuthDialog::createUserCB(QList<PolkitQt1::Identity *> identities)
     }
 }
 
-PolkitQt1::Identity *AuthDialog::adminUserSelected()
+PolkitQt1::Identity AuthDialog::adminUserSelected() const
 {
     return PolkitQt1::Identity::fromString(qVariantValue<QString> (
                 m_userModelSIM->item(userCB->currentIndex())->data(Qt::UserRole)));
@@ -242,9 +242,9 @@ PolkitQt1::Identity *AuthDialog::adminUserSelected()
 
 void AuthDialog::on_userCB_currentIndexChanged(int /*index*/)
 {
-    PolkitQt1::Identity *identity = adminUserSelected();
+    PolkitQt1::Identity identity = adminUserSelected();
     // itemData is Null when "Select user" is selected
-    if (identity == NULL) {
+    if (!identity.isValid()) {
         lePassword->setEnabled(false);
         lblPassword->setEnabled(false);
         enableButtonOk(false);
@@ -306,8 +306,8 @@ void AuthDialog::notificationActivated(unsigned int action)
     }
 }
 
-AuthDetails::AuthDetails(PolkitQt1::Details *details,
-                         PolkitQt1::ActionDescription *actionDescription,
+AuthDetails::AuthDetails(const PolkitQt1::Details &details,
+                         const PolkitQt1::ActionDescription &actionDescription,
                          const QString &appname,
                          QWidget *parent)
         : QWidget(parent)
@@ -316,7 +316,7 @@ AuthDetails::AuthDetails(PolkitQt1::Details *details,
 
     app_label->setText(appname);
 
-    foreach(const QString &key, details->keys()) { //krazy:exclude=foreach (Details is not a map/hash, but rather a method)
+    foreach(const QString &key, details.keys()) { //krazy:exclude=foreach (Details is not a map/hash, but rather a method)
         int row = gridLayout->rowCount() + 1;
 
         QLabel *keyLabel = new QLabel(this);
@@ -325,31 +325,29 @@ AuthDetails::AuthDetails(PolkitQt1::Details *details,
         gridLayout->addWidget(keyLabel, row, 0);
 
         QLabel *valueLabel = new QLabel(this);
-        valueLabel->setText(details->lookup(key));
+        valueLabel->setText(details.lookup(key));
         gridLayout->addWidget(valueLabel, row, 1);
     }
 
-    if (actionDescription) {
-        action_label->setText(actionDescription->description());
+    action_label->setText(actionDescription.description());
 
-        action_label->setTipText(i18n("Click to edit %1", actionDescription->actionId()));
-        action_label->setUrl(actionDescription->actionId());
+    action_label->setTipText(i18n("Click to edit %1", actionDescription.actionId()));
+    action_label->setUrl(actionDescription.actionId());
 
-        QString vendor    = actionDescription->vendorName();
-        QString vendorUrl = actionDescription->vendorUrl();
+    QString vendor    = actionDescription.vendorName();
+    QString vendorUrl = actionDescription.vendorUrl();
 
-        if (!vendor.isEmpty()) {
-            vendorUL->setText(vendor);
-            vendorUL->setTipText(i18n("Click to open %1", vendorUrl));
-            vendorUL->setUrl(vendorUrl);
-        } else if (!vendorUrl.isEmpty()) {
-            vendorUL->setText(vendorUrl);
-            vendorUL->setTipText(i18n("Click to open %1", vendorUrl));
-            vendorUL->setUrl(vendorUrl);
-        } else {
-            vendorL->hide();
-            vendorUL->hide();
-        }
+    if (!vendor.isEmpty()) {
+        vendorUL->setText(vendor);
+        vendorUL->setTipText(i18n("Click to open %1", vendorUrl));
+        vendorUL->setUrl(vendorUrl);
+    } else if (!vendorUrl.isEmpty()) {
+        vendorUL->setText(vendorUrl);
+        vendorUL->setTipText(i18n("Click to open %1", vendorUrl));
+        vendorUL->setUrl(vendorUrl);
+    } else {
+        vendorL->hide();
+        vendorUL->hide();
     }
 
     connect(vendorUL, SIGNAL(leftClickedUrl(const QString&)), SLOT(openUrl(const QString&)));
