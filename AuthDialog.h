@@ -29,8 +29,6 @@
 #include <PolkitQt1/Identity>
 #include <PolkitQt1/ActionDescription>
 
-class QStandardItemModel;
-
 namespace PolkitQt1
 {
 class Details;
@@ -67,7 +65,6 @@ private slots:
     void notificationActivated(unsigned int action);
 
 private:
-    QStandardItemModel *m_userModelSIM;
     QString m_appname;
     QString m_message;
 

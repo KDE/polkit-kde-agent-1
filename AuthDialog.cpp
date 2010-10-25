@@ -26,7 +26,6 @@
 #include <QtCore/QProcess>
 #include <QtGui/QPainter>
 #include <QtGui/QStandardItemModel>
-
 #include <KDebug>
 
 #include <KToolInvocation>
@@ -38,8 +37,6 @@
 #include <KWindowSystem>
 #include <KNotification>
 
-Q_DECLARE_METATYPE(PolkitQt1::Identity);
-
 AuthDialog::AuthDialog(const QString &actionId,
                        const QString &message,
                        const QString &iconName,
@@ -47,7 +44,6 @@ AuthDialog::AuthDialog(const QString &actionId,
                        const PolkitQt1::Identity::List &identities)
         : KDialog(0, Qt::Dialog)
 {
-    qRegisterMetaType<PolkitQt1::Identity> ();
     setupUi(mainWidget());
     // TODO: Need to parent this dialog to the window that made the Polkit
     // request for setting this dialog as modal to do anything.
@@ -112,22 +108,15 @@ AuthDialog::AuthDialog(const QString &actionId,
 
     errorMessageKTW->hide();
 
-    m_userModelSIM = new QStandardItemModel(this);
-    m_userModelSIM->setSortRole(Qt::UserRole);
-
     // If there is more than 1 identity we will show the combobox for user selection
     if (identities.size() > 1) {
-        userCB->setModel(m_userModelSIM);
-
         connect(userCB, SIGNAL(currentIndexChanged(int)),
                 this, SLOT(on_userCB_currentIndexChanged(int)));
 
         createUserCB(identities);
     } else {
+        userCB->addItem("", QVariant(identities[0].toString()));
         userCB->setCurrentIndex(0);
-        QStandardItem *item = new QStandardItem("");
-        item->setData(qVariantFromValue<PolkitQt1::Identity> (identities[0]), Qt::UserRole);
-        m_userModelSIM->appendRow(item);
     }
 }
 
@@ -189,13 +178,11 @@ void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
         */
     if (identities.count() && (userCB->count() - 1) != identities.count()) {
         // Clears the combobox in the case some user be added
-        m_userModelSIM->clear();
+        userCB->clear();
 
         // Adds a Dummy user
-        QStandardItem *selectItem;
-        m_userModelSIM->appendRow(selectItem = new QStandardItem(i18n("Select User")));
-        selectItem->setSelectable(false);
-        selectItem->setData(QVariant(), Qt::UserRole);
+        userCB->addItem(i18n("Select User"), qVariantFromValue<QString> (QString()));
+        qobject_cast<QStandardItemModel *>(userCB->model())->item(userCB->count()-1)->setEnabled(false);
 
         // For each user
         foreach(const PolkitQt1::Identity &identity, identities) {
@@ -215,17 +202,15 @@ void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
                 display = user.loginName();
             }
 
-            QStandardItem *item = new QStandardItem(display);
-            item->setData(qVariantFromValue<QString> (identity.toString()), Qt::UserRole);
-
+            KIcon icon;
             // load user icon face
             if (!user.faceIconPath().isEmpty()) {
-                item->setIcon(KIcon(user.faceIconPath()));
+                icon = KIcon(user.faceIconPath());
             } else {
-                item->setIcon(KIcon("user-identity"));
+                icon = KIcon("user-identity");
             }
             // appends the user item
-            m_userModelSIM->appendRow(item);
+            userCB->addItem(icon, display, qVariantFromValue<QString> (identity.toString()));
         }
 
         // Show the widget and set focus
@@ -236,8 +221,13 @@ void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
 
 PolkitQt1::Identity AuthDialog::adminUserSelected() const
 {
-    return PolkitQt1::Identity::fromString(qVariantValue<QString> (
-                m_userModelSIM->item(userCB->currentIndex())->data(Qt::UserRole)));
+    if (userCB->currentIndex() == -1)
+        return PolkitQt1::Identity();
+
+    QString id = userCB->itemData(userCB->currentIndex()).toString();
+    if (id.isEmpty())
+        return PolkitQt1::Identity();
+    return PolkitQt1::Identity::fromString(id);
 }
 
 void AuthDialog::on_userCB_currentIndexChanged(int /*index*/)
