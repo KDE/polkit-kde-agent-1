@@ -29,12 +29,25 @@
 #include <PolkitQt1/Subject>
 #include <PolkitQt1/Identity>
 #include <PolkitQt1/Details>
+#include <QtDBus/QDBusConnection>
+
+#include "polkit1authagentadaptor.h"
 
 PolicyKitListener::PolicyKitListener(QObject *parent)
         : Listener(parent)
         , m_inProgress(false)
         , m_selectedUser(0)
 {
+    (void) new Polkit1AuthAgentAdaptor(this);
+
+    if (!QDBusConnection::sessionBus().registerObject("/org/kde/Polkit1AuthAgent", this,
+                                                     QDBusConnection::ExportScriptableSlots |
+                                                     QDBusConnection::ExportScriptableProperties |
+                                                     QDBusConnection::ExportAdaptors)) {
+        kWarning() << "Could not initiate DBus helper!";
+    }
+
+    kDebug() << "Listener online";
 }
 
 PolicyKitListener::~PolicyKitListener()

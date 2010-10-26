@@ -32,6 +32,7 @@ using namespace PolkitQt1::Agent;
 class PolicyKitListener : public Listener
 {
     Q_OBJECT
+    Q_CLASSINFO("D-Bus Interface", "org.kde.Polkit1AuthAgent")
 public:
     PolicyKitListener(QObject *parent = 0);
     virtual ~PolicyKitListener();
