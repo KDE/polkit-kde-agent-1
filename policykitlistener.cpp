@@ -61,7 +61,7 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
     m_identities = identities;
     m_cookie = cookie;
     m_result = result;
-    m_session = 0;
+    m_session.clear();
     if (identities.length() == 1) {
         m_selectedUser = identities[0];
     }
@@ -69,13 +69,13 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
     m_inProgress = true;
 
     m_dialog = new AuthDialog(actionId, message, iconName, details, identities);
-    connect(m_dialog, SIGNAL(okClicked()), SLOT(dialogAccepted()));
-    connect(m_dialog, SIGNAL(cancelClicked()), SLOT(dialogCanceled()));
-    connect(m_dialog, SIGNAL(adminUserSelected(PolkitQt1::Identity)), SLOT(userSelected(PolkitQt1::Identity)));
+    connect(m_dialog.data(), SIGNAL(okClicked()), SLOT(dialogAccepted()));
+    connect(m_dialog.data(), SIGNAL(cancelClicked()), SLOT(dialogCanceled()));
+    connect(m_dialog.data(), SIGNAL(adminUserSelected(PolkitQt1::Identity)), SLOT(userSelected(PolkitQt1::Identity)));
 
-    m_dialog->setOptions();
-    m_dialog->show();
-    KWindowSystem::forceActiveWindow(m_dialog->winId());
+    m_dialog.data()->setOptions();
+    m_dialog.data()->show();
+    KWindowSystem::forceActiveWindow(m_dialog.data()->winId());
 
     m_numTries = 0;
     tryAgain();
@@ -90,11 +90,11 @@ void PolicyKitListener::tryAgain()
     // We will create new session only when some user is selected
     if (m_selectedUser.isValid()) {
         m_session = new Session(m_selectedUser, m_cookie, m_result);
-        connect(m_session, SIGNAL(request(QString, bool)), this, SLOT(request(QString, bool)));
-        connect(m_session, SIGNAL(completed(bool)), this, SLOT(completed(bool)));
-        connect(m_session, SIGNAL(showError(QString)), this, SLOT(showError(QString)));
+        connect(m_session.data(), SIGNAL(request(QString, bool)), this, SLOT(request(QString, bool)));
+        connect(m_session.data(), SIGNAL(completed(bool)), this, SLOT(completed(bool)));
+        connect(m_session.data(), SIGNAL(showError(QString)), this, SLOT(showError(QString)));
 
-        m_session->initiate();
+        m_session.data()->initiate();
     }
 
 }
@@ -109,7 +109,7 @@ void PolicyKitListener::finishObtainPrivilege()
     }
 
     if (!m_gainedAuthorization && !m_wasCancelled && !m_dialog.isNull()) {
-        m_dialog->authenticationFailure();
+        m_dialog.data()->authenticationFailure();
 
         if (m_numTries < 3) {
             m_session.data()->deleteLater();
@@ -124,11 +124,11 @@ void PolicyKitListener::finishObtainPrivilege()
     } else {
         m_result->setCompleted();
     }
-    m_session->deleteLater();
+    m_session.data()->deleteLater();
 
-    if (m_dialog) {
-        m_dialog->hide();
-        m_dialog->deleteLater();
+    if (!m_dialog.isNull()) {
+        m_dialog.data()->hide();
+        m_dialog.data()->deleteLater();
     }
 
     m_inProgress = false;
@@ -154,8 +154,8 @@ void PolicyKitListener::request(const QString &request, bool echo)
 {
     kDebug() << "Request: " << request;
 
-    if (m_dialog) {
-        m_dialog->setRequest(request, m_selectedUser.isValid() && 
+    if (!m_dialog.isNull()) {
+        m_dialog.data()->setRequest(request, m_selectedUser.isValid() &&
                 m_selectedUser.toString() == "unix-user:root");
     }
 }
@@ -178,8 +178,9 @@ void PolicyKitListener::dialogAccepted()
 {
     kDebug() << "Dialog accepted";
 
-    if (m_dialog)
-        m_session->setResponse(m_dialog->password());
+    if (!m_dialog.isNull()) {
+        m_session.data()->setResponse(m_dialog.data()->password());
+    }
 }
 
 void PolicyKitListener::dialogCanceled()
@@ -188,7 +189,7 @@ void PolicyKitListener::dialogCanceled()
 
     m_wasCancelled = true;
     if (!m_session.isNull()) {
-        m_session->cancel();
+        m_session.data()->cancel();
     }
 
     finishObtainPrivilege();

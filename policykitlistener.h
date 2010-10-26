@@ -22,7 +22,8 @@
 */
 
 #include <PolkitQt1/Agent/Listener>
-#include <QtCore/QPointer>
+
+#include <QtCore/QWeakPointer>
 
 class AuthDialog;
 
@@ -54,8 +55,8 @@ public slots:
     void showError(const QString &text);
     /*    void showInfo(const QString &text);    */
 private:
-    QPointer<AuthDialog> m_dialog;
-    QPointer<Session> m_session;
+    QWeakPointer<AuthDialog> m_dialog;
+    QWeakPointer<Session> m_session;
     bool m_inProgress;
     bool m_gainedAuthorization;
     bool m_wasCancelled;
