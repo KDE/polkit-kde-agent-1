@@ -1,10 +1,5 @@
-#ifndef POLICYKITKDE_H
-#define POLICYKITKDE_H
-
 /*  This file is part of the KDE project
-    Copyright (C) 2007-2008 Gökçen Eraslan <gokcen@pardus.org.tr>
-    Copyright (C) 2008 Dirk Mueller <mueller@kde.org>
-    Copyright (C) 2008 Dario Freddi <drf54321@gmail.com>
+    Copyright (C) 2009 Jaroslav Reznik <jreznik@redhat.com>
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public
@@ -23,95 +18,21 @@
 
 */
 
+#ifndef POLICYKITKDE_H
+#define POLICYKITKDE_H
+
 #include <KUniqueApplication>
 
-#include <QtCore/QMap>
-#include <QtCore/QSocketNotifier>
-#include <QtDBus/QDBusContext>
-#include <QtDBus/QDBusMessage>
-#include <QtGui/QWidget>
+#include "policykitlistener.h"
 
-#include <polkit-grant/polkit-grant.h>
-
-class AuthDialog;
-
-class PolicyKitKDE : public KUniqueApplication, protected QDBusContext
+class PolicyKitKDE : public KUniqueApplication
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "org.freedesktop.PolicyKit.AuthenticationAgent")
-    Q_ENUMS(KeepPassword)
-
 public:
     PolicyKitKDE();
     virtual ~PolicyKitKDE();
-
-    enum KeepPassword {
-        KeepPasswordNo,
-        KeepPasswordSession,
-        KeepPasswordAlways
-    };
-
-    static KeepPassword readDefaultKeepPassword(const QString &actionId, const KeepPassword defaultValue);
-
-public slots:
-    bool ObtainAuthorization(const QString &action_id, uint xid, uint pid);
-
-private slots:
-    void watchActivatedGrant(int fd);
-    void watchActivatedContext(int fd);
-    void childTerminated(pid_t, int);
-    void tryAgain();
-    void finishObtainPrivilege();
-    void dialogAccepted();
-    void dialogCancelled();
-    void userSelected(QString adminUser);
-
 private:
-    PolKitContext *m_context;
-    WId           parent_wid;
-    AuthDialog    *dialog;
-    QTimer        *m_killT;
-    bool          inProgress;
-    PolKitGrant   *grant;
-    PolKitCaller  *caller;
-    PolKitAction  *m_pkAction;
-    KeepPassword  m_keepPassword;
-    QDBusMessage  reply;
-    QStringList   m_adminUsers;
-    QString       m_adminUserSelected;
-    QEventLoop    *m_dialogEventLoop;
-
-    int  m_numTries;
-    bool m_wasCancelled;
-    bool m_wasBogus;
-    bool m_newUserSelected;
-    bool m_gainedPrivilege;
-    bool m_requiresAdmin;
-
-    static PolicyKitKDE *m_self;
-
-    QMap<int, QSocketNotifier*> m_watches;
-
-    static int add_io_watch(PolKitGrant *grant, int fd);
-    static void remove_grant_io_watch(PolKitGrant *grant, int fd);
-
-    static int add_child_watch(PolKitGrant* grant, pid_t pid);
-    static void remove_child_watch(PolKitGrant* grant, int id);
-
-    static void remove_watch(PolKitGrant* grant, int id);
-
-    static void conversation_type(PolKitGrant *grant, PolKitResult type, void *user_data);
-    static char* conversation_select_admin_user(PolKitGrant *grant, char **users, void *user_data);
-
-    static char* conversation_pam_prompt(PolKitGrant *grant, const char *request, void *user_data, bool echoOn);
-    static char* conversation_pam_prompt_echo_off(PolKitGrant *grant, const char *request, void *user_data);
-    static char* conversation_pam_prompt_echo_on(PolKitGrant *grant, const char *request, void *user_data);
-
-    static void conversation_pam_error_msg(PolKitGrant *grant, const char *msg, void *user_data);
-    static void conversation_pam_text_info(PolKitGrant *grant, const char *msg, void *user_data);
-
-    static PolKitResult conversation_override_grant_type(PolKitGrant *grant, PolKitResult type, void *user_data);
-    static void conversation_done(PolKitGrant *grant, polkit_bool_t obtainedPrivilege, polkit_bool_t invalidData, void *user_data);
+    PolicyKitListener *m_listener;
 };
 
 #endif
