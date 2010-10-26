@@ -41,13 +41,23 @@ AuthDialog::AuthDialog(const QString &actionId,
                        const QString &message,
                        const QString &iconName,
                        const PolkitQt1::Details &details,
-                       const PolkitQt1::Identity::List &identities)
-        : KDialog(0, Qt::Dialog)
+                       const PolkitQt1::Identity::List &identities,
+                       WId parent)
+        : KDialog(0)
 {
+    // KAuth is able to circumvent polkit's limitations, and manages to send the wId to the auth agent.
+    // If we received it, we use KWindowSystem to associate this dialog correctly.
+    if (parent > 0) {
+        kDebug() << "Associating the dialog with " << parent << " this dialog is " << winId();
+
+        // Set the parent
+        KWindowSystem::setMainWindow(this, parent);
+
+        // Set modal
+        KWindowSystem::setState(winId(), NET::Modal);
+    }
+
     setupUi(mainWidget());
-    // TODO: Need to parent this dialog to the window that made the Polkit
-    // request for setting this dialog as modal to do anything.
-    setModal(true);
     setButtons(Ok | Cancel | Details);
 
     if (message.isEmpty()) {

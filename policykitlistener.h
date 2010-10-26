@@ -24,6 +24,7 @@
 #include <PolkitQt1/Agent/Listener>
 
 #include <QtCore/QWeakPointer>
+#include <QtCore/QHash>
 
 class AuthDialog;
 
@@ -54,6 +55,8 @@ public slots:
     void request(const QString &request, bool echo);
     void completed(bool gainedAuthorization);
     void showError(const QString &text);
+
+    void handshakeForAction(const QString &action, qulonglong wID);
     /*    void showInfo(const QString &text);    */
 private:
     QWeakPointer<AuthDialog> m_dialog;
@@ -66,6 +69,7 @@ private:
     PolkitQt1::Agent::AsyncResult* m_result;
     QString m_cookie;
     PolkitQt1::Identity m_selectedUser;
+    QHash< QString, qulonglong > m_actionsToWID;
 
 private slots:
     void dialogAccepted();
