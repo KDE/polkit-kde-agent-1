@@ -56,7 +56,7 @@ public slots:
     void completed(bool gainedAuthorization);
     void showError(const QString &text);
 
-    void handshakeForAction(const QString &action, qulonglong wID);
+    void setWIdForAction(const QString &action, qulonglong wID);
     /*    void showInfo(const QString &text);    */
 private:
     QWeakPointer<AuthDialog> m_dialog;

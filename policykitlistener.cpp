@@ -53,7 +53,7 @@ PolicyKitListener::~PolicyKitListener()
 {
 }
 
-void PolicyKitListener::handshakeForAction(const QString& action, qulonglong wID)
+void PolicyKitListener::setWIdForAction(const QString& action, qulonglong wID)
 {
     kDebug() << "On to the handshake";
     m_actionsToWID[action] = wID;
