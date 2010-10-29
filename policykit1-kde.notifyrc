@@ -1,25 +1,41 @@
 [Global]
 IconName=dialog-password
 Comment=PolicyKit authentication dialog
+Comment[de]=PolicyKit-Berechtigungsdialog
+Comment[nds]=Regelsett-Identiteetprööv-Dialoog
 Comment[pt]=Janela de autenticação do PolicyKit
+Comment[pt_BR]=Diálogo de autenticação do PolicyKit
 Comment[sv]=Policykit behörighetsdialogruta
 Comment[uk]=Діалогове вікно розпізнавання PolicyKit
 Comment[x-test]=xxPolicyKit authentication dialogxx
+Comment[zh_TW]=PolicyKit 認證對話框
 Name=policykit1-kde
+Name[de]=policykit1-kde
+Name[nds]=Regelsett1-KDE
 Name[pt]=policykit1-kde
+Name[pt_BR]=policykit1-kde
 Name[sv]=policykit1-kde
 Name[uk]=policykit1-kde
 Name[x-test]=xxpolicykit1-kdexx
+Name[zh_TW]=policykit1-kde
 
 [Event/authenticate]
 Name=authenticate
+Name[de]=Berechtigen
+Name[nds]=Identiteet pröven
 Name[pt]=autenticar
+Name[pt_BR]=autenticar
 Name[sv]=behörighetskontrollera
 Name[uk]=розпізнавання
 Name[x-test]=xxauthenticatexx
+Name[zh_TW]=認證
 Comment=You are required to authenticate
+Comment[de]=Sie benötigen eine Berechtigung
+Comment[nds]=Identiteetprööv deit noot
 Comment[pt]=É necessária a sua autenticação
+Comment[pt_BR]=É necessária a sua autenticação
 Comment[sv]=Det krävs att din behörighet kontrolleras
 Comment[uk]=Вам слід пройти розпізнавання
 Comment[x-test]=xxYou are required to authenticatexx
+Comment[zh_TW]=您需要認證
 Action=Popup
