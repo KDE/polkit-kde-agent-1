@@ -42,7 +42,8 @@ public:
                const QString &message,
                const QString &iconName,
                const PolkitQt1::Details &details,
-               const PolkitQt1::Identity::List &identities);
+               const PolkitQt1::Identity::List &identities,
+               WId parent);
     ~AuthDialog();
 
     void setRequest(const QString &request, bool requiresAdmin);

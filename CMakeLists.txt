@@ -19,6 +19,8 @@ set(policykit_SRCS
     AuthDialog.cpp
 )
 
+qt4_add_dbus_adaptor(policykit_SRCS org.kde.Polkit1AuthAgent.xml policykitlistener.h PolicyKitListener)
+
 kde4_add_ui_files(policykit_SRCS AuthDialog.ui authdetails.ui)
 
 kde4_add_executable(polkit-kde-authentication-agent-1 ${policykit_SRCS})

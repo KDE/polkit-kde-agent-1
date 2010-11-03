@@ -22,23 +22,41 @@
 #include "AuthDialog.h"
 
 #include <KDebug>
-#include <KWindowSystem>
 
 #include <PolkitQt1/Agent/Listener>
 #include <PolkitQt1/Agent/Session>
 #include <PolkitQt1/Subject>
 #include <PolkitQt1/Identity>
 #include <PolkitQt1/Details>
+#include <QtDBus/QDBusConnection>
+
+#include "polkit1authagentadaptor.h"
 
 PolicyKitListener::PolicyKitListener(QObject *parent)
         : Listener(parent)
         , m_inProgress(false)
         , m_selectedUser(0)
 {
+    (void) new Polkit1AuthAgentAdaptor(this);
+
+    if (!QDBusConnection::sessionBus().registerObject("/org/kde/Polkit1AuthAgent", this,
+                                                     QDBusConnection::ExportScriptableSlots |
+                                                     QDBusConnection::ExportScriptableProperties |
+                                                     QDBusConnection::ExportAdaptors)) {
+        kWarning() << "Could not initiate DBus helper!";
+    }
+
+    kDebug() << "Listener online";
 }
 
 PolicyKitListener::~PolicyKitListener()
 {
+}
+
+void PolicyKitListener::setWIdForAction(const QString& action, qulonglong wID)
+{
+    kDebug() << "On to the handshake";
+    m_actionsToWID[action] = wID;
 }
 
 void PolicyKitListener::initiateAuthentication(const QString &actionId,
@@ -68,14 +86,21 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
 
     m_inProgress = true;
 
-    m_dialog = new AuthDialog(actionId, message, iconName, details, identities);
+    WId parentId = 0;
+
+    if (m_actionsToWID.contains(actionId)) {
+        parentId = m_actionsToWID[actionId];
+    }
+
+    m_dialog = new AuthDialog(actionId, message, iconName, details, identities, parentId);
     connect(m_dialog.data(), SIGNAL(okClicked()), SLOT(dialogAccepted()));
     connect(m_dialog.data(), SIGNAL(cancelClicked()), SLOT(dialogCanceled()));
     connect(m_dialog.data(), SIGNAL(adminUserSelected(PolkitQt1::Identity)), SLOT(userSelected(PolkitQt1::Identity)));
 
+    kDebug() << "WinId of the dialog is " << m_dialog.data()->winId() << m_dialog.data()->effectiveWinId();
     m_dialog.data()->setOptions();
     m_dialog.data()->show();
-    KWindowSystem::forceActiveWindow(m_dialog.data()->winId());
+    kDebug() << "WinId of the shown dialog is " << m_dialog.data()->winId() << m_dialog.data()->effectiveWinId();
 
     m_numTries = 0;
     tryAgain();
