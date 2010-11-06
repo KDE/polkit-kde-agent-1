@@ -27,7 +27,7 @@
         </sizepolicy>
        </property>
        <property name="text" >
-        <string>Lock Icon here</string>
+        <string notr="true">Lock Icon here</string>
        </property>
        <property name="wordWrap" >
         <bool>false</bool>
@@ -63,7 +63,7 @@
         </sizepolicy>
        </property>
        <property name="text" >
-        <string>&lt;b>Header is here!&lt;/b></string>
+        <string notr="true">&lt;b>Header is here!&lt;/b></string>
        </property>
        <property name="wordWrap" >
         <bool>true</bool>
@@ -82,7 +82,7 @@
         </sizepolicy>
        </property>
        <property name="text" >
-        <string>&lt;i>Content&lt;/i></string>
+        <string notr="true">&lt;i>Content&lt;/i></string>
        </property>
        <property name="wordWrap" >
         <bool>true</bool>
