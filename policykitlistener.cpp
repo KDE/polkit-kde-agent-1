@@ -177,6 +177,7 @@ void PolicyKitListener::cancelAuthentication()
 
 void PolicyKitListener::request(const QString &request, bool echo)
 {
+    Q_UNUSED(echo);
     kDebug() << "Request: " << request;
 
     if (!m_dialog.isNull()) {
