@@ -26,7 +26,7 @@
 
 int main(int argc, char *argv[])
 {
-    KAboutData aboutData("Polkit1AuthAgent", "polkit-kde-authentication-agent-1", ki18n("PolicyKit1-KDE"), "0.97.1",
+    KAboutData aboutData("Polkit1AuthAgent", "polkit-kde-authentication-agent-1", ki18n("PolicyKit1-KDE"), "0.99.0",
                          ki18n("PolicyKit1-KDE"), KAboutData::License_GPL,
                          ki18n("(c) 2009 Red Hat, Inc."));
     aboutData.addAuthor(ki18n("Jaroslav Reznik"), ki18n("Maintainer"), "jreznik@redhat.com");
