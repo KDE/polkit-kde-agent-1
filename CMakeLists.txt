@@ -34,6 +34,6 @@ configure_file(polkit-kde-authentication-agent-1.desktop.in ${CMAKE_BINARY_DIR}/
 
 install(TARGETS polkit-kde-authentication-agent-1 DESTINATION ${LIBEXEC_INSTALL_DIR})
 
-install(FILES ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop DESTINATION ${KDE4_AUTOSTART_INSTALL_DIR})
+install(FILES ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop DESTINATION ${AUTOSTART_INSTALL_DIR})
 
 install(FILES policykit1-kde.notifyrc DESTINATION ${DATA_INSTALL_DIR}/policykit1-kde)
