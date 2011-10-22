@@ -21,6 +21,7 @@
 #include <KCmdLineArgs>
 #include <KAboutData>
 #include <KLocale>
+#include <KCrash>
 
 #include "policykitkde.h"
 
@@ -31,6 +32,8 @@ int main(int argc, char *argv[])
                          ki18n("(c) 2009 Red Hat, Inc."));
     aboutData.addAuthor(ki18n("Jaroslav Reznik"), ki18n("Maintainer"), "jreznik@redhat.com");
     aboutData.setProductName("policykit-kde/polkit-kde-authentication-agent-1");
+
+    KCrash::setFlags(KCrash::AutoRestart);
 
     KCmdLineArgs::init(argc, argv, &aboutData);
 
