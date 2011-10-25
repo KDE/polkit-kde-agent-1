@@ -33,9 +33,9 @@ int main(int argc, char *argv[])
     aboutData.addAuthor(ki18n("Jaroslav Reznik"), ki18n("Maintainer"), "jreznik@redhat.com");
     aboutData.setProductName("policykit-kde/polkit-kde-authentication-agent-1");
 
-    KCrash::setFlags(KCrash::AutoRestart);
-
     KCmdLineArgs::init(argc, argv, &aboutData);
+
+    KCrash::setFlags(KCrash::AutoRestart);
 
     if (!PolicyKitKDE::start()) {
         qWarning("PolicyKitKDE is already running!\n");
