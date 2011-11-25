@@ -35,12 +35,12 @@ int main(int argc, char *argv[])
 
     KCmdLineArgs::init(argc, argv, &aboutData);
 
-    KCrash::setFlags(KCrash::AutoRestart);
-
     if (!PolicyKitKDE::start()) {
         qWarning("PolicyKitKDE is already running!\n");
         return 0;
     }
+
+    KCrash::setFlags(KCrash::AutoRestart);
 
     PolicyKitKDE agent;
     agent.disableSessionManagement();
