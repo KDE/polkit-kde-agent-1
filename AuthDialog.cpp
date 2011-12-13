@@ -195,10 +195,13 @@ void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
         qobject_cast<QStandardItemModel *>(userCB->model())->item(userCB->count()-1)->setEnabled(false);
 
         // For each user
+        int index = 1; // Start at 1 because of the "Select User" entry
+        int currentUserIndex = -1;
+        const KUser currentUser;
         foreach(const PolkitQt1::Identity &identity, identities) {
             // First check to see if the user is valid
             kDebug() << "User: " << identity.toString();
-            KUser user(identity.toString().remove("unix-user:"));
+            const KUser user(identity.toString().remove("unix-user:"));
             if (!user.isValid()) {
                 kWarning() << "User invalid: " << user.loginName();
                 continue;
@@ -221,9 +224,17 @@ void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
             }
             // appends the user item
             userCB->addItem(icon, display, qVariantFromValue<QString> (identity.toString()));
+
+            if (user == currentUser) {
+                currentUserIndex = index;
+            }
+            ++index;
         }
 
         // Show the widget and set focus
+        if (currentUserIndex != -1) {
+            userCB->setCurrentIndex(currentUserIndex);
+        }
         userCB->show();
         userCB->setFocus();
     }
