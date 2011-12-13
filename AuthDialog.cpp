@@ -207,7 +207,7 @@ void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
             // Display user Full Name IF available
             QString display;
             if (!user.property(KUser::FullName).toString().isEmpty()) {
-                display = user.property(KUser::FullName).toString() + " (" + user.loginName() + ')';
+                display = i18nc("%1 is the full user name, %2 is the user login name", "%1 (%2)", user.property(KUser::FullName).toString(), user.loginName());
             } else {
                 display = user.loginName();
             }
