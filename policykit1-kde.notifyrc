@@ -1,6 +1,7 @@
 [Global]
 IconName=dialog-password
 Comment=PolicyKit authentication dialog
+Comment[ar]=مربع حوار الاستيثاق PolicyKit
 Comment[bs]=PolicyKit dijalog provjere identiteta
 Comment[ca]=Diàleg d'autenticació del PolicyKit
 Comment[ca@valencia]=Diàleg d'autenticació del PolicyKit
@@ -39,6 +40,7 @@ Comment[uk]=Діалогове вікно розпізнавання PolicyKit
 Comment[x-test]=xxPolicyKit authentication dialogxx
 Comment[zh_TW]=PolicyKit 認證對話框
 Name=policykit1-kde
+Name[ar]=policykit1-kde
 Name[bs]=policykit1-kde
 Name[ca]=policykit1-kde
 Name[ca@valencia]=policykit1-kde
@@ -79,6 +81,7 @@ Name[zh_TW]=policykit1-kde
 
 [Event/authenticate]
 Name=authenticate
+Name[ar]=الاستيثاق
 Name[bs]=autentifikacija
 Name[ca]=autentica
 Name[ca@valencia]=autentica
@@ -116,6 +119,7 @@ Name[uk]=розпізнавання
 Name[x-test]=xxauthenticatexx
 Name[zh_TW]=認證
 Comment=You are required to authenticate
+Comment[ar]=أنت مطالب بالاستيثاق
 Comment[bs]=Trebate se autentificirati
 Comment[ca]=Se us demana que us autentiqueu
 Comment[ca@valencia]=Se vos demana que vos autentiqueu
