@@ -117,7 +117,7 @@ void PolicyKitListener::tryAgain()
     // We will create new session only when some user is selected
     if (m_selectedUser.isValid()) {
         m_session = new Session(m_selectedUser, m_cookie, m_result);
-        connect(m_session.data(), SIGNAL(request(QString, bool)), this, SLOT(request(QString, bool)));
+        connect(m_session.data(), SIGNAL(request(QString,bool)), this, SLOT(request(QString,bool)));
         connect(m_session.data(), SIGNAL(completed(bool)), this, SLOT(completed(bool)));
         connect(m_session.data(), SIGNAL(showError(QString)), this, SLOT(showError(QString)));
 

@@ -302,7 +302,7 @@ void AuthDialog::showEvent(QShowEvent *event)
         notification->setPixmap(icon);
         notification->setActions(QStringList() << i18n("Switch to dialog") << i18n("Cancel"));
 
-        connect(notification, SIGNAL(activated(unsigned int)), this, SLOT(notificationActivated(unsigned int)));
+        connect(notification, SIGNAL(activated(uint)), this, SLOT(notificationActivated(uint)));
         notification->sendEvent();
     }
 
@@ -361,8 +361,8 @@ AuthDetails::AuthDetails(const PolkitQt1::Details &details,
         vendorUL->hide();
     }
 
-    connect(vendorUL, SIGNAL(leftClickedUrl(const QString&)), SLOT(openUrl(const QString&)));
-    connect(action_label, SIGNAL(leftClickedUrl(const QString&)), SLOT(openAction(const QString&)));
+    connect(vendorUL, SIGNAL(leftClickedUrl(QString)), SLOT(openUrl(QString)));
+    connect(action_label, SIGNAL(leftClickedUrl(QString)), SLOT(openAction(QString)));
 }
 
 void AuthDetails::openUrl(const QString& url)
