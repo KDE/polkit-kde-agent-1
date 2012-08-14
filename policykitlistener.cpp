@@ -81,9 +81,6 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
     m_cookie = cookie;
     m_result = result;
     m_session.clear();
-    if (identities.length() == 1) {
-        m_selectedUser = identities[0];
-    }
 
     m_inProgress = true;
 
@@ -103,6 +100,12 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
     m_dialog.data()->show();
     KWindowSystem::forceActiveWindow(m_dialog.data()->winId());
     kDebug() << "WinId of the shown dialog is " << m_dialog.data()->winId() << m_dialog.data()->effectiveWinId();
+
+    if (identities.length() == 1) {
+        m_selectedUser = identities[0];
+    } else {
+        m_selectedUser = m_dialog.data()->adminUserSelected();
+    }
 
     m_numTries = 0;
     tryAgain();

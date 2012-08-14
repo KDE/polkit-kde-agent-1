@@ -236,7 +236,6 @@ void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
             userCB->setCurrentIndex(currentUserIndex);
         }
         userCB->show();
-        userCB->setFocus();
     }
 }
 
