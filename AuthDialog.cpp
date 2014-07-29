@@ -23,19 +23,24 @@
 
 #include "AuthDialog.h"
 
-#include <QtCore/QProcess>
-#include <QtGui/QPainter>
-#include <QtGui/QStandardItemModel>
-#include <KDebug>
+#include <QProcess>
+#include <QPainter>
+#include <QStandardItemModel>
+#include <QDebug>
+#include <QDesktopServices>
+#include <QDialogButtonBox>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QUrl>
 
-#include <KToolInvocation>
+#include <KWindowSystem>
+#include <KNotification>
+#include <KConfigGroup>
+#include <KIconLoader>
 #include <KUser>
 
 #include <PolkitQt1/Authority>
 #include <PolkitQt1/Details>
-
-#include <KWindowSystem>
-#include <KNotification>
 
 AuthDialog::AuthDialog(const QString &actionId,
                        const QString &message,
@@ -43,38 +48,53 @@ AuthDialog::AuthDialog(const QString &actionId,
                        const PolkitQt1::Details &details,
                        const PolkitQt1::Identity::List &identities,
                        WId parent)
-        : KDialog(0)
+    : QDialog(0)
 {
     // KAuth is able to circumvent polkit's limitations, and manages to send the wId to the auth agent.
     // If we received it, we use KWindowSystem to associate this dialog correctly.
     if (parent > 0) {
-        kDebug() << "Associating the dialog with " << parent << " this dialog is " << winId();
+        qDebug() << "Associating the dialog with " << parent << " this dialog is " << winId();
 
         // Set the parent
         KWindowSystem::setMainWindow(this, parent);
 
         // Set modal
         KWindowSystem::setState(winId(), NET::Modal);
+
+        // raise on top
+        activateWindow();
+        raise();
     }
 
-    setupUi(mainWidget());
-    setButtons(Ok | Cancel | Details);
+    QWidget *mainWidget = new QWidget(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+    mainLayout->addWidget(mainWidget);
+    setupUi(mainWidget);
+    m_buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel, Qt::Horizontal, this);
+    QPushButton *okButton = m_buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    connect(m_buttonBox->button(QDialogButtonBox::Ok), SIGNAL(clicked()), this, SLOT(accept()));
+    connect(m_buttonBox->button(QDialogButtonBox::Ok), SIGNAL(clicked()), this, SIGNAL(okClicked()));
+    connect(m_buttonBox->button(QDialogButtonBox::Cancel), SIGNAL(clicked()), this, SIGNAL(cancelClicked()));
+    mainLayout->addWidget(m_buttonBox);
 
     if (message.isEmpty()) {
-        kWarning() << "Could not get action message for action.";
+        qWarning() << "Could not get action message for action.";
         lblHeader->hide();
     } else {
-        kDebug() << "Message of action: " << message;
+        qDebug() << "Message of action: " << message;
         lblHeader->setText("<h3>" + message + "</h3>");
-        setCaption(message);
+        setWindowTitle(message);
         m_message = message;
     }
 
     // loads the standard key icon
     QPixmap icon = KIconLoader::global()->loadIcon("dialog-password",
-                                                    KIconLoader::NoGroup,
-                                                    KIconLoader::SizeHuge,
-                                                    KIconLoader::DefaultState);
+                                                   KIconLoader::NoGroup,
+                                                   KIconLoader::SizeHuge,
+                                                   KIconLoader::DefaultState);
     // create a painter to paint the action icon over the key icon
     QPainter painter(&icon);
     const int iconSize = icon.size().width();
@@ -105,13 +125,15 @@ AuthDialog::AuthDialog(const QString &actionId,
     foreach(const PolkitQt1::ActionDescription &desc, PolkitQt1::Authority::instance()->enumerateActionsSync()) {
         if (actionId == desc.actionId()) {
             m_actionDescription = desc;
-            kDebug() << "Action description has been found" ;
+            qDebug() << "Action description has been found" ;
             break;
         }
     }
 
+#if 0 // FIXME
     AuthDetails *detailsDialog = new AuthDetails(details, m_actionDescription, m_appname, this);
     setDetailsWidget(detailsDialog);
+#endif
 
     userCB->hide();
     lePassword->setFocus();
@@ -125,7 +147,7 @@ AuthDialog::AuthDialog(const QString &actionId,
 
         createUserCB(identities);
     } else {
-        userCB->addItem("", QVariant(identities[0].toString()));
+        userCB->addItem("", identities[0].toString());
         userCB->setCurrentIndex(0);
     }
 }
@@ -143,7 +165,7 @@ void AuthDialog::accept()
 
 void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
 {
-    kDebug() << request;
+    qDebug() << request;
     PolkitQt1::Identity identity = adminUserSelected();
     if (request.startsWith(QLatin1String("password:"), Qt::CaseInsensitive)) {
         if (requiresAdmin) {
@@ -191,7 +213,7 @@ void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
         userCB->clear();
 
         // Adds a Dummy user
-        userCB->addItem(i18n("Select User"), qVariantFromValue<QString> (QString()));
+        userCB->addItem(i18n("Select User"), QString());
         qobject_cast<QStandardItemModel *>(userCB->model())->item(userCB->count()-1)->setEnabled(false);
 
         // For each user
@@ -200,10 +222,10 @@ void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
         const KUser currentUser;
         foreach(const PolkitQt1::Identity &identity, identities) {
             // First check to see if the user is valid
-            kDebug() << "User: " << identity.toString();
+            qDebug() << "User: " << identity.toString();
             const KUser user(identity.toString().remove("unix-user:"));
             if (!user.isValid()) {
-                kWarning() << "User invalid: " << user.loginName();
+                qWarning() << "User invalid: " << user.loginName();
                 continue;
             }
 
@@ -215,15 +237,15 @@ void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
                 display = user.loginName();
             }
 
-            KIcon icon;
+            QIcon icon;
             // load user icon face
             if (!user.faceIconPath().isEmpty()) {
-                icon = KIcon(user.faceIconPath());
+                icon = QIcon(user.faceIconPath());
             } else {
-                icon = KIcon("user-identity");
+                icon = QIcon::fromTheme("user-identity");
             }
             // appends the user item
-            userCB->addItem(icon, display, qVariantFromValue<QString> (identity.toString()));
+            userCB->addItem(icon, display, identity.toString());
 
             if (user == currentUser) {
                 currentUserIndex = index;
@@ -244,7 +266,7 @@ PolkitQt1::Identity AuthDialog::adminUserSelected() const
     if (userCB->currentIndex() == -1)
         return PolkitQt1::Identity();
 
-    QString id = userCB->itemData(userCB->currentIndex()).toString();
+    const QString id = userCB->currentData().toString();
     if (id.isEmpty())
         return PolkitQt1::Identity();
     return PolkitQt1::Identity::fromString(id);
@@ -257,11 +279,11 @@ void AuthDialog::on_userCB_currentIndexChanged(int /*index*/)
     if (!identity.isValid()) {
         lePassword->setEnabled(false);
         lblPassword->setEnabled(false);
-        enableButtonOk(false);
+        m_buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     } else {
         lePassword->setEnabled(true);
         lblPassword->setEnabled(true);
-        enableButtonOk(true);
+        m_buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
         // We need this to restart the auth with the new user
         emit adminUserSelected(identity);
         // git password label focus
@@ -287,18 +309,14 @@ void AuthDialog::authenticationFailure()
 
 void AuthDialog::showEvent(QShowEvent *event)
 {
-    KDialog::showEvent(event);
+    QDialog::showEvent(event);
     if (winId() != KWindowSystem::activeWindow())
     {
         KNotification *notification = new KNotification("authenticate", this,
                                                         KNotification::Persistent | KNotification::CloseWhenWidgetActivated);
-        kDebug() << "Notificate: " << notification->eventId();
+        qDebug() << "Notificate: " << notification->eventId();
         notification->setText(m_message);
-        QPixmap icon = KIconLoader::global()->loadIcon("dialog-password",
-                                                        KIconLoader::NoGroup,
-                                                        KIconLoader::SizeHuge,
-                                                        KIconLoader::DefaultState);
-        notification->setPixmap(icon);
+        notification->setPixmap(QIcon::fromTheme("dialog-password").pixmap(KIconLoader::SizeMedium));
         notification->setActions(QStringList() << i18n("Switch to dialog") << i18n("Cancel"));
 
         connect(notification, SIGNAL(activated(uint)), this, SLOT(notificationActivated(uint)));
@@ -309,9 +327,8 @@ void AuthDialog::showEvent(QShowEvent *event)
 
 void AuthDialog::notificationActivated(unsigned int action)
 {
-    kDebug() << "notificationActivated: " << action;
-    if (action == 1)
-    {
+    qDebug() << "notificationActivated: " << action;
+    if (action == 1) {
         KWindowSystem::forceActiveWindow(winId());
     }
 }
@@ -320,7 +337,7 @@ AuthDetails::AuthDetails(const PolkitQt1::Details &details,
                          const PolkitQt1::ActionDescription &actionDescription,
                          const QString &appname,
                          QWidget *parent)
-        : QWidget(parent)
+    : QWidget(parent)
 {
     setupUi(this);
 
@@ -366,12 +383,11 @@ AuthDetails::AuthDetails(const PolkitQt1::Details &details,
 
 void AuthDetails::openUrl(const QString& url)
 {
-    KToolInvocation::invokeBrowser(url);
+    QDesktopServices::openUrl(QUrl(url));
 }
 
 void AuthDetails::openAction(const QString &url)
 {
+    // FIXME what's this? :)
     QProcess::startDetached("polkit-kde-authorization", QStringList() << url);
 }
-
-#include "AuthDialog.moc"

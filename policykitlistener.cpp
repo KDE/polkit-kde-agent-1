@@ -18,10 +18,9 @@
 
 */
 
-#include "policykitlistener.h"
-#include "AuthDialog.h"
+#include <QDBusConnection>
+#include <QDebug>
 
-#include <KDebug>
 #include <KWindowSystem>
 
 #include <PolkitQt1/Agent/Listener>
@@ -29,8 +28,9 @@
 #include <PolkitQt1/Subject>
 #include <PolkitQt1/Identity>
 #include <PolkitQt1/Details>
-#include <QtDBus/QDBusConnection>
 
+#include "policykitlistener.h"
+#include "AuthDialog.h"
 #include "polkit1authagentadaptor.h"
 
 PolicyKitListener::PolicyKitListener(QObject *parent)
@@ -44,10 +44,10 @@ PolicyKitListener::PolicyKitListener(QObject *parent)
                                                      QDBusConnection::ExportScriptableSlots |
                                                      QDBusConnection::ExportScriptableProperties |
                                                      QDBusConnection::ExportAdaptors)) {
-        kWarning() << "Could not initiate DBus helper!";
+        qWarning() << "Could not initiate DBus helper!";
     }
 
-    kDebug() << "Listener online";
+    qDebug() << "Listener online";
 }
 
 PolicyKitListener::~PolicyKitListener()
@@ -56,7 +56,7 @@ PolicyKitListener::~PolicyKitListener()
 
 void PolicyKitListener::setWIdForAction(const QString& action, qulonglong wID)
 {
-    kDebug() << "On to the handshake";
+    qDebug() << "On to the handshake";
     m_actionsToWID[action] = wID;
 }
 
@@ -68,12 +68,12 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
         const PolkitQt1::Identity::List &identities,
         PolkitQt1::Agent::AsyncResult* result)
 {
-    kDebug() << "Initiating authentication";
+    qDebug() << "Initiating authentication";
 
     if (m_inProgress) {
         result->setError(i18n("Another client is already authenticating, please try again later."));
         result->setCompleted();
-        kDebug() << "Another client is already authenticating, please try again later.";
+        qDebug() << "Another client is already authenticating, please try again later.";
         return;
     }
 
@@ -95,11 +95,11 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
     connect(m_dialog.data(), SIGNAL(cancelClicked()), SLOT(dialogCanceled()));
     connect(m_dialog.data(), SIGNAL(adminUserSelected(PolkitQt1::Identity)), SLOT(userSelected(PolkitQt1::Identity)));
 
-    kDebug() << "WinId of the dialog is " << m_dialog.data()->winId() << m_dialog.data()->effectiveWinId();
+    qDebug() << "WinId of the dialog is " << m_dialog.data()->winId() << m_dialog.data()->effectiveWinId();
     m_dialog.data()->setOptions();
     m_dialog.data()->show();
     KWindowSystem::forceActiveWindow(m_dialog.data()->winId());
-    kDebug() << "WinId of the shown dialog is " << m_dialog.data()->winId() << m_dialog.data()->effectiveWinId();
+    qDebug() << "WinId of the shown dialog is " << m_dialog.data()->winId() << m_dialog.data()->effectiveWinId();
 
     if (identities.length() == 1) {
         m_selectedUser = identities[0];
@@ -113,8 +113,7 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
 
 void PolicyKitListener::tryAgain()
 {
-    kDebug() << "Trying again";
-//  test!!!
+    qDebug() << "Trying again";
     m_wasCancelled = false;
 
     // We will create new session only when some user is selected
@@ -131,7 +130,7 @@ void PolicyKitListener::tryAgain()
 
 void PolicyKitListener::finishObtainPrivilege()
 {
-    kDebug() << "Finishing obtaining privileges";
+    qDebug() << "Finishing obtaining privileges";
 
     // Number of tries increase only when some user is selected
     if (m_selectedUser.isValid()) {
@@ -163,18 +162,18 @@ void PolicyKitListener::finishObtainPrivilege()
 
     m_inProgress = false;
 
-    kDebug() << "Finish obtain authorization:" << m_gainedAuthorization;
+    qDebug() << "Finish obtain authorization:" << m_gainedAuthorization;
 }
 
 bool PolicyKitListener::initiateAuthenticationFinish()
 {
-    kDebug() << "Finishing authentication";
+    qDebug() << "Finishing authentication";
     return true;
 }
 
 void PolicyKitListener::cancelAuthentication()
 {
-    kDebug() << "Cancelling authentication";
+    qDebug() << "Cancelling authentication";
 
     m_wasCancelled = true;
     finishObtainPrivilege();
@@ -183,7 +182,7 @@ void PolicyKitListener::cancelAuthentication()
 void PolicyKitListener::request(const QString &request, bool echo)
 {
     Q_UNUSED(echo);
-    kDebug() << "Request: " << request;
+    qDebug() << "Request: " << request;
 
     if (!m_dialog.isNull()) {
         m_dialog.data()->setRequest(request, m_selectedUser.isValid() &&
@@ -193,7 +192,7 @@ void PolicyKitListener::request(const QString &request, bool echo)
 
 void PolicyKitListener::completed(bool gainedAuthorization)
 {
-    kDebug() << "Completed: " << gainedAuthorization;
+    qDebug() << "Completed: " << gainedAuthorization;
 
     m_gainedAuthorization = gainedAuthorization;
 
@@ -202,12 +201,12 @@ void PolicyKitListener::completed(bool gainedAuthorization)
 
 void PolicyKitListener::showError(const QString &text)
 {
-    kDebug() << "Error: " << text;
+    qDebug() << "Error: " << text;
 }
 
 void PolicyKitListener::dialogAccepted()
 {
-    kDebug() << "Dialog accepted";
+    qDebug() << "Dialog accepted";
 
     if (!m_dialog.isNull()) {
         m_session.data()->setResponse(m_dialog.data()->password());
@@ -216,7 +215,7 @@ void PolicyKitListener::dialogAccepted()
 
 void PolicyKitListener::dialogCanceled()
 {
-    kDebug() << "Dialog cancelled";
+    qDebug() << "Dialog cancelled";
 
     m_wasCancelled = true;
     if (!m_session.isNull()) {

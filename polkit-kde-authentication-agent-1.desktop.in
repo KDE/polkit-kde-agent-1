@@ -1,4 +1,3 @@
-
 [Desktop Entry]
 Name=PolicyKit Authentication Agent
 Name[da]=PolicyKit autentificeringsagent
@@ -16,9 +15,12 @@ Comment[pt]=Agente de Autenticação do PolicyKit
 Comment[sv]=Policykit behörighetskontrollverktyg
 Comment[uk]=Агент розпізнавання PolicyKit
 Comment[x-test]=xxPolicyKit Authentication Agentxx
-Exec=${LIBEXEC_INSTALL_DIR}/polkit-kde-authentication-agent-1
+Exec=${CMAKE_INSTALL_PREFIX}/${LIBEXEC_INSTALL_DIR}/polkit-kde-authentication-agent-1
 Terminal=false
 Type=Application
 Categories=
-X-Desktop-File-Install-Version=0.15
 OnlyShowIn=KDE;
+X-KDE-StartupNotify=false
+X-KDE-autostart-phase=0
+NoDisplay=true
+X-DBUS-StartupType=Unique

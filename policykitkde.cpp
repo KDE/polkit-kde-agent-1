@@ -18,24 +18,27 @@
 
 */
 
-#include "policykitkde.h"
+#include <QDebug>
+#include <QDBusMetaType>
 
-#include <KDebug>
 #include <PolkitQt1/Subject>
 
+#include "policykitkde.h"
+
 PolicyKitKDE::PolicyKitKDE()
-        : m_listener(new PolicyKitListener(this))
+    : m_listener(new PolicyKitListener(this))
 {
+    qDBusRegisterMetaType<PolkitQt1::Details>("PolkitQt1::Details");
     setQuitOnLastWindowClosed(false);
 
     PolkitQt1::UnixSessionSubject session(getpid());
 
     bool result = m_listener->registerListener(session, "/org/kde/PolicyKit1/AuthenticationAgent");
 
-    kDebug() << result;
+    qDebug() << result;
 
     if (!result) {
-        kDebug() << "Couldn't register listener!";
+        qDebug() << "Couldn't register listener!";
         exit(1);
     }
 }
