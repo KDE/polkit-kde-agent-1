@@ -45,16 +45,17 @@ include_directories(
                     ${CMAKE_CURRENT_SOURCE_DIR}
                     ${CMAKE_CURRENT_BINARY_DIR})
 
+qt5_add_dbus_adaptor(policykit_SRCS org.kde.Polkit1AuthAgent.xml policykitlistener.h PolicyKitListener)
+
+ki18n_wrap_ui(policykit_SRCS AuthDialog.ui authdetails.ui)
+
 set(policykit_SRCS
+    ${policykit_SRCS}
     policykitkde.cpp
     policykitlistener.cpp
     main.cpp
     AuthDialog.cpp
 )
-
-qt5_add_dbus_adaptor(policykit_SRCS org.kde.Polkit1AuthAgent.xml policykitlistener.h PolicyKitListener)
-
-ki18n_wrap_ui(policykit_SRCS AuthDialog.ui authdetails.ui)
 
 add_executable(polkit-kde-authentication-agent-1 ${policykit_SRCS})
 

@@ -28,7 +28,6 @@
 PolicyKitKDE::PolicyKitKDE()
     : m_listener(new PolicyKitListener(this))
 {
-    qDBusRegisterMetaType<PolkitQt1::Details>("PolkitQt1::Details");
     setQuitOnLastWindowClosed(false);
 
     PolkitQt1::UnixSessionSubject session(getpid());
