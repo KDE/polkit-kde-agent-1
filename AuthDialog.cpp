@@ -66,6 +66,8 @@ AuthDialog::AuthDialog(const QString &actionId,
         raise();
     }
 
+    setWindowTitle(i18n("Authentication Required"));
+
     QWidget *mainWidget = new QWidget(this);
     QVBoxLayout *mainLayout = new QVBoxLayout;
     setLayout(mainLayout);
@@ -86,7 +88,6 @@ AuthDialog::AuthDialog(const QString &actionId,
     } else {
         qDebug() << "Message of action: " << message;
         lblHeader->setText("<h3>" + message + "</h3>");
-        setWindowTitle(message);
         m_message = message;
     }
 
