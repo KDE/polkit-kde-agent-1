@@ -23,7 +23,7 @@
 #ifndef AUTHDIALOG_H
 #define AUTHDIALOG_H
 
-#include <QDialog>
+#include <KDialog>
 #include <QDialogButtonBox>
 
 #include <PolkitQt1/Identity>
@@ -37,7 +37,7 @@ namespace PolkitQt1
 class Details;
 }
 
-class AuthDialog : public QDialog, private Ui::AuthDialog
+class AuthDialog : public KDialog, private Ui::AuthDialog
 {
     Q_OBJECT
 public:
@@ -60,8 +60,6 @@ public:
 
 signals:
     void adminUserSelected(PolkitQt1::Identity);
-    void okClicked();
-    void cancelClicked();
 
 public slots:
     virtual void accept() Q_DECL_OVERRIDE;

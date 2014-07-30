@@ -48,7 +48,7 @@ AuthDialog::AuthDialog(const QString &actionId,
                        const PolkitQt1::Details &details,
                        const PolkitQt1::Identity::List &identities,
                        WId parent)
-    : QDialog(0)
+    : KDialog(0)
 {
     // KAuth is able to circumvent polkit's limitations, and manages to send the wId to the auth agent.
     // If we received it, we use KWindowSystem to associate this dialog correctly.
@@ -66,21 +66,10 @@ AuthDialog::AuthDialog(const QString &actionId,
         raise();
     }
 
-    setWindowTitle(i18n("Authentication Required"));
+    setupUi(mainWidget());
+    setButtons(Ok | Cancel | Details);
 
-    QWidget *mainWidget = new QWidget(this);
-    QVBoxLayout *mainLayout = new QVBoxLayout;
-    setLayout(mainLayout);
-    mainLayout->addWidget(mainWidget);
-    setupUi(mainWidget);
-    m_buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel, Qt::Horizontal, this);
-    QPushButton *okButton = m_buttonBox->button(QDialogButtonBox::Ok);
-    okButton->setDefault(true);
-    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    connect(m_buttonBox->button(QDialogButtonBox::Ok), SIGNAL(clicked()), this, SLOT(accept()));
-    connect(m_buttonBox->button(QDialogButtonBox::Ok), SIGNAL(clicked()), this, SIGNAL(okClicked()));
-    connect(m_buttonBox->button(QDialogButtonBox::Cancel), SIGNAL(clicked()), this, SIGNAL(cancelClicked()));
-    mainLayout->addWidget(m_buttonBox);
+    setWindowTitle(i18n("Authentication Required"));
 
     if (message.isEmpty()) {
         qWarning() << "Could not get action message for action.";
@@ -131,10 +120,8 @@ AuthDialog::AuthDialog(const QString &actionId,
         }
     }
 
-#if 0 // FIXME
     AuthDetails *detailsDialog = new AuthDetails(details, m_actionDescription, m_appname, this);
     setDetailsWidget(detailsDialog);
-#endif
 
     userCB->hide();
     lePassword->setFocus();
