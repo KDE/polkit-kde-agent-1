@@ -316,6 +316,7 @@ void AuthDialog::showEvent(QShowEvent *event)
         KNotification *notification = new KNotification("authenticate", this,
                                                         KNotification::Persistent | KNotification::CloseWhenWidgetActivated);
         qDebug() << "Notificate: " << notification->eventId();
+        notification->setComponentName("policykit1-kde");
         notification->setText(m_message);
         notification->setPixmap(QIcon::fromTheme("dialog-password").pixmap(KIconLoader::SizeMedium));
         notification->setActions(QStringList() << i18n("Switch to dialog") << i18n("Cancel"));
@@ -323,7 +324,6 @@ void AuthDialog::showEvent(QShowEvent *event)
         connect(notification, SIGNAL(activated(uint)), this, SLOT(notificationActivated(uint)));
         notification->sendEvent();
     }
-
 }
 
 void AuthDialog::notificationActivated(unsigned int action)
