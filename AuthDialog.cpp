@@ -68,6 +68,7 @@ AuthDialog::AuthDialog(const QString &actionId,
 
     setupUi(this);
 
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &AuthDialog::okClicked);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 

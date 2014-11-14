@@ -60,6 +60,7 @@ public:
 
 signals:
     void adminUserSelected(PolkitQt1::Identity);
+    void okClicked();
 
 public slots:
     virtual void accept() Q_DECL_OVERRIDE;
