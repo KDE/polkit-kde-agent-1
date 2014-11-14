@@ -20,9 +20,8 @@
 
 #include "config.h"
 
-#include <KCmdLineArgs>
 #include <KAboutData>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KCrash>
 #include <KDBusService>
 
