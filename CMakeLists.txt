@@ -29,6 +29,7 @@ find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets)
 find_package(KF5 REQUIRED COMPONENTS
   I18n
   WindowSystem
+  DBusAddons
   KDELibs4Support
 )
 
@@ -60,6 +61,7 @@ set(policykit_SRCS
 add_executable(polkit-kde-authentication-agent-1 ${policykit_SRCS})
 
 target_link_libraries(polkit-kde-authentication-agent-1
+    KF5::DBusAddons
     KF5::KDELibs4Support
     ${POLKITQT-1_LIBRARIES}
 )
