@@ -30,7 +30,13 @@ find_package(KF5 REQUIRED COMPONENTS
   I18n
   WindowSystem
   DBusAddons
-  KDELibs4Support
+  WidgetsAddons
+  CoreAddons
+  I18n
+  Crash
+  Config
+  IconThemes
+  Notifications
 )
 
 # create config file
@@ -62,7 +68,14 @@ add_executable(polkit-kde-authentication-agent-1 ${policykit_SRCS})
 
 target_link_libraries(polkit-kde-authentication-agent-1
     KF5::DBusAddons
-    KF5::KDELibs4Support
+    KF5::WindowSystem
+    KF5::WidgetsAddons
+    KF5::CoreAddons
+    KF5::I18n
+    KF5::Crash
+    KF5::ConfigCore
+    KF5::IconThemes
+    KF5::Notifications
     ${POLKITQT-1_LIBRARIES}
 )
 
