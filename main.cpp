@@ -21,7 +21,7 @@
 #include "config.h"
 
 #include <KCmdLineArgs>
-#include <K4AboutData>
+#include <KAboutData>
 #include <KLocale>
 #include <KCrash>
 
@@ -29,14 +29,14 @@
 
 int main(int argc, char *argv[])
 {
-    K4AboutData aboutData("polkit-kde-authentication-agent-1", "polkit-kde-authentication-agent-1", ki18n("PolicyKit1-KDE"), POLKIT_KDE_1_VERSION,
-                          ki18n("PolicyKit1-KDE"), K4AboutData::License_GPL,
-                          ki18n("(c) 2009 Red Hat, Inc."));
-    aboutData.addAuthor(ki18n("Lukáš Tinkl"), ki18n("Maintainer"), "ltinkl@redhat.com");
-    aboutData.addAuthor(ki18n("Jaroslav Reznik"), ki18n("Former maintainer"), "jreznik@redhat.com");
+    KAboutData aboutData("polkit-kde-authentication-agent-1", i18n("PolicyKit1-KDE"), POLKIT_KDE_1_VERSION);
+    aboutData.addLicense(KAboutLicense::GPL);
+    aboutData.addCredit(i18n("(c) 2009 Red Hat, Inc."));
+    aboutData.addAuthor(i18n("Lukáš Tinkl"), i18n("Maintainer"), "ltinkl@redhat.com");
+    aboutData.addAuthor(i18n("Jaroslav Reznik"), i18n("Former maintainer"), "jreznik@redhat.com");
     aboutData.setProductName("policykit-kde/polkit-kde-authentication-agent-1");
 
-    KCmdLineArgs::init(argc, argv, &aboutData);
+    KAboutData::setApplicationData(aboutData);
 
     if (!PolicyKitKDE::start()) {
         qWarning("PolicyKitKDE is already running!\n");
