@@ -23,7 +23,7 @@
 #ifndef AUTHDIALOG_H
 #define AUTHDIALOG_H
 
-#include <KDialog>
+#include <QDialog>
 #include <QDialogButtonBox>
 
 #include <PolkitQt1/Identity>
@@ -37,7 +37,7 @@ namespace PolkitQt1
 class Details;
 }
 
-class AuthDialog : public KDialog, private Ui::AuthDialog
+class AuthDialog : public QDialog, private Ui::AuthDialog
 {
     Q_OBJECT
 public:
@@ -71,7 +71,6 @@ private slots:
 private:
     QString m_appname;
     QString m_message;
-    QDialogButtonBox *m_buttonBox;
 
     void createUserCB(const PolkitQt1::Identity::List &identities);
     void showEvent(QShowEvent *);
