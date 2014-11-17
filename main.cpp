@@ -20,10 +20,12 @@
 
 #include "config.h"
 
-#include <KCmdLineArgs>
 #include <KAboutData>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KCrash>
+#include <KDBusService>
+
+#include <QSessionManager>
 
 #include "policykitkde.h"
 
@@ -38,14 +40,20 @@ int main(int argc, char *argv[])
 
     KAboutData::setApplicationData(aboutData);
 
-    if (!PolicyKitKDE::start()) {
-        qWarning("PolicyKitKDE is already running!\n");
-        return 0;
-    }
+    QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
+
 
     KCrash::setFlags(KCrash::AutoRestart);
 
-    PolicyKitKDE agent;
-    agent.disableSessionManagement();
+    PolicyKitKDE agent(argc, argv);
+    KDBusService service(KDBusService::Unique);
+
+    auto disableSessionManagement = [](QSessionManager &sm) {
+        sm.setRestartHint(QSessionManager::RestartNever);
+    };
+
+    QObject::connect(&agent, &QGuiApplication::commitDataRequest, disableSessionManagement);
+    QObject::connect(&agent, &QGuiApplication::saveStateRequest, disableSessionManagement);
+
     agent.exec();
 }

@@ -48,7 +48,7 @@ AuthDialog::AuthDialog(const QString &actionId,
                        const PolkitQt1::Details &details,
                        const PolkitQt1::Identity::List &identities,
                        WId parent)
-    : KDialog(0)
+    : QDialog(0)
 {
     // KAuth is able to circumvent polkit's limitations, and manages to send the wId to the auth agent.
     // If we received it, we use KWindowSystem to associate this dialog correctly.
@@ -66,8 +66,27 @@ AuthDialog::AuthDialog(const QString &actionId,
         raise();
     }
 
-    setupUi(mainWidget());
-    setButtons(Ok | Cancel | Details);
+    setupUi(this);
+
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &AuthDialog::okClicked);
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
+    QString detailsButtonText = i18n("Details");
+    QPushButton* detailsButton = new QPushButton(detailsButtonText + " >>");
+    detailsButton->setIcon(QIcon::fromTheme("help-about"));
+    detailsButton->setCheckable(true);
+    connect(detailsButton, &QAbstractButton::toggled, this, [=](bool toggled) {
+        detailsWidgetContainer->setVisible(toggled);
+        if (toggled) {
+            detailsButton->setText(detailsButtonText + " <<");
+        } else {
+               detailsButton->setText(detailsButtonText + " >>");
+        }
+        adjustSize();
+    });
+    buttonBox->addButton(detailsButton, QDialogButtonBox::HelpRole);
+    detailsWidgetContainer->hide();
 
     setWindowTitle(i18n("Authentication Required"));
 
@@ -121,7 +140,7 @@ AuthDialog::AuthDialog(const QString &actionId,
     }
 
     AuthDetails *detailsDialog = new AuthDetails(details, m_actionDescription, m_appname, this);
-    setDetailsWidget(detailsDialog);
+    detailsWidgetContainer->layout()->addWidget(detailsDialog);
 
     userCB->hide();
     lePassword->setFocus();
@@ -267,11 +286,11 @@ void AuthDialog::on_userCB_currentIndexChanged(int /*index*/)
     if (!identity.isValid()) {
         lePassword->setEnabled(false);
         lblPassword->setEnabled(false);
-        m_buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+        buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     } else {
         lePassword->setEnabled(true);
         lblPassword->setEnabled(true);
-        m_buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+        buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
         // We need this to restart the auth with the new user
         emit adminUserSelected(identity);
         // git password label focus

@@ -92,7 +92,7 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
 
     m_dialog = new AuthDialog(actionId, message, iconName, details, identities, parentId);
     connect(m_dialog.data(), SIGNAL(okClicked()), SLOT(dialogAccepted()));
-    connect(m_dialog.data(), SIGNAL(cancelClicked()), SLOT(dialogCanceled()));
+    connect(m_dialog.data(), SIGNAL(rejected()), SLOT(dialogCanceled()));
     connect(m_dialog.data(), SIGNAL(adminUserSelected(PolkitQt1::Identity)), SLOT(userSelected(PolkitQt1::Identity)));
 
     qDebug() << "WinId of the dialog is " << m_dialog.data()->winId() << m_dialog.data()->effectiveWinId();

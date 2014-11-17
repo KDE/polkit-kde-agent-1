@@ -25,8 +25,9 @@
 
 #include "policykitkde.h"
 
-PolicyKitKDE::PolicyKitKDE()
-    : m_listener(new PolicyKitListener(this))
+PolicyKitKDE::PolicyKitKDE(int &argc,char **argv):
+    QApplication(argc, argv),
+    m_listener(new PolicyKitListener(this))
 {
     setQuitOnLastWindowClosed(false);
 
