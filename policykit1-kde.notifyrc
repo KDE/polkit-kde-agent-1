@@ -1,6 +1,7 @@
 [Global]
 IconName=dialog-password
 Comment=PolicyKit authentication dialog
+Comment[cs]=Ověřovací dialog PolicyKitu
 Comment[de]=PolicyKit-Authentifizierungs-Dialog
 Comment[es]=Diálogo de autenticación de PolicyKit
 Comment[fi]=PolicyKit-tunnistautumisikkuna
@@ -20,6 +21,7 @@ Comment[sv]=Policykit behörighetsdialogruta
 Comment[uk]=Діалогове вікно розпізнавання PolicyKit
 Comment[x-test]=xxPolicyKit authentication dialogxx
 Name=policykit1-kde
+Name[cs]=policykit1-kde
 Name[de]=policykit1-kde
 Name[es]=policykit1-kde
 Name[fi]=policykit1-kde
@@ -41,6 +43,7 @@ Name[x-test]=xxpolicykit1-kdexx
 
 [Event/authenticate]
 Name=authenticate
+Name[cs]=ověřit
 Name[de]=Authentifizieren
 Name[es]=autenticar
 Name[fi]=tunnistaudu
@@ -60,6 +63,7 @@ Name[sv]=kontrollera behörighet
 Name[uk]=розпізнавання
 Name[x-test]=xxauthenticatexx
 Comment=You are required to authenticate
+Comment[cs]=Je vyžadováno ověření totožnosti
 Comment[de]=Sie benötigen eine Authentifizierung
 Comment[es]=Se le ha pedido que se autentique
 Comment[fi]=Tunnistautuminen vaaditaan
