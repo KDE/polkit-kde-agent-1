@@ -18,31 +18,42 @@
 
 */
 
-#include <KCmdLineArgs>
+#include "config.h"
+
 #include <KAboutData>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KCrash>
+#include <KDBusService>
+
+#include <QSessionManager>
 
 #include "policykitkde.h"
 
 int main(int argc, char *argv[])
 {
-    KAboutData aboutData("Polkit1AuthAgent", "polkit-kde-authentication-agent-1", ki18n("PolicyKit1-KDE"), "0.99.0",
-                         ki18n("PolicyKit1-KDE"), KAboutData::License_GPL,
-                         ki18n("(c) 2009 Red Hat, Inc."));
-    aboutData.addAuthor(ki18n("Jaroslav Reznik"), ki18n("Maintainer"), "jreznik@redhat.com");
+    KAboutData aboutData("polkit-kde-authentication-agent-1", i18n("PolicyKit1-KDE"), POLKIT_KDE_1_VERSION);
+    aboutData.addLicense(KAboutLicense::GPL);
+    aboutData.addCredit(i18n("(c) 2009 Red Hat, Inc."));
+    aboutData.addAuthor(i18n("Lukáš Tinkl"), i18n("Maintainer"), "ltinkl@redhat.com");
+    aboutData.addAuthor(i18n("Jaroslav Reznik"), i18n("Former maintainer"), "jreznik@redhat.com");
     aboutData.setProductName("policykit-kde/polkit-kde-authentication-agent-1");
 
-    KCmdLineArgs::init(argc, argv, &aboutData);
+    KAboutData::setApplicationData(aboutData);
 
-    if (!PolicyKitKDE::start()) {
-        qWarning("PolicyKitKDE is already running!\n");
-        return 0;
-    }
+    QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
+
 
     KCrash::setFlags(KCrash::AutoRestart);
 
-    PolicyKitKDE agent;
-    agent.disableSessionManagement();
+    PolicyKitKDE agent(argc, argv);
+    KDBusService service(KDBusService::Unique);
+
+    auto disableSessionManagement = [](QSessionManager &sm) {
+        sm.setRestartHint(QSessionManager::RestartNever);
+    };
+
+    QObject::connect(&agent, &QGuiApplication::commitDataRequest, disableSessionManagement);
+    QObject::connect(&agent, &QGuiApplication::saveStateRequest, disableSessionManagement);
+
     agent.exec();
 }

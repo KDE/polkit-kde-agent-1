@@ -23,18 +23,21 @@
 #ifndef AUTHDIALOG_H
 #define AUTHDIALOG_H
 
-#include "ui_AuthDialog.h"
-#include "ui_authdetails.h"
+#include <QDialog>
+#include <QDialogButtonBox>
 
 #include <PolkitQt1/Identity>
 #include <PolkitQt1/ActionDescription>
+
+#include "ui_AuthDialog.h"
+#include "ui_authdetails.h"
 
 namespace PolkitQt1
 {
 class Details;
 }
 
-class AuthDialog : public KDialog, private Ui::AuthDialog
+class AuthDialog : public QDialog, private Ui::AuthDialog
 {
     Q_OBJECT
 public:
@@ -57,9 +60,10 @@ public:
 
 signals:
     void adminUserSelected(PolkitQt1::Identity);
+    void okClicked();
 
 public slots:
-    virtual void accept();
+    virtual void accept() Q_DECL_OVERRIDE;
 
 private slots:
     void on_userCB_currentIndexChanged(int index);

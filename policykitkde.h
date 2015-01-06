@@ -21,15 +21,15 @@
 #ifndef POLICYKITKDE_H
 #define POLICYKITKDE_H
 
-#include <KUniqueApplication>
+#include <QApplication>
 
 #include "policykitlistener.h"
 
-class PolicyKitKDE : public KUniqueApplication
+class PolicyKitKDE : public QApplication
 {
     Q_OBJECT
 public:
-    PolicyKitKDE();
+    PolicyKitKDE(int &argc, char **argv);
     virtual ~PolicyKitKDE();
 private:
     PolicyKitListener *m_listener;

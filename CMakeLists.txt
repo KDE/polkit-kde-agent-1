@@ -1,33 +1,82 @@
 project(polkit-kde-agent-1)
 
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
+# minimal requirements
+cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)
+set (QT_MIN_VERSION "5.2.0")
 
-find_package(KDE4 REQUIRED)
+# set the polkit-kde-agent-1 version
+set (POLKIT_KDE_1_VERSION_MAJOR 0)
+set (POLKIT_KDE_1_VERSION_MINOR 103)
+set (POLKIT_KDE_1_VERSION_MICRO 0)
+set (POLKIT_KDE_1_VERSION ${POLKIT_KDE_1_VERSION_MAJOR}.${POLKIT_KDE_1_VERSION_MINOR}.${POLKIT_KDE_1_VERSION_MICRO})
 
-set(POLKITQT-1_MIN_VERSION "0.99.0")
-find_package(PolkitQt-1 REQUIRED)
+# we need some parts of the ECM CMake helpers
+find_package (ECM 0.0.9 REQUIRED NO_MODULE)
+set (CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
-include_directories(${KDE4_INCLUDES}
+include(ECMSetupVersion)
+include(CMakePackageConfigHelpers)
+include(FeatureSummary)
+include(WriteBasicConfigVersionFile)
+
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDECompilerSettings)
+
+find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets)
+
+# Load the frameworks we need
+find_package(KF5 REQUIRED COMPONENTS
+  I18n
+  WindowSystem
+  DBusAddons
+  WidgetsAddons
+  CoreAddons
+  I18n
+  Crash
+  Config
+  IconThemes
+  Notifications
+)
+
+# create config file
+configure_file (config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+
+# let our config.h be found first in any case
+include_directories (BEFORE ${CMAKE_CURRENT_BINARY_DIR})
+
+find_package(PolkitQt5-1 REQUIRED 0.103.0)
+
+include_directories(
                     ${POLKITQT-1_INCLUDE_DIR}
                     ${CMAKE_CURRENT_SOURCE_DIR}
                     ${CMAKE_CURRENT_BINARY_DIR})
 
+qt5_add_dbus_adaptor(policykit_SRCS org.kde.Polkit1AuthAgent.xml policykitlistener.h PolicyKitListener)
+
+ki18n_wrap_ui(policykit_SRCS AuthDialog.ui authdetails.ui)
+
 set(policykit_SRCS
+    ${policykit_SRCS}
     policykitkde.cpp
     policykitlistener.cpp
     main.cpp
     AuthDialog.cpp
 )
 
-qt4_add_dbus_adaptor(policykit_SRCS org.kde.Polkit1AuthAgent.xml policykitlistener.h PolicyKitListener)
-
-kde4_add_ui_files(policykit_SRCS AuthDialog.ui authdetails.ui)
-
-kde4_add_executable(polkit-kde-authentication-agent-1 ${policykit_SRCS})
+add_executable(polkit-kde-authentication-agent-1 ${policykit_SRCS})
 
 target_link_libraries(polkit-kde-authentication-agent-1
-                                         ${KDE4_KDEUI_LIBS}
-                                         ${POLKITQT-1_LIBRARIES}
+    KF5::DBusAddons
+    KF5::WindowSystem
+    KF5::WidgetsAddons
+    KF5::CoreAddons
+    KF5::I18n
+    KF5::Crash
+    KF5::ConfigCore
+    KF5::IconThemes
+    KF5::Notifications
+    ${POLKITQT-1_LIBRARIES}
 )
 
 configure_file(polkit-kde-authentication-agent-1.desktop.in ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop)
@@ -36,4 +85,6 @@ install(TARGETS polkit-kde-authentication-agent-1 DESTINATION ${LIBEXEC_INSTALL_
 
 install(FILES ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop DESTINATION ${AUTOSTART_INSTALL_DIR})
 
-install(FILES policykit1-kde.notifyrc DESTINATION ${DATA_INSTALL_DIR}/policykit1-kde)
+install(FILES policykit1-kde.notifyrc DESTINATION ${KNOTIFYRC_INSTALL_DIR})
+
+feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
