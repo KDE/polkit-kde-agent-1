@@ -1,17 +1,12 @@
 project(polkit-kde-agent-1)
+set(PROJECT_VERSION "5.1.95")
 
 # minimal requirements
 cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)
 set (QT_MIN_VERSION "5.2.0")
 
-# set the polkit-kde-agent-1 version
-set (POLKIT_KDE_1_VERSION_MAJOR 0)
-set (POLKIT_KDE_1_VERSION_MINOR 103)
-set (POLKIT_KDE_1_VERSION_MICRO 0)
-set (POLKIT_KDE_1_VERSION ${POLKIT_KDE_1_VERSION_MAJOR}.${POLKIT_KDE_1_VERSION_MINOR}.${POLKIT_KDE_1_VERSION_MICRO})
-
 # we need some parts of the ECM CMake helpers
-find_package (ECM 0.0.9 REQUIRED NO_MODULE)
+find_package (ECM 1.2.0 REQUIRED NO_MODULE)
 set (CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include(ECMSetupVersion)
