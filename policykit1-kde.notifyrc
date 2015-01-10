@@ -1,6 +1,7 @@
 [Global]
 IconName=dialog-password
 Comment=PolicyKit authentication dialog
+Comment[ar]=حواريّ استيثاق Policykit
 Comment[cs]=Ověřovací dialog PolicyKitu
 Comment[de]=PolicyKit-Authentifizierungs-Dialog
 Comment[en_GB]=PolicyKit authentication dialog
@@ -45,6 +46,7 @@ Name[x-test]=xxpolicykit1-kdexx
 
 [Event/authenticate]
 Name=authenticate
+Name[ar]=استيثاق
 Name[cs]=ověřit
 Name[de]=Authentifizieren
 Name[en_GB]=authenticate
@@ -66,6 +68,7 @@ Name[sv]=kontrollera behörighet
 Name[uk]=розпізнавання
 Name[x-test]=xxauthenticatexx
 Comment=You are required to authenticate
+Comment[ar]=الاستيثاق مطلوب
 Comment[cs]=Je vyžadováno ověření totožnosti
 Comment[de]=Sie benötigen eine Authentifizierung
 Comment[en_GB]=You are required to authenticate
