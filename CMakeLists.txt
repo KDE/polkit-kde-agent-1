@@ -27,7 +27,6 @@ find_package(KF5 REQUIRED COMPONENTS
   DBusAddons
   WidgetsAddons
   CoreAddons
-  I18n
   Crash
   Config
   IconThemes
