@@ -2,6 +2,7 @@
 IconName=dialog-password
 Comment=PolicyKit authentication dialog
 Comment[ar]=حواريّ استيثاق Policykit
+Comment[ast]=Diálogu d'autenticación PolicyKit
 Comment[bs]=PolicyKit dijalog provjere identiteta
 Comment[ca]=Diàleg d'autenticació del PolicyKit
 Comment[cs]=Ověřovací dialog PolicyKitu
@@ -97,6 +98,7 @@ Name[zh_CN]=认证
 Name[zh_TW]=認證
 Comment=You are required to authenticate
 Comment[ar]=الاستيثاق مطلوب
+Comment[ast]=Necesites autenticate
 Comment[bs]=Trebate se autentificirati
 Comment[ca]=Se us demana que us autentiqueu
 Comment[cs]=Je vyžadováno ověření totožnosti
