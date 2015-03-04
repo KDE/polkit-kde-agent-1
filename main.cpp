@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     KAboutData::setApplicationData(aboutData);
 
     QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
-
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
     KCrash::setFlags(KCrash::AutoRestart);
 
