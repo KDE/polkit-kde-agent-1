@@ -107,7 +107,7 @@ AuthDialog::AuthDialog(const QString &actionId,
     // create a painter to paint the action icon over the key icon
     QPainter painter(&icon);
     const int iconSize = icon.size().width();
-    // the the emblem icon to size 32
+    // the emblem icon to size 32
     int overlaySize = 32;
     // try to load the action icon
     const QPixmap pixmap = KIconLoader::global()->loadIcon(iconName,
