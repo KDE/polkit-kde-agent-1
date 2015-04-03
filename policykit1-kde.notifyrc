@@ -50,6 +50,7 @@ Comment[zh_CN]=PolicyKit 认证对话框
 Comment[zh_TW]=PolicyKit 認證對話框
 Name=policykit1-kde
 Name[ar]=policykit1-kde
+Name[ast]=policykit1-kde
 Name[bs]=policykit1-kde
 Name[ca]=policykit1-kde
 Name[ca@valencia]=policykit1-kde
