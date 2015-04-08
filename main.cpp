@@ -31,6 +31,7 @@
 
 int main(int argc, char *argv[])
 {
+    KLocalizedString::setApplicationDomain("polkit-kde-authentication-agent-1");
     KAboutData aboutData("polkit-kde-authentication-agent-1", i18n("PolicyKit1 KDE Agent"), POLKIT_KDE_1_VERSION);
     aboutData.addLicense(KAboutLicense::GPL);
     aboutData.addCredit(i18n("(c) 2009 Red Hat, Inc."));
