@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>375</width>
-    <height>266</height>
+    <width>511</width>
+    <height>344</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -98,7 +98,7 @@
       <widget class="QComboBox" name="userCB"/>
      </item>
      <item row="2" column="1" colspan="2">
-      <widget class="KTitleWidget" name="errorMessageKTW" native="true"/>
+      <widget class="KMessageWidget" name="errorMessageWidget"/>
      </item>
      <item row="3" column="1">
       <widget class="QLabel" name="lblPassword">
@@ -138,9 +138,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KTitleWidget</class>
+   <class>KMessageWidget</class>
    <extends>QWidget</extends>
-   <header>ktitlewidget.h</header>
+   <header>kmessagewidget.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

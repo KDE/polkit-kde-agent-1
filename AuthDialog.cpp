@@ -145,7 +145,8 @@ AuthDialog::AuthDialog(const QString &actionId,
     userCB->hide();
     lePassword->setFocus();
 
-    errorMessageKTW->hide();
+    errorMessageWidget->setMessageType(KMessageWidget::Error);
+    errorMessageWidget->hide();
 
     // If there is more than 1 identity we will show the combobox for user selection
     if (identities.size() > 1) {
@@ -305,7 +306,9 @@ QString AuthDialog::password() const
 
 void AuthDialog::authenticationFailure()
 {
-    errorMessageKTW->setText(i18n("Authentication failure, please try again."), KTitleWidget::ErrorMessage);
+    errorMessageWidget->setText(i18n("Authentication failure, please try again."));
+    errorMessageWidget->animatedShow();
+
     QFont bold = font();
     bold.setBold(true);
     lblPassword->setFont(bold);
