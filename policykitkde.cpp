@@ -35,10 +35,10 @@ PolicyKitKDE::PolicyKitKDE(int &argc,char **argv):
 
     bool result = m_listener->registerListener(session, "/org/kde/PolicyKit1/AuthenticationAgent");
 
-    qDebug() << result;
+    qDebug() << "Authentication agent result:" << result;
 
     if (!result) {
-        qDebug() << "Couldn't register listener!";
+        qWarning() << "Couldn't register listener!";
         exit(1);
     }
 }
