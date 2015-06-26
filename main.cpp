@@ -42,6 +42,7 @@ int main(int argc, char *argv[])
     KAboutData::setApplicationData(aboutData);
 
     QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
+    QCoreApplication::setApplicationName("polkit.kde.authentication.agent1");
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
     KCrash::setFlags(KCrash::AutoRestart);
