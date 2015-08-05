@@ -34,7 +34,6 @@
 #include <QUrl>
 
 #include <KWindowSystem>
-#include <KNotification>
 #include <KConfigGroup>
 #include <KIconLoader>
 #include <KUser>
@@ -315,32 +314,6 @@ void AuthDialog::authenticationFailure()
     lePassword->setEnabled(true);
     lePassword->clear();
     lePassword->setFocus();
-}
-
-void AuthDialog::showEvent(QShowEvent *event)
-{
-    QDialog::showEvent(event);
-    if (winId() != KWindowSystem::activeWindow())
-    {
-        KNotification *notification = new KNotification("authenticate", this,
-                                                        KNotification::Persistent | KNotification::CloseWhenWidgetActivated);
-        qDebug() << "Notificate: " << notification->eventId();
-        notification->setComponentName("policykit1-kde");
-        notification->setText(m_message);
-        notification->setPixmap(QIcon::fromTheme("dialog-password").pixmap(KIconLoader::SizeMedium));
-        notification->setActions(QStringList() << i18n("Switch to dialog") << i18n("Cancel"));
-
-        connect(notification, SIGNAL(activated(uint)), this, SLOT(notificationActivated(uint)));
-        notification->sendEvent();
-    }
-}
-
-void AuthDialog::notificationActivated(unsigned int action)
-{
-    qDebug() << "notificationActivated: " << action;
-    if (action == 1) {
-        KWindowSystem::forceActiveWindow(winId());
-    }
 }
 
 AuthDetails::AuthDetails(const PolkitQt1::Details &details,
