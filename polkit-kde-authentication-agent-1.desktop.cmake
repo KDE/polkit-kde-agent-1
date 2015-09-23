@@ -2,6 +2,7 @@
 Name=PolicyKit Authentication Agent
 Name[ca]=Agent d'autenticació del PolicyKit
 Name[es]=Agente de autenticación de PolicyKit
+Name[fi]=PolicyKit-tunnistautumisagentti
 Name[nl]=Authenticatieagent van PolicyKit
 Name[pt]=Agente de Autenticação do PolicyKit
 Name[pt_BR]=Agente de Autenticação do PolicyKit
@@ -10,6 +11,7 @@ Name[x-test]=xxPolicyKit Authentication Agentxx
 Comment=PolicyKit Authentication Agent
 Comment[ca]=Agent d'autenticació del PolicyKit
 Comment[es]=Agente de autenticación de PolicyKit
+Comment[fi]=PolicyKit-tunnistautumisagentti
 Comment[nl]=Authenticatieagent van PolicyKit
 Comment[pt]=Agente de Autenticação do PolicyKit
 Comment[pt_BR]=Agente de Autenticação do PolicyKit
