@@ -28,9 +28,7 @@ find_package(KF5 REQUIRED COMPONENTS
   WidgetsAddons
   CoreAddons
   Crash
-  Config
   IconThemes
-  Notifications
 )
 
 # create config file
@@ -67,9 +65,7 @@ target_link_libraries(polkit-kde-authentication-agent-1
     KF5::CoreAddons
     KF5::I18n
     KF5::Crash
-    KF5::ConfigCore
     KF5::IconThemes
-    KF5::Notifications
     ${POLKITQT-1_LIBRARIES}
 )
 

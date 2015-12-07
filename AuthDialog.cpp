@@ -34,7 +34,6 @@
 #include <QUrl>
 
 #include <KWindowSystem>
-#include <KConfigGroup>
 #include <KIconLoader>
 #include <KUser>
 
