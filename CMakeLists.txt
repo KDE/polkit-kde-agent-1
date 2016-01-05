@@ -31,6 +31,12 @@ find_package(KF5 REQUIRED COMPONENTS
   IconThemes
 )
 
+include(CheckIncludeFile)
+include(CheckSymbolExists)
+check_include_file("sys/prctl.h" HAVE_SYS_PRCTL_H)
+check_symbol_exists(PR_SET_DUMPABLE "sys/prctl.h" HAVE_PR_SET_DUMPABLE)
+add_feature_info("prctl-dumpable" HAVE_PR_SET_DUMPABLE "Required for disallow ptrace on polkit agent")
+
 # create config file
 configure_file (config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 

@@ -29,8 +29,17 @@
 
 #include "policykitkde.h"
 
+#if HAVE_SYS_PRCTL_H
+#include <sys/prctl.h>
+#endif
+
 int main(int argc, char *argv[])
 {
+    // disable ptrace
+#if HAVE_PR_SET_DUMPABLE
+    prctl(PR_SET_DUMPABLE, 0);
+#endif
+
     KLocalizedString::setApplicationDomain("polkit-kde-authentication-agent-1");
     KAboutData aboutData("polkit-kde-authentication-agent-1", i18n("PolicyKit1 KDE Agent"), POLKIT_KDE_1_VERSION);
     aboutData.addLicense(KAboutLicense::GPL);

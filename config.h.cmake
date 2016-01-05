@@ -5,4 +5,7 @@
 
 #define POLKIT_KDE_1_VERSION "${PROJECT_VERSION}"
 
+#cmakedefine01 HAVE_SYS_PRCTL_H
+#cmakedefine01 HAVE_PR_SET_DUMPABLE
+
 #endif
