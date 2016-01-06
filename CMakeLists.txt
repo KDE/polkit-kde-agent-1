@@ -1,5 +1,5 @@
 project(polkit-kde-agent-1)
-set(PROJECT_VERSION "5.5.2")
+set(PROJECT_VERSION "5.5.3")
 
 # minimal requirements
 cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)
