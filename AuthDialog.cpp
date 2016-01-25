@@ -57,7 +57,7 @@ AuthDialog::AuthDialog(const QString &actionId,
         KWindowSystem::setMainWindow(this, parent);
 
         // Set modal
-        KWindowSystem::setState(winId(), NET::Modal);
+        setWindowModality(Qt::ApplicationModal);
 
         // raise on top
         activateWindow();
