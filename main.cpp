@@ -32,12 +32,20 @@
 #if HAVE_SYS_PRCTL_H
 #include <sys/prctl.h>
 #endif
+#if HAVE_SYS_PROCCTL_H
+#include <unistd.h>
+#include <sys/procctl.h>
+#endif
 
 int main(int argc, char *argv[])
 {
     // disable ptrace
 #if HAVE_PR_SET_DUMPABLE
     prctl(PR_SET_DUMPABLE, 0);
+#endif
+#if HAVE_PROC_TRACE_CTL
+    int mode = PROC_TRACE_CTL_DISABLE;
+    procctl(P_PID, getpid(), PROC_TRACE_CTL, &mode);
 #endif
 
     KLocalizedString::setApplicationDomain("polkit-kde-authentication-agent-1");

@@ -35,7 +35,14 @@ include(CheckIncludeFile)
 include(CheckSymbolExists)
 check_include_file("sys/prctl.h" HAVE_SYS_PRCTL_H)
 check_symbol_exists(PR_SET_DUMPABLE "sys/prctl.h" HAVE_PR_SET_DUMPABLE)
-add_feature_info("prctl-dumpable" HAVE_PR_SET_DUMPABLE "Required for disallow ptrace on polkit agent")
+check_include_file("sys/procctl.h" HAVE_SYS_PROCCTL_H)
+check_symbol_exists(PROC_TRACE_CTL "sys/procctl.h" HAVE_PROC_TRACE_CTL)
+if (HAVE_PR_SET_DUMPABLE OR HAVE_PROC_TRACE_CTL)
+  set(CAN_DISABLE_PTRACE TRUE)
+endif ()
+add_feature_info("prctl/procctl tracing control"
+                 CAN_DISABLE_PTRACE
+                 "Required for disallowing ptrace on polkit agent")
 
 # create config file
 configure_file (config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
