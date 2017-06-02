@@ -45,9 +45,9 @@ public slots:
                                 const PolkitQt1::Details &details,
                                 const QString &cookie,
                                 const PolkitQt1::Identity::List &identities,
-                                PolkitQt1::Agent::AsyncResult* result);
-    bool initiateAuthenticationFinish();
-    void cancelAuthentication();
+                                PolkitQt1::Agent::AsyncResult* result) Q_DECL_OVERRIDE;
+    bool initiateAuthenticationFinish() Q_DECL_OVERRIDE;
+    void cancelAuthentication() Q_DECL_OVERRIDE;
 
     void tryAgain();
     void finishObtainPrivilege();
