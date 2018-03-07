@@ -35,7 +35,7 @@ class PolicyKitListener : public Listener
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.kde.Polkit1AuthAgent")
 public:
-    PolicyKitListener(QObject *parent = nullptr);
+    explicit PolicyKitListener(QObject *parent = nullptr);
     ~PolicyKitListener() override;
 
 public slots:
