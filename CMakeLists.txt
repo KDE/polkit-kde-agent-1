@@ -60,7 +60,6 @@ ki18n_wrap_ui(policykit_SRCS AuthDialog.ui authdetails.ui)
 
 set(policykit_SRCS
     ${policykit_SRCS}
-    policykitkde.cpp
     policykitlistener.cpp
     main.cpp
     AuthDialog.cpp

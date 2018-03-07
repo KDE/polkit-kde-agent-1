@@ -18,17 +18,20 @@
 
 */
 
+#include "policykitlistener.h"
 #include "config.h"
-
+// KF
 #include <KAboutData>
 #include <KLocalizedString>
 #include <KCrash>
 #include <KDBusService>
-
+// PolkitQt1
+#include <PolkitQt1/Subject>
+// Qt
+#include <QApplication>
 #include <QSessionManager>
-
-#include "policykitkde.h"
-
+#include <QDebug>
+// std
 #if HAVE_SYS_PRCTL_H
 #include <sys/prctl.h>
 #endif
@@ -36,6 +39,7 @@
 #include <unistd.h>
 #include <sys/procctl.h>
 #endif
+
 
 int main(int argc, char *argv[])
 {
@@ -48,7 +52,15 @@ int main(int argc, char *argv[])
     procctl(P_PID, getpid(), PROC_TRACE_CTL, &mode);
 #endif
 
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+
+    KCrash::setFlags(KCrash::AutoRestart);
+
+    QApplication app(argc, argv);
+    app.setQuitOnLastWindowClosed(false);
+
     KLocalizedString::setApplicationDomain("polkit-kde-authentication-agent-1");
+
     KAboutData aboutData("polkit-kde-authentication-agent-1", i18n("PolicyKit1 KDE Agent"), POLKIT_KDE_1_VERSION);
     aboutData.addLicense(KAboutLicense::GPL);
     aboutData.addCredit(i18n("(c) 2009 Red Hat, Inc."));
@@ -58,20 +70,30 @@ int main(int argc, char *argv[])
 
     KAboutData::setApplicationData(aboutData);
 
-    QCoreApplication::setOrganizationDomain(QStringLiteral("kde.org"));
-    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-
-    KCrash::setFlags(KCrash::AutoRestart);
-
-    PolicyKitKDE agent(argc, argv);
+    // ensure singleton run
     KDBusService service(KDBusService::Unique);
 
+    // disable session management
     auto disableSessionManagement = [](QSessionManager &sm) {
         sm.setRestartHint(QSessionManager::RestartNever);
     };
 
-    QObject::connect(&agent, &QGuiApplication::commitDataRequest, disableSessionManagement);
-    QObject::connect(&agent, &QGuiApplication::saveStateRequest, disableSessionManagement);
+    QObject::connect(&app, &QGuiApplication::commitDataRequest, disableSessionManagement);
+    QObject::connect(&app, &QGuiApplication::saveStateRequest, disableSessionManagement);
 
-    agent.exec();
+    // register agent
+    PolicyKitListener *listener = new PolicyKitListener(&app);
+
+    PolkitQt1::UnixSessionSubject session(getpid());
+
+    const bool result = listener->registerListener(session, "/org/kde/PolicyKit1/AuthenticationAgent");
+
+    qDebug() << "Authentication agent result:" << result;
+
+    if (!result) {
+        qWarning() << "Couldn't register listener!";
+        exit(1);
+    }
+
+    app.exec();
 }
