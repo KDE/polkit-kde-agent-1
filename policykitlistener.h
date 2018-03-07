@@ -36,7 +36,7 @@ class PolicyKitListener : public Listener
     Q_CLASSINFO("D-Bus Interface", "org.kde.Polkit1AuthAgent")
 public:
     PolicyKitListener(QObject *parent = 0);
-    virtual ~PolicyKitListener();
+    ~PolicyKitListener() override;
 
 public slots:
     void initiateAuthentication(const QString &actionId,
@@ -45,9 +45,9 @@ public slots:
                                 const PolkitQt1::Details &details,
                                 const QString &cookie,
                                 const PolkitQt1::Identity::List &identities,
-                                PolkitQt1::Agent::AsyncResult* result) Q_DECL_OVERRIDE;
-    bool initiateAuthenticationFinish() Q_DECL_OVERRIDE;
-    void cancelAuthentication() Q_DECL_OVERRIDE;
+                                PolkitQt1::Agent::AsyncResult* result) override;
+    bool initiateAuthenticationFinish() override;
+    void cancelAuthentication() override;
 
     void tryAgain();
     void finishObtainPrivilege();

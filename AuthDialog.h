@@ -47,7 +47,7 @@ public:
                const PolkitQt1::Details &details,
                const PolkitQt1::Identity::List &identities,
                WId parent);
-    ~AuthDialog();
+    ~AuthDialog() override;
 
     void setRequest(const QString &request, bool requiresAdmin);
     void setOptions();
@@ -63,7 +63,7 @@ signals:
     void okClicked();
 
 public slots:
-    virtual void accept() Q_DECL_OVERRIDE;
+    void accept() override;
 
 private slots:
     void on_userCB_currentIndexChanged(int index);
