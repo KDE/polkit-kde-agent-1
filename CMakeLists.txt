@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.0)
 project(polkit-kde-agent-1)
 set(PROJECT_VERSION "5.12.80")
 
-# minimal requirements
-set (QT_MIN_VERSION "5.4.0")
+set(QT_MIN_VERSION "5.9.0")
+set(KF5_MIN_VERSION "5.42.0")
 
 # we need some parts of the ECM CMake helpers
 find_package (ECM 1.2.0 REQUIRED NO_MODULE)
@@ -22,7 +22,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets)
 
 # Load the frameworks we need
-find_package(KF5 REQUIRED COMPONENTS
+find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
   I18n
   WindowSystem
   DBusAddons
