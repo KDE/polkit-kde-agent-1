@@ -36,7 +36,7 @@
 PolicyKitListener::PolicyKitListener(QObject *parent)
         : Listener(parent)
         , m_inProgress(false)
-        , m_selectedUser(0)
+        , m_selectedUser(nullptr)
 {
     (void) new Polkit1AuthAgentAdaptor(this);
 

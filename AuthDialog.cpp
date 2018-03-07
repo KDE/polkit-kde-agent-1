@@ -46,7 +46,7 @@ AuthDialog::AuthDialog(const QString &actionId,
                        const PolkitQt1::Details &details,
                        const PolkitQt1::Identity::List &identities,
                        WId parent)
-    : QDialog(0)
+    : QDialog(nullptr)
 {
     // KAuth is able to circumvent polkit's limitations, and manages to send the wId to the auth agent.
     // If we received it, we use KWindowSystem to associate this dialog correctly.
@@ -113,7 +113,7 @@ AuthDialog::AuthDialog(const QString &actionId,
                                                            overlaySize,
                                                            KIconLoader::DefaultState,
                                                            QStringList(),
-                                                           0,
+                                                           nullptr,
                                                            true);
     // if we're able to load the action icon paint it over the
     // key icon.
