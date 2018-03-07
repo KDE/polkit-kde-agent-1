@@ -1,8 +1,9 @@
+cmake_minimum_required(VERSION 3.0)
+
 project(polkit-kde-agent-1)
 set(PROJECT_VERSION "5.12.80")
 
 # minimal requirements
-cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)
 set (QT_MIN_VERSION "5.4.0")
 
 # we need some parts of the ECM CMake helpers
