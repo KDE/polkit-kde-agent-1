@@ -7,7 +7,7 @@ set(QT_MIN_VERSION "5.9.0")
 set(KF5_MIN_VERSION "5.42.0")
 
 # we need some parts of the ECM CMake helpers
-find_package (ECM 1.2.0 REQUIRED NO_MODULE)
+find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 set (CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include(ECMSetupVersion)
