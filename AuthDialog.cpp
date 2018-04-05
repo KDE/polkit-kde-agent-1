@@ -339,9 +339,7 @@ AuthDetails::AuthDetails(const PolkitQt1::Details &details,
     }
 
     action_label->setText(actionDescription.description());
-
-    action_label->setTipText(i18n("Click to edit %1", actionDescription.actionId()));
-    action_label->setUrl(actionDescription.actionId());
+    action_id_label->setText(actionDescription.actionId());
 
     QString vendor    = actionDescription.vendorName();
     QString vendorUrl = actionDescription.vendorUrl();
@@ -360,16 +358,9 @@ AuthDetails::AuthDetails(const PolkitQt1::Details &details,
     }
 
     connect(vendorUL, SIGNAL(leftClickedUrl(QString)), SLOT(openUrl(QString)));
-    connect(action_label, SIGNAL(leftClickedUrl(QString)), SLOT(openAction(QString)));
 }
 
 void AuthDetails::openUrl(const QString& url)
 {
     QDesktopServices::openUrl(QUrl(url));
-}
-
-void AuthDetails::openAction(const QString &url)
-{
-    // FIXME what's this? :)
-    QProcess::startDetached("polkit-kde-authorization", QStringList() << url);
 }
