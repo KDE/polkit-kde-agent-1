@@ -74,6 +74,7 @@ Comment[x-test]=xxPolicyKit Authentication Agentxx
 Comment[zh_CN]=PolicyKit 认证代理
 Comment[zh_TW]=PolicyKit 認證代理程式
 Exec=${KDE_INSTALL_FULL_LIBEXECDIR}/polkit-kde-authentication-agent-1
+Icon=dialog-password
 Terminal=false
 Type=Application
 Categories=

@@ -83,6 +83,7 @@ configure_file(polkit-kde-authentication-agent-1.desktop.cmake ${CMAKE_BINARY_DI
 install(TARGETS polkit-kde-authentication-agent-1 DESTINATION ${KDE_INSTALL_LIBEXECDIR})
 
 install(FILES ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop DESTINATION ${KDE_INSTALL_AUTOSTARTDIR})
+install(FILES ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} RENAME org.kde.polkit-kde-authentication-agent-1.desktop)
 
 install(FILES policykit1-kde.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR})
 
