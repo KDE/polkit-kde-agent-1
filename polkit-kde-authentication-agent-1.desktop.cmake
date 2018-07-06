@@ -77,7 +77,6 @@ Exec=${CMAKE_INSTALL_FULL_LIBEXECDIR}/polkit-kde-authentication-agent-1
 Icon=dialog-password
 Terminal=false
 Type=Application
-Categories=
 OnlyShowIn=KDE;
 X-KDE-StartupNotify=false
 X-KDE-autostart-phase=0
