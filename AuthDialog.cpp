@@ -214,6 +214,7 @@ void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
         * doing it again.. (this is mainly used when the user entered the
         * wrong password and the dialog is recycled)
         */
+
     if (identities.count() && (userCB->count() - 1) != identities.count()) {
         // Clears the combobox in the case some user be added
         userCB->clear();
