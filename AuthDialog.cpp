@@ -352,13 +352,11 @@ AuthDetails::AuthDetails(const PolkitQt1::Details &details,
         gridLayout->addWidget(valueLabel, row, 1);
     }
 
-    // replace blank description
-    // neither isEmpty() or isNull() worked (?)
-    if (actionDescription.description() == "") {
+    if (actionDescription.description().isEmpty()) {
         QFont descrFont(action_label->font());
         descrFont.setItalic(true);
         action_label->setFont(descrFont);
-        action_label->setText(i18n("Not Applicable"));
+        action_label->setText(i18n("'Description' not provided"));
     } else {
         action_label->setText(actionDescription.description());
     }
