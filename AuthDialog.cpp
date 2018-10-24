@@ -137,7 +137,7 @@ AuthDialog::AuthDialog(const QString &actionId,
         }
     }
 
-    AuthDetails *detailsDialog = new AuthDetails(details, m_actionDescription, m_appname, this);
+    AuthDetails *detailsDialog = new AuthDetails(details, m_actionDescription, this);
     detailsWidgetContainer->layout()->addWidget(detailsDialog);
 
     userCB->hide();
@@ -318,21 +318,10 @@ void AuthDialog::authenticationFailure()
 
 AuthDetails::AuthDetails(const PolkitQt1::Details &details,
                          const PolkitQt1::ActionDescription &actionDescription,
-                         const QString &appname,
                          QWidget *parent)
     : QWidget(parent)
 {
     setupUi(this);
-
-    // better N/A than a blank space
-    if (appname.isEmpty()) {
-        QFont nameFont = app_label->font();
-        nameFont.setItalic(true);
-        app_label->setFont(nameFont);
-        app_label->setText(i18n("Not Applicable"));
-    } else {
-        app_label->setText(appname);
-    }
 
     foreach(const QString &key, details.keys()) { //krazy:exclude=foreach (Details is not a map/hash, but rather a method)
         int row = gridLayout->rowCount() + 1;
