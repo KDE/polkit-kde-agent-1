@@ -66,6 +66,9 @@ AuthDialog::AuthDialog(const QString &actionId,
 
     setupUi(this);
 
+    connect(userCB, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &AuthDialog::checkSelectedUser);
+
     connect(buttonBox, &QDialogButtonBox::accepted, this, &AuthDialog::okClicked);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
@@ -279,7 +282,7 @@ PolkitQt1::Identity AuthDialog::adminUserSelected() const
     return PolkitQt1::Identity::fromString(id);
 }
 
-void AuthDialog::on_userCB_currentIndexChanged(int /*index*/)
+void AuthDialog::checkSelectedUser()
 {
     PolkitQt1::Identity identity = adminUserSelected();
     // itemData is Null when "Select user" is selected

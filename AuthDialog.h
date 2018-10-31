@@ -66,7 +66,7 @@ public slots:
     void accept() override;
 
 private slots:
-    void on_userCB_currentIndexChanged(int index);
+    void checkSelectedUser();
 
 private:
     QString m_message;
