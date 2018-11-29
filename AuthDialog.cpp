@@ -303,7 +303,7 @@ void AuthDialog::checkSelectedUser()
 
 QString AuthDialog::password() const
 {
-    return lePassword->text();
+    return lePassword->password();
 }
 
 void AuthDialog::authenticationFailure()
