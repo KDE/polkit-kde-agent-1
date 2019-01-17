@@ -4,7 +4,7 @@ project(polkit-kde-agent-1)
 set(PROJECT_VERSION "5.14.80")
 
 set(QT_MIN_VERSION "5.11.0")
-set(KF5_MIN_VERSION "5.50.0")
+set(KF5_MIN_VERSION "5.54.0")
 
 # we need some parts of the ECM CMake helpers
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
