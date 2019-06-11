@@ -84,11 +84,7 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
 
     m_inProgress = true;
 
-    WId parentId = 0;
-
-    if (m_actionsToWID.contains(actionId)) {
-        parentId = m_actionsToWID[actionId];
-    }
+    const WId parentId = m_actionsToWID.value(actionId, 0);
 
     m_dialog = new AuthDialog(actionId, message, iconName, details, identities, parentId);
     connect(m_dialog.data(), SIGNAL(okClicked()), SLOT(dialogAccepted()));
