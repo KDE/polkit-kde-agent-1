@@ -54,7 +54,8 @@ AuthDialog::AuthDialog(const QString &actionId,
         qDebug() << "Associating the dialog with " << parent << " this dialog is " << winId();
 
         // Set the parent
-        KWindowSystem::setMainWindow(this, parent);
+        setAttribute(Qt::WA_NativeWindow, true);
+        KWindowSystem::setMainWindow(windowHandle(), parent);
 
         // Set modal
         setWindowModality(Qt::ApplicationModal);
