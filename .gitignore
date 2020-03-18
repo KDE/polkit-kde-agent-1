@@ -20,3 +20,5 @@ qtcreator-build
 moc_*
 ui_*
 Makefile
+.clang-format
+/build*/
