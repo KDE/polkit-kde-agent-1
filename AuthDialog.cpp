@@ -67,11 +67,7 @@ AuthDialog::AuthDialog(const QString &actionId,
 
     setupUi(this);
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 15, 0)
     connect(userCB, QOverload<int>::of(&QComboBox::currentIndexChanged),
-#else
-    connect(userCB, QOverload<int, const QString &>::of(&QComboBox::currentIndexChanged),
-#endif
             this, &AuthDialog::checkSelectedUser);
 
     connect(buttonBox, &QDialogButtonBox::accepted, this, &AuthDialog::okClicked);
