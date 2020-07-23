@@ -44,7 +44,7 @@ Comment[uk]=Діалогове вікно розпізнавання PolicyKit
 Comment[x-test]=xxPolicyKit authentication dialogxx
 Comment[zh_CN]=PolicyKit 认证对话框
 Comment[zh_TW]=PolicyKit 認證對話框
-Name=policykit1-kde
+Name=Authentication System
 Name[bs]=policykit1-kde
 Name[ca]=policykit1-kde
 Name[ca@valencia]=policykit1-kde
@@ -89,7 +89,7 @@ Name[zh_CN]=policykit1-kde
 Name[zh_TW]=policykit1-kde
 
 [Event/authenticate]
-Name=authenticate
+Name=Authenticate
 Name[ar]=استيثاق
 Name[bs]=autentifikacija
 Name[ca]=autentica
