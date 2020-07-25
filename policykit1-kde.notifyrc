@@ -45,9 +45,21 @@ Comment[x-test]=xxPolicyKit authentication dialogxx
 Comment[zh_CN]=PolicyKit 认证对话框
 Comment[zh_TW]=PolicyKit 認證對話框
 Name=Authentication System
+Name[ca]=Sistema d'autenticació
+Name[nl]=Authenticatiesysteem
+Name[pt]=Sistema de Autenticação
+Name[sv]=Behörighetskontrollsystem
+Name[uk]=Система розпізнавання
+Name[x-test]=xxAuthentication Systemxx
 
 [Event/authenticate]
 Name=Authenticate
+Name[ca]=Autentica
+Name[nl]=Authenticeren
+Name[pt]=Autenticar
+Name[sv]=Kontrollera behörighet
+Name[uk]=Розпізнавання
+Name[x-test]=xxAuthenticatexx
 Comment=You are required to authenticate
 Comment[ar]=الاستيثاق مطلوب
 Comment[bs]=Trebate se autentificirati
