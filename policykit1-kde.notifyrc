@@ -64,6 +64,7 @@ Name[x-test]=xxAuthentication Systemxx
 [Event/authenticate]
 Name=Authenticate
 Name[ca]=Autentica
+Name[de]=Authentifizieren
 Name[es]=Autenticar
 Name[eu]=Autentifikatu
 Name[fi]=Tunnistaudu
