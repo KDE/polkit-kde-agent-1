@@ -46,6 +46,7 @@ Comment[zh_CN]=PolicyKit 认证对话框
 Comment[zh_TW]=PolicyKit 認證對話框
 Name=Authentication System
 Name[ca]=Sistema d'autenticació
+Name[de]=Authentifizierungssystem
 Name[es]=Sistema de autenticación
 Name[eu]=Autentifikazio sistema
 Name[fi]=Tunnistautumisjärjestelmä
