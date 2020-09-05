@@ -46,6 +46,7 @@ Comment[zh_CN]=PolicyKit 认证对话框
 Comment[zh_TW]=PolicyKit 認證對話框
 Name=Authentication System
 Name[ca]=Sistema d'autenticació
+Name[cs]=Systém ověření
 Name[de]=Authentifizierungssystem
 Name[es]=Sistema de autenticación
 Name[eu]=Autentifikazio sistema
@@ -65,6 +66,7 @@ Name[x-test]=xxAuthentication Systemxx
 [Event/authenticate]
 Name=Authenticate
 Name[ca]=Autentica
+Name[cs]=Ověřit
 Name[de]=Authentifizieren
 Name[es]=Autenticar
 Name[eu]=Autentifikatu
