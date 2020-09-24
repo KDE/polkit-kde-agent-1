@@ -65,6 +65,7 @@ Name[sl]=Sistem preverjanja pristnosti
 Name[sv]=Behörighetskontrollsystem
 Name[uk]=Система розпізнавання
 Name[x-test]=xxAuthentication Systemxx
+Name[zh_CN]=身份验证系统
 
 [Event/authenticate]
 Name=Authenticate
@@ -88,6 +89,7 @@ Name[sl]=Preveri pristnost
 Name[sv]=Kontrollera behörighet
 Name[uk]=Розпізнавання
 Name[x-test]=xxAuthenticatexx
+Name[zh_CN]=认证
 Comment=You are required to authenticate
 Comment[ar]=الاستيثاق مطلوب
 Comment[bs]=Trebate se autentificirati
