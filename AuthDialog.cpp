@@ -28,7 +28,6 @@
 #include <QStandardItemModel>
 #include <QDebug>
 #include <QDesktopServices>
-#include <QDialogButtonBox>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QUrl>

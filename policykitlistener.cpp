@@ -23,7 +23,6 @@
 
 #include <KWindowSystem>
 
-#include <PolkitQt1/Agent/Listener>
 #include <PolkitQt1/Agent/Session>
 #include <PolkitQt1/Subject>
 #include <PolkitQt1/Identity>
