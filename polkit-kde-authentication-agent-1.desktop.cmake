@@ -90,3 +90,4 @@ X-KDE-StartupNotify=false
 X-KDE-autostart-phase=0
 NoDisplay=true
 X-DBUS-StartupType=Unique
+X-systemd-skip=true

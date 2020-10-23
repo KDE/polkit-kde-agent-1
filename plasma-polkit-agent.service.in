@@ -1,0 +1,11 @@
+[Unit]
+Description=KDE PolicyKit Authentication Agent
+PartOf=graphical-session.target
+	
+[Service]
+ExecStart=@KDE_INSTALL_FULL_LIBEXECDIR@/polkit-kde-authentication-agent-1
+BusName=org.kde.Polkit1AuthAgent
+Slice=background.slice
+After=plasma-core.target
+TimeoutSec=5sec
+Restart=on-failure

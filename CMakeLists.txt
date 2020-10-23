@@ -15,6 +15,7 @@ include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDEClangFormat)
 include(FeatureSummary)
+include(ECMConfiguredInstall)
 
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets)
 
@@ -89,6 +90,8 @@ install(TARGETS polkit-kde-authentication-agent-1 DESTINATION ${KDE_INSTALL_LIBE
 
 install(FILES ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop DESTINATION ${KDE_INSTALL_AUTOSTARTDIR})
 install(FILES ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} RENAME org.kde.polkit-kde-authentication-agent-1.desktop)
+
+ecm_install_configured_files(INPUT plasma-polkit-agent.service.in DESTINATION ${KDE_INSTALL_SYSTEMDUSERUNITDIR})
 
 install(FILES policykit1-kde.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR})
 
