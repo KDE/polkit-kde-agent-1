@@ -2,6 +2,7 @@
 IconName=dialog-password
 Comment=PolicyKit authentication dialog
 Comment[ar]=حواريّ استيثاق Policykit
+Comment[ast]=Diálogu d'autenticación de PolicyKit
 Comment[bs]=PolicyKit dijalog provjere identiteta
 Comment[ca]=Diàleg d'autenticació del PolicyKit
 Comment[ca@valencia]=Diàleg d'autenticació de PolicyKit
@@ -45,6 +46,7 @@ Comment[x-test]=xxPolicyKit authentication dialogxx
 Comment[zh_CN]=PolicyKit 认证对话框
 Comment[zh_TW]=PolicyKit 認證對話框
 Name=Authentication System
+Name[ast]=Sistema d'autenticación
 Name[ca]=Sistema d'autenticació
 Name[cs]=Systém ověření
 Name[da]=Autentificeringssystem
@@ -75,6 +77,7 @@ Name[zh_CN]=身份验证系统
 
 [Event/authenticate]
 Name=Authenticate
+Name[ast]=Autenticase
 Name[ca]=Autentica
 Name[cs]=Ověřit
 Name[da]=Autentificér
@@ -104,6 +107,7 @@ Name[x-test]=xxAuthenticatexx
 Name[zh_CN]=认证
 Comment=You are required to authenticate
 Comment[ar]=الاستيثاق مطلوب
+Comment[ast]=Has autenticate
 Comment[bs]=Trebate se autentificirati
 Comment[ca]=Se us demana que us autentiqueu
 Comment[ca@valencia]=Se us demana que us autentiqueu

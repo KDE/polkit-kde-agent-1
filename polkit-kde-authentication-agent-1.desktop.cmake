@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=PolicyKit Authentication Agent
+Name[ast]=Axente d'autenticación de PolicyKit
 Name[ca]=Agent d'autenticació del PolicyKit
 Name[ca@valencia]=Agent d'autenticació de PolicyKit
 Name[cs]=Ověřovací agent PolicyKitu
@@ -41,6 +42,7 @@ Name[x-test]=xxPolicyKit Authentication Agentxx
 Name[zh_CN]=PolicyKit 认证代理
 Name[zh_TW]=PolicyKit 認證代理程式
 Comment=PolicyKit Authentication Agent
+Comment[ast]=L'axente d'autenticación de PolicyKit
 Comment[ca]=Agent d'autenticació del PolicyKit
 Comment[ca@valencia]=Agent d'autenticació de PolicyKit
 Comment[cs]=Ověřovací agent PolicyKitu
