@@ -23,18 +23,18 @@
 
 #include "AuthDialog.h"
 
-#include <QProcess>
-#include <QPainter>
-#include <QStandardItemModel>
 #include <QDebug>
 #include <QDesktopServices>
+#include <QPainter>
+#include <QProcess>
 #include <QPushButton>
-#include <QVBoxLayout>
+#include <QStandardItemModel>
 #include <QUrl>
+#include <QVBoxLayout>
 
-#include <KWindowSystem>
 #include <KIconLoader>
 #include <KUser>
+#include <KWindowSystem>
 
 #include <PolkitQt1/Authority>
 #include <PolkitQt1/Details>
@@ -66,15 +66,14 @@ AuthDialog::AuthDialog(const QString &actionId,
 
     setupUi(this);
 
-    connect(userCB, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            this, &AuthDialog::checkSelectedUser);
+    connect(userCB, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &AuthDialog::checkSelectedUser);
 
     connect(buttonBox, &QDialogButtonBox::accepted, this, &AuthDialog::okClicked);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     QString detailsButtonText = i18n("Details");
-    QPushButton* detailsButton = new QPushButton(detailsButtonText + " >>");
+    QPushButton *detailsButton = new QPushButton(detailsButtonText + " >>");
     detailsButton->setIcon(QIcon::fromTheme("help-about"));
     detailsButton->setCheckable(true);
     connect(detailsButton, &QAbstractButton::toggled, this, [=](bool toggled) {
@@ -82,7 +81,7 @@ AuthDialog::AuthDialog(const QString &actionId,
         if (toggled) {
             detailsButton->setText(detailsButtonText + " <<");
         } else {
-               detailsButton->setText(detailsButtonText + " >>");
+            detailsButton->setText(detailsButtonText + " >>");
         }
         adjustSize();
     });
@@ -101,7 +100,7 @@ AuthDialog::AuthDialog(const QString &actionId,
     }
 
     // loads the standard key icon
-    QPixmap icon = KIconLoader::global()->loadIcon("dialog-password",
+    QPixmap icon = KIconLoader::global()->loadIcon("dialog-password", //
                                                    KIconLoader::NoGroup,
                                                    KIconLoader::SizeHuge,
                                                    KIconLoader::DefaultState);
@@ -111,7 +110,7 @@ AuthDialog::AuthDialog(const QString &actionId,
     // the emblem icon to size 32
     int overlaySize = 32;
     // try to load the action icon
-    const QPixmap pixmap = KIconLoader::global()->loadIcon(iconName,
+    const QPixmap pixmap = KIconLoader::global()->loadIcon(iconName, //
                                                            KIconLoader::NoGroup,
                                                            overlaySize,
                                                            KIconLoader::DefaultState,
@@ -123,8 +122,7 @@ AuthDialog::AuthDialog(const QString &actionId,
     if (!pixmap.isNull()) {
         QPoint startPoint;
         // bottom right corner
-        startPoint = QPoint(iconSize - overlaySize - 2,
-                            iconSize - overlaySize - 2);
+        startPoint = QPoint(iconSize - overlaySize - 2, iconSize - overlaySize - 2);
         painter.drawPixmap(startPoint, pixmap);
     }
 
@@ -132,10 +130,10 @@ AuthDialog::AuthDialog(const QString &actionId,
     lblPixmap->setPixmap(icon);
 
     // find action description for actionId
-    foreach(const PolkitQt1::ActionDescription &desc, PolkitQt1::Authority::instance()->enumerateActionsSync()) {
+    foreach (const PolkitQt1::ActionDescription &desc, PolkitQt1::Authority::instance()->enumerateActionsSync()) {
         if (actionId == desc.actionId()) {
             m_actionDescription = desc;
-            qDebug() << "Action description has been found" ;
+            qDebug() << "Action description has been found";
             break;
         }
     }
@@ -151,8 +149,7 @@ AuthDialog::AuthDialog(const QString &actionId,
 
     // If there is more than 1 identity we will show the combobox for user selection
     if (identities.size() > 1) {
-        connect(userCB, SIGNAL(currentIndexChanged(int)),
-                this, SLOT(on_userCB_currentIndexChanged(int)));
+        connect(userCB, SIGNAL(currentIndexChanged(int)), this, SLOT(on_userCB_currentIndexChanged(int)));
 
         createUserCB(identities);
     } else {
@@ -181,20 +178,17 @@ void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
             if (!identity.isValid()) {
                 lblPassword->setText(i18n("Password for root:"));
             } else {
-                lblPassword->setText(i18n("Password for %1:",
-                                          identity.toString().remove("unix-user:")));
+                lblPassword->setText(i18n("Password for %1:", identity.toString().remove("unix-user:")));
             }
         } else {
             lblPassword->setText(i18n("Password:"));
         }
-    } else if (request.startsWith(QLatin1String("password or swipe finger:"),
-                                  Qt::CaseInsensitive)) {
+    } else if (request.startsWith(QLatin1String("password or swipe finger:"), Qt::CaseInsensitive)) {
         if (requiresAdmin) {
             if (!identity.isValid()) {
                 lblPassword->setText(i18n("Password or swipe finger for root:"));
             } else {
-                lblPassword->setText(i18n("Password or swipe finger for %1:",
-                                          identity.toString().remove("unix-user:")));
+                lblPassword->setText(i18n("Password or swipe finger for %1:", identity.toString().remove("unix-user:")));
             }
         } else {
             lblPassword->setText(i18n("Password or swipe finger:"));
@@ -202,21 +196,21 @@ void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
     } else {
         lblPassword->setText(request);
     }
-
 }
 
 void AuthDialog::setOptions()
 {
-    lblContent->setText(i18n("An application is attempting to perform an action that requires privileges."
-                             " Authentication is required to perform this action."));
+    lblContent->setText(
+        i18n("An application is attempting to perform an action that requires privileges."
+             " Authentication is required to perform this action."));
 }
 
 void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
 {
     /* if we've already built the list of admin users once, then avoid
-        * doing it again.. (this is mainly used when the user entered the
-        * wrong password and the dialog is recycled)
-        */
+     * doing it again.. (this is mainly used when the user entered the
+     * wrong password and the dialog is recycled)
+     */
 
     if (identities.count() && (userCB->count() - 1) != identities.count()) {
         // Clears the combobox in the case some user be added
@@ -224,13 +218,13 @@ void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
 
         // Adds a Dummy user
         userCB->addItem(i18n("Select User"), QString());
-        qobject_cast<QStandardItemModel *>(userCB->model())->item(userCB->count()-1)->setEnabled(false);
+        qobject_cast<QStandardItemModel *>(userCB->model())->item(userCB->count() - 1)->setEnabled(false);
 
         // For each user
         int index = 1; // Start at 1 because of the "Select User" entry
         int currentUserIndex = -1;
         const KUser currentUser;
-        foreach(const PolkitQt1::Identity &identity, identities) {
+        foreach (const PolkitQt1::Identity &identity, identities) {
             // First check to see if the user is valid
             qDebug() << "User: " << identity.toString();
             const KUser user(identity.toString().remove("unix-user:"));
@@ -319,19 +313,20 @@ void AuthDialog::authenticationFailure()
     lePassword->setFocus();
 }
 
-AuthDetails::AuthDetails(const PolkitQt1::Details &details,
-                         const PolkitQt1::ActionDescription &actionDescription,
-                         QWidget *parent)
+AuthDetails::AuthDetails(const PolkitQt1::Details &details, const PolkitQt1::ActionDescription &actionDescription, QWidget *parent)
     : QWidget(parent)
 {
     setupUi(this);
 
-    foreach(const QString &key, details.keys()) { //krazy:exclude=foreach (Details is not a map/hash, but rather a method)
+    foreach (const QString &key, details.keys()) { // krazy:exclude=foreach (Details is not a map/hash, but rather a method)
         int row = gridLayout->rowCount() + 1;
 
         QLabel *keyLabel = new QLabel(this);
-        keyLabel->setText(i18nc("%1 is the name of a detail about the current action "
-                                "provided by polkit", "%1:", key));
+        keyLabel->setText(
+            i18nc("%1 is the name of a detail about the current action "
+                  "provided by polkit",
+                  "%1:",
+                  key));
         gridLayout->addWidget(keyLabel, row, 0);
 
         keyLabel->setAlignment(Qt::AlignRight);
@@ -355,7 +350,7 @@ AuthDetails::AuthDetails(const PolkitQt1::Details &details,
 
     action_id_label->setText(actionDescription.actionId());
 
-    QString vendor    = actionDescription.vendorName();
+    QString vendor = actionDescription.vendorName();
     QString vendorUrl = actionDescription.vendorUrl();
 
     if (!vendor.isEmpty()) {
@@ -374,7 +369,7 @@ AuthDetails::AuthDetails(const PolkitQt1::Details &details,
     connect(vendorUL, SIGNAL(leftClickedUrl(QString)), SLOT(openUrl(QString)));
 }
 
-void AuthDetails::openUrl(const QString& url)
+void AuthDetails::openUrl(const QString &url)
 {
     QDesktopServices::openUrl(QUrl(url));
 }

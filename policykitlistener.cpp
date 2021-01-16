@@ -24,25 +24,25 @@
 #include <KWindowSystem>
 
 #include <PolkitQt1/Agent/Session>
-#include <PolkitQt1/Subject>
-#include <PolkitQt1/Identity>
 #include <PolkitQt1/Details>
+#include <PolkitQt1/Identity>
+#include <PolkitQt1/Subject>
 
-#include "policykitlistener.h"
 #include "AuthDialog.h"
+#include "policykitlistener.h"
 #include "polkit1authagentadaptor.h"
 
 PolicyKitListener::PolicyKitListener(QObject *parent)
-        : Listener(parent)
-        , m_inProgress(false)
-        , m_selectedUser(nullptr)
+    : Listener(parent)
+    , m_inProgress(false)
+    , m_selectedUser(nullptr)
 {
-    (void) new Polkit1AuthAgentAdaptor(this);
+    (void)new Polkit1AuthAgentAdaptor(this);
 
-    if (!QDBusConnection::sessionBus().registerObject("/org/kde/Polkit1AuthAgent", this,
-                                                     QDBusConnection::ExportScriptableSlots |
-                                                     QDBusConnection::ExportScriptableProperties |
-                                                     QDBusConnection::ExportAdaptors)) {
+    if (!QDBusConnection::sessionBus().registerObject("/org/kde/Polkit1AuthAgent",
+                                                      this,
+                                                      QDBusConnection::ExportScriptableSlots | QDBusConnection::ExportScriptableProperties
+                                                          | QDBusConnection::ExportAdaptors)) {
         qWarning() << "Could not initiate DBus helper!";
     }
 
@@ -53,19 +53,19 @@ PolicyKitListener::~PolicyKitListener()
 {
 }
 
-void PolicyKitListener::setWIdForAction(const QString& action, qulonglong wID)
+void PolicyKitListener::setWIdForAction(const QString &action, qulonglong wID)
 {
     qDebug() << "On to the handshake";
     m_actionsToWID[action] = wID;
 }
 
 void PolicyKitListener::initiateAuthentication(const QString &actionId,
-        const QString &message,
-        const QString &iconName,
-        const PolkitQt1::Details &details,
-        const QString &cookie,
-        const PolkitQt1::Identity::List &identities,
-        PolkitQt1::Agent::AsyncResult* result)
+                                               const QString &message,
+                                               const QString &iconName,
+                                               const PolkitQt1::Details &details,
+                                               const QString &cookie,
+                                               const PolkitQt1::Identity::List &identities,
+                                               PolkitQt1::Agent::AsyncResult *result)
 {
     qDebug() << "Initiating authentication";
 
@@ -114,13 +114,14 @@ void PolicyKitListener::tryAgain()
     // We will create new session only when some user is selected
     if (m_selectedUser.isValid()) {
         m_session = new Session(m_selectedUser, m_cookie, m_result);
+        // clang-format off
         connect(m_session.data(), SIGNAL(request(QString,bool)), this, SLOT(request(QString,bool)));
         connect(m_session.data(), SIGNAL(completed(bool)), this, SLOT(completed(bool)));
         connect(m_session.data(), SIGNAL(showError(QString)), this, SLOT(showError(QString)));
+        // clang-format on
 
         m_session.data()->initiate();
     }
-
 }
 
 void PolicyKitListener::finishObtainPrivilege()
@@ -180,8 +181,7 @@ void PolicyKitListener::request(const QString &request, bool echo)
     qDebug() << "Request: " << request;
 
     if (!m_dialog.isNull()) {
-        m_dialog.data()->setRequest(request, m_selectedUser.isValid() &&
-                m_selectedUser.toString() == "unix-user:root");
+        m_dialog.data()->setRequest(request, m_selectedUser.isValid() && m_selectedUser.toString() == "unix-user:root");
     }
 }
 

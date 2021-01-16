@@ -21,8 +21,8 @@
 
 */
 
-#include <QPointer>
 #include <QHash>
+#include <QPointer>
 
 #include <PolkitQt1/Agent/Listener>
 
@@ -45,7 +45,7 @@ public slots:
                                 const PolkitQt1::Details &details,
                                 const QString &cookie,
                                 const PolkitQt1::Identity::List &identities,
-                                PolkitQt1::Agent::AsyncResult* result) override;
+                                PolkitQt1::Agent::AsyncResult *result) override;
     bool initiateAuthenticationFinish() override;
     void cancelAuthentication() override;
 
@@ -66,10 +66,10 @@ private:
     bool m_wasCancelled;
     int m_numTries;
     PolkitQt1::Identity::List m_identities;
-    PolkitQt1::Agent::AsyncResult* m_result;
+    PolkitQt1::Agent::AsyncResult *m_result;
     QString m_cookie;
     PolkitQt1::Identity m_selectedUser;
-    QHash< QString, qulonglong > m_actionsToWID;
+    QHash<QString, qulonglong> m_actionsToWID;
 
 private slots:
     void dialogAccepted();

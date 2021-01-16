@@ -26,8 +26,8 @@
 #include <QDialog>
 #include <QDialogButtonBox>
 
-#include <PolkitQt1/Identity>
 #include <PolkitQt1/ActionDescription>
+#include <PolkitQt1/Identity>
 
 #include "ui_AuthDialog.h"
 #include "ui_authdetails.h"
@@ -78,12 +78,10 @@ class AuthDetails : public QWidget, private Ui::AuthDetails
 {
     Q_OBJECT
 public:
-    AuthDetails(const PolkitQt1::Details &details,
-                const PolkitQt1::ActionDescription &actionDescription,
-                QWidget *parent);
+    AuthDetails(const PolkitQt1::Details &details, const PolkitQt1::ActionDescription &actionDescription, QWidget *parent);
 
 private slots:
-    void openUrl(const QString&);
+    void openUrl(const QString &);
 };
 
 #endif // AUTHDIALOG_H

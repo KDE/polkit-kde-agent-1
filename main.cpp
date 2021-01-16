@@ -18,28 +18,27 @@
 
 */
 
-#include "policykitlistener.h"
 #include "config.h"
+#include "policykitlistener.h"
 // KF
 #include <KAboutData>
-#include <KLocalizedString>
 #include <KCrash>
 #include <KDBusService>
+#include <KLocalizedString>
 // PolkitQt1
 #include <PolkitQt1/Subject>
 // Qt
 #include <QApplication>
-#include <QSessionManager>
 #include <QDebug>
+#include <QSessionManager>
 // std
 #if HAVE_SYS_PRCTL_H
 #include <sys/prctl.h>
 #endif
 #if HAVE_SYS_PROCCTL_H
-#include <unistd.h>
 #include <sys/procctl.h>
+#include <unistd.h>
 #endif
-
 
 int main(int argc, char *argv[])
 {
