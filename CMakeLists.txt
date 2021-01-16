@@ -17,6 +17,10 @@ include(KDEClangFormat)
 include(FeatureSummary)
 include(ECMConfiguredInstall)
 
+if(ECM_VERSION VERSION_GREATER_EQUAL 5.79)
+    include(KDEGitCommitHooks)
+endif()
+
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets)
 
 # Load the frameworks we need
@@ -99,4 +103,7 @@ install(FILES policykit1-kde.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR})
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
+if(ECM_VERSION VERSION_GREATER_EQUAL 5.79)
+    kde_configure_git_pre_commit_hook(CHECKS CLANG_FORMAT)
+endif()
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
