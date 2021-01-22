@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Dialog.qml</file>
+        <file>Expandable.qml</file>
+    </qresource>
+</RCC>
