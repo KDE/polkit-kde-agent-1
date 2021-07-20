@@ -78,7 +78,7 @@
       </spacer>
      </item>
      <item row="2" column="1" colspan="2">
-      <widget class="KMessageWidget" name="errorMessageWidget">
+      <widget class="KMessageWidget" name="messageWidget">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
          <horstretch>0</horstretch>

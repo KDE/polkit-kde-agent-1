@@ -38,6 +38,8 @@ public:
     void setRequest(const QString &request, bool requiresAdmin);
     void setOptions();
     QString password() const;
+    void showError(const QString &message);
+    void showInfo(const QString &message);
     void authenticationFailure();
 
     PolkitQt1::Identity adminUserSelected() const;

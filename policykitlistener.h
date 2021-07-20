@@ -41,6 +41,7 @@ public Q_SLOTS:
     void request(const QString &request, bool echo);
     void completed(bool gainedAuthorization);
     void showError(const QString &text);
+    void showInfo(const QString &text);
 
     void setWIdForAction(const QString &action, qulonglong wID);
 

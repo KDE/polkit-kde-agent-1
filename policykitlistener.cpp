@@ -104,6 +104,7 @@ void PolicyKitListener::tryAgain()
         connect(m_session.data(), SIGNAL(request(QString,bool)), this, SLOT(request(QString,bool)));
         connect(m_session.data(), SIGNAL(completed(bool)), this, SLOT(completed(bool)));
         connect(m_session.data(), SIGNAL(showError(QString)), this, SLOT(showError(QString)));
+        connect(m_session.data(), SIGNAL(showInfo(QString)), this, SLOT(showInfo(QString)));
         // clang-format on
 
         m_session.data()->initiate();
@@ -183,6 +184,17 @@ void PolicyKitListener::completed(bool gainedAuthorization)
 void PolicyKitListener::showError(const QString &text)
 {
     qDebug() << "Error: " << text;
+    if (!m_dialog.isNull()) {
+        m_dialog.data()->showError(text);
+    }
+}
+
+void PolicyKitListener::showInfo(const QString &text)
+{
+    qDebug() << "Info: " << text;
+    if (!m_dialog.isNull()) {
+        m_dialog.data()->showInfo(text);
+    }
 }
 
 void PolicyKitListener::dialogAccepted()
