@@ -46,6 +46,7 @@ Comment[x-test]=xxPolicyKit authentication dialogxx
 Comment[zh_CN]=PolicyKit 身份验证对话框
 Comment[zh_TW]=PolicyKit 認證對話框
 Name=Authentication System
+Name[ar]=نظام الاستيثاق
 Name[ast]=Sistema d'autenticación
 Name[ca]=Sistema d'autenticació
 Name[cs]=Systém ověření
@@ -80,6 +81,7 @@ Name[zh_CN]=身份验证系统
 
 [Event/authenticate]
 Name=Authenticate
+Name[ar]=الاستيثاق
 Name[ast]=Autenticase
 Name[ca]=Autentica
 Name[cs]=Ověřit
