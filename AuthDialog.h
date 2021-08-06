@@ -44,14 +44,14 @@ public:
 
     PolkitQt1::ActionDescription m_actionDescription;
 
-signals:
+Q_SIGNALS:
     void adminUserSelected(PolkitQt1::Identity);
     void okClicked();
 
-public slots:
+public Q_SLOTS:
     void accept() override;
 
-private slots:
+private Q_SLOTS:
     void checkSelectedUser();
 
 private:
@@ -66,7 +66,7 @@ class AuthDetails : public QWidget, private Ui::AuthDetails
 public:
     AuthDetails(const PolkitQt1::Details &details, const PolkitQt1::ActionDescription &actionDescription, QWidget *parent);
 
-private slots:
+private Q_SLOTS:
     void openUrl(const QString &);
 };
 

@@ -54,6 +54,7 @@ include_directories (BEFORE ${CMAKE_CURRENT_BINARY_DIR})
 find_package(PolkitQt5-1 REQUIRED 0.103.0)
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050c00)
 add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x054200)
+add_definitions(-DQT_NO_KEYWORDS)
 
 include_directories(
                     ${POLKITQT-1_INCLUDE_DIR}

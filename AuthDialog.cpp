@@ -116,7 +116,8 @@ AuthDialog::AuthDialog(const QString &actionId,
     lblPixmap->setPixmap(icon);
 
     // find action description for actionId
-    foreach (const PolkitQt1::ActionDescription &desc, PolkitQt1::Authority::instance()->enumerateActionsSync()) {
+    const auto actions = PolkitQt1::Authority::instance()->enumerateActionsSync();
+    for (const PolkitQt1::ActionDescription &desc : actions) {
         if (actionId == desc.actionId()) {
             m_actionDescription = desc;
             qDebug() << "Action description has been found";
@@ -210,7 +211,7 @@ void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
         int index = 1; // Start at 1 because of the "Select User" entry
         int currentUserIndex = -1;
         const KUser currentUser;
-        foreach (const PolkitQt1::Identity &identity, identities) {
+        for (const PolkitQt1::Identity &identity : identities) {
             // First check to see if the user is valid
             qDebug() << "User: " << identity.toString();
             const KUser user(identity.toString().remove("unix-user:"));
@@ -275,7 +276,7 @@ void AuthDialog::checkSelectedUser()
         lblPassword->setEnabled(true);
         buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
         // We need this to restart the auth with the new user
-        emit adminUserSelected(identity);
+        Q_EMIT adminUserSelected(identity);
         // git password label focus
         lePassword->setFocus();
     }
@@ -304,7 +305,8 @@ AuthDetails::AuthDetails(const PolkitQt1::Details &details, const PolkitQt1::Act
 {
     setupUi(this);
 
-    foreach (const QString &key, details.keys()) { // krazy:exclude=foreach (Details is not a map/hash, but rather a method)
+    const auto keys = details.keys();
+    for (const QString &key : keys) {
         int row = gridLayout->rowCount() + 1;
 
         QLabel *keyLabel = new QLabel(this);

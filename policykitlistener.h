@@ -24,7 +24,7 @@ public:
     explicit PolicyKitListener(QObject *parent = nullptr);
     ~PolicyKitListener() override;
 
-public slots:
+public Q_SLOTS:
     void initiateAuthentication(const QString &actionId,
                                 const QString &message,
                                 const QString &iconName,
@@ -57,7 +57,7 @@ private:
     PolkitQt1::Identity m_selectedUser;
     QHash<QString, qulonglong> m_actionsToWID;
 
-private slots:
+private Q_SLOTS:
     void dialogAccepted();
     void dialogCanceled();
     void userSelected(const PolkitQt1::Identity &identity);
