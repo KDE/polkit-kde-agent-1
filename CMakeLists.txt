@@ -48,18 +48,10 @@ add_feature_info("prctl/procctl tracing control"
 # create config file
 configure_file (config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
-# let our config.h be found first in any case
-include_directories (BEFORE ${CMAKE_CURRENT_BINARY_DIR})
-
 find_package(PolkitQt5-1 REQUIRED 0.103.0)
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050c00)
 add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x054200)
 add_definitions(-DQT_NO_KEYWORDS)
-
-include_directories(
-                    ${POLKITQT-1_INCLUDE_DIR}
-                    ${CMAKE_CURRENT_SOURCE_DIR}
-                    ${CMAKE_CURRENT_BINARY_DIR})
 
 qt_add_dbus_adaptor(policykit_SRCS org.kde.Polkit1AuthAgent.xml policykitlistener.h PolicyKitListener)
 
@@ -82,7 +74,7 @@ target_link_libraries(polkit-kde-authentication-agent-1
     KF5::I18n
     KF5::Crash
     KF5::IconThemes
-    ${POLKITQT-1_LIBRARIES}
+    PolkitQt5-1::Agent
 )
 
 configure_file(polkit-kde-authentication-agent-1.desktop.cmake ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop)
