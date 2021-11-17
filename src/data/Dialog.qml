@@ -98,8 +98,8 @@ QQC2.ApplicationWindow {
             QQC2.Button {
                 id: detailsButton
 
-                text: rootWindow.showingDetails ? i18n("Hide Who/What/Why") : i18n("Show Who/What/Why")
-                icon.name: "view-more-symbolic"
+                text: rootWindow.showingDetails ? i18n("Hide Details") : i18n("Show Details")
+                icon.name: "documentinfo"
                 onClicked: rootWindow.showingDetails = !rootWindow.showingDetails
             }
 
