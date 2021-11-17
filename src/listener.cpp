@@ -60,7 +60,10 @@ void Listener::initiateAuthentication(const QString &actionID,
     d->identityModel->setIdentities(identities);
 
     d->engine = QPointer<QQmlApplicationEngine>(new QQmlApplicationEngine);
-    const QUrl url(QStringLiteral("qrc:/Dialog.qml"));
+    const QUrl url(
+        qEnvironmentVariableIsSet("QT_QUICK_CONTROLS_MOBILE") ?
+            QStringLiteral("qrc:/MobileDialog.qml") :
+            QStringLiteral("qrc:/Dialog.qml"));
     connect(
         d->engine.data(),
         &QQmlApplicationEngine::objectCreated,
