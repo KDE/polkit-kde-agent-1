@@ -12,7 +12,7 @@
 
 #include <PolkitQt1/Agent/Listener>
 
-class AuthDialog;
+class QuickAuthDialog;
 
 using namespace PolkitQt1::Agent;
 
@@ -46,7 +46,7 @@ public Q_SLOTS:
     void setWIdForAction(const QString &action, qulonglong wID);
 
 private:
-    QPointer<AuthDialog> m_dialog;
+    QPointer<QuickAuthDialog> m_dialog;
     QPointer<Session> m_session;
     bool m_inProgress;
     bool m_gainedAuthorization;

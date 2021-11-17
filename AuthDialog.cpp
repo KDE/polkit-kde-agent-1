@@ -8,6 +8,7 @@
 */
 
 #include "AuthDialog.h"
+#include "IdentitiesModel.h"
 
 #include <QDebug>
 #include <QDesktopServices>
@@ -142,6 +143,10 @@ AuthDialog::AuthDialog(const QString &actionId,
         userCB->addItem("", identities[0].toString());
         userCB->setCurrentIndex(0);
     }
+
+    lblContent->setText(
+        i18n("An application is attempting to perform an action that requires privileges."
+             " Authentication is required to perform this action."));
 }
 
 AuthDialog::~AuthDialog()
@@ -184,13 +189,6 @@ void AuthDialog::setRequest(const QString &request, bool requiresAdmin)
     }
 }
 
-void AuthDialog::setOptions()
-{
-    lblContent->setText(
-        i18n("An application is attempting to perform an action that requires privileges."
-             " Authentication is required to perform this action."));
-}
-
 void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
 {
     /* if we've already built the list of admin users once, then avoid
@@ -198,56 +196,17 @@ void AuthDialog::createUserCB(const PolkitQt1::Identity::List &identities)
      * wrong password and the dialog is recycled)
      */
 
-    if (identities.count() && (userCB->count() - 1) != identities.count()) {
-        // Clears the combobox in the case some user be added
-        userCB->clear();
-
-        // Adds a Dummy user
-        userCB->addItem(i18n("Select User"), QString());
-        qobject_cast<QStandardItemModel *>(userCB->model())->item(userCB->count() - 1)->setEnabled(false);
-
-        // For each user
-        int index = 1; // Start at 1 because of the "Select User" entry
-        int currentUserIndex = -1;
-        const KUser currentUser;
-        for (const PolkitQt1::Identity &identity : identities) {
-            // First check to see if the user is valid
-            qDebug() << "User: " << identity.toString();
-            const KUser user(identity.toString().remove("unix-user:"));
-            if (!user.isValid()) {
-                qWarning() << "User invalid: " << user.loginName();
-                continue;
-            }
-
-            // Display user Full Name IF available
-            QString display;
-            if (!user.property(KUser::FullName).toString().isEmpty()) {
-                display = i18nc("%1 is the full user name, %2 is the user login name", "%1 (%2)", user.property(KUser::FullName).toString(), user.loginName());
-            } else {
-                display = user.loginName();
-            }
-
-            QIcon icon;
-            // load user icon face
-            if (!user.faceIconPath().isEmpty()) {
-                icon = QIcon(user.faceIconPath());
-            } else {
-                icon = QIcon::fromTheme("user-identity");
-            }
-            // appends the user item
-            userCB->addItem(icon, display, identity.toString());
-
-            if (user == currentUser) {
-                currentUserIndex = index;
-            }
-            ++index;
-        }
-
-        // Show the widget and set focus
-        if (currentUserIndex != -1) {
-            userCB->setCurrentIndex(currentUserIndex);
-        }
+    IdentitiesModel *model = qobject_cast<IdentitiesModel *>(userCB->model());
+    if (!model) {
+        model = new IdentitiesModel(userCB);
+        userCB->setModel(model);
+    }
+    model->setIdentities(identities, true);
+    if (!identities.isEmpty()) {
+        userCB->setCurrentIndex(model->indexForUser(KUser().loginName()));
         userCB->show();
+    } else {
+        userCB->setVisible(false);
     }
 }
 
@@ -275,7 +234,7 @@ void AuthDialog::checkSelectedUser()
         lblPassword->setEnabled(true);
         buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
         // We need this to restart the auth with the new user
-        Q_EMIT adminUserSelected(identity);
+        Q_EMIT adminUserSelectedChanged(identity);
         // git password label focus
         lePassword->setFocus();
     }

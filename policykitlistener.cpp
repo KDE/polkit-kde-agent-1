@@ -6,15 +6,19 @@
 
 #include <QDBusConnection>
 #include <QDebug>
+#include <qqml.h>
 
+#include <KLocalizedString>
 #include <KWindowSystem>
 
+#include <PolkitQt1/ActionDescription>
 #include <PolkitQt1/Agent/Session>
 #include <PolkitQt1/Details>
 #include <PolkitQt1/Identity>
 #include <PolkitQt1/Subject>
 
-#include "AuthDialog.h"
+#include "IdentitiesModel.h"
+#include "QuickAuthDialog.h"
 #include "policykitlistener.h"
 #include "polkit1authagentadaptor.h"
 
@@ -31,6 +35,9 @@ PolicyKitListener::PolicyKitListener(QObject *parent)
                                                           | QDBusConnection::ExportAdaptors)) {
         qWarning() << "Could not initiate DBus helper!";
     }
+
+    qmlRegisterType<IdentitiesModel>("org.kde.polkitkde", 1, 0, "IdentitiesModel");
+    qmlRegisterUncreatableType<PolkitQt1::ActionDescription>("org.kde.polkitkde", 1, 0, "ActionDescription", "nope!");
 
     qDebug() << "Listener online";
 }
@@ -71,16 +78,14 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
 
     const WId parentId = m_actionsToWID.value(actionId, 0);
 
-    m_dialog = new AuthDialog(actionId, message, iconName, details, identities, parentId);
+    m_dialog = new QuickAuthDialog(actionId, message, iconName, details, identities, parentId);
     connect(m_dialog.data(), SIGNAL(okClicked()), SLOT(dialogAccepted()));
     connect(m_dialog.data(), SIGNAL(rejected()), SLOT(dialogCanceled()));
-    connect(m_dialog.data(), SIGNAL(adminUserSelected(PolkitQt1::Identity)), SLOT(userSelected(PolkitQt1::Identity)));
 
-    qDebug() << "WinId of the dialog is " << m_dialog.data()->winId() << m_dialog.data()->effectiveWinId();
-    m_dialog.data()->setOptions();
-    m_dialog.data()->show();
-    KWindowSystem::forceActiveWindow(m_dialog.data()->winId());
-    qDebug() << "WinId of the shown dialog is " << m_dialog.data()->winId() << m_dialog.data()->effectiveWinId();
+    m_dialog->show();
+    if (KWindowSystem::isPlatformX11()) {
+        KWindowSystem::forceActiveWindow(m_dialog->windowHandle()->winId());
+    }
 
     if (identities.length() == 1) {
         m_selectedUser = identities[0];

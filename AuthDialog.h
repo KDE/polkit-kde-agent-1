@@ -36,7 +36,6 @@ public:
     ~AuthDialog() override;
 
     void setRequest(const QString &request, bool requiresAdmin);
-    void setOptions();
     QString password() const;
     void showError(const QString &message);
     void showInfo(const QString &message);
@@ -47,7 +46,7 @@ public:
     PolkitQt1::ActionDescription m_actionDescription;
 
 Q_SIGNALS:
-    void adminUserSelected(PolkitQt1::Identity);
+    void adminUserSelectedChanged(const PolkitQt1::Identity &);
     void okClicked();
 
 public Q_SLOTS:

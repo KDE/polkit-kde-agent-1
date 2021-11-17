@@ -20,7 +20,7 @@ include(ECMConfiguredInstall)
 
 include(KDEGitCommitHooks)
 
-find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets)
+find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets Quick)
 
 # Load the frameworks we need
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
@@ -63,11 +63,15 @@ set(policykit_SRCS
     policykitlistener.cpp
     main.cpp
     AuthDialog.cpp
+    QuickAuthDialog.cpp
+    QuickAuthDialog.qrc
+    IdentitiesModel.cpp
 )
 
 add_executable(polkit-kde-authentication-agent-1 ${policykit_SRCS})
 
 target_link_libraries(polkit-kde-authentication-agent-1
+    Qt5::Quick
     KF5::DBusAddons
     KF5::WindowSystem
     KF5::WidgetsAddons
