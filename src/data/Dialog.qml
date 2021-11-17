@@ -14,7 +14,7 @@ QQC2.ApplicationWindow {
 
     visible: true
 
-    title: "⠀"
+    title: i18n("Authentication Required")
     flags: Qt.CustomizeWindowHint | Qt.Dialog | Qt.WindowTitleHint
 
     width: Math.max(mainContent.implicitWidth, footerItem.implicitWidth)
@@ -37,11 +37,7 @@ QQC2.ApplicationWindow {
         }
     }
 
-    T.Control {
-        id: mainContent
-
-        anchors.fill: parent
-
+    component TControl : T.Control {
         implicitWidth: Math.max(
             implicitBackgroundWidth + leftInset + rightInset,
             implicitContentWidth + leftPadding + rightPadding)
@@ -50,6 +46,12 @@ QQC2.ApplicationWindow {
             implicitBackgroundHeight + topInset + bottomInset,
             implicitContentHeight + topPadding + bottomPadding)
 
+    }
+
+    TControl {
+        id: mainContent
+
+        anchors.fill: parent
         padding: Kirigami.Units.gridUnit
         contentItem: ColumnLayout {
             spacing: Kirigami.Units.gridUnit
@@ -58,7 +60,19 @@ QQC2.ApplicationWindow {
 
             AvatarRow {}
 
-            PasswordRow {}
+            PasswordRow {
+                id: passwordRow
+                showOK: false
+
+                QQC2.Button {
+                    visible: otherUsersRepeater.count > 1
+                    text: i18n("Authenticate as another user")
+                    icon.name: "user-others"
+                    onClicked: otherUsers.popup()
+
+                    Layout.margins: Kirigami.Units.gridUnit
+                }
+            }
 
             Details { visible: rootWindow.showingDetails }
 
@@ -76,28 +90,29 @@ QQC2.ApplicationWindow {
         }
     }
 
-    footer: RowLayout {
-        id: footerItem
+    footer: TControl {
+        padding: Kirigami.Units.gridUnit
+        contentItem: RowLayout {
+            id: footerItem
 
-        QQC2.Button {
-            visible: otherUsersRepeater.count > 1
-            text: i18n("Authenticate as another user")
-            icon.name: "user-others"
-            onClicked: otherUsers.popup()
+            QQC2.Button {
+                id: detailsButton
 
-            Layout.margins: Kirigami.Units.gridUnit
-        }
+                text: rootWindow.showingDetails ? i18n("Hide Who/What/Why") : i18n("Show Who/What/Why")
+                icon.name: "view-more-symbolic"
+                onClicked: rootWindow.showingDetails = !rootWindow.showingDetails
+            }
 
-        Item { Layout.fillWidth: true }
+            Item { Layout.fillWidth: true }
 
-        QQC2.Button {
-            id: detailsButton
-
-            text: rootWindow.showingDetails ? i18n("Hide Who/What/Why") : i18n("Show Who/What/Why")
-            icon.name: "view-more-symbolic"
-            onClicked: rootWindow.showingDetails = !rootWindow.showingDetails
-
-            Layout.margins: Kirigami.Units.gridUnit
+            QQC2.Button {
+                text: i18n("Cancel")
+                onClicked: rootWindow.close()
+            }
+            QQC2.Button {
+                text: i18n("Allow")
+                onClicked: passwordRow.submit()
+            }
         }
     }
 

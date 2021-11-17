@@ -10,6 +10,7 @@ import QtQuick.Controls 2.10 as QQC2
 import QtQuick.Templates 2.10 as T
 
 RowLayout {
+    spacing: 16
     Kirigami.Avatar {
         source: context.currentAvatar
         name: context.currentUsername

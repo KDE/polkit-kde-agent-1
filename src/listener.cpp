@@ -99,6 +99,7 @@ void Listener::initiateAuthentication(const QString &actionID,
         },
         this);
     connect(context, &Context::complete, [=] {
+        d->engine->deleteLater();
         reexec();
     });
 
@@ -121,6 +122,7 @@ bool Listener::initiateAuthenticationFinish()
 
 void Listener::cancelAuthentication()
 {
+    d->engine->deleteLater();
     reexec();
 }
 

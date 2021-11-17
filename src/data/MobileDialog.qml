@@ -62,7 +62,7 @@ QQC2.ApplicationWindow {
 
             AvatarRow {}
 
-            PasswordRow {}
+            PasswordRow { showOK: true }
 
             Details { visible: rootWindow.showingDetails }
 

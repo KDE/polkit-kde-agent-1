@@ -15,6 +15,8 @@
 
 #include "listener.h"
 
+#include <malloc.h>
+
 #if defined(_LINUX)
 #include <sys/prctl.h>
 #elif defined(_FREEBSD)
