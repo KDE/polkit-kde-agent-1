@@ -107,10 +107,12 @@ QQC2.ApplicationWindow {
 
             QQC2.Button {
                 text: i18n("Cancel")
+                icon.name: "dialog-cancel"
                 onClicked: rootWindow.close()
             }
             QQC2.Button {
                 text: i18n("Allow")
+                icon.name: "dialog-ok"
                 onClicked: passwordRow.submit()
             }
         }
