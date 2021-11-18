@@ -100,15 +100,19 @@ QQC2.ApplicationWindow {
 
             Item { Layout.fillWidth: true }
 
-            QQC2.Button {
-                text: i18n("Cancel")
-                icon.name: "dialog-cancel"
-                onClicked: rootWindow.close()
-            }
-            QQC2.Button {
-                text: i18n("Allow")
-                icon.name: "dialog-ok"
-                onClicked: passwordRow.submit()
+            QQC2.DialogButtonBox {
+                QQC2.Button {
+                    text: i18n("Cancel")
+                    icon.name: "dialog-cancel"
+                    onClicked: rootWindow.close()
+                    QQC2.DialogButtonBox.buttonRole: QQC2.DialogButtonBox.RejectRole
+                }
+                QQC2.Button {
+                    text: i18n("Allow")
+                    icon.name: "dialog-ok"
+                    onClicked: passwordRow.submit()
+                    QQC2.DialogButtonBox.buttonRole: QQC2.DialogButtonBox.AcceptRole
+                }
             }
         }
     }
