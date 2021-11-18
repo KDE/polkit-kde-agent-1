@@ -37,6 +37,11 @@ QQC2.ApplicationWindow {
         }
     }
 
+    Shortcut {
+        sequence: "Esc"
+        onActivated: rootWindow.close()
+    }
+
     component TControl : T.Control {
         implicitWidth: Math.max(
             implicitBackgroundWidth + leftInset + rightInset,
@@ -77,16 +82,6 @@ QQC2.ApplicationWindow {
             Details { visible: rootWindow.showingDetails }
 
             Item { Layout.fillHeight: true }
-        }
-    }
-
-    Kirigami.Separator {
-        visible: !expander.childVisible
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: detailsButton.top
-            bottomMargin: Kirigami.Units.largeSpacing
         }
     }
 
