@@ -36,6 +36,7 @@ RowLayout {
             level: 5
             opacity: 0.8
             wrapMode: Text.Wrap
+            textFormat: Text.PlainText
 
             Layout.fillWidth: true
         }

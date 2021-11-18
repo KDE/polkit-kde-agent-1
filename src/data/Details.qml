@@ -14,21 +14,24 @@ Kirigami.FormLayout {
         opacity: 0.8
         text: context.details.description
         wrapMode: Text.Wrap
+        textFormat: Text.PlainText
 
-        Kirigami.FormData.label: i18n("What the app is doing:")
+        Kirigami.FormData.label: i18nc("label for reason", "What the app is doing:")
     }
     QQC2.Label {
         opacity: 0.8
         text: context.details.message
         wrapMode: Text.Wrap
+        textFormat: Text.PlainText
 
-        Kirigami.FormData.label: i18n("Why they want to do it:")
+        Kirigami.FormData.label: i18nc("label for reason", "Why they want to do it:")
     }
     QQC2.Label {
         opacity: 0.8
         text: context.details.vendor
         wrapMode: Text.Wrap
+        textFormat: Text.PlainText
 
-        Kirigami.FormData.label: i18n("Who the app is from:")
+        Kirigami.FormData.label: i18nc("label for reason", "Who the app is from:")
     }
 }
