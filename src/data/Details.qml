@@ -9,29 +9,36 @@ import org.kde.kirigami 2.14 as Kirigami
 import QtQuick.Controls 2.10 as QQC2
 import QtQuick.Templates 2.10 as T
 
-Kirigami.FormLayout {
-    QQC2.Label {
+GridLayout {
+    columns: Kirigami.Settings.isMobile ? 1 : 2
+
+    component PlainLabel : QQC2.Label {
+        textFormat: Text.PlainText
+    }
+    component KeyLabel : PlainLabel {
+        Layout.alignment: Kirigami.Settings.isMobile ? Qt.AlignLeft : Qt.AlignRight
+    }
+    component ValLabel : PlainLabel {
         opacity: 0.8
+        wrapMode: Text.Wrap
+    }
+
+    KeyLabel {
+        text: i18nc("label for reason", "What the app is doing:")
+    }
+    ValLabel {
         text: context.details.description
-        wrapMode: Text.Wrap
-        textFormat: Text.PlainText
-
-        Kirigami.FormData.label: i18nc("label for reason", "What the app is doing:")
     }
-    QQC2.Label {
-        opacity: 0.8
+    KeyLabel {
+        text: i18nc("label for reason", "Why they want to do it:")
+    }
+    ValLabel {
         text: context.details.message
-        wrapMode: Text.Wrap
-        textFormat: Text.PlainText
-
-        Kirigami.FormData.label: i18nc("label for reason", "Why they want to do it:")
     }
-    QQC2.Label {
-        opacity: 0.8
+    KeyLabel {
+        text: i18nc("label for reason", "Who the app is from:")
+    }
+    ValLabel {
         text: context.details.vendor
-        wrapMode: Text.Wrap
-        textFormat: Text.PlainText
-
-        Kirigami.FormData.label: i18nc("label for reason", "Who the app is from:")
     }
 }
