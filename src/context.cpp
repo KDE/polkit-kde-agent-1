@@ -52,6 +52,8 @@ void Context::connectSession()
     connect(d->session.data(), &PolkitQt1::Agent::Session::request, this, [this](QString s, bool b) {
         Q_UNUSED(b);
 
+        qWarning() << s << s.toLower().contains("swipe finger");
+
         d->canFingerprint = s.toLower().contains("swipe finger");
         Q_EMIT canFingerprintChanged();
     });

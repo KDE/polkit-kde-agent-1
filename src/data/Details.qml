@@ -9,6 +9,15 @@ import org.kde.kirigami 2.14 as Kirigami
 import QtQuick.Controls 2.10 as QQC2
 import QtQuick.Templates 2.10 as T
 
+/*
+    Kirigami's entire schtick is that controls resize to the window.
+    In this dialog, we size the window to the controls.
+    But oops! you can't have both the controls sizing to window
+    and the window sizing to the controls, and trying this results
+    in binding loops / layout spazzing.
+
+    Not using a FormLayout fixes this, so please don't port to a Kirigami FormLayout.
+*/
 GridLayout {
     columns: Kirigami.Settings.isMobile ? 1 : 2
 
