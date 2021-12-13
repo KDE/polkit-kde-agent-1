@@ -8,6 +8,7 @@ import QtQuick.Layouts 1.10
 import org.kde.kirigami 2.14 as Kirigami
 import QtQuick.Controls 2.10 as QQC2
 import QtQuick.Templates 2.10 as T
+import Qt.labs.platform 1.1 as Labs
 
 QQC2.ApplicationWindow {
     id: rootWindow
@@ -70,10 +71,10 @@ QQC2.ApplicationWindow {
                 showOK: false
 
                 QQC2.Button {
-                    visible: otherUsersRepeater.count > 1
+                    visible: otherUsersInstantiator.count > 1
                     text: i18n("Authenticate as another user")
                     icon.name: "user-others"
-                    onClicked: otherUsers.popup()
+                    onClicked: otherUsers.open(this)
 
                     Layout.topMargin: Kirigami.Units.largeSpacing
                 }
@@ -118,20 +119,18 @@ QQC2.ApplicationWindow {
     }
 
 
-    QQC2.Menu {
+    Labs.Menu {
         id: otherUsers
-        modal: true
 
-        Repeater {
-            id: otherUsersRepeater
-
+        Instantiator {
+            id: otherUsersInstantiator
             model: context.identityModel
-
-            delegate: QQC2.MenuItem {
+            delegate: Labs.MenuItem {
                 text: realname
-
-                onClicked: context.useIdentity(index)
+                onTriggered: context.useIdentity(index)
             }
+            onObjectAdded: otherUsers.insertItem(index, object)
+            onObjectRemoved: otherUsers.removeItem(object)
         }
     }
 }
