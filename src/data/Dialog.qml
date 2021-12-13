@@ -57,7 +57,7 @@ QQC2.ApplicationWindow {
         id: mainContent
 
         anchors.fill: parent
-        padding: Kirigami.Units.gridUnit
+        padding: Kirigami.Units.largeSpacing
         contentItem: ColumnLayout {
             spacing: Kirigami.Units.gridUnit
 
@@ -75,7 +75,7 @@ QQC2.ApplicationWindow {
                     icon.name: "user-others"
                     onClicked: otherUsers.popup()
 
-                    Layout.margins: Kirigami.Units.gridUnit
+                    Layout.topMargin: Kirigami.Units.largeSpacing
                 }
             }
 
@@ -86,7 +86,7 @@ QQC2.ApplicationWindow {
     }
 
     footer: TControl {
-        padding: Kirigami.Units.gridUnit
+        padding: Kirigami.Units.largeSpacing
         contentItem: RowLayout {
             id: footerItem
 
