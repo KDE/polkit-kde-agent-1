@@ -4,7 +4,7 @@ project(polkit-kde-agent-1)
 set(PROJECT_VERSION "5.24.80")
 
 set(QT_MIN_VERSION "5.15.0")
-set(KF5_MIN_VERSION "5.86")
+set(KF5_MIN_VERSION "5.90")
 set(KDE_COMPILERSETTINGS_LEVEL "5.82")
 
 # we need some parts of the ECM CMake helpers
@@ -20,7 +20,7 @@ include(ECMConfiguredInstall)
 
 include(KDEGitCommitHooks)
 
-find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets)
+find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets)
 
 # Load the frameworks we need
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
@@ -49,7 +49,7 @@ add_feature_info("prctl/procctl tracing control"
 # create config file
 configure_file (config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
-find_package(PolkitQt5-1 REQUIRED 0.103.0)
+find_package(PolkitQt${QT_MAJOR_VERSION}-1 REQUIRED 0.103.0)
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050c00)
 add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x054200)
 add_definitions(-DQT_NO_KEYWORDS)
@@ -75,7 +75,7 @@ target_link_libraries(polkit-kde-authentication-agent-1
     KF5::I18n
     KF5::Crash
     KF5::IconThemes
-    PolkitQt5-1::Agent
+    PolkitQt${QT_MAJOR_VERSION}-1::Agent
 )
 
 configure_file(polkit-kde-authentication-agent-1.desktop.cmake ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop)
@@ -87,7 +87,7 @@ install(FILES ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop DEST
 
 ecm_install_configured_files(INPUT plasma-polkit-agent.service.in DESTINATION ${KDE_INSTALL_SYSTEMDUSERUNITDIR})
 
-install(FILES policykit1-kde.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFY5RCDIR})
+install(FILES policykit1-kde.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR})
 
 # add clang-format target for all our real source files
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
