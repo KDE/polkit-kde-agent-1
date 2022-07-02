@@ -2,6 +2,7 @@
 Name=PolicyKit Authentication Agent
 Name[ar]=عميل استيثاق Policykit
 Name[ast]=Axente d'autenticación de PolicyKit
+Name[bg]=Агент за удостоверяване на PolicyKit
 Name[ca]=Agent d'autenticació del PolicyKit
 Name[ca@valencia]=Agent d'autenticació de PolicyKit
 Name[cs]=Ověřovací agent PolicyKitu
@@ -47,6 +48,7 @@ Name[zh_TW]=PolicyKit 認證代理程式
 Comment=PolicyKit Authentication Agent
 Comment[ar]=عميل استيثاق Policykit
 Comment[ast]=L'axente d'autenticación de PolicyKit
+Comment[bg]=Агент за удостоверяване на PolicyKit
 Comment[ca]=Agent d'autenticació del PolicyKit
 Comment[ca@valencia]=Agent d'autenticació de PolicyKit
 Comment[cs]=Ověřovací agent PolicyKitu
