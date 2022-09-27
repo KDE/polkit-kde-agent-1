@@ -10,7 +10,6 @@
 #define AUTHDIALOG_H
 
 #include <QDialog>
-#include <QDialogButtonBox>
 
 #include <PolkitQt1/ActionDescription>
 #include <PolkitQt1/Identity>

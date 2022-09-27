@@ -12,11 +12,9 @@
 #include <QDebug>
 #include <QDesktopServices>
 #include <QPainter>
-#include <QProcess>
 #include <QPushButton>
 #include <QStandardItemModel>
 #include <QUrl>
-#include <QVBoxLayout>
 
 #include <KIconLoader>
 #include <KUser>
