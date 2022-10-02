@@ -1,0 +1,197 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Shinjo Park <kde@peremen.name>, 2015, 2018, 2019, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-28 00:52+0000\n"
+"PO-Revision-Date: 2020-04-04 00:48+0200\n"
+"Last-Translator: Shinjo Park <kde@peremen.name>\n"
+"Language-Team: Korean <kde-kr@kde.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 19.04.3\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "박신조"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "kde@peremen.name"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: authdetails.ui:29
+#, kde-format
+msgid "Action:"
+msgstr "동작:"
+
+#. i18n: ectx: property (text), widget (QLabel, action_label)
+#: authdetails.ui:39
+#, kde-format
+msgid "<null>"
+msgstr "<null>"
+
+#. i18n: ectx: property (text), widget (KUrlLabel, vendorUL)
+#. i18n: ectx: property (text), widget (QLabel, vendorL)
+#: authdetails.ui:56 authdetails.ui:81
+#, kde-format
+msgid "Vendor:"
+msgstr "제조사:"
+
+#. i18n: ectx: property (text), widget (QLabel, action_id_label)
+#: authdetails.ui:94
+#, kde-format
+msgid "Action ID:"
+msgstr "동작 ID:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: authdetails.ui:113
+#, kde-format
+msgid "ID:"
+msgstr "ID:"
+
+#: AuthDialog.cpp:59
+#, kde-format
+msgid "Details"
+msgstr "자세히"
+
+#: AuthDialog.cpp:75
+#, kde-format
+msgid "Authentication Required"
+msgstr "인증 필요함"
+
+#: AuthDialog.cpp:163
+#, kde-format
+msgid "Password for root:"
+msgstr "루트 암호:"
+
+#: AuthDialog.cpp:165
+#, kde-format
+msgid "Password for %1:"
+msgstr "%1의 암호:"
+
+#: AuthDialog.cpp:168
+#, kde-format
+msgid "Password:"
+msgstr "암호:"
+
+#: AuthDialog.cpp:173
+#, kde-format
+msgid "Password or swipe finger for root:"
+msgstr "루트 암호 또는 지문 인식:"
+
+#: AuthDialog.cpp:175
+#, kde-format
+msgid "Password or swipe finger for %1:"
+msgstr "%1의 암호 또는 지문 인식:"
+
+#: AuthDialog.cpp:178
+#, kde-format
+msgid "Password or swipe finger:"
+msgstr "암호 또는 지문 인식:"
+
+#: AuthDialog.cpp:188
+#, kde-format
+msgid ""
+"An application is attempting to perform an action that requires privileges. "
+"Authentication is required to perform this action."
+msgstr ""
+"프로그램에서 상위 권한이 필요한 동작을 수행하려고 합니다. 이 동작을 수행하려"
+"면 인증해야 합니다."
+
+#: AuthDialog.cpp:204
+#, kde-format
+msgid "Select User"
+msgstr "사용자 선택"
+
+#: AuthDialog.cpp:223
+#, kde-format
+msgctxt "%1 is the full user name, %2 is the user login name"
+msgid "%1 (%2)"
+msgstr "%1 (%2)"
+
+#: AuthDialog.cpp:303
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "인증 실패, 다시 시도하십시오."
+
+#: AuthDialog.cpp:326
+#, kde-format
+msgctxt ""
+"%1 is the name of a detail about the current action provided by polkit"
+msgid "%1:"
+msgstr "%1:"
+
+#: AuthDialog.cpp:344
+#, kde-format
+msgid "'Description' not provided"
+msgstr "'Description'이 지정되지 않음"
+
+#: AuthDialog.cpp:356 AuthDialog.cpp:360
+#, kde-format
+msgid "Click to open %1"
+msgstr "%1을(를) 열려면 클릭하십시오"
+
+#. i18n: ectx: property (text), widget (QLabel, lblPassword)
+#: AuthDialog.ui:93
+#, kde-format
+msgid "P&assword:"
+msgstr "암호(&A):"
+
+#: main.cpp:49
+#, kde-format
+msgid "PolicyKit1 KDE Agent"
+msgstr "PolicyKit1 KDE 에이전트"
+
+#: main.cpp:51
+#, kde-format
+msgid "(c) 2009 Red Hat, Inc."
+msgstr "(c) 2009 Red Hat, Inc."
+
+#: main.cpp:52
+#, kde-format
+msgid "Lukáš Tinkl"
+msgstr "Lukáš Tinkl"
+
+#: main.cpp:52
+#, kde-format
+msgid "Maintainer"
+msgstr "관리자"
+
+#: main.cpp:53
+#, kde-format
+msgid "Jaroslav Reznik"
+msgstr "Jaroslav Reznik"
+
+#: main.cpp:53
+#, kde-format
+msgid "Former maintainer"
+msgstr "이전 관리자"
+
+#: policykitlistener.cpp:59
+#, kde-format
+msgid "Another client is already authenticating, please try again later."
+msgstr "다른 클라이언트가 실행 중입니다. 나중에 다시 시도하십시오."
+
+#~ msgid "Application:"
+#~ msgstr "프로그램:"
+
+#~ msgid "Not Applicable"
+#~ msgstr "사용할 수 없음"
+
+#~ msgid "Click to edit %1"
+#~ msgstr "%1을(를) 편집하려면 누르십시오"
+
+#~ msgid "Switch to dialog"
+#~ msgstr "대화 상자로 전환"
+
+#~ msgid "Cancel"
+#~ msgstr "취소"

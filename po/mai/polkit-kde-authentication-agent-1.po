@@ -1,0 +1,190 @@
+# translation of polkit-kde-authentication-agent-1.po to Maithili
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Rajesh Ranjan <rajesh672@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: polkit-kde-authentication-agent-1\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-28 00:52+0000\n"
+"PO-Revision-Date: 2010-09-08 12:34+0530\n"
+"Last-Translator: Rajesh Ranjan <rajesh672@gmail.com>\n"
+"Language-Team: Maithili <bhashaghar@googlegroups.com>\n"
+"Language: mai\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "संगीता कुमारी"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "sangeeta09@gmail.com"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: authdetails.ui:29
+#, kde-format
+msgid "Action:"
+msgstr "क्रिया:"
+
+#. i18n: ectx: property (text), widget (QLabel, action_label)
+#: authdetails.ui:39
+#, kde-format
+msgid "<null>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (KUrlLabel, vendorUL)
+#. i18n: ectx: property (text), widget (QLabel, vendorL)
+#: authdetails.ui:56 authdetails.ui:81
+#, kde-format
+msgid "Vendor:"
+msgstr "विक्रेता:"
+
+#. i18n: ectx: property (text), widget (QLabel, action_id_label)
+#: authdetails.ui:94
+#, fuzzy, kde-format
+#| msgid "Action:"
+msgid "Action ID:"
+msgstr "क्रिया:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: authdetails.ui:113
+#, kde-format
+msgid "ID:"
+msgstr ""
+
+#: AuthDialog.cpp:59
+#, kde-format
+msgid "Details"
+msgstr ""
+
+#: AuthDialog.cpp:75
+#, kde-format
+msgid "Authentication Required"
+msgstr ""
+
+#: AuthDialog.cpp:163
+#, kde-format
+msgid "Password for root:"
+msgstr ""
+
+#: AuthDialog.cpp:165
+#, kde-format
+msgid "Password for %1:"
+msgstr ""
+
+#: AuthDialog.cpp:168
+#, kde-format
+msgid "Password:"
+msgstr "कूटशब्द: "
+
+#: AuthDialog.cpp:173
+#, kde-format
+msgid "Password or swipe finger for root:"
+msgstr ""
+
+#: AuthDialog.cpp:175
+#, kde-format
+msgid "Password or swipe finger for %1:"
+msgstr ""
+
+#: AuthDialog.cpp:178
+#, kde-format
+msgid "Password or swipe finger:"
+msgstr ""
+
+#: AuthDialog.cpp:188
+#, kde-format
+msgid ""
+"An application is attempting to perform an action that requires privileges. "
+"Authentication is required to perform this action."
+msgstr ""
+
+#: AuthDialog.cpp:204
+#, kde-format
+msgid "Select User"
+msgstr "प्रयोक्ताक चुनू"
+
+#: AuthDialog.cpp:223
+#, kde-format
+msgctxt "%1 is the full user name, %2 is the user login name"
+msgid "%1 (%2)"
+msgstr ""
+
+#: AuthDialog.cpp:303
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr ""
+
+#: AuthDialog.cpp:326
+#, kde-format
+msgctxt ""
+"%1 is the name of a detail about the current action provided by polkit"
+msgid "%1:"
+msgstr "%1:"
+
+#: AuthDialog.cpp:344
+#, kde-format
+msgid "'Description' not provided"
+msgstr ""
+
+#: AuthDialog.cpp:356 AuthDialog.cpp:360
+#, kde-format
+msgid "Click to open %1"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lblPassword)
+#: AuthDialog.ui:93
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "P&assword:"
+msgstr "कूटशब्द: "
+
+#: main.cpp:49
+#, kde-format
+msgid "PolicyKit1 KDE Agent"
+msgstr ""
+
+#: main.cpp:51
+#, kde-format
+msgid "(c) 2009 Red Hat, Inc."
+msgstr ""
+
+#: main.cpp:52
+#, kde-format
+msgid "Lukáš Tinkl"
+msgstr ""
+
+#: main.cpp:52
+#, kde-format
+msgid "Maintainer"
+msgstr "अनुरक्षक"
+
+#: main.cpp:53
+#, kde-format
+msgid "Jaroslav Reznik"
+msgstr ""
+
+#: main.cpp:53
+#, fuzzy, kde-format
+#| msgid "Maintainer"
+msgid "Former maintainer"
+msgstr "अनुरक्षक"
+
+#: policykitlistener.cpp:59
+#, kde-format
+msgid "Another client is already authenticating, please try again later."
+msgstr ""
+
+#~ msgid "Application:"
+#~ msgstr "अनुप्रयोग:"
+
+#~ msgid "Cancel"
+#~ msgstr "रद करू"

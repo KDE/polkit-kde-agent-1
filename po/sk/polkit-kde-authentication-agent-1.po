@@ -1,0 +1,196 @@
+# translation of polkit-kde-authentication-agent-1.po to Slovak
+# Roman Paholík <wizzardsk@gmail.com>, 2015.
+# Mthw <jari_45@hotmail.com>, 2018.
+msgid ""
+msgstr ""
+"Project-Id-Version: polkit-kde-authentication-agent-1\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-28 00:52+0000\n"
+"PO-Revision-Date: 2018-11-13 16:03+0100\n"
+"Last-Translator: Mthw <jari_45@hotmail.com>\n"
+"Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 2.0\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Roman Paholík"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "wizzardsk@gmail.com"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: authdetails.ui:29
+#, kde-format
+msgid "Action:"
+msgstr "Akcia:"
+
+#. i18n: ectx: property (text), widget (QLabel, action_label)
+#: authdetails.ui:39
+#, kde-format
+msgid "<null>"
+msgstr "<null>"
+
+#. i18n: ectx: property (text), widget (KUrlLabel, vendorUL)
+#. i18n: ectx: property (text), widget (QLabel, vendorL)
+#: authdetails.ui:56 authdetails.ui:81
+#, kde-format
+msgid "Vendor:"
+msgstr "Predajca:"
+
+#. i18n: ectx: property (text), widget (QLabel, action_id_label)
+#: authdetails.ui:94
+#, kde-format
+msgid "Action ID:"
+msgstr "ID Akcie:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: authdetails.ui:113
+#, kde-format
+msgid "ID:"
+msgstr "ID:"
+
+#: AuthDialog.cpp:59
+#, kde-format
+msgid "Details"
+msgstr "Detaily"
+
+#: AuthDialog.cpp:75
+#, kde-format
+msgid "Authentication Required"
+msgstr "Vyžaduje sa overenie totožnosti"
+
+#: AuthDialog.cpp:163
+#, kde-format
+msgid "Password for root:"
+msgstr "Heslo pre roota:"
+
+#: AuthDialog.cpp:165
+#, kde-format
+msgid "Password for %1:"
+msgstr "Heslo pre %1:"
+
+#: AuthDialog.cpp:168
+#, kde-format
+msgid "Password:"
+msgstr "Heslo:"
+
+#: AuthDialog.cpp:173
+#, kde-format
+msgid "Password or swipe finger for root:"
+msgstr "Heslo alebo odtlačok prsta pre roota:"
+
+#: AuthDialog.cpp:175
+#, kde-format
+msgid "Password or swipe finger for %1:"
+msgstr "Heslo alebo odtlačok prsta pre %1:"
+
+#: AuthDialog.cpp:178
+#, kde-format
+msgid "Password or swipe finger:"
+msgstr "Heslo alebo odtlačok prsta:"
+
+#: AuthDialog.cpp:188
+#, kde-format
+msgid ""
+"An application is attempting to perform an action that requires privileges. "
+"Authentication is required to perform this action."
+msgstr ""
+"Aplikácia sa pokúša vykonať činnosť, ktorá vyžaduje oprávnenia. Na vykonanie "
+"tejto činnosti je potrebné overenie oprávnení."
+
+#: AuthDialog.cpp:204
+#, kde-format
+msgid "Select User"
+msgstr "Vybrať používateľa"
+
+#: AuthDialog.cpp:223
+#, kde-format
+msgctxt "%1 is the full user name, %2 is the user login name"
+msgid "%1 (%2)"
+msgstr "%1 (%2)"
+
+#: AuthDialog.cpp:303
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Overenie zlyhalo, prosím, skúste to znovu."
+
+#: AuthDialog.cpp:326
+#, kde-format
+msgctxt ""
+"%1 is the name of a detail about the current action provided by polkit"
+msgid "%1:"
+msgstr "%1:"
+
+#: AuthDialog.cpp:344
+#, kde-format
+msgid "'Description' not provided"
+msgstr "'Popis' nebol poskytnutý"
+
+#: AuthDialog.cpp:356 AuthDialog.cpp:360
+#, kde-format
+msgid "Click to open %1"
+msgstr "Kliknite na otvorenie %1"
+
+#. i18n: ectx: property (text), widget (QLabel, lblPassword)
+#: AuthDialog.ui:93
+#, kde-format
+msgid "P&assword:"
+msgstr "H&eslo:"
+
+#: main.cpp:49
+#, kde-format
+msgid "PolicyKit1 KDE Agent"
+msgstr "PolicyKit1 KDE Agent"
+
+#: main.cpp:51
+#, kde-format
+msgid "(c) 2009 Red Hat, Inc."
+msgstr "(c) 2009 Red Hat, Inc."
+
+#: main.cpp:52
+#, kde-format
+msgid "Lukáš Tinkl"
+msgstr "Lukáš Tinkl"
+
+#: main.cpp:52
+#, kde-format
+msgid "Maintainer"
+msgstr "Správca"
+
+#: main.cpp:53
+#, kde-format
+msgid "Jaroslav Reznik"
+msgstr "Jaroslav Reznik"
+
+#: main.cpp:53
+#, kde-format
+msgid "Former maintainer"
+msgstr "Predošlý správca"
+
+#: policykitlistener.cpp:59
+#, kde-format
+msgid "Another client is already authenticating, please try again later."
+msgstr "Iný klient už vykonáva overovanie, prosím skúste to neskôr znovu."
+
+#~ msgid "Application:"
+#~ msgstr "Aplikácia:"
+
+#~ msgid "Not Applicable"
+#~ msgstr "Nepoužiteľné"
+
+#~ msgid "Click to edit %1"
+#~ msgstr "Kliknite na úpravu %1"
+
+#~ msgid "Switch to dialog"
+#~ msgstr "Prepnúť na dialóg"
+
+#~ msgid "Cancel"
+#~ msgstr "Zrušiť"
