@@ -17,6 +17,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDEClangFormat)
 include(FeatureSummary)
 include(ECMConfiguredInstall)
+include(ECMDeprecationSettings)
 
 include(KDEGitCommitHooks)
 
@@ -50,8 +51,10 @@ add_feature_info("prctl/procctl tracing control"
 configure_file (config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
 find_package(PolkitQt${QT_MAJOR_VERSION}-1 REQUIRED 0.103.0)
-add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050c00)
-add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x054200)
+ecm_set_disabled_deprecation_versions(QT 5.15.2
+    KF 5.100
+)
+
 add_definitions(-DQT_NO_KEYWORDS)
 
 qt_add_dbus_adaptor(policykit_SRCS org.kde.Polkit1AuthAgent.xml policykitlistener.h PolicyKitListener)
