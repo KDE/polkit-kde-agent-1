@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: extragear-base-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-09-28 00:52+0000\n"
-"PO-Revision-Date: 2022-04-07 13:58+0300\n"
+"PO-Revision-Date: 2022-12-31 00:50+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -17,17 +17,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Serdar Soytetir"
+msgstr "Serdar Soytetir, Emir SARI"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "tulliana@gmail.com"
+msgstr "tulliana@gmail.com, emir_sari@icloud.com"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: authdetails.ui:29
@@ -68,7 +68,7 @@ msgstr "Ayrıntılar"
 #: AuthDialog.cpp:75
 #, kde-format
 msgid "Authentication Required"
-msgstr "Kimlik Doğrulama Gereklidir"
+msgstr "Kimlik Doğrulama Gerekli"
 
 #: AuthDialog.cpp:163
 #, kde-format
@@ -78,7 +78,7 @@ msgstr "Yönetici parolası:"
 #: AuthDialog.cpp:165
 #, kde-format
 msgid "Password for %1:"
-msgstr "%1 kullanıcısının parolası:"
+msgstr "%1 kullanıcısı parolası:"
 
 #: AuthDialog.cpp:168
 #, kde-format
@@ -106,13 +106,13 @@ msgid ""
 "An application is attempting to perform an action that requires privileges. "
 "Authentication is required to perform this action."
 msgstr ""
-"Bir uygulamanın yapmak istediği bir eylem ayrıcalıklar gerektiriyor. Bu "
-"eylemi yapabilmek için yetkilendirilmeniz gerekiyor."
+"Bir uygulama, ayrıcalıklar gerektiren bir eylemi gerçekleştirmeye çalışıyor. "
+"Bu eylemi gerçekleştirmek için kimlik doğrulama gereklidir."
 
 #: AuthDialog.cpp:204
 #, kde-format
 msgid "Select User"
-msgstr "Kullanıcı Seçin"
+msgstr "Kullanıcı Seç"
 
 #: AuthDialog.cpp:223
 #, kde-format
@@ -123,7 +123,7 @@ msgstr "%1 (%2)"
 #: AuthDialog.cpp:303
 #, kde-format
 msgid "Authentication failure, please try again."
-msgstr "Kimlik doğrulama başarısız oldu, lütfen yeniden deneyin."
+msgstr "Kimlik doğrulama başarısız, lütfen yeniden deneyin."
 
 #: AuthDialog.cpp:326
 #, kde-format
@@ -140,7 +140,7 @@ msgstr "'Açıklama' verilmedi"
 #: AuthDialog.cpp:356 AuthDialog.cpp:360
 #, kde-format
 msgid "Click to open %1"
-msgstr "%1 ögesini açmak için tıklayın"
+msgstr "%1 ögesini açmak için tıkla"
 
 #. i18n: ectx: property (text), widget (QLabel, lblPassword)
 #: AuthDialog.ui:93
@@ -151,7 +151,7 @@ msgstr "P&arola:"
 #: main.cpp:49
 #, kde-format
 msgid "PolicyKit1 KDE Agent"
-msgstr "PolicyKit1 KDE Ajanı"
+msgstr "PolicyKit1 KDE Aracısı"
 
 #: main.cpp:51
 #, kde-format
@@ -166,7 +166,7 @@ msgstr "Lukáš Tinkl"
 #: main.cpp:52
 #, kde-format
 msgid "Maintainer"
-msgstr "Projeyi Yürüten"
+msgstr "Bakımcı"
 
 #: main.cpp:53
 #, kde-format
@@ -176,14 +176,14 @@ msgstr "Jaroslav Reznik"
 #: main.cpp:53
 #, kde-format
 msgid "Former maintainer"
-msgstr "Önceki geliştirici"
+msgstr "Önceki bakımcı"
 
 #: policykitlistener.cpp:59
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr ""
-"Başka bir istemci kimlik doğrulaması yapıyor, lütfen daha sonra yeniden "
-"deneyin."
+"Başka bir istemci halihazırda kimlik doğrulaması yapıyor, lütfen daha sonra "
+"yeniden deneyin."
 
 #~ msgid "Application:"
 #~ msgstr "Uygulama:"
