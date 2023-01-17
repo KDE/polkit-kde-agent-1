@@ -115,7 +115,7 @@ msgstr ""
 #: AuthDialog.cpp:204
 #, kde-format
 msgid "Select User"
-msgstr "Selecció d'usuari"
+msgstr "Seleccioneu un usuari"
 
 #: AuthDialog.cpp:223
 #, kde-format
