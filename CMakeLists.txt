@@ -65,7 +65,7 @@ set(policykit_SRCS
     ${policykit_SRCS}
     policykitlistener.cpp
     main.cpp
-    AuthDialog.cpp AuthDialog.h
+    AuthDialog.cpp
 )
 
 add_executable(polkit-kde-authentication-agent-1 ${policykit_SRCS})
