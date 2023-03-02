@@ -8,6 +8,7 @@
 #include <QDebug>
 
 #include <KWindowSystem>
+#include <KX11Extras>
 
 #include <PolkitQt1/Agent/Session>
 #include <PolkitQt1/Details>
@@ -79,7 +80,7 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
     qDebug() << "WinId of the dialog is " << m_dialog.data()->winId() << m_dialog.data()->effectiveWinId();
     m_dialog.data()->setOptions();
     m_dialog.data()->show();
-    KWindowSystem::forceActiveWindow(m_dialog.data()->winId());
+    KX11Extras::forceActiveWindow(m_dialog.data()->winId());
     qDebug() << "WinId of the shown dialog is " << m_dialog.data()->winId() << m_dialog.data()->effectiveWinId();
 
     if (identities.length() == 1) {
