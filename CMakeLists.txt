@@ -4,11 +4,11 @@ project(polkit-kde-agent-1)
 set(PROJECT_VERSION "5.27.80")
 
 set(QT_MIN_VERSION "5.15.2")
-set(KF5_MIN_VERSION "5.102.0")
+set(KF6_MIN_VERSION "5.102.0")
 set(KDE_COMPILERSETTINGS_LEVEL "5.82")
 
 # we need some parts of the ECM CMake helpers
-find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
+find_package(ECM ${KF6_MIN_VERSION} REQUIRED NO_MODULE)
 set (CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include(KDEInstallDirs)
@@ -24,7 +24,7 @@ include(KDEGitCommitHooks)
 find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets)
 
 # Load the frameworks we need
-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS
   I18n
   WindowSystem
   DBusAddons
@@ -71,13 +71,13 @@ set(policykit_SRCS
 add_executable(polkit-kde-authentication-agent-1 ${policykit_SRCS})
 
 target_link_libraries(polkit-kde-authentication-agent-1
-    KF5::DBusAddons
-    KF5::WindowSystem
-    KF5::WidgetsAddons
-    KF5::CoreAddons
-    KF5::I18n
-    KF5::Crash
-    KF5::IconThemes
+    KF6::DBusAddons
+    KF6::WindowSystem
+    KF6::WidgetsAddons
+    KF6::CoreAddons
+    KF6::I18n
+    KF6::Crash
+    KF6::IconThemes
     PolkitQt${QT_MAJOR_VERSION}-1::Agent
 )
 
