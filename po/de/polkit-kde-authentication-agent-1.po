@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-28 00:52+0000\n"
+"POT-Creation-Date: 2023-03-03 02:18+0000\n"
 "PO-Revision-Date: 2018-11-16 10:57+0100\n"
 "Last-Translator: Burkhard Lück <lueck@hube-lueck.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -174,7 +174,7 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "Ehemaliger Betreuer"
 
-#: policykitlistener.cpp:59
+#: policykitlistener.cpp:60
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr ""

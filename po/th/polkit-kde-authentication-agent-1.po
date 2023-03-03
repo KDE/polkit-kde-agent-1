@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-28 00:52+0000\n"
+"POT-Creation-Date: 2023-03-03 02:18+0000\n"
 "PO-Revision-Date: 2010-12-11 16:14+0700\n"
 "Last-Translator: Phuwanat Sakornsakolpat <narachai@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -181,7 +181,7 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "ผู้ดูแล"
 
-#: policykitlistener.cpp:59
+#: policykitlistener.cpp:60
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "มีไคลเอนต์อื่นที่กำลังทำการตรวจสอบสิทธิ์อยู่ โปรดลองใหม่อีกครั้งในภายหลัง"

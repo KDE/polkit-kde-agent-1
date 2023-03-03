@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-28 00:52+0000\n"
+"POT-Creation-Date: 2023-03-03 02:18+0000\n"
 "PO-Revision-Date: 2012-07-09 11:09+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -181,7 +181,7 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "អ្នកថែទាំ"
 
-#: policykitlistener.cpp:59
+#: policykitlistener.cpp:60
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "ម៉ាស៊ីន​ភ្ញៀវ​ផ្សេង​កំពុង​ផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ​រួច​ហើយ សូម​ព្យាយាម​ម្ដង​ទៀត​នៅ​ពេល​ក្រោយ ។"

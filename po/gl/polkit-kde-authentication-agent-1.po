@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-28 00:52+0000\n"
+"POT-Creation-Date: 2023-03-03 02:18+0000\n"
 "PO-Revision-Date: 2019-10-08 14:19+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -178,7 +178,7 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "Mantedor orixinal."
 
-#: policykitlistener.cpp:59
+#: policykitlistener.cpp:60
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Xa está a autenticar outro cliente, inténteo máis tarde."
