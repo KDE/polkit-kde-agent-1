@@ -91,6 +91,7 @@ Name[uk]=Система розпізнавання
 Name[vi]=Hệ thống xác thực
 Name[x-test]=xxAuthentication Systemxx
 Name[zh_CN]=身份验证系统
+Name[zh_TW]=認證系統
 
 [Event/authenticate]
 Name=Authenticate
@@ -134,6 +135,7 @@ Name[uk]=Розпізнавання
 Name[vi]=Xác thực
 Name[x-test]=xxAuthenticatexx
 Name[zh_CN]=验证
+Name[zh_TW]=認證
 Comment=You are required to authenticate
 Comment[ar]=الاستيثاق مطلوب
 Comment[be]=Вам неабходна выканаць аўтэнтыфікацыю
