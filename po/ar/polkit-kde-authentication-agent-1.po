@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2021-07-24 00:26+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: \n"
@@ -148,11 +148,6 @@ msgstr "انقر لتفتح %1"
 msgid "P&assword:"
 msgstr "&كلمة المرور:"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "عميل PolicyKit1-KDE"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -182,6 +177,9 @@ msgstr "المشرف السابق"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "يوجد عميل أخر يقوم بالاستيثاق ، الرجاء المحاولة لاحقا."
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "عميل PolicyKit1-KDE"
 
 #~ msgid "Application:"
 #~ msgstr "التطبيق:"

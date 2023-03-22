@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2010-12-11 16:14+0700\n"
 "Last-Translator: Phuwanat Sakornsakolpat <narachai@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -149,12 +149,6 @@ msgstr "คลิกเพื่อเปิด %1"
 msgid "P&assword:"
 msgstr "รหัสผ่าน:"
 
-#: main.cpp:49
-#, fuzzy, kde-format
-#| msgid "PolicyKit1-KDE"
-msgid "PolicyKit1 KDE Agent"
-msgstr "PolicyKit1-KDE"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -185,6 +179,11 @@ msgstr "ผู้ดูแล"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "มีไคลเอนต์อื่นที่กำลังทำการตรวจสอบสิทธิ์อยู่ โปรดลองใหม่อีกครั้งในภายหลัง"
+
+#, fuzzy
+#~| msgid "PolicyKit1-KDE"
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "PolicyKit1-KDE"
 
 #~ msgid "Application:"
 #~ msgstr "โปรแกรม:"

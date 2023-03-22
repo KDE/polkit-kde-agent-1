@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2019-09-29 12:36+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -148,11 +148,6 @@ msgstr "Барои кушодани %1, зер кунед"
 msgid "P&assword:"
 msgstr "&Ниҳонвожа:"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "Вакили PolicyKit1 KDE"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -184,3 +179,6 @@ msgid "Another client is already authenticating, please try again later."
 msgstr ""
 "Мизоҷи дигар дар ҳоли санҷиши ҳаққоният мебошад, лутфан, дертар аз нав кӯшиш "
 "кунед."
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "Вакили PolicyKit1 KDE"

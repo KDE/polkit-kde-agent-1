@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2016-04-08 22:57+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
@@ -152,12 +152,6 @@ msgstr "Smelltu til að opna %1"
 msgid "P&assword:"
 msgstr "Lykilorð:"
 
-#: main.cpp:49
-#, fuzzy, kde-format
-#| msgid "PolicyKit1-KDE"
-msgid "PolicyKit1 KDE Agent"
-msgstr "PolicyKit1-KDE"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -188,6 +182,11 @@ msgstr "Umsjónarmaður"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr ""
+
+#, fuzzy
+#~| msgid "PolicyKit1-KDE"
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "PolicyKit1-KDE"
 
 #~ msgid "Application:"
 #~ msgstr "Forrit:"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2019-06-05 22:14+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@euskalnet.net>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -149,11 +149,6 @@ msgstr "Klik egin %1 irekitzeko"
 msgid "P&assword:"
 msgstr "P&asahitza:"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "PolicyKit1 KDE agentea"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -183,6 +178,9 @@ msgstr "Aurreko arduraduna"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Beste bezero bat autentifikatzen ari da dagoeneko, saiatu beranduago."
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "PolicyKit1 KDE agentea"
 
 #~ msgid "Application:"
 #~ msgstr "Aplikazioa:"

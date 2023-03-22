@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extragear-base-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2022-12-31 00:50+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -148,11 +148,6 @@ msgstr "%1 ögesini açmak için tıkla"
 msgid "P&assword:"
 msgstr "P&arola:"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "PolicyKit1 KDE Aracısı"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -184,6 +179,9 @@ msgid "Another client is already authenticating, please try again later."
 msgstr ""
 "Başka bir istemci halihazırda kimlik doğrulaması yapıyor, lütfen daha sonra "
 "yeniden deneyin."
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "PolicyKit1 KDE Aracısı"
 
 #~ msgid "Application:"
 #~ msgstr "Uygulama:"

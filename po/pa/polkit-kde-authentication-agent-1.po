@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2020-10-13 21:46-0700\n"
 "Last-Translator: A S Alam <aalam.yellow@gmail.com>\n"
 "Language-Team: Punjabi <punjabi-users@lists.sf.net>\n"
@@ -146,11 +146,6 @@ msgstr "%1 ਖੋਲ੍ਹਣ ਲਈ ਕਲਿੱਕ"
 msgid "P&assword:"
 msgstr "ਪਾਸਵਰਡ(&a):"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "PolicyKit1 KDE ਏਜੰਟ"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -180,6 +175,9 @@ msgstr "ਪੁਰਾਣਾ ਪਰਬੰਧਕ"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "ਹੋਰ ਕਲਾਇਟ ਪਹਿਲਾਂ ਹੀ ਪਰਮਾਣਕਿਤਾ ਕਰ ਰਿਹਾ ਹੈ, ਬਾਅਦ 'ਚ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "PolicyKit1 KDE ਏਜੰਟ"
 
 #~ msgid "Application:"
 #~ msgstr "ਐਪਲੀਕੇਸ਼ਨ:"

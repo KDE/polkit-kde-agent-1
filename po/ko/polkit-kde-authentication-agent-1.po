@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2020-04-04 00:48+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -146,11 +146,6 @@ msgstr "%1을(를) 열려면 클릭하십시오"
 msgid "P&assword:"
 msgstr "암호(&A):"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "PolicyKit1 KDE 에이전트"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -180,6 +175,9 @@ msgstr "이전 관리자"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "다른 클라이언트가 실행 중입니다. 나중에 다시 시도하십시오."
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "PolicyKit1 KDE 에이전트"
 
 #~ msgid "Application:"
 #~ msgstr "프로그램:"

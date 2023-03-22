@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2012-07-09 11:09+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -149,12 +149,6 @@ msgstr "ចុច​ ដើម្បី​បើក %1"
 msgid "P&assword:"
 msgstr "ពាក្យ​សម្ងាត់ ៖"
 
-#: main.cpp:49
-#, fuzzy, kde-format
-#| msgid "PolicyKit1-KDE"
-msgid "PolicyKit1 KDE Agent"
-msgstr "PolicyKit1-KDE"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -185,6 +179,11 @@ msgstr "អ្នកថែទាំ"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "ម៉ាស៊ីន​ភ្ញៀវ​ផ្សេង​កំពុង​ផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ​រួច​ហើយ សូម​ព្យាយាម​ម្ដង​ទៀត​នៅ​ពេល​ក្រោយ ។"
+
+#, fuzzy
+#~| msgid "PolicyKit1-KDE"
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "PolicyKit1-KDE"
 
 #~ msgid "Application:"
 #~ msgstr "ការ​អនុវត្ត ៖"

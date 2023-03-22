@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2011-06-28 15:19+0200\n"
 "Last-Translator: Marko Dimjašević <marko@dimjasevic.net>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -152,12 +152,6 @@ msgstr "Kliknite da biste otvorili %1"
 msgid "P&assword:"
 msgstr "Zaporka:"
 
-#: main.cpp:49
-#, fuzzy, kde-format
-#| msgid "PolicyKit1-KDE"
-msgid "PolicyKit1 KDE Agent"
-msgstr "PolicyKit1-KDE"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -188,6 +182,11 @@ msgstr "Održavatelj"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Drugi klijent se trenutno prijavljuje, molim pokušajte kasnije."
+
+#, fuzzy
+#~| msgid "PolicyKit1-KDE"
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "PolicyKit1-KDE"
 
 #~ msgid "Application:"
 #~ msgstr "Aplikacija:"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2020-02-16 19:37+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -149,11 +149,6 @@ msgstr "Kliknite za odpiranje %1"
 msgid "P&assword:"
 msgstr "Geslo:"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "Posrednik PolicyKit1 za KDE"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -183,6 +178,9 @@ msgstr "Prejšnji vzdrževalec"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Drug odjemalec se že overja. Poskusite znova kasneje."
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "Posrednik PolicyKit1 za KDE"
 
 #~ msgid "Application:"
 #~ msgstr "Program:"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2018-10-26 12:50+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -148,11 +148,6 @@ msgstr "Haga clic para abrir %1"
 msgid "P&assword:"
 msgstr "C&ontraseña:"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "Agente de KDE para PolicyKit1"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -184,6 +179,9 @@ msgid "Another client is already authenticating, please try again later."
 msgstr ""
 "Ya se está autenticando otro cliente; por favor, vuelva a intentarlo más "
 "tarde."
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "Agente de KDE para PolicyKit1"
 
 #~ msgid "Application:"
 #~ msgstr "Aplicación:"

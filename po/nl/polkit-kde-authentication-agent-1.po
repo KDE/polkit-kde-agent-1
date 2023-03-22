@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2018-10-26 11:30+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
@@ -146,11 +146,6 @@ msgstr "Klik om %1 te openen"
 msgid "P&assword:"
 msgstr "W&achtwoord:"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "PolicyKit1 KDE Agent"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -182,6 +177,9 @@ msgid "Another client is already authenticating, please try again later."
 msgstr ""
 "Voor een andere cliënt wordt de authenticatie gedaan, gaarne later opnieuw "
 "proberen."
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "PolicyKit1 KDE Agent"
 
 #~ msgid "Application:"
 #~ msgstr "Toepassing:"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2019-12-01 18:41+0100\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -146,11 +146,6 @@ msgstr "Kattintson a(z) %1 megnyitásához"
 msgid "P&assword:"
 msgstr "&Jelszó:"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "PolicyKit1-KDE"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -180,6 +175,9 @@ msgstr "Korábbi karbantartó"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Egy másik kliens már hitelesít, próbálja meg később."
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "PolicyKit1-KDE"
 
 #~ msgid "Application:"
 #~ msgstr "Alkalmazás:"

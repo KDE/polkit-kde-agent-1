@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2019-10-08 14:19+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -148,11 +148,6 @@ msgstr "Prema para abrir %1"
 msgid "P&assword:"
 msgstr "&Contrasinal:"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "Axente de KDE para PolicyKit"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -182,6 +177,9 @@ msgstr "Mantedor orixinal."
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Xa está a autenticar outro cliente, inténteo máis tarde."
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "Axente de KDE para PolicyKit"
 
 #~ msgid "Application:"
 #~ msgstr "Aplicativo:"

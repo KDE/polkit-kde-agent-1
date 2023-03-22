@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2020-09-24 10:10+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -148,11 +148,6 @@ msgstr "Κλικ για άνοιγμα του %1"
 msgid "P&assword:"
 msgstr "Κω&δικός πρόσβασης:"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "Πράκτορας PolicyKit1 KDE"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -183,6 +178,9 @@ msgstr "Πρώην συντηρητής"
 msgid "Another client is already authenticating, please try again later."
 msgstr ""
 "Ένας άλλος πελάτης ήδη πιστοποιείται, παρακαλώ δοκιμάστε ξανά αργότερα."
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "Πράκτορας PolicyKit1 KDE"
 
 #~ msgid "Application:"
 #~ msgstr "Εφαρμογή:"

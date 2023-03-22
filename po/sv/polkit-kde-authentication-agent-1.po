@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2018-10-26 20:15+0100\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -146,11 +146,6 @@ msgstr "Klicka för att öppna %1"
 msgid "P&assword:"
 msgstr "&Lösenord:"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "PolicyKit1 KDE-modul"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -181,6 +176,9 @@ msgstr "Tidigare underhåll"
 msgid "Another client is already authenticating, please try again later."
 msgstr ""
 "En annan klient håller redan på med behörighetskontroll. Försök igen senare."
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "PolicyKit1 KDE-modul"
 
 #~ msgid "Application:"
 #~ msgstr "Program:"

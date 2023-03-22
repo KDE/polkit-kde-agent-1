@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2019-06-04 22:14+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -150,11 +150,6 @@ msgstr "Spustelėkite, norėdami atverti %1"
 msgid "P&assword:"
 msgstr "Sl&aptažodis:"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "PolicyKit1 KDE agentas"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -185,6 +180,9 @@ msgstr "Ankstesnis prižiūrėtojas"
 msgid "Another client is already authenticating, please try again later."
 msgstr ""
 "Kita kliento programa jau nustato tapatybę, bandykite dar kartą vėliau."
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "PolicyKit1 KDE agentas"
 
 #~ msgid "Application:"
 #~ msgstr "Programa:"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-03 02:18+0000\n"
+"POT-Creation-Date: 2023-03-22 02:45+0000\n"
 "PO-Revision-Date: 2020-09-19 09:13+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian\n"
@@ -148,11 +148,6 @@ msgstr "Apăsați pentru a deschide %1"
 msgid "P&assword:"
 msgstr "P&arolă:"
 
-#: main.cpp:49
-#, kde-format
-msgid "PolicyKit1 KDE Agent"
-msgstr "Agent-KDE PolicyKit1"
-
 #: main.cpp:51
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
@@ -182,6 +177,9 @@ msgstr "Fostul responsabil"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Un alt client se autentifică deja, reîncercați mai târziu."
+
+#~ msgid "PolicyKit1 KDE Agent"
+#~ msgstr "Agent-KDE PolicyKit1"
 
 #~ msgid "Application:"
 #~ msgstr "Aplicație:"
