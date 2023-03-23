@@ -178,6 +178,3 @@ msgstr "Tidlegare vedlikehaldar"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Ein annan klient autentiserer allereie. Prøv på nytt seinare."
-
-#~ msgid "PolicyKit1 KDE Agent"
-#~ msgstr "PolicyKit1 KDE-Agent"
