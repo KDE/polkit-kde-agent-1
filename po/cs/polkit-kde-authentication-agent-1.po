@@ -176,6 +176,3 @@ msgstr "Předchozí správce"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Už se ověřuje jiný klient. Prosím, zkuste to později."
-
-#~ msgid "PolicyKit1 KDE Agent"
-#~ msgstr "PolicyKit1 Agent KDE"
