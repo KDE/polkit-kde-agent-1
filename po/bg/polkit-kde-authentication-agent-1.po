@@ -175,6 +175,3 @@ msgstr "Предишна поддръжка"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Друг клиент вече удостоверява, моля, опитайте отново по-късно."
-
-#~ msgid "PolicyKit1 KDE Agent"
-#~ msgstr "PolicyKit1 KDE агент"
