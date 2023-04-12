@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
     KAboutData::setApplicationData(aboutData);
 
     // ensure singleton run
-    KDBusService service(KDBusService::Unique);
+    KDBusService service(KDBusService::Unique | KDBusService::Replace);
 
     // disable session management
     auto disableSessionManagement = [](QSessionManager &sm) {

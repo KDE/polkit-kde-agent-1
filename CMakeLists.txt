@@ -21,7 +21,7 @@ include(ECMDeprecationSettings)
 
 include(KDEGitCommitHooks)
 
-find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets)
+find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets Quick Qml)
 
 # Load the frameworks we need
 find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS
@@ -59,13 +59,13 @@ add_definitions(-DQT_NO_KEYWORDS)
 
 qt_add_dbus_adaptor(policykit_SRCS org.kde.Polkit1AuthAgent.xml policykitlistener.h PolicyKitListener)
 
-ki18n_wrap_ui(policykit_SRCS AuthDialog.ui authdetails.ui)
-
 set(policykit_SRCS
     ${policykit_SRCS}
     policykitlistener.cpp
     main.cpp
-    AuthDialog.cpp
+    QuickAuthDialog.cpp
+    QuickAuthDialog.qrc
+    IdentitiesModel.cpp
 )
 
 add_executable(polkit-kde-authentication-agent-1 ${policykit_SRCS})
@@ -78,6 +78,8 @@ target_link_libraries(polkit-kde-authentication-agent-1
     KF6::I18n
     KF6::Crash
     KF6::IconThemes
+    Qt::Qml
+    Qt::Quick
     PolkitQt${QT_MAJOR_VERSION}-1::Agent
 )
 
