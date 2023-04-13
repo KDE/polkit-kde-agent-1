@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-22 02:45+0000\n"
+"POT-Creation-Date: 2023-04-13 02:17+0000\n"
 "PO-Revision-Date: 2020-04-04 00:48+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -27,124 +27,16 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "kde@peremen.name"
 
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: authdetails.ui:29
-#, kde-format
-msgid "Action:"
-msgstr "동작:"
-
-#. i18n: ectx: property (text), widget (QLabel, action_label)
-#: authdetails.ui:39
-#, kde-format
-msgid "<null>"
-msgstr "<null>"
-
-#. i18n: ectx: property (text), widget (KUrlLabel, vendorUL)
-#. i18n: ectx: property (text), widget (QLabel, vendorL)
-#: authdetails.ui:56 authdetails.ui:81
-#, kde-format
-msgid "Vendor:"
-msgstr "제조사:"
-
-#. i18n: ectx: property (text), widget (QLabel, action_id_label)
-#: authdetails.ui:94
-#, kde-format
-msgid "Action ID:"
-msgstr "동작 ID:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: authdetails.ui:113
-#, kde-format
-msgid "ID:"
-msgstr "ID:"
-
-#: AuthDialog.cpp:59
-#, kde-format
-msgid "Details"
-msgstr "자세히"
-
-#: AuthDialog.cpp:75
-#, kde-format
-msgid "Authentication Required"
-msgstr "인증 필요함"
-
-#: AuthDialog.cpp:163
-#, kde-format
-msgid "Password for root:"
-msgstr "루트 암호:"
-
-#: AuthDialog.cpp:165
-#, kde-format
-msgid "Password for %1:"
-msgstr "%1의 암호:"
-
-#: AuthDialog.cpp:168
-#, kde-format
-msgid "Password:"
-msgstr "암호:"
-
-#: AuthDialog.cpp:173
-#, kde-format
-msgid "Password or swipe finger for root:"
-msgstr "루트 암호 또는 지문 인식:"
-
-#: AuthDialog.cpp:175
-#, kde-format
-msgid "Password or swipe finger for %1:"
-msgstr "%1의 암호 또는 지문 인식:"
-
-#: AuthDialog.cpp:178
-#, kde-format
-msgid "Password or swipe finger:"
-msgstr "암호 또는 지문 인식:"
-
-#: AuthDialog.cpp:188
-#, kde-format
-msgid ""
-"An application is attempting to perform an action that requires privileges. "
-"Authentication is required to perform this action."
-msgstr ""
-"프로그램에서 상위 권한이 필요한 동작을 수행하려고 합니다. 이 동작을 수행하려"
-"면 인증해야 합니다."
-
-#: AuthDialog.cpp:204
+#: IdentitiesModel.cpp:27
 #, kde-format
 msgid "Select User"
 msgstr "사용자 선택"
 
-#: AuthDialog.cpp:223
+#: IdentitiesModel.cpp:45
 #, kde-format
 msgctxt "%1 is the full user name, %2 is the user login name"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
-
-#: AuthDialog.cpp:303
-#, kde-format
-msgid "Authentication failure, please try again."
-msgstr "인증 실패, 다시 시도하십시오."
-
-#: AuthDialog.cpp:326
-#, kde-format
-msgctxt ""
-"%1 is the name of a detail about the current action provided by polkit"
-msgid "%1:"
-msgstr "%1:"
-
-#: AuthDialog.cpp:344
-#, kde-format
-msgid "'Description' not provided"
-msgstr "'Description'이 지정되지 않음"
-
-#: AuthDialog.cpp:356 AuthDialog.cpp:360
-#, kde-format
-msgid "Click to open %1"
-msgstr "%1을(를) 열려면 클릭하십시오"
-
-#. i18n: ectx: property (text), widget (QLabel, lblPassword)
-#: AuthDialog.ui:93
-#, kde-format
-msgid "P&assword:"
-msgstr "암호(&A):"
 
 #: main.cpp:51
 #, kde-format
@@ -171,10 +63,73 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "이전 관리자"
 
-#: policykitlistener.cpp:60
+#: policykitlistener.cpp:67
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "다른 클라이언트가 실행 중입니다. 나중에 다시 시도하십시오."
+
+#~ msgid "Action:"
+#~ msgstr "동작:"
+
+#~ msgid "<null>"
+#~ msgstr "<null>"
+
+#~ msgid "Vendor:"
+#~ msgstr "제조사:"
+
+#~ msgid "Action ID:"
+#~ msgstr "동작 ID:"
+
+#~ msgid "ID:"
+#~ msgstr "ID:"
+
+#~ msgid "Details"
+#~ msgstr "자세히"
+
+#~ msgid "Authentication Required"
+#~ msgstr "인증 필요함"
+
+#~ msgid "Password for root:"
+#~ msgstr "루트 암호:"
+
+#~ msgid "Password for %1:"
+#~ msgstr "%1의 암호:"
+
+#~ msgid "Password:"
+#~ msgstr "암호:"
+
+#~ msgid "Password or swipe finger for root:"
+#~ msgstr "루트 암호 또는 지문 인식:"
+
+#~ msgid "Password or swipe finger for %1:"
+#~ msgstr "%1의 암호 또는 지문 인식:"
+
+#~ msgid "Password or swipe finger:"
+#~ msgstr "암호 또는 지문 인식:"
+
+#~ msgid ""
+#~ "An application is attempting to perform an action that requires "
+#~ "privileges. Authentication is required to perform this action."
+#~ msgstr ""
+#~ "프로그램에서 상위 권한이 필요한 동작을 수행하려고 합니다. 이 동작을 수행하"
+#~ "려면 인증해야 합니다."
+
+#~ msgid "Authentication failure, please try again."
+#~ msgstr "인증 실패, 다시 시도하십시오."
+
+#~ msgctxt ""
+#~ "%1 is the name of a detail about the current action provided by polkit"
+#~ msgid "%1:"
+#~ msgstr "%1:"
+
+#~ msgid "'Description' not provided"
+#~ msgstr "'Description'이 지정되지 않음"
+
+#~ msgid "Click to open %1"
+#~ msgstr "%1을(를) 열려면 클릭하십시오"
+
+#~ msgid "P&assword:"
+#~ msgstr "암호(&A):"
 
 #~ msgid "PolicyKit1 KDE Agent"
 #~ msgstr "PolicyKit1 KDE 에이전트"

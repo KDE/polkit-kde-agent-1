@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-22 02:45+0000\n"
+"POT-Creation-Date: 2023-04-13 02:17+0000\n"
 "PO-Revision-Date: 2018-10-27 16:56+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -30,124 +30,16 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "karl@huftis.org"
 
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: authdetails.ui:29
-#, kde-format
-msgid "Action:"
-msgstr "Handling:"
-
-#. i18n: ectx: property (text), widget (QLabel, action_label)
-#: authdetails.ui:39
-#, kde-format
-msgid "<null>"
-msgstr "<null>"
-
-#. i18n: ectx: property (text), widget (KUrlLabel, vendorUL)
-#. i18n: ectx: property (text), widget (QLabel, vendorL)
-#: authdetails.ui:56 authdetails.ui:81
-#, kde-format
-msgid "Vendor:"
-msgstr "Produsent:"
-
-#. i18n: ectx: property (text), widget (QLabel, action_id_label)
-#: authdetails.ui:94
-#, kde-format
-msgid "Action ID:"
-msgstr "Handlings-ID:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: authdetails.ui:113
-#, kde-format
-msgid "ID:"
-msgstr "ID:"
-
-#: AuthDialog.cpp:59
-#, kde-format
-msgid "Details"
-msgstr "Detaljar"
-
-#: AuthDialog.cpp:75
-#, kde-format
-msgid "Authentication Required"
-msgstr "Treng autentisering"
-
-#: AuthDialog.cpp:163
-#, kde-format
-msgid "Password for root:"
-msgstr "Passord for rotbrukar:"
-
-#: AuthDialog.cpp:165
-#, kde-format
-msgid "Password for %1:"
-msgstr "Passord for %1:"
-
-#: AuthDialog.cpp:168
-#, kde-format
-msgid "Password:"
-msgstr "Passord:"
-
-#: AuthDialog.cpp:173
-#, kde-format
-msgid "Password or swipe finger for root:"
-msgstr "Passord eller fingertrekk for rotbrukar:"
-
-#: AuthDialog.cpp:175
-#, kde-format
-msgid "Password or swipe finger for %1:"
-msgstr "Passord eller fingertrekk for %1:"
-
-#: AuthDialog.cpp:178
-#, kde-format
-msgid "Password or swipe finger:"
-msgstr "Passord eller fingertrekk:"
-
-#: AuthDialog.cpp:188
-#, kde-format
-msgid ""
-"An application is attempting to perform an action that requires privileges. "
-"Authentication is required to perform this action."
-msgstr ""
-"Eit program prøver å gjera noko som treng utvida løyve. For at det skal få "
-"gjera dette, må du autentisera deg."
-
-#: AuthDialog.cpp:204
+#: IdentitiesModel.cpp:27
 #, kde-format
 msgid "Select User"
 msgstr "Vel brukar"
 
-#: AuthDialog.cpp:223
+#: IdentitiesModel.cpp:45
 #, kde-format
 msgctxt "%1 is the full user name, %2 is the user login name"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
-
-#: AuthDialog.cpp:303
-#, kde-format
-msgid "Authentication failure, please try again."
-msgstr "Autentiseringsfeil. Prøv på nytt."
-
-#: AuthDialog.cpp:326
-#, kde-format
-msgctxt ""
-"%1 is the name of a detail about the current action provided by polkit"
-msgid "%1:"
-msgstr "%1:"
-
-#: AuthDialog.cpp:344
-#, kde-format
-msgid "'Description' not provided"
-msgstr "«Skildring» er ikkje oppgjeven"
-
-#: AuthDialog.cpp:356 AuthDialog.cpp:360
-#, kde-format
-msgid "Click to open %1"
-msgstr "Trykk for å opna %1"
-
-#. i18n: ectx: property (text), widget (QLabel, lblPassword)
-#: AuthDialog.ui:93
-#, kde-format
-msgid "P&assword:"
-msgstr "P&assord:"
 
 #: main.cpp:51
 #, kde-format
@@ -174,7 +66,70 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "Tidlegare vedlikehaldar"
 
-#: policykitlistener.cpp:60
+#: policykitlistener.cpp:67
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Ein annan klient autentiserer allereie. Prøv på nytt seinare."
+
+#~ msgid "Action:"
+#~ msgstr "Handling:"
+
+#~ msgid "<null>"
+#~ msgstr "<null>"
+
+#~ msgid "Vendor:"
+#~ msgstr "Produsent:"
+
+#~ msgid "Action ID:"
+#~ msgstr "Handlings-ID:"
+
+#~ msgid "ID:"
+#~ msgstr "ID:"
+
+#~ msgid "Details"
+#~ msgstr "Detaljar"
+
+#~ msgid "Authentication Required"
+#~ msgstr "Treng autentisering"
+
+#~ msgid "Password for root:"
+#~ msgstr "Passord for rotbrukar:"
+
+#~ msgid "Password for %1:"
+#~ msgstr "Passord for %1:"
+
+#~ msgid "Password:"
+#~ msgstr "Passord:"
+
+#~ msgid "Password or swipe finger for root:"
+#~ msgstr "Passord eller fingertrekk for rotbrukar:"
+
+#~ msgid "Password or swipe finger for %1:"
+#~ msgstr "Passord eller fingertrekk for %1:"
+
+#~ msgid "Password or swipe finger:"
+#~ msgstr "Passord eller fingertrekk:"
+
+#~ msgid ""
+#~ "An application is attempting to perform an action that requires "
+#~ "privileges. Authentication is required to perform this action."
+#~ msgstr ""
+#~ "Eit program prøver å gjera noko som treng utvida løyve. For at det skal "
+#~ "få gjera dette, må du autentisera deg."
+
+#~ msgid "Authentication failure, please try again."
+#~ msgstr "Autentiseringsfeil. Prøv på nytt."
+
+#~ msgctxt ""
+#~ "%1 is the name of a detail about the current action provided by polkit"
+#~ msgid "%1:"
+#~ msgstr "%1:"
+
+#~ msgid "'Description' not provided"
+#~ msgstr "«Skildring» er ikkje oppgjeven"
+
+#~ msgid "Click to open %1"
+#~ msgstr "Trykk for å opna %1"
+
+#~ msgid "P&assword:"
+#~ msgstr "P&assord:"

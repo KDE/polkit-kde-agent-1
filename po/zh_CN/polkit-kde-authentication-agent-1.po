@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-22 02:45+0000\n"
+"POT-Creation-Date: 2023-04-13 02:17+0000\n"
 "PO-Revision-Date: 2023-02-24 12:44\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -28,122 +28,16 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "kde-china@kde.org,csslayer@kde.org,i@guoyunhe.me,tysontan@tysontan.com"
 
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: authdetails.ui:29
-#, kde-format
-msgid "Action:"
-msgstr "操作："
-
-#. i18n: ectx: property (text), widget (QLabel, action_label)
-#: authdetails.ui:39
-#, kde-format
-msgid "<null>"
-msgstr "<null>"
-
-#. i18n: ectx: property (text), widget (KUrlLabel, vendorUL)
-#. i18n: ectx: property (text), widget (QLabel, vendorL)
-#: authdetails.ui:56 authdetails.ui:81
-#, kde-format
-msgid "Vendor:"
-msgstr "发行组织："
-
-#. i18n: ectx: property (text), widget (QLabel, action_id_label)
-#: authdetails.ui:94
-#, kde-format
-msgid "Action ID:"
-msgstr "操作 ID："
-
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: authdetails.ui:113
-#, kde-format
-msgid "ID:"
-msgstr "ID："
-
-#: AuthDialog.cpp:59
-#, kde-format
-msgid "Details"
-msgstr "详情"
-
-#: AuthDialog.cpp:75
-#, kde-format
-msgid "Authentication Required"
-msgstr "需要进行身份验证"
-
-#: AuthDialog.cpp:163
-#, kde-format
-msgid "Password for root:"
-msgstr "root 密码："
-
-#: AuthDialog.cpp:165
-#, kde-format
-msgid "Password for %1:"
-msgstr "%1 的密码："
-
-#: AuthDialog.cpp:168
-#, kde-format
-msgid "Password:"
-msgstr "密码："
-
-#: AuthDialog.cpp:173
-#, kde-format
-msgid "Password or swipe finger for root:"
-msgstr "root 的密码或指纹验证："
-
-#: AuthDialog.cpp:175
-#, kde-format
-msgid "Password or swipe finger for %1:"
-msgstr " %1 的密码或指纹验证："
-
-#: AuthDialog.cpp:178
-#, kde-format
-msgid "Password or swipe finger:"
-msgstr "密码或指纹验证："
-
-#: AuthDialog.cpp:188
-#, kde-format
-msgid ""
-"An application is attempting to perform an action that requires privileges. "
-"Authentication is required to perform this action."
-msgstr "应用程序正在请求进行需要特殊权限的操作。需要在验证身份后才能继续操作。"
-
-#: AuthDialog.cpp:204
+#: IdentitiesModel.cpp:27
 #, kde-format
 msgid "Select User"
 msgstr "选择用户"
 
-#: AuthDialog.cpp:223
+#: IdentitiesModel.cpp:45
 #, kde-format
 msgctxt "%1 is the full user name, %2 is the user login name"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
-
-#: AuthDialog.cpp:303
-#, kde-format
-msgid "Authentication failure, please try again."
-msgstr "身份验证失败，请重试。"
-
-#: AuthDialog.cpp:326
-#, kde-format
-msgctxt ""
-"%1 is the name of a detail about the current action provided by polkit"
-msgid "%1:"
-msgstr "%1："
-
-#: AuthDialog.cpp:344
-#, kde-format
-msgid "'Description' not provided"
-msgstr "未提供“说明”"
-
-#: AuthDialog.cpp:356 AuthDialog.cpp:360
-#, kde-format
-msgid "Click to open %1"
-msgstr "点击打开 %1"
-
-#. i18n: ectx: property (text), widget (QLabel, lblPassword)
-#: AuthDialog.ui:93
-#, kde-format
-msgid "P&assword:"
-msgstr "密码(&A)："
 
 #: main.cpp:51
 #, kde-format
@@ -170,10 +64,72 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "前任维护人员"
 
-#: policykitlistener.cpp:60
+#: policykitlistener.cpp:67
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "另一个客户端正在进行验证，请稍后重试。"
+
+#~ msgid "Action:"
+#~ msgstr "操作："
+
+#~ msgid "<null>"
+#~ msgstr "<null>"
+
+#~ msgid "Vendor:"
+#~ msgstr "发行组织："
+
+#~ msgid "Action ID:"
+#~ msgstr "操作 ID："
+
+#~ msgid "ID:"
+#~ msgstr "ID："
+
+#~ msgid "Details"
+#~ msgstr "详情"
+
+#~ msgid "Authentication Required"
+#~ msgstr "需要进行身份验证"
+
+#~ msgid "Password for root:"
+#~ msgstr "root 密码："
+
+#~ msgid "Password for %1:"
+#~ msgstr "%1 的密码："
+
+#~ msgid "Password:"
+#~ msgstr "密码："
+
+#~ msgid "Password or swipe finger for root:"
+#~ msgstr "root 的密码或指纹验证："
+
+#~ msgid "Password or swipe finger for %1:"
+#~ msgstr " %1 的密码或指纹验证："
+
+#~ msgid "Password or swipe finger:"
+#~ msgstr "密码或指纹验证："
+
+#~ msgid ""
+#~ "An application is attempting to perform an action that requires "
+#~ "privileges. Authentication is required to perform this action."
+#~ msgstr ""
+#~ "应用程序正在请求进行需要特殊权限的操作。需要在验证身份后才能继续操作。"
+
+#~ msgid "Authentication failure, please try again."
+#~ msgstr "身份验证失败，请重试。"
+
+#~ msgctxt ""
+#~ "%1 is the name of a detail about the current action provided by polkit"
+#~ msgid "%1:"
+#~ msgstr "%1："
+
+#~ msgid "'Description' not provided"
+#~ msgstr "未提供“说明”"
+
+#~ msgid "Click to open %1"
+#~ msgstr "点击打开 %1"
+
+#~ msgid "P&assword:"
+#~ msgstr "密码(&A)："
 
 #~ msgid "PolicyKit1 KDE Agent"
 #~ msgstr "PolicyKit1 KDE 代理程序"

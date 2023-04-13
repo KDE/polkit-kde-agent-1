@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-22 02:45+0000\n"
+"POT-Creation-Date: 2023-04-13 02:17+0000\n"
 "PO-Revision-Date: 2018-10-26 08:51+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -30,124 +30,16 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "yurchor@ukr.net"
 
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: authdetails.ui:29
-#, kde-format
-msgid "Action:"
-msgstr "Дія:"
-
-#. i18n: ectx: property (text), widget (QLabel, action_label)
-#: authdetails.ui:39
-#, kde-format
-msgid "<null>"
-msgstr "<немає>"
-
-#. i18n: ectx: property (text), widget (KUrlLabel, vendorUL)
-#. i18n: ectx: property (text), widget (QLabel, vendorL)
-#: authdetails.ui:56 authdetails.ui:81
-#, kde-format
-msgid "Vendor:"
-msgstr "Джерело запиту:"
-
-#. i18n: ectx: property (text), widget (QLabel, action_id_label)
-#: authdetails.ui:94
-#, kde-format
-msgid "Action ID:"
-msgstr "Ідентифікатор дії:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: authdetails.ui:113
-#, kde-format
-msgid "ID:"
-msgstr "Ід.:"
-
-#: AuthDialog.cpp:59
-#, kde-format
-msgid "Details"
-msgstr "Подробиці"
-
-#: AuthDialog.cpp:75
-#, kde-format
-msgid "Authentication Required"
-msgstr "Слід пройти розпізнавання"
-
-#: AuthDialog.cpp:163
-#, kde-format
-msgid "Password for root:"
-msgstr "Пароль root:"
-
-#: AuthDialog.cpp:165
-#, kde-format
-msgid "Password for %1:"
-msgstr "Пароль %1:"
-
-#: AuthDialog.cpp:168
-#, kde-format
-msgid "Password:"
-msgstr "Пароль:"
-
-#: AuthDialog.cpp:173
-#, kde-format
-msgid "Password or swipe finger for root:"
-msgstr "Пароль або відбиток пальця root:"
-
-#: AuthDialog.cpp:175
-#, kde-format
-msgid "Password or swipe finger for %1:"
-msgstr "Пароль або відбиток пальця %1:"
-
-#: AuthDialog.cpp:178
-#, kde-format
-msgid "Password or swipe finger:"
-msgstr "Пароль або відбиток пальця:"
-
-#: AuthDialog.cpp:188
-#, kde-format
-msgid ""
-"An application is attempting to perform an action that requires privileges. "
-"Authentication is required to perform this action."
-msgstr ""
-"Програма намагається виконати дію, яка потребує певних привілеїв. Щоб "
-"виконати цю дію, слід зареєструватися."
-
-#: AuthDialog.cpp:204
+#: IdentitiesModel.cpp:27
 #, kde-format
 msgid "Select User"
 msgstr "Вибір користувача"
 
-#: AuthDialog.cpp:223
+#: IdentitiesModel.cpp:45
 #, kde-format
 msgctxt "%1 is the full user name, %2 is the user login name"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
-
-#: AuthDialog.cpp:303
-#, kde-format
-msgid "Authentication failure, please try again."
-msgstr "Помилка розпізнавання. Спробуйте ще раз."
-
-#: AuthDialog.cpp:326
-#, kde-format
-msgctxt ""
-"%1 is the name of a detail about the current action provided by polkit"
-msgid "%1:"
-msgstr "%1:"
-
-#: AuthDialog.cpp:344
-#, kde-format
-msgid "'Description' not provided"
-msgstr "«Опис» не надано"
-
-#: AuthDialog.cpp:356 AuthDialog.cpp:360
-#, kde-format
-msgid "Click to open %1"
-msgstr "Натисніть, щоб відкрити %1"
-
-#. i18n: ectx: property (text), widget (QLabel, lblPassword)
-#: AuthDialog.ui:93
-#, kde-format
-msgid "P&assword:"
-msgstr "&Пароль:"
 
 #: main.cpp:51
 #, kde-format
@@ -174,10 +66,73 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "Колишній супровідник"
 
-#: policykitlistener.cpp:60
+#: policykitlistener.cpp:67
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Вже розпізнається інший клієнт, будь ласка, повторіть спробу пізніше."
+
+#~ msgid "Action:"
+#~ msgstr "Дія:"
+
+#~ msgid "<null>"
+#~ msgstr "<немає>"
+
+#~ msgid "Vendor:"
+#~ msgstr "Джерело запиту:"
+
+#~ msgid "Action ID:"
+#~ msgstr "Ідентифікатор дії:"
+
+#~ msgid "ID:"
+#~ msgstr "Ід.:"
+
+#~ msgid "Details"
+#~ msgstr "Подробиці"
+
+#~ msgid "Authentication Required"
+#~ msgstr "Слід пройти розпізнавання"
+
+#~ msgid "Password for root:"
+#~ msgstr "Пароль root:"
+
+#~ msgid "Password for %1:"
+#~ msgstr "Пароль %1:"
+
+#~ msgid "Password:"
+#~ msgstr "Пароль:"
+
+#~ msgid "Password or swipe finger for root:"
+#~ msgstr "Пароль або відбиток пальця root:"
+
+#~ msgid "Password or swipe finger for %1:"
+#~ msgstr "Пароль або відбиток пальця %1:"
+
+#~ msgid "Password or swipe finger:"
+#~ msgstr "Пароль або відбиток пальця:"
+
+#~ msgid ""
+#~ "An application is attempting to perform an action that requires "
+#~ "privileges. Authentication is required to perform this action."
+#~ msgstr ""
+#~ "Програма намагається виконати дію, яка потребує певних привілеїв. Щоб "
+#~ "виконати цю дію, слід зареєструватися."
+
+#~ msgid "Authentication failure, please try again."
+#~ msgstr "Помилка розпізнавання. Спробуйте ще раз."
+
+#~ msgctxt ""
+#~ "%1 is the name of a detail about the current action provided by polkit"
+#~ msgid "%1:"
+#~ msgstr "%1:"
+
+#~ msgid "'Description' not provided"
+#~ msgstr "«Опис» не надано"
+
+#~ msgid "Click to open %1"
+#~ msgstr "Натисніть, щоб відкрити %1"
+
+#~ msgid "P&assword:"
+#~ msgstr "&Пароль:"
 
 #~ msgid "PolicyKit1 KDE Agent"
 #~ msgstr "Агент PolicyKit1 KDE"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-22 02:45+0000\n"
+"POT-Creation-Date: 2023-04-13 02:17+0000\n"
 "PO-Revision-Date: 2019-06-05 22:14+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@euskalnet.net>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -30,124 +30,16 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "xalba@euskalnet.net"
 
-#. i18n: ectx: property (text), widget (QLabel, label_3)
-#: authdetails.ui:29
-#, kde-format
-msgid "Action:"
-msgstr "Ekintza:"
-
-#. i18n: ectx: property (text), widget (QLabel, action_label)
-#: authdetails.ui:39
-#, kde-format
-msgid "<null>"
-msgstr "<nulua>"
-
-#. i18n: ectx: property (text), widget (KUrlLabel, vendorUL)
-#. i18n: ectx: property (text), widget (QLabel, vendorL)
-#: authdetails.ui:56 authdetails.ui:81
-#, kde-format
-msgid "Vendor:"
-msgstr "Hornitzailea:"
-
-#. i18n: ectx: property (text), widget (QLabel, action_id_label)
-#: authdetails.ui:94
-#, kde-format
-msgid "Action ID:"
-msgstr "Ekintza ID:"
-
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: authdetails.ui:113
-#, kde-format
-msgid "ID:"
-msgstr "ID:"
-
-#: AuthDialog.cpp:59
-#, kde-format
-msgid "Details"
-msgstr "Xehetasunak"
-
-#: AuthDialog.cpp:75
-#, kde-format
-msgid "Authentication Required"
-msgstr "Autentifikatzea beharrezkoa da"
-
-#: AuthDialog.cpp:163
-#, kde-format
-msgid "Password for root:"
-msgstr "root-aren pasahitza:"
-
-#: AuthDialog.cpp:165
-#, kde-format
-msgid "Password for %1:"
-msgstr "%1(r)en pasahitza:"
-
-#: AuthDialog.cpp:168
-#, kde-format
-msgid "Password:"
-msgstr "Pasahitza:"
-
-#: AuthDialog.cpp:173
-#, kde-format
-msgid "Password or swipe finger for root:"
-msgstr "root-aren pasahitza edo hatza pasatzea:"
-
-#: AuthDialog.cpp:175
-#, kde-format
-msgid "Password or swipe finger for %1:"
-msgstr "%1(r)en pasahitza edo hatza pasatzea:"
-
-#: AuthDialog.cpp:178
-#, kde-format
-msgid "Password or swipe finger:"
-msgstr "Pasahitza edo hatza pasatzea:"
-
-#: AuthDialog.cpp:188
-#, kde-format
-msgid ""
-"An application is attempting to perform an action that requires privileges. "
-"Authentication is required to perform this action."
-msgstr ""
-"Aplikazio bat pribilegioak behar dituen ekintza bat gauzatu nahian dabil. "
-"Autentifikatzea beharrezkoa da ekintza hau gauzatzeko."
-
-#: AuthDialog.cpp:204
+#: IdentitiesModel.cpp:27
 #, kde-format
 msgid "Select User"
 msgstr "Hautatu erabiltzailea"
 
-#: AuthDialog.cpp:223
+#: IdentitiesModel.cpp:45
 #, kde-format
 msgctxt "%1 is the full user name, %2 is the user login name"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
-
-#: AuthDialog.cpp:303
-#, kde-format
-msgid "Authentication failure, please try again."
-msgstr "Autentifikatze hutsegitea, saiatu berriz."
-
-#: AuthDialog.cpp:326
-#, kde-format
-msgctxt ""
-"%1 is the name of a detail about the current action provided by polkit"
-msgid "%1:"
-msgstr "%1:"
-
-#: AuthDialog.cpp:344
-#, kde-format
-msgid "'Description' not provided"
-msgstr "«Description» ez da eman"
-
-#: AuthDialog.cpp:356 AuthDialog.cpp:360
-#, kde-format
-msgid "Click to open %1"
-msgstr "Klik egin %1 irekitzeko"
-
-#. i18n: ectx: property (text), widget (QLabel, lblPassword)
-#: AuthDialog.ui:93
-#, kde-format
-msgid "P&assword:"
-msgstr "P&asahitza:"
 
 #: main.cpp:51
 #, kde-format
@@ -174,10 +66,73 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "Aurreko arduraduna"
 
-#: policykitlistener.cpp:60
+#: policykitlistener.cpp:67
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Beste bezero bat autentifikatzen ari da dagoeneko, saiatu beranduago."
+
+#~ msgid "Action:"
+#~ msgstr "Ekintza:"
+
+#~ msgid "<null>"
+#~ msgstr "<nulua>"
+
+#~ msgid "Vendor:"
+#~ msgstr "Hornitzailea:"
+
+#~ msgid "Action ID:"
+#~ msgstr "Ekintza ID:"
+
+#~ msgid "ID:"
+#~ msgstr "ID:"
+
+#~ msgid "Details"
+#~ msgstr "Xehetasunak"
+
+#~ msgid "Authentication Required"
+#~ msgstr "Autentifikatzea beharrezkoa da"
+
+#~ msgid "Password for root:"
+#~ msgstr "root-aren pasahitza:"
+
+#~ msgid "Password for %1:"
+#~ msgstr "%1(r)en pasahitza:"
+
+#~ msgid "Password:"
+#~ msgstr "Pasahitza:"
+
+#~ msgid "Password or swipe finger for root:"
+#~ msgstr "root-aren pasahitza edo hatza pasatzea:"
+
+#~ msgid "Password or swipe finger for %1:"
+#~ msgstr "%1(r)en pasahitza edo hatza pasatzea:"
+
+#~ msgid "Password or swipe finger:"
+#~ msgstr "Pasahitza edo hatza pasatzea:"
+
+#~ msgid ""
+#~ "An application is attempting to perform an action that requires "
+#~ "privileges. Authentication is required to perform this action."
+#~ msgstr ""
+#~ "Aplikazio bat pribilegioak behar dituen ekintza bat gauzatu nahian dabil. "
+#~ "Autentifikatzea beharrezkoa da ekintza hau gauzatzeko."
+
+#~ msgid "Authentication failure, please try again."
+#~ msgstr "Autentifikatze hutsegitea, saiatu berriz."
+
+#~ msgctxt ""
+#~ "%1 is the name of a detail about the current action provided by polkit"
+#~ msgid "%1:"
+#~ msgstr "%1:"
+
+#~ msgid "'Description' not provided"
+#~ msgstr "«Description» ez da eman"
+
+#~ msgid "Click to open %1"
+#~ msgstr "Klik egin %1 irekitzeko"
+
+#~ msgid "P&assword:"
+#~ msgstr "P&asahitza:"
 
 #~ msgid "PolicyKit1 KDE Agent"
 #~ msgstr "PolicyKit1 KDE agentea"
