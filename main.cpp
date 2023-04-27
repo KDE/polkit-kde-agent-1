@@ -11,6 +11,7 @@
 #include <KCrash>
 #include <KDBusService>
 #include <KLocalizedString>
+#include <KXMessages>
 // PolkitQt1
 #include <PolkitQt1/Subject>
 // Qt
@@ -65,6 +66,16 @@ int main(int argc, char *argv[])
 
     QObject::connect(&app, &QGuiApplication::commitDataRequest, disableSessionManagement);
     QObject::connect(&app, &QGuiApplication::saveStateRequest, disableSessionManagement);
+
+    // Force extreme focus protection to prevent losing focus to any other window.
+    // https://bugs.kde.org/show_bug.cgi?id=312325
+    KXMessages msg;
+    const QString message = QStringLiteral(
+        "fpplevel=4\n"
+        "fpplevelrule=2\n"
+        "wmclass=polkit-kde-authentication-agent-1\n"
+        "wmclassmatch=1\n");
+    msg.broadcastMessage("_KDE_NET_WM_TEMPORARY_RULES", message, -1);
 
     // register agent
     PolicyKitListener *listener = new PolicyKitListener(&app);
