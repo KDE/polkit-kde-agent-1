@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-28 00:52+0000\n"
+"POT-Creation-Date: 2023-05-03 02:55+0000\n"
 "PO-Revision-Date: 2011-06-28 15:19+0200\n"
 "Last-Translator: Marko Dimjašević <marko@dimjasevic.net>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -152,33 +152,33 @@ msgstr "Kliknite da biste otvorili %1"
 msgid "P&assword:"
 msgstr "Zaporka:"
 
-#: main.cpp:49
+#: main.cpp:50
 #, fuzzy, kde-format
 #| msgid "PolicyKit1-KDE"
 msgid "PolicyKit1 KDE Agent"
 msgstr "PolicyKit1-KDE"
 
-#: main.cpp:51
+#: main.cpp:52
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
 msgstr "© 2009 Red Hat, Inc."
 
-#: main.cpp:52
+#: main.cpp:53
 #, kde-format
 msgid "Lukáš Tinkl"
 msgstr ""
 
-#: main.cpp:52
+#: main.cpp:53
 #, kde-format
 msgid "Maintainer"
 msgstr "Održavatelj"
 
-#: main.cpp:53
+#: main.cpp:54
 #, kde-format
 msgid "Jaroslav Reznik"
 msgstr "Jaroslav Reznik"
 
-#: main.cpp:53
+#: main.cpp:54
 #, fuzzy, kde-format
 #| msgid "Maintainer"
 msgid "Former maintainer"

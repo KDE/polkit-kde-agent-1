@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-28 00:52+0000\n"
+"POT-Creation-Date: 2023-05-03 02:55+0000\n"
 "PO-Revision-Date: 2018-10-27 20:00+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
@@ -147,32 +147,32 @@ msgstr "Click to open %1"
 msgid "P&assword:"
 msgstr "P&assword:"
 
-#: main.cpp:49
+#: main.cpp:50
 #, kde-format
 msgid "PolicyKit1 KDE Agent"
 msgstr "PolicyKit1 KDE Agent"
 
-#: main.cpp:51
+#: main.cpp:52
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
 msgstr "(c) 2009 Red Hat, Inc."
 
-#: main.cpp:52
+#: main.cpp:53
 #, kde-format
 msgid "Lukáš Tinkl"
 msgstr "Lukáš Tinkl"
 
-#: main.cpp:52
+#: main.cpp:53
 #, kde-format
 msgid "Maintainer"
 msgstr "Maintainer"
 
-#: main.cpp:53
+#: main.cpp:54
 #, kde-format
 msgid "Jaroslav Reznik"
 msgstr "Jaroslav Reznik"
 
-#: main.cpp:53
+#: main.cpp:54
 #, kde-format
 msgid "Former maintainer"
 msgstr "Former maintainer"

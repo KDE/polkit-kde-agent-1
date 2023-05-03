@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-28 00:52+0000\n"
+"POT-Creation-Date: 2023-05-03 02:55+0000\n"
 "PO-Revision-Date: 2018-11-13 18:22-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -148,32 +148,32 @@ msgstr "Clique para abrir %1"
 msgid "P&assword:"
 msgstr "Senh&a:"
 
-#: main.cpp:49
+#: main.cpp:50
 #, kde-format
 msgid "PolicyKit1 KDE Agent"
 msgstr "Agente do KDE PolicyKit1"
 
-#: main.cpp:51
+#: main.cpp:52
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
 msgstr "(c) 2009 Red Hat, Inc."
 
-#: main.cpp:52
+#: main.cpp:53
 #, kde-format
 msgid "Lukáš Tinkl"
 msgstr "Lukáš Tinkl"
 
-#: main.cpp:52
+#: main.cpp:53
 #, kde-format
 msgid "Maintainer"
 msgstr "Mantenedor"
 
-#: main.cpp:53
+#: main.cpp:54
 #, kde-format
 msgid "Jaroslav Reznik"
 msgstr "Jaroslav Reznik"
 
-#: main.cpp:53
+#: main.cpp:54
 #, kde-format
 msgid "Former maintainer"
 msgstr "Mantenedor anterior"

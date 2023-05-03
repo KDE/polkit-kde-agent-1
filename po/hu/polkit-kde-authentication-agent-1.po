@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-28 00:52+0000\n"
+"POT-Creation-Date: 2023-05-03 02:55+0000\n"
 "PO-Revision-Date: 2019-12-01 18:41+0100\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -146,32 +146,32 @@ msgstr "Kattintson a(z) %1 megnyitásához"
 msgid "P&assword:"
 msgstr "&Jelszó:"
 
-#: main.cpp:49
+#: main.cpp:50
 #, kde-format
 msgid "PolicyKit1 KDE Agent"
 msgstr "PolicyKit1-KDE"
 
-#: main.cpp:51
+#: main.cpp:52
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
 msgstr "(C) Red Hat Inc., 2009"
 
-#: main.cpp:52
+#: main.cpp:53
 #, kde-format
 msgid "Lukáš Tinkl"
 msgstr "Lukáš Tinkl"
 
-#: main.cpp:52
+#: main.cpp:53
 #, kde-format
 msgid "Maintainer"
 msgstr "Karbantartó"
 
-#: main.cpp:53
+#: main.cpp:54
 #, kde-format
 msgid "Jaroslav Reznik"
 msgstr "Jaroslav Reznik"
 
-#: main.cpp:53
+#: main.cpp:54
 #, kde-format
 msgid "Former maintainer"
 msgstr "Korábbi karbantartó"
