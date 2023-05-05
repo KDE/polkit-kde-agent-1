@@ -2,6 +2,7 @@
 IconName=dialog-password
 Comment=PolicyKit authentication dialog
 Comment[ar]=حواريّ استيثاق Policykit
+Comment[ast]=Diálogu d'autenticación de PolicyKit
 Comment[be]=Дыялогавае акно аўтэнтыфікацыі PolicyKit
 Comment[bg]=Прозорец за удостоверяване на PolicyKit
 Comment[bs]=PolicyKit dijalog provjere identiteta
