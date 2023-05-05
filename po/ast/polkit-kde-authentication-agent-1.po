@@ -1,0 +1,69 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the polkit-kde-agent-1 package.
+#
+# Enol P. <enolp@softastur.org>, 2023.
+msgid ""
+msgstr ""
+"Project-Id-Version: polkit-kde-agent-1\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-04-13 02:17+0000\n"
+"PO-Revision-Date: 2023-05-03 21:14+0200\n"
+"Last-Translator: Enol P. <enolp@softastur.org>\n"
+"Language-Team: \n"
+"Language: ast_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 23.04.0\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Softastur"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "alministradores@softastur.org"
+
+#: IdentitiesModel.cpp:27
+#, kde-format
+msgid "Select User"
+msgstr ""
+
+#: IdentitiesModel.cpp:45
+#, kde-format
+msgctxt "%1 is the full user name, %2 is the user login name"
+msgid "%1 (%2)"
+msgstr "%1 (%2)"
+
+#: main.cpp:51
+#, kde-format
+msgid "(c) 2009 Red Hat, Inc."
+msgstr "(c) 2009 Red Hat, Inc."
+
+#: main.cpp:52
+#, kde-format
+msgid "Lukáš Tinkl"
+msgstr "Lukáš Tinkl"
+
+#: main.cpp:52
+#, kde-format
+msgid "Maintainer"
+msgstr "Caltenedor"
+
+#: main.cpp:53
+#, kde-format
+msgid "Jaroslav Reznik"
+msgstr "Jaroslav Reznik"
+
+#: main.cpp:53
+#, kde-format
+msgid "Former maintainer"
+msgstr "Caltenedor anterior"
+
+#: policykitlistener.cpp:67
+#, kde-format
+msgid "Another client is already authenticating, please try again later."
+msgstr ""
