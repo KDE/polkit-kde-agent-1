@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-04-13 02:17+0000\n"
-"PO-Revision-Date: 2023-02-24 12:44\n"
+"PO-Revision-Date: 2023-05-22 13:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -14,9 +14,9 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf5-trunk/messages/polkit-kde-agent-1/polkit-kde-"
+"X-Crowdin-File: /kf6-trunk/messages/polkit-kde-agent-1/polkit-kde-"
 "authentication-agent-1.pot\n"
-"X-Crowdin-File-ID: 4706\n"
+"X-Crowdin-File-ID: 43091\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -68,68 +68,3 @@ msgstr "前任维护人员"
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "另一个客户端正在进行验证，请稍后重试。"
-
-#~ msgid "Action:"
-#~ msgstr "操作："
-
-#~ msgid "<null>"
-#~ msgstr "<null>"
-
-#~ msgid "Vendor:"
-#~ msgstr "发行组织："
-
-#~ msgid "Action ID:"
-#~ msgstr "操作 ID："
-
-#~ msgid "ID:"
-#~ msgstr "ID："
-
-#~ msgid "Details"
-#~ msgstr "详情"
-
-#~ msgid "Authentication Required"
-#~ msgstr "需要进行身份验证"
-
-#~ msgid "Password for root:"
-#~ msgstr "root 密码："
-
-#~ msgid "Password for %1:"
-#~ msgstr "%1 的密码："
-
-#~ msgid "Password:"
-#~ msgstr "密码："
-
-#~ msgid "Password or swipe finger for root:"
-#~ msgstr "root 的密码或指纹验证："
-
-#~ msgid "Password or swipe finger for %1:"
-#~ msgstr " %1 的密码或指纹验证："
-
-#~ msgid "Password or swipe finger:"
-#~ msgstr "密码或指纹验证："
-
-#~ msgid ""
-#~ "An application is attempting to perform an action that requires "
-#~ "privileges. Authentication is required to perform this action."
-#~ msgstr ""
-#~ "应用程序正在请求进行需要特殊权限的操作。需要在验证身份后才能继续操作。"
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "身份验证失败，请重试。"
-
-#~ msgctxt ""
-#~ "%1 is the name of a detail about the current action provided by polkit"
-#~ msgid "%1:"
-#~ msgstr "%1："
-
-#~ msgid "'Description' not provided"
-#~ msgstr "未提供“说明”"
-
-#~ msgid "Click to open %1"
-#~ msgstr "点击打开 %1"
-
-#~ msgid "P&assword:"
-#~ msgstr "密码(&A)："
-
-#~ msgid "PolicyKit1 KDE Agent"
-#~ msgstr "PolicyKit1 KDE 代理程序"
