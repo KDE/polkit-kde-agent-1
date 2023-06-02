@@ -24,7 +24,7 @@ include(ECMDeprecationSettings)
 
 include(KDEGitCommitHooks)
 
-find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets Quick Qml)
+find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets Quick Qml)
 
 # Load the frameworks we need
 find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS
@@ -53,7 +53,7 @@ add_feature_info("prctl/procctl tracing control"
 # create config file
 configure_file (config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
-find_package(PolkitQt${QT_MAJOR_VERSION}-1 REQUIRED 0.103.0)
+find_package(PolkitQt6-1 REQUIRED 0.103.0)
 ecm_set_disabled_deprecation_versions(QT 5.15.2
     KF 5.100
 )
@@ -83,7 +83,7 @@ target_link_libraries(polkit-kde-authentication-agent-1
     KF6::IconThemes
     Qt::Qml
     Qt::Quick
-    PolkitQt${QT_MAJOR_VERSION}-1::Agent
+    PolkitQt6-1::Agent
 )
 
 configure_file(polkit-kde-authentication-agent-1.desktop.cmake ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop)
