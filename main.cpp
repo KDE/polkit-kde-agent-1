@@ -36,9 +36,6 @@ int main(int argc, char *argv[])
     int mode = PROC_TRACE_CTL_DISABLE;
     procctl(P_PID, getpid(), PROC_TRACE_CTL, &mode);
 #endif
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-#endif
     KCrash::setFlags(KCrash::AutoRestart);
 
     QApplication app(argc, argv);
