@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-13 02:17+0000\n"
+"POT-Creation-Date: 2023-06-05 02:00+0000\n"
 "PO-Revision-Date: 2016-04-08 22:57+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
@@ -42,27 +42,27 @@ msgctxt "%1 is the full user name, %2 is the user login name"
 msgid "%1 (%2)"
 msgstr ""
 
-#: main.cpp:51
+#: main.cpp:48
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
 msgstr "(c) 2009 Red Hat, Inc."
 
-#: main.cpp:52
+#: main.cpp:49
 #, kde-format
 msgid "Lukáš Tinkl"
 msgstr ""
 
-#: main.cpp:52
+#: main.cpp:49
 #, kde-format
 msgid "Maintainer"
 msgstr "Umsjónarmaður"
 
-#: main.cpp:53
+#: main.cpp:50
 #, kde-format
 msgid "Jaroslav Reznik"
 msgstr "Jaroslav Reznik"
 
-#: main.cpp:53
+#: main.cpp:50
 #, fuzzy, kde-format
 #| msgid "Maintainer"
 msgid "Former maintainer"

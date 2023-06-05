@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-04-13 02:17+0000\n"
+"POT-Creation-Date: 2023-06-05 02:00+0000\n"
 "PO-Revision-Date: 2020-10-13 21:46-0700\n"
 "Last-Translator: A S Alam <aalam.yellow@gmail.com>\n"
 "Language-Team: Punjabi <punjabi-users@lists.sf.net>\n"
@@ -38,27 +38,27 @@ msgctxt "%1 is the full user name, %2 is the user login name"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: main.cpp:51
+#: main.cpp:48
 #, kde-format
 msgid "(c) 2009 Red Hat, Inc."
 msgstr "(c) 2009 Red Hat, Inc."
 
-#: main.cpp:52
+#: main.cpp:49
 #, kde-format
 msgid "Lukáš Tinkl"
 msgstr "ਲੁਕੇਸ ਟਿੰਕਲ"
 
-#: main.cpp:52
+#: main.cpp:49
 #, kde-format
 msgid "Maintainer"
 msgstr "ਪਰਬੰਧਕ"
 
-#: main.cpp:53
+#: main.cpp:50
 #, kde-format
 msgid "Jaroslav Reznik"
 msgstr "ਜਰੋਸਲਾਵ ਰੀਜਨਿਕ"
 
-#: main.cpp:53
+#: main.cpp:50
 #, kde-format
 msgid "Former maintainer"
 msgstr "ਪੁਰਾਣਾ ਪਰਬੰਧਕ"
