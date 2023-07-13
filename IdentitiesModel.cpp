@@ -115,3 +115,5 @@ QHash<int, QByteArray> IdentitiesModel::roleNames() const
 {
     return {{Qt::DecorationRole, "decoration"}, {Qt::DisplayRole, "display"}, {Qt::UserRole, "userRole"}};
 }
+
+#include "moc_IdentitiesModel.cpp"

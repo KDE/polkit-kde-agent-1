@@ -229,3 +229,5 @@ void PolicyKitListener::userSelected(const PolkitQt1::Identity &identity)
     }
     tryAgain();
 }
+
+#include "moc_policykitlistener.cpp"

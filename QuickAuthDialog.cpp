@@ -108,3 +108,5 @@ void QuickAuthDialog::hide()
 {
     QTimer::singleShot(0, m_theDialog, SLOT(hide()));
 }
+
+#include "moc_QuickAuthDialog.cpp"
