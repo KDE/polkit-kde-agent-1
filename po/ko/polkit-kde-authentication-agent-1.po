@@ -104,8 +104,8 @@ msgid ""
 "An application is attempting to perform an action that requires privileges. "
 "Authentication is required to perform this action."
 msgstr ""
-"프로그램에서 상위 권한이 필요한 동작을 수행하려고 합니다. 이 동작을 수행하려"
-"면 인증해야 합니다."
+"앱에서 상위 권한이 필요한 동작을 수행하려고 합니다. 이 동작을 수행하려면 인증"
+"해야 합니다."
 
 #: AuthDialog.cpp:204
 #, kde-format
