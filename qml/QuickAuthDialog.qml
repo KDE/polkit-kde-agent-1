@@ -15,6 +15,8 @@ Kirigami.AbstractApplicationWindow {
     id: root
     title: i18n("Authentication Required")
 
+    flags: Qt.Dialog
+
     maximumHeight: intendedWindowHeight
     minimumHeight: intendedWindowHeight
     minimumWidth: intendedWindowWidth

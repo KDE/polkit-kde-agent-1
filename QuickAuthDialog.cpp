@@ -59,6 +59,8 @@ QuickAuthDialog::QuickAuthDialog(const QString &actionId,
 
     m_theDialog = qobject_cast<QQuickWindow *>(engine->rootObjects().constFirst());
 
+    m_theDialog->setTransientParent(QWindow::fromWinId(parent));
+
     auto idents = qobject_cast<IdentitiesModel *>(m_theDialog->property("identitiesModel").value<QObject *>());
     idents->setIdentities(identities, false);
     if (!identities.isEmpty()) {
