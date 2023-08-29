@@ -33,7 +33,6 @@ Kirigami.AbstractApplicationWindow {
     // passed in by QuickAuthDialog.cpp
     property string mainText
     property string subtitle
-    property string iconName
     property string descriptionString
     property string descriptionActionId
     property string descriptionVendorName
@@ -126,7 +125,7 @@ Kirigami.AbstractApplicationWindow {
                 Layout.rightMargin: Kirigami.Units.gridUnit
                 Layout.topMargin: Kirigami.Units.largeSpacing
                 Layout.alignment: Qt.AlignTop
-                source: root.iconName
+                source: "lock"
                 implicitWidth: Kirigami.Units.iconSizes.huge
                 implicitHeight: Kirigami.Units.iconSizes.huge
             }

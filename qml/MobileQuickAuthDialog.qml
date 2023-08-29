@@ -28,7 +28,6 @@ MobileDialogWindow {
     // passed in by QuickAuthDialog.cpp
     property string mainText
     property string subtitle
-    property string iconName
     property string descriptionString
     property string descriptionActionId
     property string descriptionVendorName
@@ -113,7 +112,7 @@ MobileDialogWindow {
         Kirigami.Icon {
             Layout.bottomMargin: Kirigami.Units.gridUnit
             Layout.alignment: Qt.AlignCenter
-            source: root.iconName
+            source: "lock"
             implicitWidth: Kirigami.Units.iconSizes.large
             implicitHeight: Kirigami.Units.iconSizes.large
         }

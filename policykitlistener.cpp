@@ -61,6 +61,10 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
                                                const PolkitQt1::Identity::List &identities,
                                                PolkitQt1::Agent::AsyncResult *result)
 {
+    // The auth action might set any random old icon; all we really want here is a nice
+    // generic "lock" icon, so we hardcode it and ignore the icon from the auth action.
+    Q_UNUSED(iconName);
+
     qDebug() << "Initiating authentication";
 
     if (m_inProgress) {
@@ -79,7 +83,7 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
 
     const WId parentId = m_actionsToWID.value(actionId, 0);
 
-    m_dialog = new QuickAuthDialog(actionId, message, iconName, details, identities, parentId);
+    m_dialog = new QuickAuthDialog(actionId, message, details, identities, parentId);
     connect(m_dialog.data(), SIGNAL(okClicked()), SLOT(dialogAccepted()));
     connect(m_dialog.data(), SIGNAL(rejected()), SLOT(dialogCanceled()));
 

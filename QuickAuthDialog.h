@@ -20,7 +20,6 @@ class QuickAuthDialog : public QObject
 public:
     QuickAuthDialog(const QString &actionId,
                     const QString &message,
-                    const QString &iconName,
                     const PolkitQt1::Details &details,
                     const PolkitQt1::Identity::List &identities,
                     WId parent);

@@ -22,7 +22,6 @@
 
 QuickAuthDialog::QuickAuthDialog(const QString &actionId,
                                  const QString &message,
-                                 const QString &iconName,
                                  const PolkitQt1::Details &details,
                                  const PolkitQt1::Identity::List &identities,
                                  WId parent)
@@ -30,7 +29,6 @@ QuickAuthDialog::QuickAuthDialog(const QString &actionId,
 {
     auto engine = new QQmlApplicationEngine(this);
     QVariantMap props = {
-        {"iconName", iconName.isEmpty() ? "help-about" : iconName},
         {"mainText", message},
     };
 
