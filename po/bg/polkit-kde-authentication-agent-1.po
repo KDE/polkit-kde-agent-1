@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-05 02:00+0000\n"
+"POT-Creation-Date: 2023-08-31 01:57+0000\n"
 "PO-Revision-Date: 2022-06-28 09:54+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -63,7 +63,7 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "Предишна поддръжка"
 
-#: policykitlistener.cpp:67
+#: policykitlistener.cpp:71
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Друг клиент вече удостоверява, моля, опитайте отново по-късно."

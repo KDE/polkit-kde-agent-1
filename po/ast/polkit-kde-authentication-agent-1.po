@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-05 02:00+0000\n"
+"POT-Creation-Date: 2023-08-31 01:57+0000\n"
 "PO-Revision-Date: 2023-05-09 23:07+0200\n"
 "Last-Translator: Enol P. <enolp@softastur.org>\n"
 "Language-Team: \n"
@@ -63,7 +63,7 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "Caltenedor anterior"
 
-#: policykitlistener.cpp:67
+#: policykitlistener.cpp:71
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Xá hai otru veceru autenticándose. Volvi tentalo dempués."

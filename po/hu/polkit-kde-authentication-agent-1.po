@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-05 02:00+0000\n"
+"POT-Creation-Date: 2023-08-31 01:57+0000\n"
 "PO-Revision-Date: 2019-12-01 18:41+0100\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -63,7 +63,7 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "Korábbi karbantartó"
 
-#: policykitlistener.cpp:67
+#: policykitlistener.cpp:71
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Egy másik kliens már hitelesít, próbálja meg később."
