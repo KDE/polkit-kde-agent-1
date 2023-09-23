@@ -48,6 +48,11 @@ Kirigami.AbstractApplicationWindow {
         }
     }
 
+    Shortcut {
+        sequence: StandardKey.Cancel
+        onActivated: root.reject()
+    }
+
     function authenticationFailure() {
         inlineMessage.type = Kirigami.MessageType.Error;
         inlineMessage.text = i18n("Authentication failure, please try again.");
