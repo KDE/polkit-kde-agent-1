@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the polkit-kde-agent-1 package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: polkit-kde-agent-1\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-08-31 01:57+0000\n"
+"PO-Revision-Date: 2023-09-29 23:56+0530\n"
+"Last-Translator: \n"
+"Language-Team: Sanskrit\n"
+"Language: sa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n>2);\n"
+"X-Generator: Poedit 3.3.2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "श्रीकान्त् कलवार्"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "skkalwar999@gmail.com"
+
+#: IdentitiesModel.cpp:27
+#, kde-format
+msgid "Select User"
+msgstr "उपयोक्तारं चिनोतु"
+
+#: IdentitiesModel.cpp:45
+#, kde-format
+msgctxt "%1 is the full user name, %2 is the user login name"
+msgid "%1 (%2)"
+msgstr "%1 (%2)"
+
+#: main.cpp:48
+#, kde-format
+msgid "(c) 2009 Red Hat, Inc."
+msgstr "(c) २००९ Red Hat, Inc."
+
+#: main.cpp:49
+#, kde-format
+msgid "Lukáš Tinkl"
+msgstr "लुकाश टिङ्क्ल्"
+
+#: main.cpp:49
+#, kde-format
+msgid "Maintainer"
+msgstr "परिपालकः"
+
+#: main.cpp:50
+#, kde-format
+msgid "Jaroslav Reznik"
+msgstr "जारोस्लाव रेज्निक"
+
+#: main.cpp:50
+#, kde-format
+msgid "Former maintainer"
+msgstr "पूर्व परिपालनकर्ता"
+
+#: policykitlistener.cpp:71
+#, kde-format
+msgid "Another client is already authenticating, please try again later."
+msgstr "अन्यः ग्राहकः पूर्वमेव प्रमाणीकरणं कुर्वन् अस्ति, कृपया पश्चात् पुनः प्रयासं कुर्वन्तु ।."
