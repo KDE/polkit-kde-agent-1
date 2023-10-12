@@ -31,10 +31,8 @@ find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS
   I18n
   WindowSystem
   DBusAddons
-  WidgetsAddons
   CoreAddons
   Crash
-  IconThemes
 )
 
 include(CheckIncludeFile)
@@ -76,13 +74,12 @@ add_executable(polkit-kde-authentication-agent-1 ${policykit_SRCS})
 target_link_libraries(polkit-kde-authentication-agent-1
     KF6::DBusAddons
     KF6::WindowSystem
-    KF6::WidgetsAddons
     KF6::CoreAddons
     KF6::I18n
     KF6::Crash
-    KF6::IconThemes
     Qt::Qml
     Qt::Quick
+    Qt::Widgets
     PolkitQt6-1::Agent
 )
 
