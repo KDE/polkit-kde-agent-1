@@ -41,7 +41,7 @@ private:
         QString userRole;
         QString loginName;
     };
-    QVector<Id> m_ids;
+    QList<Id> m_ids;
 };
 
 #endif
