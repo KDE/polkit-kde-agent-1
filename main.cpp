@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     app.setQuitOnLastWindowClosed(false);
 
-    KLocalizedString::setApplicationDomain("polkit-kde-authentication-agent-1");
+    KLocalizedString::setApplicationDomain(QByteArrayLiteral("polkit-kde-authentication-agent-1"));
 
     KAboutData aboutData("polkit-kde-authentication-agent-1", QString(), POLKIT_KDE_1_VERSION);
     aboutData.addLicense(KAboutLicense::GPL);
