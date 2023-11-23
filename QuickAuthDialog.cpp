@@ -60,7 +60,8 @@ QuickAuthDialog::QuickAuthDialog(const QString &actionId,
     auto idents = qobject_cast<IdentitiesModel *>(m_theDialog->property("identitiesModel").value<QObject *>());
     idents->setIdentities(identities, false);
     if (!identities.isEmpty()) {
-        m_theDialog->setProperty("identitiesCurrentIndex", idents->indexForUser(KUser().loginName()));
+        int initialIndex = std::max(0, idents->indexForUser(KUser().loginName()));
+        m_theDialog->setProperty("identitiesCurrentIndex", initialIndex);
     }
 
     // listen for dialog accept/reject
