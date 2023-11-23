@@ -22,9 +22,9 @@
 
 QuickAuthDialog::QuickAuthDialog(const QString &actionId,
                                  const QString &message,
-                                 const PolkitQt1::Details &details,
+                                 [[maybe_unused]] const PolkitQt1::Details &details,
                                  const PolkitQt1::Identity::List &identities,
-                                 WId parent)
+                                 [[maybe_unused]] WId parent)
     : QObject(nullptr)
 {
     auto engine = new QQmlApplicationEngine(this);
