@@ -3,6 +3,7 @@
 
 /*  This file is part of the KDE project
     SPDX-FileCopyrightText: 2009 Jaroslav Reznik <jreznik@redhat.com>
+    SPDX-FileCopyrightText: 2023 Kai Uwe Broulik <kde@broulik.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -44,6 +45,8 @@ public Q_SLOTS:
     void showInfo(const QString &text);
 
     void setWIdForAction(const QString &action, qulonglong wID);
+    void setWindowHandleForAction(const QString &action, const QString &handle);
+    void setActivationTokenForAction(const QString &action, const QString &token);
 
 private:
     QPointer<QuickAuthDialog> m_dialog;
@@ -56,12 +59,18 @@ private:
     PolkitQt1::Agent::AsyncResult *m_result;
     QString m_cookie;
     PolkitQt1::Identity m_selectedUser;
-    QHash<QString, qulonglong> m_actionsToWID;
+
+    QHash<QString /*action*/, QString /*window handle*/> m_windowHandles;
+    QHash<QString /*action*/, QString /*activation token*/> m_activationTokens;
 
 private Q_SLOTS:
     void dialogAccepted();
     void dialogCanceled();
     void userSelected(const PolkitQt1::Identity &identity);
+
+private:
+    void handleParentWindow(const QString &action, const QString &handle);
+    void handleWaylandActivation(const QString &action, const QString &token);
 };
 
 #endif

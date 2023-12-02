@@ -1,11 +1,13 @@
 /*  This file is part of the KDE project
     SPDX-FileCopyrightText: 2009 Jaroslav Reznik <jreznik@redhat.com>
+    SPDX-FileCopyrightText: 2023 Kai Uwe Broulik <kde@broulik.de>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
 #include <QDBusConnection>
 #include <QDebug>
+#include <QGuiApplication>
 #include <QQmlEngine>
 
 #include <KLocalizedString>
@@ -50,8 +52,24 @@ PolicyKitListener::~PolicyKitListener()
 
 void PolicyKitListener::setWIdForAction(const QString &action, qulonglong wID)
 {
-    qDebug() << "On to the handshake";
-    m_actionsToWID[action] = wID;
+    // For compatibility.
+    setWindowHandleForAction(action, QString::number(wID));
+}
+
+void PolicyKitListener::setWindowHandleForAction(const QString &action, const QString &handle)
+{
+    m_windowHandles[action] = handle;
+
+    handleParentWindow(action, handle);
+}
+
+void PolicyKitListener::setActivationTokenForAction(const QString &action, const QString &token)
+{
+    if (KWindowSystem::isPlatformWayland()) {
+        // On X we just forceActivateWindow, no need to store the token.
+        m_activationTokens[action] = token;
+        handleWaylandActivation(action, token);
+    }
 }
 
 void PolicyKitListener::initiateAuthentication(const QString &actionId,
@@ -89,14 +107,25 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
 
     m_inProgress = true;
 
-    const WId parentId = m_actionsToWID.value(actionId, 0);
+    const QString parentHandle = m_windowHandles.value(actionId);
+    const QString activationToken = m_activationTokens.value(actionId);
 
-    m_dialog = new QuickAuthDialog(actionId, message, details, identities, parentId);
+    m_dialog = new QuickAuthDialog(actionId, message, details, identities);
+
+    if (!parentHandle.isEmpty()) {
+        handleParentWindow(actionId, parentHandle);
+    }
+
     connect(m_dialog.data(), SIGNAL(okClicked()), SLOT(dialogAccepted()));
     connect(m_dialog.data(), SIGNAL(rejected()), SLOT(dialogCanceled()));
 
     m_dialog->show();
-    if (KWindowSystem::isPlatformX11()) {
+
+    if (KWindowSystem::isPlatformWayland()) {
+        if (!activationToken.isEmpty()) {
+            handleWaylandActivation(actionId, activationToken);
+        }
+    } else if (KWindowSystem::isPlatformX11()) {
         KX11Extras::forceActiveWindow(m_dialog->windowHandle()->winId());
     }
 
@@ -108,6 +137,25 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
 
     m_numTries = 0;
     tryAgain();
+}
+
+void PolicyKitListener::handleParentWindow(const QString &action, const QString &handle)
+{
+    if (!m_dialog || m_dialog->actionId() != action) {
+        return;
+    }
+
+    KWindowSystem::setMainWindow(m_dialog->windowHandle(), handle);
+}
+
+void PolicyKitListener::handleWaylandActivation(const QString &action, const QString &token)
+{
+    if (!m_dialog || m_dialog->actionId() != action) {
+        return;
+    }
+
+    qputenv("XDG_ACTIVATION_TOKEN", token.toUtf8());
+    m_dialog->windowHandle()->requestActivate();
 }
 
 void PolicyKitListener::tryAgain()
