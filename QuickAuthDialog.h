@@ -18,11 +18,7 @@ class QuickAuthDialog : public QObject
 {
     Q_OBJECT
 public:
-    QuickAuthDialog(const QString &actionId,
-                    const QString &message,
-                    const PolkitQt1::Details &details,
-                    const PolkitQt1::Identity::List &identities,
-                    WId parent);
+    QuickAuthDialog(const QString &actionId, const QString &message, const PolkitQt1::Details &details, const PolkitQt1::Identity::List &identities);
 
     QWindow *windowHandle() const
     {
@@ -30,6 +26,7 @@ public:
     }
     PolkitQt1::Identity adminUserSelected() const;
 
+    QString actionId() const;
     QString password() const;
     void showError(const QString &message);
     void showInfo(const QString &message);
@@ -43,6 +40,7 @@ Q_SIGNALS:
 
 private:
     QWindow *m_theDialog = nullptr;
+    QString m_actionId;
 };
 
 #endif

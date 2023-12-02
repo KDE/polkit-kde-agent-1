@@ -23,9 +23,9 @@
 QuickAuthDialog::QuickAuthDialog(const QString &actionId,
                                  const QString &message,
                                  [[maybe_unused]] const PolkitQt1::Details &details,
-                                 const PolkitQt1::Identity::List &identities,
-                                 [[maybe_unused]] WId parent)
+                                 const PolkitQt1::Identity::List &identities)
     : QObject(nullptr)
+    , m_actionId(actionId)
 {
     auto engine = new QQmlApplicationEngine(this);
     QVariantMap props = {
@@ -70,6 +70,11 @@ QuickAuthDialog::QuickAuthDialog(const QString &actionId,
 }
 
 enum KirigamiInlineMessageTypes { Information = 0, Positive = 1, Warning = 2, Error = 3 };
+
+QString QuickAuthDialog::actionId() const
+{
+    return m_actionId;
+}
 
 QString QuickAuthDialog::password() const
 {
