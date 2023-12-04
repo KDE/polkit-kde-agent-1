@@ -7,5 +7,5 @@ After=plasma-core.target
 ExecStart=@KDE_INSTALL_FULL_LIBEXECDIR@/polkit-kde-authentication-agent-1
 BusName=org.kde.polkit-kde-authentication-agent-1
 Slice=background.slice
-TimeoutSec=5sec
+TimeoutStopSec=5sec
 Restart=on-failure
