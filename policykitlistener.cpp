@@ -17,6 +17,7 @@
 #include <PolkitQt1/Details>
 #include <PolkitQt1/Identity>
 #include <PolkitQt1/Subject>
+#include <QDebug>
 
 #include "IdentitiesModel.h"
 #include "QuickAuthDialog.h"
@@ -71,6 +72,13 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
         result->setError(i18n("Another client is already authenticating, please try again later."));
         result->setCompleted();
         qDebug() << "Another client is already authenticating, please try again later.";
+        return;
+    }
+
+    if (identities.isEmpty()) {
+        result->setError(i18nc("Error response when polkit calls us with an empty list of identities", "No user to authenticate as. Please check your system configuration."));
+        result->setCompleted();
+        qWarning() << "No user to authenticate as. Please check your system configuration.";
         return;
     }
 
