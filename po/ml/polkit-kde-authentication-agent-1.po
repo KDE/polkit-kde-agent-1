@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-31 01:57+0000\n"
+"POT-Creation-Date: 2023-12-08 01:36+0000\n"
 "PO-Revision-Date: 2019-12-12 22:33+0000\n"
 "Last-Translator: Vivek KJ Pazhedath <vivekkj2004@gmail.com>\n"
 "Language-Team: Swathanthra|സ്വതന്ത്ര Malayalam|മലയാളം Computing|കമ്പ്യൂട്ടിങ്ങ് <smc."
@@ -64,7 +64,13 @@ msgstr ""
 msgid "Former maintainer"
 msgstr "പണ്ടത്തെ പരിപാലകൻ"
 
-#: policykitlistener.cpp:71
+#: policykitlistener.cpp:72
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
+msgstr ""
+
+#: policykitlistener.cpp:79
+#, kde-format
+msgctxt "Error response when polkit calls us with an empty list of identities"
+msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""

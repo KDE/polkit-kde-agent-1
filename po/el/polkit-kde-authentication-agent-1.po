@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-31 01:57+0000\n"
+"POT-Creation-Date: 2023-12-08 01:36+0000\n"
 "PO-Revision-Date: 2020-09-24 10:10+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -65,11 +65,17 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "Πρώην συντηρητής"
 
-#: policykitlistener.cpp:71
+#: policykitlistener.cpp:72
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr ""
 "Ένας άλλος πελάτης ήδη πιστοποιείται, παρακαλώ δοκιμάστε ξανά αργότερα."
+
+#: policykitlistener.cpp:79
+#, kde-format
+msgctxt "Error response when polkit calls us with an empty list of identities"
+msgid "No user to authenticate as. Please check your system configuration."
+msgstr ""
 
 #~ msgid "Action:"
 #~ msgstr "Ενέργεια:"
