@@ -1,24 +1,24 @@
 # Translation of polkit-kde-authentication-agent-1.po to Catalan (Valencian)
-# Copyright (C) 2009-2020 This_file_is_part_of_KDE
+# Copyright (C) 2009-2023 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2 or later.
 #
 # Manuel Tortosa Moreno <manutortosa@gmail.com>, 2009.
 # Joan Maspons <joanmaspons@gmail.com>, 2011.
-# Josep M. Ferrer <txemaq@gmail.com>, 2011, 2015, 2018.
+# Josep M. Ferrer <txemaq@gmail.com>, 2011, 2015, 2018, 2023.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2018, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-08 01:36+0000\n"
-"PO-Revision-Date: 2020-07-31 15:49+0200\n"
-"Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
+"PO-Revision-Date: 2023-12-08 11:59+0100\n"
+"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.04.3\n"
+"X-Generator: Lokalize 22.12.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -78,3 +78,5 @@ msgstr "Un altre client ja s'està autenticant. Torneu-ho a provar més tard."
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
+"No hi ha cap usuari per a autenticar-se. Comproveu la Configuració del "
+"sistema."
