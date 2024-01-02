@@ -1,20 +1,20 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# A S Alam <aalam@users.sf.net>, 2010, 2011, 2016, 2020.
+# SPDX-FileCopyrightText: 2010, 2011, 2016, 2020, 2024 A S Alam <aalam@users.sf.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-08 01:36+0000\n"
-"PO-Revision-Date: 2020-10-13 21:46-0700\n"
-"Last-Translator: A S Alam <aalam.yellow@gmail.com>\n"
-"Language-Team: Punjabi <punjabi-users@lists.sf.net>\n"
+"PO-Revision-Date: 2024-01-01 09:25-0600\n"
+"Last-Translator: A S Alam <aalam@punlinux.org>\n"
+"Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
 "Language: pa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 19.12.2\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -25,7 +25,7 @@ msgstr "ਅਮਨਪਰੀਤ ਸਿੰਘ ਆਲਮ"
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "aalam@users.sf.net"
+msgstr "aalam@punlinux.org"
 
 #: IdentitiesModel.cpp:27
 #, kde-format
@@ -72,7 +72,7 @@ msgstr "ਹੋਰ ਕਲਾਇਟ ਪਹਿਲਾਂ ਹੀ ਪਰਮਾਣਕ�
 #, kde-format
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
-msgstr ""
+msgstr "ਪਰਮਾਣਿਤ ਕਰਨ ਲਈ ਕੋਈ ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਹੈ। ਆਪਣੇ ਸਿਸਟਮ ਦੀ ਸੰਰਚਨਾ ਦੀ ਜਾਂਚ ਕਰੋ।"
 
 #~ msgid "Action:"
 #~ msgstr "ਐਕਸ਼ਨ:"
