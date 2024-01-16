@@ -1,17 +1,17 @@
 # Translation of polkit-kde-authentication-agent-1.po to Catalan (Valencian)
-# Copyright (C) 2009-2023 This_file_is_part_of_KDE
+# Copyright (C) 2009-2024 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2 or later.
 #
 # Manuel Tortosa Moreno <manutortosa@gmail.com>, 2009.
 # Joan Maspons <joanmaspons@gmail.com>, 2011.
-# Josep M. Ferrer <txemaq@gmail.com>, 2011, 2015, 2018, 2023.
+# Josep M. Ferrer <txemaq@gmail.com>, 2011, 2015, 2018, 2023, 2024.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2018, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-09 01:34+0000\n"
-"PO-Revision-Date: 2023-12-08 11:59+0100\n"
+"PO-Revision-Date: 2024-01-14 16:59+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
