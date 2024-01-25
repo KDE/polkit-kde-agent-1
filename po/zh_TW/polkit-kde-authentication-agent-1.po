@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-25 00:38+0000\n"
 "PO-Revision-Date: 2023-12-13 04:56+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -77,35 +77,80 @@ msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr "沒有可代為驗證的使用者。請檢查您的系統設定。"
 
-#~ msgid "Action:"
-#~ msgstr "動作："
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "需要認證"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "認證失敗。請再試一次。"
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "密碼："
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "詳細資料"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "動作："
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "ID："
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "廠商："
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "需要認證"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
 
-#~ msgid "Vendor:"
-#~ msgstr "廠商："
-
 #~ msgid "Action ID:"
 #~ msgstr "動作編號："
-
-#~ msgid "ID:"
-#~ msgstr "ID："
-
-#~ msgid "Details"
-#~ msgstr "詳細資料"
-
-#~ msgid "Authentication Required"
-#~ msgstr "需要認證"
 
 #~ msgid "Password for root:"
 #~ msgstr "root 的密碼"
 
 #~ msgid "Password for %1:"
 #~ msgstr "%1 的密碼："
-
-#~ msgid "Password:"
-#~ msgstr "密碼："
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "root 的密碼或指紋"
@@ -120,9 +165,6 @@ msgstr "沒有可代為驗證的使用者。請檢查您的系統設定。"
 #~ "An application is attempting to perform an action that requires "
 #~ "privileges. Authentication is required to perform this action."
 #~ msgstr "有一個應用程式試圖執行需要權限的動作。要執行此動作需要認證。"
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "認證失敗。請再試一次。"
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"

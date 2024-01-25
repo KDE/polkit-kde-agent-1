@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-25 00:38+0000\n"
 "PO-Revision-Date: 2023-12-08 11:32+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -77,35 +77,80 @@ msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
 "Geen gebruiker om te verifiëren als. Controleer uw systeemconfiguratie."
 
-#~ msgid "Action:"
-#~ msgstr "Actie:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "Authenticatie vereist"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Authenticatie is mislukt, probeer opnieuw."
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "Wachtwoord:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "Details"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "Actie:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "ID:"
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "Fabrikant:"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "Authenticatie vereist"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
 
-#~ msgid "Vendor:"
-#~ msgstr "Fabrikant:"
-
 #~ msgid "Action ID:"
 #~ msgstr "Actie-id:"
-
-#~ msgid "ID:"
-#~ msgstr "ID:"
-
-#~ msgid "Details"
-#~ msgstr "Details"
-
-#~ msgid "Authentication Required"
-#~ msgstr "Authenticatie vereist"
 
 #~ msgid "Password for root:"
 #~ msgstr "Wachtwoord van root:"
 
 #~ msgid "Password for %1:"
 #~ msgstr "Wachtwoord van %1:"
-
-#~ msgid "Password:"
-#~ msgstr "Wachtwoord:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "Wachtwoord of vingerveeg van root:"
@@ -122,9 +167,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Een toepassing probeert een actie uit te voeren die privileges vereist. "
 #~ "Verificatie is vereist om deze actie te kunnen doen."
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "Authenticatie is mislukt, probeer opnieuw."
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
@@ -154,6 +196,3 @@ msgstr ""
 
 #~ msgid "Switch to dialog"
 #~ msgstr "Omschakelen naar dialoog"
-
-#~ msgid "Cancel"
-#~ msgstr "Annuleren"

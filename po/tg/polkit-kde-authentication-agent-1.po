@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-25 00:38+0000\n"
 "PO-Revision-Date: 2019-09-29 12:36+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -76,35 +76,80 @@ msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
 
-#~ msgid "Action:"
-#~ msgstr "Амалиёт:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "Санҷиши ҳаққоният лозим аст"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Санҷиши ҳаққоният қатъ шуд, лутфан, аз нав кӯшиш кунед."
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "Ниҳонвожа:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "Тафсилот"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "Амалиёт:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "Рақами мушаххас:"
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "Таъмингар:"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "Санҷиши ҳаққоният лозим аст"
 
 #~ msgid "<null>"
 #~ msgstr "<сифр>"
 
-#~ msgid "Vendor:"
-#~ msgstr "Таъмингар:"
-
 #~ msgid "Action ID:"
 #~ msgstr "Рақами мушаххаси амалиёт:"
-
-#~ msgid "ID:"
-#~ msgstr "Рақами мушаххас:"
-
-#~ msgid "Details"
-#~ msgstr "Тафсилот"
-
-#~ msgid "Authentication Required"
-#~ msgstr "Санҷиши ҳаққоният лозим аст"
 
 #~ msgid "Password for root:"
 #~ msgstr "Барои ворид шудан ба root ниҳонвожаеро ворид кунед:"
 
 #~ msgid "Password for %1:"
 #~ msgstr "Барои ворид шудан ба %1 ниҳонвожаеро ворид кунед:"
-
-#~ msgid "Password:"
-#~ msgstr "Ниҳонвожа:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr ""
@@ -124,9 +169,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Барнома дар ҳоли кӯшиши иҷрои амале қарор дорад, ки имтиёзҳоро талаб "
 #~ "мекунад. Барои иҷро кардани ин амал, санҷиши ҳаққоният лозим аст."
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "Санҷиши ҳаққоният қатъ шуд, лутфан, аз нав кӯшиш кунед."
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-25 00:38+0000\n"
 "PO-Revision-Date: 2024-01-23 01:41+0200\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -81,35 +81,80 @@ msgstr ""
 "Nėra jokio naudotojo, kurio tapatybę galima būtų patvirtinti. Patikrinkite "
 "sistemos konfigūraciją."
 
-#~ msgid "Action:"
-#~ msgstr "Veiksmas:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "Reikia nustatyti tapatybę"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Tapatybės nustatymo klaida, bandykite dar kartą."
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "Slaptažodis:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "Išsamiau"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr "Atšaukti"
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "Veiksmas:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "ID:"
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "Tiekėjas:"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "Reikia nustatyti tapatybę"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
 
-#~ msgid "Vendor:"
-#~ msgstr "Tiekėjas:"
-
 #~ msgid "Action ID:"
 #~ msgstr "Veiksmo ID:"
-
-#~ msgid "ID:"
-#~ msgstr "ID:"
-
-#~ msgid "Details"
-#~ msgstr "Išsamiau"
-
-#~ msgid "Authentication Required"
-#~ msgstr "Reikia nustatyti tapatybę"
 
 #~ msgid "Password for root:"
 #~ msgstr "root slaptažodis:"
 
 #~ msgid "Password for %1:"
 #~ msgstr "%1 slaptažodis:"
-
-#~ msgid "Password:"
-#~ msgstr "Slaptažodis:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "Slaptažodis arba perbraukimas pirštu naudotojui root:"
@@ -126,9 +171,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Programa mėgina įvykdyti veiksmą, kuris reikalauja leidimų. Tapatybės "
 #~ "nustatymas yra privalomas, norint įvykdyti šį veiksmą."
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "Tapatybės nustatymo klaida, bandykite dar kartą."
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
@@ -155,6 +197,3 @@ msgstr ""
 
 #~ msgid "Switch to dialog"
 #~ msgstr "Pakeisti langą"
-
-#~ msgid "Cancel"
-#~ msgstr "Atšaukti"

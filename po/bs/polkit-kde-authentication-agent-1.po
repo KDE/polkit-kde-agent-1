@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-25 00:38+0000\n"
 "PO-Revision-Date: 2014-02-08 23:53+0100\n"
 "Last-Translator: Samir Ribić <megaribi@epn.ba>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -78,11 +78,67 @@ msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
 
-#~ msgid "Action:"
-#~ msgstr "Akcija:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr ""
 
-#~ msgid "Vendor:"
-#~ msgstr "Proizvođač:"
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Greška u provjeri autentičnosti, pokušajte ponovo"
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "Lozinka:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr "Odustani"
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "Akcija:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "Proizvođač:"
+
+#: qml/QuickAuthDialog.qml:158
+#, kde-format
+msgid "Authenticating as %1"
+msgstr ""
 
 #, fuzzy
 #~| msgid "Action:"
@@ -94,9 +150,6 @@ msgstr ""
 
 #~ msgid "Password for %1:"
 #~ msgstr "Lozinka za %1:"
-
-#~ msgid "Password:"
-#~ msgstr "Lozinka:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "Lozinka ili otisak prsta za root:"
@@ -113,9 +166,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Program pokušava da izvede radnju koja zahtijeva određena ovlašćenja. Za "
 #~ "izvođenje te radnje neophodna je autentifikacija."
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "Greška u provjeri autentičnosti, pokušajte ponovo"
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
@@ -143,9 +193,6 @@ msgstr ""
 
 #~ msgid "Switch to dialog"
 #~ msgstr "Pređi na dijalog"
-
-#~ msgid "Cancel"
-#~ msgstr "Odustani"
 
 #~ msgctxt "o/o1 is the full user name, o/o2 is the user login name"
 #~ msgid "%1 (%2)"

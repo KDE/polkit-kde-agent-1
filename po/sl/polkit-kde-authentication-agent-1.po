@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-25 00:38+0000\n"
 "PO-Revision-Date: 2023-12-08 07:48+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -77,35 +77,80 @@ msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr "Ni uporabnika za avtenticiranje. Preverite konfiguracijo sistema."
 
-#~ msgid "Action:"
-#~ msgstr "Dejanje:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "Zahtevana je overitev"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Overitev ni uspela. Poskusite znova."
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "Geslo:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "Podrobnosti"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr "Prekliči"
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "Dejanje:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "ID:"
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "Proizvajalec:"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "Zahtevana je overitev"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
 
-#~ msgid "Vendor:"
-#~ msgstr "Proizvajalec:"
-
 #~ msgid "Action ID:"
 #~ msgstr "Id dejanja:"
-
-#~ msgid "ID:"
-#~ msgstr "ID:"
-
-#~ msgid "Details"
-#~ msgstr "Podrobnosti"
-
-#~ msgid "Authentication Required"
-#~ msgstr "Zahtevana je overitev"
 
 #~ msgid "Password for root:"
 #~ msgstr "Geslo skrbnika:"
 
 #~ msgid "Password for %1:"
 #~ msgstr "Geslo uporabnika %1:"
-
-#~ msgid "Password:"
-#~ msgstr "Geslo:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "Vnesite geslo ali povlecite prst, da se prijavite kot skrbnik:"
@@ -122,9 +167,6 @@ msgstr "Ni uporabnika za avtenticiranje. Preverite konfiguracijo sistema."
 #~ msgstr ""
 #~ "Program poskuša izvesti dejanje za katerega potrebuje dovoljenja. Za "
 #~ "izvršitev dejanja je zahtevana overitev."
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "Overitev ni uspela. Poskusite znova."
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
@@ -151,6 +193,3 @@ msgstr "Ni uporabnika za avtenticiranje. Preverite konfiguracijo sistema."
 
 #~ msgid "Switch to dialog"
 #~ msgstr "Preklopi v pogovorno okno"
-
-#~ msgid "Cancel"
-#~ msgstr "Prekliči"

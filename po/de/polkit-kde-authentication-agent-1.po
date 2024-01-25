@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-25 00:38+0000\n"
 "PO-Revision-Date: 2018-11-16 10:57+0100\n"
 "Last-Translator: Burkhard Lück <lueck@hube-lueck.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -74,35 +74,80 @@ msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
 
-#~ msgid "Action:"
-#~ msgstr "Aktion:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "Authentifizierung erforderlich"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Die Berechtigung ist abgewiesen worden. Bitte versuchen Sie es erneut."
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "Passwort:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "Details"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "Aktion:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "Kennung:"
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "Hersteller:"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "Authentifizierung erforderlich"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
 
-#~ msgid "Vendor:"
-#~ msgstr "Hersteller:"
-
 #~ msgid "Action ID:"
 #~ msgstr "Aktionskennung:"
-
-#~ msgid "ID:"
-#~ msgstr "Kennung:"
-
-#~ msgid "Details"
-#~ msgstr "Details"
-
-#~ msgid "Authentication Required"
-#~ msgstr "Authentifizierung erforderlich"
 
 #~ msgid "Password for root:"
 #~ msgstr "Passwort des Systemverwalters:"
 
 #~ msgid "Password for %1:"
 #~ msgstr "Passwort für %1:"
-
-#~ msgid "Password:"
-#~ msgstr "Passwort:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "Passwort oder Fingerabdruck des Systemverwalters:"
@@ -119,10 +164,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Eine Anwendung versucht, eine Aktion auszuführen, die erweiterte Rechte "
 #~ "benötigt. Für diese Aktion müssen Sie sich berechtigen."
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr ""
-#~ "Die Berechtigung ist abgewiesen worden. Bitte versuchen Sie es erneut."
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
@@ -152,9 +193,6 @@ msgstr ""
 
 #~ msgid "Switch to dialog"
 #~ msgstr "Zum Dialog wechseln"
-
-#~ msgid "Cancel"
-#~ msgstr "Abbrechen"
 
 #~ msgid "Remember authorization"
 #~ msgstr "Autorisierung merken"

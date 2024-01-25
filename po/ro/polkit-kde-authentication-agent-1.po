@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-25 00:38+0000\n"
 "PO-Revision-Date: 2020-09-19 09:13+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian\n"
@@ -76,35 +76,80 @@ msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
 
-#~ msgid "Action:"
-#~ msgstr "Acțiune:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "Se cere autentificarea"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Autentificare eșuată. Reîncercați."
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "Parolă:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "Detalii"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr "Renunță"
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "Acțiune:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "Identificator:"
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "Vânzător:"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "Se cere autentificarea"
 
 #~ msgid "<null>"
 #~ msgstr "<nul>"
 
-#~ msgid "Vendor:"
-#~ msgstr "Vânzător:"
-
 #~ msgid "Action ID:"
 #~ msgstr "Id. acțiune:"
-
-#~ msgid "ID:"
-#~ msgstr "Identificator:"
-
-#~ msgid "Details"
-#~ msgstr "Detalii"
-
-#~ msgid "Authentication Required"
-#~ msgstr "Se cere autentificarea"
 
 #~ msgid "Password for root:"
 #~ msgstr "Parola pentru root:"
 
 #~ msgid "Password for %1:"
 #~ msgstr "Parola pentru %1:"
-
-#~ msgid "Password:"
-#~ msgstr "Parolă:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "Parola sau treceți degetul pentru root:"
@@ -121,9 +166,6 @@ msgstr ""
 #~ msgstr ""
 #~ "O aplicație încearcă să efectueze o acțiune ce necesită privilegii. "
 #~ "Pentru a efectua această acțiune este necesară autentificarea."
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "Autentificare eșuată. Reîncercați."
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
@@ -150,9 +192,6 @@ msgstr ""
 
 #~ msgid "Switch to dialog"
 #~ msgstr "Comută la dialog"
-
-#~ msgid "Cancel"
-#~ msgstr "Renunță"
 
 #~ msgid "Remember authorization"
 #~ msgstr "Reține autorizarea"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-25 00:38+0000\n"
 "PO-Revision-Date: 2018-11-22 16:30+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -83,35 +83,80 @@ msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
 
-#~ msgid "Action:"
-#~ msgstr "Toiminto:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "Tunnistautumista vaaditaan"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Tunnistautumisvirhe. Yritä uudelleen."
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "Salasana:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "Yksityiskohdat"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr "Peru"
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "Toiminto:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "Tunniste:"
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "Toimittaja:"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "Tunnistautumista vaaditaan"
 
 #~ msgid "<null>"
 #~ msgstr "<tyhjä>"
 
-#~ msgid "Vendor:"
-#~ msgstr "Toimittaja:"
-
 #~ msgid "Action ID:"
 #~ msgstr "Toiminnon tunniste:"
-
-#~ msgid "ID:"
-#~ msgstr "Tunniste:"
-
-#~ msgid "Details"
-#~ msgstr "Yksityiskohdat"
-
-#~ msgid "Authentication Required"
-#~ msgstr "Tunnistautumista vaaditaan"
 
 #~ msgid "Password for root:"
 #~ msgstr "Pääkäyttäjän salasana:"
 
 #~ msgid "Password for %1:"
 #~ msgstr "Käyttäjän %1 salasana:"
-
-#~ msgid "Password:"
-#~ msgstr "Salasana:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "Pääkäyttäjän salasana tai sormen pyyhkäisy:"
@@ -128,9 +173,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Sovellus yrittää suorittaa toiminnon, joka vaatii lisäoikeuksia. Sen "
 #~ "suorittamiseksi tarvitsee tunnistautua."
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "Tunnistautumisvirhe. Yritä uudelleen."
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
@@ -160,6 +202,3 @@ msgstr ""
 
 #~ msgid "Switch to dialog"
 #~ msgstr "Vaihda ikkunaan"
-
-#~ msgid "Cancel"
-#~ msgstr "Peru"

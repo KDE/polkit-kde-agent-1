@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-25 00:38+0000\n"
 "PO-Revision-Date: 2018-11-01 08:13+0700\n"
 "Last-Translator: Wantoyo <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
@@ -74,35 +74,80 @@ msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
 
-#~ msgid "Action:"
-#~ msgstr "Aksi:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "Diperlukan Autentikasi"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Kegagalan autentikasi, silakan coba kembali."
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "Sandi:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "Perincian"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "Aksi:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "ID:"
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "Vendor:"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "Diperlukan Autentikasi"
 
 #~ msgid "<null>"
 #~ msgstr "<tiada>"
 
-#~ msgid "Vendor:"
-#~ msgstr "Vendor:"
-
 #~ msgid "Action ID:"
 #~ msgstr "ID aksi:"
-
-#~ msgid "ID:"
-#~ msgstr "ID:"
-
-#~ msgid "Details"
-#~ msgstr "Perincian"
-
-#~ msgid "Authentication Required"
-#~ msgstr "Diperlukan Autentikasi"
 
 #~ msgid "Password for root:"
 #~ msgstr "Sandi untuk root:"
 
 #~ msgid "Password for %1:"
 #~ msgstr "Sandi untuk %1:"
-
-#~ msgid "Password:"
-#~ msgstr "Sandi:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "Sandi atau gesekan jari untuk root:"
@@ -119,9 +164,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Sebuah aplikasi telah mencoba untuk melakukan tindakan yang membutuhkan "
 #~ "hak istimewa. Autentikasi diperlukan untuk melakukan aksi ini."
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "Kegagalan autentikasi, silakan coba kembali."
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
