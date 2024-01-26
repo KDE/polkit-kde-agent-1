@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:38+0000\n"
-"PO-Revision-Date: 2023-12-08 07:48+0100\n"
+"PO-Revision-Date: 2024-01-25 07:49+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -91,18 +91,17 @@ msgstr "Overitev ni uspela. Poskusite znova."
 #: qml/MobileQuickAuthDialog.qml:129
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "Uporabnik: %1"
 
 #: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Preklop…"
 
 #: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
-#, fuzzy, kde-format
-#| msgid "Password:"
+#, kde-format
 msgid "Password…"
-msgstr "Geslo:"
+msgstr "Geslo…"
 
 #: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
 #, kde-format
@@ -112,7 +111,7 @@ msgstr "Podrobnosti"
 #: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "V redu"
 
 #: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
 #, kde-format
@@ -135,10 +134,9 @@ msgid "Vendor:"
 msgstr "Proizvajalec:"
 
 #: qml/QuickAuthDialog.qml:158
-#, fuzzy, kde-format
-#| msgid "Authentication Required"
+#, kde-format
 msgid "Authenticating as %1"
-msgstr "Zahtevana je overitev"
+msgstr "Overjanje kot %1"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"

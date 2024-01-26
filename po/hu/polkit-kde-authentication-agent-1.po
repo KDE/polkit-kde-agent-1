@@ -2,20 +2,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Kristóf Kiszel <ulysses@kubuntu.org>, 2010, 2011, 2015, 2019.
-# SPDX-FileCopyrightText: 2023 Kristof Kiszel <ulysses@fsf.hu>
+# SPDX-FileCopyrightText: 2023, 2024 Kristof Kiszel <ulysses@fsf.hu>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:38+0000\n"
-"PO-Revision-Date: 2023-12-25 21:32+0100\n"
+"PO-Revision-Date: 2024-01-25 11:07+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.01.90\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #, kde-format
@@ -91,18 +91,17 @@ msgstr "Hitelesítési hiba, próbálja újra."
 #: qml/MobileQuickAuthDialog.qml:129
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "Felhasználó: %1"
 
 #: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Váltás…"
 
 #: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
-#, fuzzy, kde-format
-#| msgid "Password:"
+#, kde-format
 msgid "Password…"
-msgstr "Adja meg a jelszót:"
+msgstr "Jelszó…"
 
 #: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
 #, kde-format
@@ -112,7 +111,7 @@ msgstr "Részletek"
 #: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
 #, kde-format
@@ -135,10 +134,9 @@ msgid "Vendor:"
 msgstr "Gyártó:"
 
 #: qml/QuickAuthDialog.qml:158
-#, fuzzy, kde-format
-#| msgid "Authentication Required"
+#, kde-format
 msgid "Authenticating as %1"
-msgstr "Hitelesítés szükséges"
+msgstr "Hitelesítés mint %1"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"

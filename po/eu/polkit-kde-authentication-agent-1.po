@@ -1,16 +1,16 @@
 # Translatin of polkit-kde-authentication-agent-1.po to Euskara/Basque (eu).
-# Copyright (C) 2018-2023 This file is copyright:
+# Copyright (C) 2018-2024 This file is copyright:
 # This file is distributed under the same license as the polkit-kde-agent-1 package.
-# SPDX-FileCopyrightText: 2023 KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>
+# SPDX-FileCopyrightText: 2023, 2024 KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>
 #
 # Translators:
-# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2018, 2019, 2023.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2018, 2019, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:38+0000\n"
-"PO-Revision-Date: 2023-12-08 09:26+0100\n"
+"PO-Revision-Date: 2024-01-25 18:05+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.3\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -93,18 +93,17 @@ msgstr "Autentifikatze hutsegitea, saiatu berriz."
 #: qml/MobileQuickAuthDialog.qml:129
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "Erabiltzailea: %1"
 
 #: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Aldatu..."
 
 #: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
-#, fuzzy, kde-format
-#| msgid "Password:"
+#, kde-format
 msgid "Password…"
-msgstr "Pasahitza:"
+msgstr "Pasahitza..."
 
 #: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
 #, kde-format
@@ -114,12 +113,12 @@ msgstr "Xehetasunak"
 #: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "Ados"
 
 #: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
 #, kde-format
 msgid "Cancel"
-msgstr ""
+msgstr "Utzi"
 
 #: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
 #, kde-format
@@ -137,10 +136,9 @@ msgid "Vendor:"
 msgstr "Hornitzailea:"
 
 #: qml/QuickAuthDialog.qml:158
-#, fuzzy, kde-format
-#| msgid "Authentication Required"
+#, kde-format
 msgid "Authenticating as %1"
-msgstr "Autentifikatzea beharrezkoa da"
+msgstr "Autentifikazioa %1 gisa egiten"
 
 #~ msgid "<null>"
 #~ msgstr "<nulua>"

@@ -81,13 +81,12 @@ msgstr ""
 #: qml/QuickAuthDialog.qml:16
 #, kde-format
 msgid "Authentication Required"
-msgstr ""
+msgstr "Treng autentisering"
 
 #: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
-#, fuzzy, kde-format
-#| msgid "Another client is already authenticating, please try again later."
+#, kde-format
 msgid "Authentication failure, please try again."
-msgstr "Ein annan klient autentiserer allereie. Prøv på nytt seinare."
+msgstr "Autentiseringsfeil. Prøv på nytt."
 
 #: qml/MobileQuickAuthDialog.qml:129
 #, kde-format
@@ -107,7 +106,7 @@ msgstr ""
 #: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
 #, kde-format
 msgid "Details"
-msgstr ""
+msgstr "Detaljar"
 
 #: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
 #, kde-format
@@ -122,17 +121,17 @@ msgstr ""
 #: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
 #, kde-format
 msgid "Action:"
-msgstr ""
+msgstr "Handling:"
 
 #: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
 #, kde-format
 msgid "ID:"
-msgstr ""
+msgstr "ID:"
 
 #: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
 #, kde-format
 msgid "Vendor:"
-msgstr ""
+msgstr "Produsent:"
 
 #: qml/QuickAuthDialog.qml:158
 #, kde-format

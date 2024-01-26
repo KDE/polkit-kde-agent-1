@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# giovanni <g.sora@tiscali.it>, 2017, 2020, 2023.
+# giovanni <g.sora@tiscali.it>, 2017, 2020, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:38+0000\n"
-"PO-Revision-Date: 2023-12-08 10:13+0100\n"
+"PO-Revision-Date: 2024-01-25 18:47+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -91,18 +91,17 @@ msgstr "Authentication falleva Pro favor tu prova de nove."
 #: qml/MobileQuickAuthDialog.qml:129
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "Usator: %1"
 
 #: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Commuta…"
 
 #: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
-#, fuzzy, kde-format
-#| msgid "Password:"
+#, kde-format
 msgid "Password…"
-msgstr "Contrasigno:"
+msgstr "Contrasigno…"
 
 #: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
 #, kde-format
@@ -112,12 +111,12 @@ msgstr "Detalios"
 #: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
 #, kde-format
 msgid "Cancel"
-msgstr ""
+msgstr "Cancella"
 
 #: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
 #, kde-format
@@ -135,10 +134,9 @@ msgid "Vendor:"
 msgstr "Venditor:"
 
 #: qml/QuickAuthDialog.qml:158
-#, fuzzy, kde-format
-#| msgid "Authentication Required"
+#, kde-format
 msgid "Authenticating as %1"
-msgstr "Authentication requirite"
+msgstr "Authenticante como %1 "
 
 #~ msgid "<null>"
 #~ msgstr "<null>"

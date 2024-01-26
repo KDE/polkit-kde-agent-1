@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# SPDX-FileCopyrightText: 2015, 2018, 2023 Freek de Kruijf <freekdekruijf@kde.nl>
+# SPDX-FileCopyrightText: 2015, 2018, 2023, 2024 Freek de Kruijf <freekdekruijf@kde.nl>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:38+0000\n"
-"PO-Revision-Date: 2023-12-08 11:32+0100\n"
+"PO-Revision-Date: 2024-01-25 10:35+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -15,12 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.3\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Freek de Kruijf - t/m 2023"
+msgstr "Freek de Kruijf - t/m 2024"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
@@ -91,18 +91,17 @@ msgstr "Authenticatie is mislukt, probeer opnieuw."
 #: qml/MobileQuickAuthDialog.qml:129
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "Gebruiker: %1"
 
 #: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Omschakelen…"
 
 #: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
-#, fuzzy, kde-format
-#| msgid "Password:"
+#, kde-format
 msgid "Password…"
-msgstr "Wachtwoord:"
+msgstr "Wachtwoord…"
 
 #: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
 #, kde-format
@@ -112,7 +111,7 @@ msgstr "Details"
 #: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
 #, kde-format
@@ -135,10 +134,9 @@ msgid "Vendor:"
 msgstr "Fabrikant:"
 
 #: qml/QuickAuthDialog.qml:158
-#, fuzzy, kde-format
-#| msgid "Authentication Required"
+#, kde-format
 msgid "Authenticating as %1"
-msgstr "Authenticatie vereist"
+msgstr "Geauthenticeerd als %1"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
