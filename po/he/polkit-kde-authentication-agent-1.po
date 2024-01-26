@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-26 02:28+0000\n"
 "PO-Revision-Date: 2023-12-08 16:57+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -77,31 +77,79 @@ msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr "אין משתמש לאימות בשמו. נא לבדוק את הגדרות המערכת שלך."
 
-#~ msgid "Action:"
-#~ msgstr "פעולה:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "נדרש אימות"
 
-#~ msgid "Vendor:"
-#~ msgstr "ספק:"
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "האימות נכשל, נסה שוב."
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "סיסמה:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "נתונים"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "פעולה:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "ספק:"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "נדרש אימות"
 
 #, fuzzy
 #~| msgid "Action:"
 #~ msgid "Action ID:"
 #~ msgstr "פעולה:"
 
-#~ msgid "Details"
-#~ msgstr "נתונים"
-
-#~ msgid "Authentication Required"
-#~ msgstr "נדרש אימות"
-
 #~ msgid "Password for root:"
 #~ msgstr "סיסמה ל־root:"
 
 #~ msgid "Password for %1:"
 #~ msgstr "סיסמה ל־%1:"
-
-#~ msgid "Password:"
-#~ msgstr "סיסמה:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "סיסמה או טביעת אצבע ל־root:"
@@ -118,9 +166,6 @@ msgstr "אין משתמש לאימות בשמו. נא לבדוק את הגדרו
 #~ msgstr ""
 #~ "יישום מנסה לבצע פעולה הדורשת הרשאות.\n"
 #~ "נדרש אימות כדי לבצע את הפעולה"
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "האימות נכשל, נסה שוב."
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"

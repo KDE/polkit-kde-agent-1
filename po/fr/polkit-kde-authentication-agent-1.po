@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-26 02:28+0000\n"
 "PO-Revision-Date: 2023-12-09 12:28+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: \n"
@@ -85,35 +85,80 @@ msgstr ""
 "Aucune authentification d'utilisateur. Veuillez vérifier la configuration de "
 "votre système."
 
-#~ msgid "Action:"
-#~ msgstr "Action :"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "Authentification requise"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Échec d'authentification. Veuillez réessayer."
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "Mot de passe :"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "Détails"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr "Annuler"
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "Action :"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "Identifiant :"
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "Fournisseur :"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "Authentification requise"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
 
-#~ msgid "Vendor:"
-#~ msgstr "Fournisseur :"
-
 #~ msgid "Action ID:"
 #~ msgstr "Numéro d'action :"
-
-#~ msgid "ID:"
-#~ msgstr "Identifiant :"
-
-#~ msgid "Details"
-#~ msgstr "Détails"
-
-#~ msgid "Authentication Required"
-#~ msgstr "Authentification requise"
 
 #~ msgid "Password for root:"
 #~ msgstr "Mot de passe administrateur :"
 
 #~ msgid "Password for %1:"
 #~ msgstr "Mot de passe de %1 :"
-
-#~ msgid "Password:"
-#~ msgstr "Mot de passe :"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "Mot de passe ou empreinte digitale administrateur :"
@@ -130,9 +175,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Une application essaye d'effectuer une action nécessitant des droits "
 #~ "d'accès. Une authentification est requise pour accomplir cette action."
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "Échec d'authentification. Veuillez réessayer."
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
@@ -162,6 +204,3 @@ msgstr ""
 
 #~ msgid "Switch to dialog"
 #~ msgstr "Passer à la boîte de dialogue"
-
-#~ msgid "Cancel"
-#~ msgstr "Annuler"

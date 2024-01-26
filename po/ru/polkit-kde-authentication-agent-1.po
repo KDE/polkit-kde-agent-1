@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-26 02:28+0000\n"
 "PO-Revision-Date: 2024-01-10 21:54+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -84,35 +84,80 @@ msgstr ""
 "Не найдено не одного пользователя для аутентификации. Проверьте конфигурацию "
 "системы."
 
-#~ msgid "Action:"
-#~ msgstr "Действие:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "Требуется аутентификация"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Ошибка аутентификации, попробуйте ещё раз."
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "Пароль:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "Подробности"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr "Отмена"
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "Действие:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "Идентификатор"
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "Поставщик:"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "Требуется аутентификация"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
 
-#~ msgid "Vendor:"
-#~ msgstr "Поставщик:"
-
 #~ msgid "Action ID:"
 #~ msgstr "Идентификатор действия:"
-
-#~ msgid "ID:"
-#~ msgstr "Идентификатор"
-
-#~ msgid "Details"
-#~ msgstr "Подробности"
-
-#~ msgid "Authentication Required"
-#~ msgstr "Требуется аутентификация"
 
 #~ msgid "Password for root:"
 #~ msgstr "Пароль для root:"
 
 #~ msgid "Password for %1:"
 #~ msgstr "Пароль для %1:"
-
-#~ msgid "Password:"
-#~ msgstr "Пароль:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "Введите пароль или приложите палец для получения root-доступа:"
@@ -129,9 +174,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Приложение пытается выполнить действие, которое требует дополнительных "
 #~ "привилегий. Для этого требуется аутентификация."
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "Ошибка аутентификации, попробуйте ещё раз."
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
@@ -158,9 +200,6 @@ msgstr ""
 
 #~ msgid "Switch to dialog"
 #~ msgstr "Переключиться на диалоговое окно"
-
-#~ msgid "Cancel"
-#~ msgstr "Отмена"
 
 #~ msgid "Remember authorization"
 #~ msgstr "Запомнить данные авторизации"

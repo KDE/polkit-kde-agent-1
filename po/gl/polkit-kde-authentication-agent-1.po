@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-26 02:28+0000\n"
 "PO-Revision-Date: 2023-12-09 08:15+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -78,35 +78,80 @@ msgstr ""
 "Non hai persoa usuaria coa que autenticarse. Comprobe a configuración do "
 "sistema."
 
-#~ msgid "Action:"
-#~ msgstr "Acción:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "Debe autenticarse"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Fallo de autenticación, inténteo de novo."
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "Contrasinal:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "Detalles"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "Acción:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "Identificador:"
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "Fabricante:"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "Debe autenticarse"
 
 #~ msgid "<null>"
 #~ msgstr "<nula>"
 
-#~ msgid "Vendor:"
-#~ msgstr "Fabricante:"
-
 #~ msgid "Action ID:"
 #~ msgstr "Identificador da acción:"
-
-#~ msgid "ID:"
-#~ msgstr "Identificador:"
-
-#~ msgid "Details"
-#~ msgstr "Detalles"
-
-#~ msgid "Authentication Required"
-#~ msgstr "Debe autenticarse"
 
 #~ msgid "Password for root:"
 #~ msgstr "Contrasinal de «root»:"
 
 #~ msgid "Password for %1:"
 #~ msgstr "Contrasinal de %1:"
-
-#~ msgid "Password:"
-#~ msgstr "Contrasinal:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "Contrasinal ou pegada dixital de «root»:"
@@ -123,9 +168,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Unha aplicación está a intentar realizar unha acción que require "
 #~ "privilexios. Debe autenticarse para realizar esta acción."
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "Fallo de autenticación, inténteo de novo."
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
@@ -155,6 +197,3 @@ msgstr ""
 
 #~ msgid "Switch to dialog"
 #~ msgstr "Ir ao diálogo"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-26 02:28+0000\n"
 "PO-Revision-Date: 2010-12-11 16:14+0700\n"
 "Last-Translator: Phuwanat Sakornsakolpat <narachai@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -76,11 +76,67 @@ msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
 
-#~ msgid "Action:"
-#~ msgstr "การกระทำ:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr ""
 
-#~ msgid "Vendor:"
-#~ msgstr "ผู้ผลิต:"
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "การตรวจสอบสิทธิ์ล้มเหลว โปรดลองใหม่อีกครั้ง"
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "รหัสผ่าน:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "การกระทำ:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "ผู้ผลิต:"
+
+#: qml/QuickAuthDialog.qml:158
+#, kde-format
+msgid "Authenticating as %1"
+msgstr ""
 
 #, fuzzy
 #~| msgid "Action:"
@@ -92,9 +148,6 @@ msgstr ""
 
 #~ msgid "Password for %1:"
 #~ msgstr "รหัสผ่านของ %1:"
-
-#~ msgid "Password:"
-#~ msgstr "รหัสผ่าน:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "รหัสผ่านหรืออ่านลายนิ้วมือของ root:"
@@ -111,9 +164,6 @@ msgstr ""
 #~ msgstr ""
 #~ "โปรแกรมได้พยายามจะทำการกระทำที่ต้องการสิทธิ์ในการทำงานเพิ่มเติม "
 #~ "จึงจะต้องทำการตรวจสอบสิทธิ์เพื่อใช้ในการทำการกระทำนี้"
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "การตรวจสอบสิทธิ์ล้มเหลว โปรดลองใหม่อีกครั้ง"
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
@@ -141,9 +191,6 @@ msgstr ""
 
 #~ msgid "Switch to dialog"
 #~ msgstr "สลับไปกล่องโต้ตอบ"
-
-#~ msgid "Cancel"
-#~ msgstr "ยกเลิก"
 
 #~ msgid "Remember authorization"
 #~ msgstr "จดจำการอนุญาตสิทธิ์"

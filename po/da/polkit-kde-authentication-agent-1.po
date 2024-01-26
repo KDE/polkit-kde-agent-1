@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-26 02:28+0000\n"
 "PO-Revision-Date: 2019-05-07 13:23+0100\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -74,35 +74,80 @@ msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
 
-#~ msgid "Action:"
-#~ msgstr "Handling:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "Autentificering kræves"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Autentificering mislykkedes, prøv igen."
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "Adgangskode:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "Detaljer"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr "Annullér"
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "Handling:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "Id:"
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "Leverandør:"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "Autentificering kræves"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
 
-#~ msgid "Vendor:"
-#~ msgstr "Leverandør:"
-
 #~ msgid "Action ID:"
 #~ msgstr "Handlings-id:"
-
-#~ msgid "ID:"
-#~ msgstr "Id:"
-
-#~ msgid "Details"
-#~ msgstr "Detaljer"
-
-#~ msgid "Authentication Required"
-#~ msgstr "Autentificering kræves"
 
 #~ msgid "Password for root:"
 #~ msgstr "Adgangskode for root:"
 
 #~ msgid "Password for %1:"
 #~ msgstr "Adgangskode for %1:"
-
-#~ msgid "Password:"
-#~ msgstr "Adgangskode:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "Adgangskode eller fingeraftryk for root:"
@@ -119,9 +164,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Et program forsøger at udføre en handling der kræver kræver privilegier. "
 #~ "Godkendelse kræves for at udføre handlingen."
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "Autentificering mislykkedes, prøv igen."
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
@@ -151,9 +193,6 @@ msgstr ""
 
 #~ msgid "Switch to dialog"
 #~ msgstr "Skift til dialog"
-
-#~ msgid "Cancel"
-#~ msgstr "Annullér"
 
 #~ msgid "Remember authorization"
 #~ msgstr "Husk godkendelse"

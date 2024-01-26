@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-26 02:28+0000\n"
 "PO-Revision-Date: 2024-01-01 09:25-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -74,35 +74,80 @@ msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr "ਪਰਮਾਣਿਤ ਕਰਨ ਲਈ ਕੋਈ ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਹੈ। ਆਪਣੇ ਸਿਸਟਮ ਦੀ ਸੰਰਚਨਾ ਦੀ ਜਾਂਚ ਕਰੋ।"
 
-#~ msgid "Action:"
-#~ msgstr "ਐਕਸ਼ਨ:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "ਪਰਮਾਣਕਿਤਾ ਦੀ ਲੋੜ ਹੈ"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "ਪਰਮਾਣਕਿਤਾ ਫੇਲ੍ਹ ਹੋਈ। ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "ਪਾਸਵਰਡ:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "ਵੇਰਵੇ"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr "ਰੱਦ ਕਰੋ"
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "ਐਕਸ਼ਨ:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "ID:"
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "ਵੇਂਡਰ:"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "ਪਰਮਾਣਕਿਤਾ ਦੀ ਲੋੜ ਹੈ"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
 
-#~ msgid "Vendor:"
-#~ msgstr "ਵੇਂਡਰ:"
-
 #~ msgid "Action ID:"
 #~ msgstr "ਐਕਸ਼ਨ ID:"
-
-#~ msgid "ID:"
-#~ msgstr "ID:"
-
-#~ msgid "Details"
-#~ msgstr "ਵੇਰਵੇ"
-
-#~ msgid "Authentication Required"
-#~ msgstr "ਪਰਮਾਣਕਿਤਾ ਦੀ ਲੋੜ ਹੈ"
 
 #~ msgid "Password for root:"
 #~ msgstr "ਰੂਟ ਲਈ ਪਾਸਵਰਡ:"
 
 #~ msgid "Password for %1:"
 #~ msgstr "%1 ਲਈ ਪਾਸਵਰਡ:"
-
-#~ msgid "Password:"
-#~ msgstr "ਪਾਸਵਰਡ:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "ਰੂਟ ਲਈ ਪਾਸਵਰਡ ਦਿਓ ਜਾਂ ਉਂਗਲ ਸਵੈਪ ਕਰੋ:"
@@ -119,9 +164,6 @@ msgstr "ਪਰਮਾਣਿਤ ਕਰਨ ਲਈ ਕੋਈ ਵਰਤੋਂਕਾ�
 #~ msgstr ""
 #~ "ਐਪਲੀਕੇਸ਼ਨ ਐਕਸ਼ਨ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰ ਰਹੀ ਹੈ, ਜਿਸ ਲਈ ਅਧਿਕਾਰਾਂ ਦੀ ਲੋੜ ਹੈ। ਇਹ ਐਕਸ਼ਨ ਕਰਨ ਲਈ "
 #~ "ਪਰਮਾਣਕਿਤਾ ਦੀ ਲੋੜ ਹੈ।"
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "ਪਰਮਾਣਕਿਤਾ ਫੇਲ੍ਹ ਹੋਈ। ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
@@ -148,9 +190,6 @@ msgstr "ਪਰਮਾਣਿਤ ਕਰਨ ਲਈ ਕੋਈ ਵਰਤੋਂਕਾ�
 
 #~ msgid "Switch to dialog"
 #~ msgstr "ਡਾਈਲਾਗ ਲਈ ਬਦਲੋ"
-
-#~ msgid "Cancel"
-#~ msgstr "ਰੱਦ ਕਰੋ"
 
 #~ msgid "Remember authorization"
 #~ msgstr "ਪਰਮਾਣਕਿਤਾ ਯਾਦ ਰੱਖੋ"

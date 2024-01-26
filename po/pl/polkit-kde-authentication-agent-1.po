@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-09 01:34+0000\n"
+"POT-Creation-Date: 2024-01-26 02:28+0000\n"
 "PO-Revision-Date: 2023-12-23 11:33+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmai.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -77,35 +77,80 @@ msgstr ""
 "Nie ma użytkownika, którym można by się uwierzytelnić. Sprawdź ustawienia "
 "systemowe."
 
-#~ msgid "Action:"
-#~ msgstr "Działanie:"
+#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/QuickAuthDialog.qml:16
+#, kde-format
+msgid "Authentication Required"
+msgstr "Wymagane uwierzytelnienie"
+
+#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#, kde-format
+msgid "Authentication failure, please try again."
+msgstr "Uwierzytelnianie nieudane, proszę spróbować ponownie."
+
+#: qml/MobileQuickAuthDialog.qml:129
+#, kde-format
+msgid "User: %1"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#, kde-format
+msgid "Switch…"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#, fuzzy, kde-format
+#| msgid "Password:"
+msgid "Password…"
+msgstr "Hasło:"
+
+#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#, kde-format
+msgid "Details"
+msgstr "Szczegóły"
+
+#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#, kde-format
+msgid "OK"
+msgstr ""
+
+#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#, kde-format
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#, kde-format
+msgid "Action:"
+msgstr "Działanie:"
+
+#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#, kde-format
+msgid "ID:"
+msgstr "ID:"
+
+#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#, kde-format
+msgid "Vendor:"
+msgstr "Wytwórca:"
+
+#: qml/QuickAuthDialog.qml:158
+#, fuzzy, kde-format
+#| msgid "Authentication Required"
+msgid "Authenticating as %1"
+msgstr "Wymagane uwierzytelnienie"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
 
-#~ msgid "Vendor:"
-#~ msgstr "Wytwórca:"
-
 #~ msgid "Action ID:"
 #~ msgstr "ID działania:"
-
-#~ msgid "ID:"
-#~ msgstr "ID:"
-
-#~ msgid "Details"
-#~ msgstr "Szczegóły"
-
-#~ msgid "Authentication Required"
-#~ msgstr "Wymagane uwierzytelnienie"
 
 #~ msgid "Password for root:"
 #~ msgstr "Hasło dla administratora:"
 
 #~ msgid "Password for %1:"
 #~ msgstr "Hasło dla '%1':"
-
-#~ msgid "Password:"
-#~ msgstr "Hasło:"
 
 #~ msgid "Password or swipe finger for root:"
 #~ msgstr "Hasło lub odcisk palca dla administratora:"
@@ -122,9 +167,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Program próbuje wykonać działanie, które wymaga uprawnień. Wymagane jest "
 #~ "uwierzytelnienie do wykonania tego działania."
-
-#~ msgid "Authentication failure, please try again."
-#~ msgstr "Uwierzytelnianie nieudane, proszę spróbować ponownie."
 
 #~ msgctxt ""
 #~ "%1 is the name of a detail about the current action provided by polkit"
@@ -154,6 +196,3 @@ msgstr ""
 
 #~ msgid "Switch to dialog"
 #~ msgstr "Przełącz na okno"
-
-#~ msgid "Cancel"
-#~ msgstr "Anuluj"
