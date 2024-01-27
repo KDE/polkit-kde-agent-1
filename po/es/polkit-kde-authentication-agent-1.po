@@ -101,7 +101,6 @@ msgstr "Cambiar..."
 
 #: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
 #, kde-format
-#| msgid "Password:"
 msgid "Password…"
 msgstr "Contraseña..."
 
@@ -137,7 +136,6 @@ msgstr "Vendedor:"
 
 #: qml/QuickAuthDialog.qml:158
 #, kde-format
-#| msgid "Authentication Required"
 msgid "Authenticating as %1"
 msgstr "Autenticándose como %1"
 
@@ -197,4 +195,3 @@ msgstr "Autenticándose como %1"
 
 #~ msgid "Switch to dialog"
 #~ msgstr "Cambiar al diálogo"
-
