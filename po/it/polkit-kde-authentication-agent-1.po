@@ -5,6 +5,7 @@
 # Federico Zenith <federico.zenith@member.fsf.org>, 2009.
 # Pino Toscano <toscano.pino@tiscali.it>, 2010, 2011, 2015, 2018.
 # SPDX-FileCopyrightText: 2023 Vincenzo Reale <smart2128vr@gmail.com>
+# SPDX-FileCopyrightText: 2024 Paolo Zamponi <feus73@gmail.com>
 #
 msgid ""
 msgstr ""
