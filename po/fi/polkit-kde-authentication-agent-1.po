@@ -1,7 +1,7 @@
 # Finnish messages for polkit-kde-authentication-agent-1.
 # Copyright © 2010 This_file_is_part_of_KDE
 # This file is distributed under the same license as the extragear package.
-# Tommi Nieminen <translator@legisign.org>, 2018.
+# Tommi Nieminen <translator@legisign.org>, 2018, 2024.
 # Jorma Karvonen <karvonen.jorma@gmail.com>, 2010.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2013, 2014, 2015.
 #
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-26 02:28+0000\n"
-"PO-Revision-Date: 2018-11-22 16:30+0200\n"
+"PO-Revision-Date: 2024-01-29 21:59+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-POT-Import-Date: 2012-12-01 22:20:07+0000\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -81,7 +81,7 @@ msgstr ""
 #, kde-format
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
-msgstr ""
+msgstr "Ei käyttäjää, joksi tunnistautua. Tarkista järjestelmän asetukset."
 
 #: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
 #: qml/QuickAuthDialog.qml:16
