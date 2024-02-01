@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:38+0000\n"
-"PO-Revision-Date: 2024-01-12 19:13+0100\n"
+"PO-Revision-Date: 2024-01-25 12:27+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -85,60 +85,59 @@ msgstr ""
 #: qml/QuickAuthDialog.qml:16
 #, kde-format
 msgid "Authentication Required"
-msgstr ""
+msgstr "Es requerix autenticació"
 
 #: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
-#, fuzzy, kde-format
-#| msgid "Another client is already authenticating, please try again later."
+#, kde-format
 msgid "Authentication failure, please try again."
-msgstr "Un altre client ja s'està autenticant. Torneu-ho a provar més tard."
+msgstr "No s'ha pogut fer l'autenticació, torneu-ho a intentar."
 
 #: qml/MobileQuickAuthDialog.qml:129
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "Usuari: %1"
 
 #: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Canvia…"
 
 #: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
 #, kde-format
 msgid "Password…"
-msgstr ""
+msgstr "Contrasenya…"
 
 #: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
 #, kde-format
 msgid "Details"
-msgstr ""
+msgstr "Detalls"
 
 #: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "D'acord"
 
 #: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
 #, kde-format
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel·la"
 
 #: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
 #, kde-format
 msgid "Action:"
-msgstr ""
+msgstr "Acció:"
 
 #: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
 #, kde-format
 msgid "ID:"
-msgstr ""
+msgstr "ID:"
 
 #: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
 #, kde-format
 msgid "Vendor:"
-msgstr ""
+msgstr "Proveïdor:"
 
 #: qml/QuickAuthDialog.qml:158
 #, kde-format
 msgid "Authenticating as %1"
-msgstr ""
+msgstr "Autenticant-se com %1"
