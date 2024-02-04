@@ -1,13 +1,13 @@
 # Copyright (C) 2023 This file is copyright:
 # This file is distributed under the same license as the polkit-kde-agent-1 package.
 #
-# SPDX-FileCopyrightText: 2022, 2023 Mincho Kondarev <mkondarev@yahoo.de>
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Mincho Kondarev <mkondarev@yahoo.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:38+0000\n"
-"PO-Revision-Date: 2023-12-11 17:59+0100\n"
+"PO-Revision-Date: 2024-02-03 16:15+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -80,60 +80,59 @@ msgstr ""
 #: qml/QuickAuthDialog.qml:16
 #, kde-format
 msgid "Authentication Required"
-msgstr ""
+msgstr "Изисква се удостоверяване"
 
 #: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
-#, fuzzy, kde-format
-#| msgid "Another client is already authenticating, please try again later."
+#, kde-format
 msgid "Authentication failure, please try again."
-msgstr "Друг клиент вече удостоверява, моля, опитайте отново по-късно."
+msgstr "Грешка в удостоверяването, моля, опитайте отново."
 
 #: qml/MobileQuickAuthDialog.qml:129
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "Потребител: %1"
 
 #: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Превключване…"
 
 #: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
 #, kde-format
 msgid "Password…"
-msgstr ""
+msgstr "Парола…"
 
 #: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
 #, kde-format
 msgid "Details"
-msgstr ""
+msgstr "Подробности"
 
 #: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "Добре"
 
 #: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
 #, kde-format
 msgid "Cancel"
-msgstr ""
+msgstr "Отказ"
 
 #: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
 #, kde-format
 msgid "Action:"
-msgstr ""
+msgstr "Действие:"
 
 #: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
 #, kde-format
 msgid "ID:"
-msgstr ""
+msgstr "ID:"
 
 #: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
 #, kde-format
 msgid "Vendor:"
-msgstr ""
+msgstr "Доставчик:"
 
 #: qml/QuickAuthDialog.qml:158
 #, kde-format
 msgid "Authenticating as %1"
-msgstr ""
+msgstr "Удостоверяване като %1"
