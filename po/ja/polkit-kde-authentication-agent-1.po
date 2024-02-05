@@ -79,14 +79,12 @@ msgstr ""
 #: qml/QuickAuthDialog.qml:16
 #, kde-format
 msgid "Authentication Required"
-msgstr ""
+msgstr "認証が必要です"
 
 #: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
-#, fuzzy, kde-format
-#| msgid "Another client is already authenticating, please try again later."
+#, kde-format
 msgid "Authentication failure, please try again."
-msgstr ""
-"他の認証クライアントが既に認証中です。しばらくたってからやり直してください。"
+msgstr "認証に失敗しました。もう一度お試しください。"
 
 #: qml/MobileQuickAuthDialog.qml:129
 #, kde-format
@@ -106,7 +104,7 @@ msgstr ""
 #: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
 #, kde-format
 msgid "Details"
-msgstr ""
+msgstr "詳細"
 
 #: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
 #, kde-format
@@ -121,7 +119,7 @@ msgstr ""
 #: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
 #, kde-format
 msgid "Action:"
-msgstr ""
+msgstr "アクション:"
 
 #: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
 #, kde-format
@@ -131,7 +129,7 @@ msgstr ""
 #: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
 #, kde-format
 msgid "Vendor:"
-msgstr ""
+msgstr "提供元:"
 
 #: qml/QuickAuthDialog.qml:158
 #, kde-format
