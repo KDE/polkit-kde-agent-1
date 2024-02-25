@@ -1,14 +1,14 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 # Sergiu Bivol <sergiu@cip.md>, 2010.
-# Sergiu Bivol <sergiu@cip.md>, 2011, 2012, 2020, 2023.
+# Sergiu Bivol <sergiu@cip.md>, 2011, 2012, 2020, 2023, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-25 00:38+0000\n"
-"PO-Revision-Date: 2023-06-18 17:44+0100\n"
+"PO-Revision-Date: 2024-02-24 15:53+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
 "Language: ro\n"
@@ -75,6 +75,8 @@ msgstr "Un alt client se autentifică deja, reîncercați mai târziu."
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
+"Nu se poate autentifica ca niciun utilizator. Verificați configurarea "
+"sistemului."
 
 #: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
 #: qml/QuickAuthDialog.qml:16
@@ -90,18 +92,17 @@ msgstr "Autentificare eșuată. Reîncercați."
 #: qml/MobileQuickAuthDialog.qml:129
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "Utilizator: %1"
 
 #: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Schimbă…"
 
 #: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
-#, fuzzy, kde-format
-#| msgid "Password:"
+#, kde-format
 msgid "Password…"
-msgstr "Parolă:"
+msgstr "Parolă…"
 
 #: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
 #, kde-format
@@ -111,11 +112,10 @@ msgstr "Detalii"
 #: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "Bine"
 
 #: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
-#, fuzzy, kde-format
-#| msgid "Cancel"
+#, kde-format
 msgid "Cancel"
 msgstr "Renunță"
 
@@ -135,10 +135,9 @@ msgid "Vendor:"
 msgstr "Vânzător:"
 
 #: qml/QuickAuthDialog.qml:158
-#, fuzzy, kde-format
-#| msgid "Authentication Required"
+#, kde-format
 msgid "Authenticating as %1"
-msgstr "Se cere autentificarea"
+msgstr "Se autentifică ca %1"
 
 #~ msgid "<null>"
 #~ msgstr "<nul>"
