@@ -9,8 +9,6 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
 import org.kde.kirigami 2.19 as Kirigami
-import Qt5Compat.GraphicalEffects
-import org.kde.polkitkde 1.0
 
 Kirigami.AbstractApplicationWindow {
     id: root
@@ -28,18 +26,6 @@ Kirigami.AbstractApplicationWindow {
         implicitWidth: Math.min(Screen.width, control.implicitWidth + 2 * Kirigami.Units.gridUnit)
         implicitHeight: Math.min(Screen.height, control.implicitHeight + 2 * Kirigami.Units.gridUnit)
 
-        // shadow
-        RectangularGlow {
-            id: glow
-            anchors.topMargin: 1
-            anchors.fill: control
-            cached: true
-            glowRadius: 2
-            cornerRadius: Kirigami.Units.gridUnit
-            spread: 0.1
-            color: Qt.rgba(0, 0, 0, 0.4)
-        }
-
         // actual window
         QQC2.Control {
             id: control
@@ -52,17 +38,18 @@ Kirigami.AbstractApplicationWindow {
 
             implicitWidth: Kirigami.Units.gridUnit * 22
 
-            background: Item {
-                Rectangle { // border
-                    anchors.fill: parent
-                    anchors.margins: -1
-                    radius: Kirigami.Units.largeSpacing + 1
+            background: Kirigami.ShadowedRectangle {
+                anchors.fill: parent
+                radius: Kirigami.Units.largeSpacing
+                color: Kirigami.Theme.backgroundColor
+                border {
+                    width: 1
                     color: Qt.darker(Kirigami.Theme.backgroundColor, 1.5)
                 }
-                Rectangle { // background colour
-                    anchors.fill: parent
-                    radius: Kirigami.Units.largeSpacing
-                    color: Kirigami.Theme.backgroundColor
+                shadow {
+                    yOffset: 1
+                    size: 2
+                    color: Qt.rgba(0, 0, 0, 0.4)
                 }
             }
         }

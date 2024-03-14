@@ -9,7 +9,6 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
 import org.kde.kirigami 2.19 as Kirigami
-import Qt5Compat.GraphicalEffects
 import org.kde.polkitkde 1.0
 
 MobileDialogWindow {
