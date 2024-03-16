@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-25 00:38+0000\n"
+"POT-Creation-Date: 2024-03-16 00:40+0000\n"
 "PO-Revision-Date: 2023-12-13 07:57-0300\n"
 "Last-Translator: Geraldo Simiao <geraldosimiao@fedoraproject.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -78,59 +78,59 @@ msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
 "Nenhum usuário para autenticar. Verifique a configuração do seu sistema."
 
-#: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
+#: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:95
 #: qml/QuickAuthDialog.qml:16
 #, kde-format
 msgid "Authentication Required"
 msgstr "Autenticação necessária"
 
-#: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
+#: qml/MobileQuickAuthDialog.qml:47 qml/QuickAuthDialog.qml:58
 #, kde-format
 msgid "Authentication failure, please try again."
 msgstr "Falha na autenticação, tente novamente."
 
-#: qml/MobileQuickAuthDialog.qml:129
+#: qml/MobileQuickAuthDialog.qml:128
 #, kde-format
 msgid "User: %1"
 msgstr ""
 
-#: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
+#: qml/MobileQuickAuthDialog.qml:133 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Switch…"
 msgstr ""
 
-#: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
+#: qml/MobileQuickAuthDialog.qml:154 qml/QuickAuthDialog.qml:184
 #, fuzzy, kde-format
 #| msgid "Password:"
 msgid "Password…"
 msgstr "Senha:"
 
-#: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
+#: qml/MobileQuickAuthDialog.qml:162 qml/QuickAuthDialog.qml:193
 #, kde-format
 msgid "Details"
 msgstr "Detalhes"
 
-#: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
+#: qml/MobileQuickAuthDialog.qml:172 qml/QuickAuthDialog.qml:205
 #, kde-format
 msgid "OK"
 msgstr ""
 
-#: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
+#: qml/MobileQuickAuthDialog.qml:178 qml/QuickAuthDialog.qml:211
 #, kde-format
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: qml/MobileQuickAuthDialog.qml:189 qml/QuickAuthDialog.qml:223
+#: qml/MobileQuickAuthDialog.qml:188 qml/QuickAuthDialog.qml:223
 #, kde-format
 msgid "Action:"
 msgstr "Ação:"
 
-#: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
+#: qml/MobileQuickAuthDialog.qml:192 qml/QuickAuthDialog.qml:227
 #, kde-format
 msgid "ID:"
 msgstr "ID:"
 
-#: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
+#: qml/MobileQuickAuthDialog.qml:196 qml/QuickAuthDialog.qml:231
 #, kde-format
 msgid "Vendor:"
 msgstr "Fabricante:"
