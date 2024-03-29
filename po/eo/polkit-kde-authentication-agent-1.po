@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-03 02:55+0000\n"
-"PO-Revision-Date: 2023-12-08 19:15+0100\n"
+"PO-Revision-Date: 2024-01-28 11:08+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -58,17 +58,17 @@ msgstr ""
 #: authdetails.ui:113
 #, kde-format
 msgid "ID:"
-msgstr ""
+msgstr "ID:"
 
 #: AuthDialog.cpp:59
 #, kde-format
 msgid "Details"
-msgstr ""
+msgstr "Detaloj"
 
 #: AuthDialog.cpp:75
 #, kde-format
 msgid "Authentication Required"
-msgstr ""
+msgstr "Aŭtentigo Postulata"
 
 #: AuthDialog.cpp:163
 #, kde-format
@@ -121,7 +121,7 @@ msgstr "%1 (%2)"
 #: AuthDialog.cpp:303
 #, kde-format
 msgid "Authentication failure, please try again."
-msgstr ""
+msgstr "Malsukceso de aŭtentigo, bonvolu reprovi."
 
 #: AuthDialog.cpp:326
 #, kde-format
