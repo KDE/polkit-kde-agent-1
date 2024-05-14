@@ -199,10 +199,10 @@ void PolicyKitListener::finishObtainPrivilege()
 
     if (!m_session.isNull()) {
         m_session.data()->result()->setCompleted();
+        m_session.data()->deleteLater();
     } else {
         m_result->setCompleted();
     }
-    m_session.data()->deleteLater();
 
     if (!m_dialog.isNull()) {
         m_dialog.data()->hide();
