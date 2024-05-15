@@ -111,7 +111,7 @@ MobileDialogWindow {
         Kirigami.Icon {
             Layout.bottomMargin: Kirigami.Units.gridUnit
             Layout.alignment: Qt.AlignCenter
-            source: "lock"
+            source: "dialog-password"
             implicitWidth: Kirigami.Units.iconSizes.large
             implicitHeight: Kirigami.Units.iconSizes.large
         }

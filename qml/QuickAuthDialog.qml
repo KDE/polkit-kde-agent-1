@@ -130,7 +130,7 @@ Kirigami.AbstractApplicationWindow {
                 Layout.rightMargin: Kirigami.Units.gridUnit
                 Layout.topMargin: Kirigami.Units.largeSpacing
                 Layout.alignment: Qt.AlignTop
-                source: "lock"
+                source: "dialog-password"
                 implicitWidth: Kirigami.Units.iconSizes.huge
                 implicitHeight: Kirigami.Units.iconSizes.huge
             }
