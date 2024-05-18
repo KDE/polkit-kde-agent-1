@@ -1,10 +1,10 @@
 # Zmicier <zmicerturok@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
+"Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-16 00:40+0000\n"
-"PO-Revision-Date: 2023-01-03 10:01\n"
+"PO-Revision-Date: 2024-05-16 21:16\n"
 "Last-Translator: Zmicier <zmicerturok@gmail.com>\n"
 "Language-Team: Belarusian\n"
 "Language: be\n"
@@ -15,12 +15,12 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n"
 "%100>=11 && n%100<=14 ? 2 : 3);\n"
 "X-Generator: Lokalize 22.12.0\n"
-"X-Crowdin-Project: 86ff119b1606fcaa910d6b44fc14b611\n"
-"X-Crowdin-Project-ID: 127\n"
+"X-Crowdin-Project: fc57ad16a28d02dea100ceb1c60de14e\n"
+"X-Crowdin-Project-ID: 136\n"
 "X-Crowdin-Language: be\n"
-"X-Crowdin-File: /main/be/polkit-kde-agent-1/polkit-kde-authentication-"
-"agent-1.po\n"
-"X-Crowdin-File-ID: 8974\n"
+"X-Crowdin-File: /[antikruk.KDE] main/KDE6/be/messages/polkit-kde-agent-1/"
+"polkit-kde-authentication-agent-1.po\n"
+"X-Crowdin-File-ID: 10914\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -77,7 +77,7 @@ msgstr "Іншы кліент ужо праходзіць аўтэнтыфіка
 #, kde-format
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
-msgstr ""
+msgstr "Няма карыстальніка для аўтэнтыфікацыі. Праверце канфігурацыю сістэмы."
 
 #: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:95
 #: qml/QuickAuthDialog.qml:16
@@ -93,18 +93,17 @@ msgstr "Не ўдалося выканаць аўтэнтыфікацыю, па�
 #: qml/MobileQuickAuthDialog.qml:128
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "Карыстальнiк: %1"
 
 #: qml/MobileQuickAuthDialog.qml:133 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Пераключыцца…"
 
 #: qml/MobileQuickAuthDialog.qml:154 qml/QuickAuthDialog.qml:184
-#, fuzzy, kde-format
-#| msgid "Password:"
+#, kde-format
 msgid "Password…"
-msgstr "Пароль:"
+msgstr "Пароль…"
 
 #: qml/MobileQuickAuthDialog.qml:162 qml/QuickAuthDialog.qml:193
 #, kde-format
@@ -114,12 +113,12 @@ msgstr "Падрабязнасці"
 #: qml/MobileQuickAuthDialog.qml:172 qml/QuickAuthDialog.qml:205
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "Добра"
 
 #: qml/MobileQuickAuthDialog.qml:178 qml/QuickAuthDialog.qml:211
 #, kde-format
 msgid "Cancel"
-msgstr ""
+msgstr "Скасаваць"
 
 #: qml/MobileQuickAuthDialog.qml:188 qml/QuickAuthDialog.qml:223
 #, kde-format
@@ -137,10 +136,9 @@ msgid "Vendor:"
 msgstr "Вытворца:"
 
 #: qml/QuickAuthDialog.qml:158
-#, fuzzy, kde-format
-#| msgid "Authentication Required"
+#, kde-format
 msgid "Authenticating as %1"
-msgstr "Патрабуецца аўтэнтыфікацыя"
+msgstr "Аўтэнтыфікацыя ад імя %1"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
