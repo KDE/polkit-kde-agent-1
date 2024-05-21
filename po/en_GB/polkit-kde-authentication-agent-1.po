@@ -2,21 +2,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Andrew Coles <andrew_coles@yahoo.co.uk>, 2009, 2010.
-# Steve Allewell <steve.allewell@gmail.com>, 2014, 2015, 2018.
+# SPDX-FileCopyrightText: 2014, 2015, 2018, 2024 Steve Allewell <steve.allewell@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-16 00:40+0000\n"
-"PO-Revision-Date: 2018-10-27 20:00+0100\n"
+"PO-Revision-Date: 2024-05-20 19:37+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
-"Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
+"Language-Team: British English\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -73,7 +73,7 @@ msgstr "Another client is already authenticating, please try again later."
 #, kde-format
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
-msgstr ""
+msgstr "No user to authenticate as. Please check your system configuration."
 
 #: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:95
 #: qml/QuickAuthDialog.qml:16
@@ -89,18 +89,17 @@ msgstr "Authentication failure, please try again."
 #: qml/MobileQuickAuthDialog.qml:128
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "User: %1"
 
 #: qml/MobileQuickAuthDialog.qml:133 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Switch…"
 
 #: qml/MobileQuickAuthDialog.qml:154 qml/QuickAuthDialog.qml:184
-#, fuzzy, kde-format
-#| msgid "Password:"
+#, kde-format
 msgid "Password…"
-msgstr "Password:"
+msgstr "Password…"
 
 #: qml/MobileQuickAuthDialog.qml:162 qml/QuickAuthDialog.qml:193
 #, kde-format
@@ -110,7 +109,7 @@ msgstr "Details"
 #: qml/MobileQuickAuthDialog.qml:172 qml/QuickAuthDialog.qml:205
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: qml/MobileQuickAuthDialog.qml:178 qml/QuickAuthDialog.qml:211
 #, kde-format
@@ -133,10 +132,9 @@ msgid "Vendor:"
 msgstr "Vendor:"
 
 #: qml/QuickAuthDialog.qml:158
-#, fuzzy, kde-format
-#| msgid "Authentication Required"
+#, kde-format
 msgid "Authenticating as %1"
-msgstr "Authentication Required"
+msgstr "Authenticating as %1"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
