@@ -3,19 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Sveinn í Felli <sveinki@nett.is>, 2010, 2016.
+# SPDX-FileCopyrightText: 2024 Gummi <gudmundure@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-26 02:28+0000\n"
-"PO-Revision-Date: 2016-04-08 22:57+0000\n"
-"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
-"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"PO-Revision-Date: 2024-05-12 20:09+0000\n"
+"Last-Translator: Gummi <gudmundure@gmail.com>\n"
+"Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 23.08.3\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
 "\n"
 "\n"
@@ -24,15 +25,15 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Sveinn í Felli"
+msgstr "Sveinn í Felli, Guðmundur Erlingsson"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "sv1@fellsnet.is"
+msgstr "sv1@fellsnet.is, gudmundure@gmail.com"
 
 #: IdentitiesModel.cpp:27
-#, fuzzy, kde-format
+#, kde-format
 msgid "Select User"
 msgstr "Velja notanda"
 
@@ -40,7 +41,7 @@ msgstr "Velja notanda"
 #, kde-format
 msgctxt "%1 is the full user name, %2 is the user login name"
 msgid "%1 (%2)"
-msgstr ""
+msgstr "%1 (%2)"
 
 #: main.cpp:48
 #, kde-format
@@ -50,7 +51,7 @@ msgstr "(c) 2009 Red Hat, Inc."
 #: main.cpp:49
 #, kde-format
 msgid "Lukáš Tinkl"
-msgstr ""
+msgstr "Lukáš Tinkl"
 
 #: main.cpp:49
 #, kde-format
@@ -63,58 +64,58 @@ msgid "Jaroslav Reznik"
 msgstr "Jaroslav Reznik"
 
 #: main.cpp:50
-#, fuzzy, kde-format
-#| msgid "Maintainer"
+#, kde-format
 msgid "Former maintainer"
-msgstr "Umsjónarmaður"
+msgstr "Fyrrverandi umsjónarmaður"
 
 #: policykitlistener.cpp:90
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
-msgstr ""
+msgstr "Annar biðlari er nú þegar að auðkenna, reyndu aftur síðar."
 
 #: policykitlistener.cpp:97
 #, kde-format
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
+"Enginn notandi til að auðkenna sig sem. Skoðaðu grunnstillingu "
+"stýrikerfisins."
 
 #: qml/MobileQuickAuthDialog.qml:17 qml/MobileQuickAuthDialog.qml:96
 #: qml/QuickAuthDialog.qml:16
 #, kde-format
 msgid "Authentication Required"
-msgstr ""
+msgstr "Auðkenningar krafist"
 
 #: qml/MobileQuickAuthDialog.qml:48 qml/QuickAuthDialog.qml:58
 #, kde-format
 msgid "Authentication failure, please try again."
-msgstr ""
+msgstr "Auðkenning mistókst, reyndu aftur."
 
 #: qml/MobileQuickAuthDialog.qml:129
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "Notandi: %1"
 
 #: qml/MobileQuickAuthDialog.qml:134 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Skipta…"
 
 #: qml/MobileQuickAuthDialog.qml:155 qml/QuickAuthDialog.qml:184
-#, fuzzy, kde-format
-#| msgid "Password:"
+#, kde-format
 msgid "Password…"
-msgstr "Lykilorð:"
+msgstr "Lykilorð…"
 
 #: qml/MobileQuickAuthDialog.qml:163 qml/QuickAuthDialog.qml:193
 #, kde-format
 msgid "Details"
-msgstr ""
+msgstr "Upplýsingar"
 
 #: qml/MobileQuickAuthDialog.qml:173 qml/QuickAuthDialog.qml:205
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "Í lagi"
 
 #: qml/MobileQuickAuthDialog.qml:179 qml/QuickAuthDialog.qml:211
 #, kde-format
@@ -129,7 +130,7 @@ msgstr "Aðgerð:"
 #: qml/MobileQuickAuthDialog.qml:193 qml/QuickAuthDialog.qml:227
 #, kde-format
 msgid "ID:"
-msgstr ""
+msgstr "Auðkenni:"
 
 #: qml/MobileQuickAuthDialog.qml:197 qml/QuickAuthDialog.qml:231
 #, kde-format
@@ -139,7 +140,7 @@ msgstr "Framleiðandi:"
 #: qml/QuickAuthDialog.qml:158
 #, kde-format
 msgid "Authenticating as %1"
-msgstr ""
+msgstr "Auðkenni sem %1"
 
 #, fuzzy
 #~| msgid "Action:"
