@@ -134,4 +134,4 @@ msgstr "发行组织："
 #: qml/QuickAuthDialog.qml:158
 #, kde-format
 msgid "Authenticating as %1"
-msgstr "正在认证 %1 的身份"
+msgstr "正在作为 %1 进行身份验证"
