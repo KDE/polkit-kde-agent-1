@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-16 00:40+0000\n"
-"PO-Revision-Date: 2024-05-31 12:46+0200\n"
+"PO-Revision-Date: 2024-06-02 14:14+0200\n"
 "Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
 "Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
 "Language: sk\n"
@@ -73,6 +73,8 @@ msgstr "Iný klient už vykonáva overovanie, prosím skúste to neskôr znovu."
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
+"Žiadny používateľ, ako ktorý sa dá overiť totožnosť. Skontrolujte "
+"konfiguráciu systému."
 
 #: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:95
 #: qml/QuickAuthDialog.qml:16
