@@ -1,13 +1,12 @@
 # Translation of polkit-kde-authentication-agent-1 to Norwegian Nynorsk
 #
-# Karl Ove Hufthammer <karl@huftis.org>, 2015, 2018.
 # Øystein Steffensen-Alværvik <oysteins.omsetting@protonmail.com>, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-16 00:40+0000\n"
-"PO-Revision-Date: 2018-10-27 16:56+0200\n"
+"PO-Revision-Date: 2024-07-26 15:03+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
 "Language: nn\n"
@@ -15,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 24.11.70\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
@@ -75,7 +74,7 @@ msgstr "Ein annan klient autentiserer allereie. Prøv på nytt seinare."
 #, kde-format
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
-msgstr ""
+msgstr "Ingen brukar å autentisera som. Kontroller systemoppsettet."
 
 #: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:95
 #: qml/QuickAuthDialog.qml:16
@@ -91,17 +90,17 @@ msgstr "Autentiseringsfeil. Prøv på nytt."
 #: qml/MobileQuickAuthDialog.qml:128
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "Brukar: %1"
 
 #: qml/MobileQuickAuthDialog.qml:133 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Byt …"
 
 #: qml/MobileQuickAuthDialog.qml:154 qml/QuickAuthDialog.qml:184
 #, kde-format
 msgid "Password…"
-msgstr ""
+msgstr "Passord …"
 
 #: qml/MobileQuickAuthDialog.qml:162 qml/QuickAuthDialog.qml:193
 #, kde-format
@@ -111,12 +110,12 @@ msgstr "Detaljar"
 #: qml/MobileQuickAuthDialog.qml:172 qml/QuickAuthDialog.qml:205
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: qml/MobileQuickAuthDialog.qml:178 qml/QuickAuthDialog.qml:211
 #, kde-format
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: qml/MobileQuickAuthDialog.qml:188 qml/QuickAuthDialog.qml:223
 #, kde-format
@@ -136,4 +135,4 @@ msgstr "Produsent:"
 #: qml/QuickAuthDialog.qml:158
 #, kde-format
 msgid "Authenticating as %1"
-msgstr ""
+msgstr "Autentiserer som %1"
