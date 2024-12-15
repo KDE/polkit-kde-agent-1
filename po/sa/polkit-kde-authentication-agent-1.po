@@ -74,13 +74,13 @@ msgstr "अन्यः ग्राहकः पूर्वमेव प्र
 #, kde-format
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
-msgstr ""
+msgstr "यथा प्रमाणीकरणं कर्तुं कोऽपि उपयोक्ता नास्ति। कृपया स्वस्य प्रणालीविन्यासं पश्यन्तु ।"
 
 #: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:95
 #: qml/QuickAuthDialog.qml:16
 #, kde-format
 msgid "Authentication Required"
-msgstr ""
+msgstr "प्रमाणीकरणम् आवश्यकम्"
 
 #: qml/MobileQuickAuthDialog.qml:47 qml/QuickAuthDialog.qml:58
 #, fuzzy, kde-format
@@ -91,49 +91,49 @@ msgstr "अन्यः ग्राहकः पूर्वमेव प्र
 #: qml/MobileQuickAuthDialog.qml:128
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "उपयोक्ता: %1"
 
 #: qml/MobileQuickAuthDialog.qml:133 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "नुदति…"
 
 #: qml/MobileQuickAuthDialog.qml:154 qml/QuickAuthDialog.qml:184
 #, kde-format
 msgid "Password…"
-msgstr ""
+msgstr "समाभाष्…"
 
 #: qml/MobileQuickAuthDialog.qml:162 qml/QuickAuthDialog.qml:193
 #, kde-format
 msgid "Details"
-msgstr ""
+msgstr "वर्णन"
 
 #: qml/MobileQuickAuthDialog.qml:172 qml/QuickAuthDialog.qml:205
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "अस्तु"
 
 #: qml/MobileQuickAuthDialog.qml:178 qml/QuickAuthDialog.qml:211
 #, kde-format
 msgid "Cancel"
-msgstr ""
+msgstr "निरसयतु"
 
 #: qml/MobileQuickAuthDialog.qml:188 qml/QuickAuthDialog.qml:223
 #, kde-format
 msgid "Action:"
-msgstr ""
+msgstr "नामपत्र:"
 
 #: qml/MobileQuickAuthDialog.qml:192 qml/QuickAuthDialog.qml:227
 #, kde-format
 msgid "ID:"
-msgstr ""
+msgstr "आईडी : १."
 
 #: qml/MobileQuickAuthDialog.qml:196 qml/QuickAuthDialog.qml:231
 #, kde-format
 msgid "Vendor:"
-msgstr ""
+msgstr "व:"
 
 #: qml/QuickAuthDialog.qml:158
 #, kde-format
 msgid "Authenticating as %1"
-msgstr ""
+msgstr "%1 इति प्रमाणीकरणम्"
