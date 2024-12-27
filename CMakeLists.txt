@@ -52,8 +52,8 @@ add_feature_info("prctl/procctl tracing control"
 configure_file (config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
 find_package(PolkitQt6-1 REQUIRED 0.103.0)
-ecm_set_disabled_deprecation_versions(QT 5.15.2
-    KF 5.100
+ecm_set_disabled_deprecation_versions(QT 6.8.1
+    KF 6.9.0
 )
 
 add_definitions(-DQT_NO_KEYWORDS)
@@ -77,6 +77,7 @@ target_link_libraries(polkit-kde-authentication-agent-1
     KF6::CoreAddons
     KF6::I18n
     KF6::Crash
+    KF6::I18nQml
     Qt::Qml
     Qt::Quick
     Qt::Widgets

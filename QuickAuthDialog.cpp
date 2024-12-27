@@ -10,7 +10,7 @@
 
 #include <PolkitQt1/Authority>
 
-#include <KLocalizedContext>
+#include <KLocalizedQmlContext>
 #include <KLocalizedString>
 #include <KRuntimePlatform>
 #include <KUser>
@@ -45,7 +45,7 @@ QuickAuthDialog::QuickAuthDialog(const QString &actionId,
     }
 
     engine->setInitialProperties(props);
-    engine->rootContext()->setContextObject(new KLocalizedContext(engine));
+    engine->rootContext()->setContextObject(new KLocalizedQmlContext(engine));
 
     if (KRuntimePlatform::runtimePlatform().contains("phone")) {
         // If this is Plasma Mobile
