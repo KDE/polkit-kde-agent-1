@@ -118,6 +118,7 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
 
     connect(m_dialog.data(), SIGNAL(okClicked()), SLOT(dialogAccepted()));
     connect(m_dialog.data(), SIGNAL(rejected()), SLOT(dialogCanceled()));
+    connect(m_dialog.data(), SIGNAL(userSelected()), SLOT(userSelected()));
 
     m_dialog->show();
 
@@ -280,9 +281,9 @@ void PolicyKitListener::dialogCanceled()
     finishObtainPrivilege();
 }
 
-void PolicyKitListener::userSelected(const PolkitQt1::Identity &identity)
+void PolicyKitListener::userSelected()
 {
-    m_selectedUser = identity;
+    m_selectedUser = m_dialog.data()->adminUserSelected();
     // If some user is selected we must destroy existing session
     if (!m_session.isNull()) {
         m_session.data()->deleteLater();

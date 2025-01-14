@@ -40,6 +40,9 @@ Kirigami.AbstractApplicationWindow {
 
     signal accept()
     signal reject()
+    signal userSelected()
+
+    onSelectedIdentityChanged: userSelected()
 
     onAccept: {
         // disable password field while password is being checked
