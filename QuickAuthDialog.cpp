@@ -114,4 +114,9 @@ void QuickAuthDialog::hide()
     QTimer::singleShot(0, m_theDialog, SLOT(hide()));
 }
 
+void QuickAuthDialog::request([[maybe_unused]] const QString &request, [[maybe_unused]] bool echo)
+{
+    QTimer::singleShot(0, m_theDialog, SLOT(request()));
+}
+
 #include "moc_QuickAuthDialog.cpp"
