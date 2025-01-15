@@ -67,6 +67,7 @@ QuickAuthDialog::QuickAuthDialog(const QString &actionId,
     // listen for dialog accept/reject
     connect(m_theDialog, SIGNAL(accept()), this, SIGNAL(okClicked()));
     connect(m_theDialog, SIGNAL(reject()), this, SIGNAL(rejected()));
+    connect(m_theDialog, SIGNAL(userSelected()), this, SIGNAL(userSelected()));
 }
 
 enum KirigamiInlineMessageTypes { Information = 0, Positive = 1, Warning = 2, Error = 3 };

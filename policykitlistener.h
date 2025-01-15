@@ -66,7 +66,7 @@ private:
 private Q_SLOTS:
     void dialogAccepted();
     void dialogCanceled();
-    void userSelected(const PolkitQt1::Identity &identity);
+    void userSelected();
 
 private:
     void handleParentWindow(const QString &action, const QString &handle);

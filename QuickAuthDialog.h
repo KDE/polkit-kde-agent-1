@@ -37,6 +37,7 @@ public:
 Q_SIGNALS:
     void okClicked();
     void rejected();
+    void userSelected();
 
 private:
     QWindow *m_theDialog = nullptr;
