@@ -56,13 +56,23 @@ Kirigami.AbstractApplicationWindow {
         onActivated: root.reject()
     }
 
-    function authenticationFailure() {
-        inlineMessage.type = Kirigami.MessageType.Error;
-        inlineMessage.text = i18n("Authentication failure, please try again.");
+    function rejectPassword() {
         passwordField.clear()
         passwordField.enabled = true
         passwordField.focus = true
         rejectPasswordAnim.start();
+    }
+
+    function authenticationFailure() {
+        inlineMessage.type = Kirigami.MessageType.Error;
+        inlineMessage.text = i18n("Authentication failure, please try again.");
+        rejectPassword()
+    }
+
+    function request() {
+        if (passwordField.text !== "") {
+            rejectPassword()
+        }
     }
 
     readonly property real intendedWindowWidth: Kirigami.Units.gridUnit * 35

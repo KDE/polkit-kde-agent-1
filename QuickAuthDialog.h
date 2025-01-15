@@ -33,6 +33,7 @@ public:
     void authenticationFailure();
     void show();
     void hide();
+    void request(const QString &request, bool echo);
 
 Q_SIGNALS:
     void okClicked();
