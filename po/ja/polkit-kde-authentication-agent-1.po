@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-16 00:40+0000\n"
+"POT-Creation-Date: 2025-01-16 00:43+0000\n"
 "PO-Revision-Date: 2024-02-11 23:21+0900\n"
 "Last-Translator: Ryuichi Yamada <ryuichi_ya220@outlook.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -82,7 +82,7 @@ msgstr "認証するユーザが存在しません。システムの設定を確
 msgid "Authentication Required"
 msgstr "認証が必要です"
 
-#: qml/MobileQuickAuthDialog.qml:47 qml/QuickAuthDialog.qml:58
+#: qml/MobileQuickAuthDialog.qml:47 qml/QuickAuthDialog.qml:68
 #, kde-format
 msgid "Authentication failure, please try again."
 msgstr "認証に失敗しました。もう一度お試しください。"
@@ -92,47 +92,47 @@ msgstr "認証に失敗しました。もう一度お試しください。"
 msgid "User: %1"
 msgstr "ユーザ: %1"
 
-#: qml/MobileQuickAuthDialog.qml:133 qml/QuickAuthDialog.qml:164
+#: qml/MobileQuickAuthDialog.qml:133 qml/QuickAuthDialog.qml:177
 #, kde-format
 msgid "Switch…"
 msgstr "切り替え…"
 
-#: qml/MobileQuickAuthDialog.qml:154 qml/QuickAuthDialog.qml:184
+#: qml/MobileQuickAuthDialog.qml:154 qml/QuickAuthDialog.qml:197
 #, kde-format
 msgid "Password…"
 msgstr "パスワード..."
 
-#: qml/MobileQuickAuthDialog.qml:162 qml/QuickAuthDialog.qml:193
+#: qml/MobileQuickAuthDialog.qml:162 qml/QuickAuthDialog.qml:206
 #, kde-format
 msgid "Details"
 msgstr "詳細"
 
-#: qml/MobileQuickAuthDialog.qml:172 qml/QuickAuthDialog.qml:205
+#: qml/MobileQuickAuthDialog.qml:172 qml/QuickAuthDialog.qml:218
 #, kde-format
 msgid "OK"
 msgstr "OK"
 
-#: qml/MobileQuickAuthDialog.qml:178 qml/QuickAuthDialog.qml:211
+#: qml/MobileQuickAuthDialog.qml:178 qml/QuickAuthDialog.qml:224
 #, kde-format
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: qml/MobileQuickAuthDialog.qml:188 qml/QuickAuthDialog.qml:223
+#: qml/MobileQuickAuthDialog.qml:188 qml/QuickAuthDialog.qml:236
 #, kde-format
 msgid "Action:"
 msgstr "アクション:"
 
-#: qml/MobileQuickAuthDialog.qml:192 qml/QuickAuthDialog.qml:227
+#: qml/MobileQuickAuthDialog.qml:192 qml/QuickAuthDialog.qml:240
 #, kde-format
 msgid "ID:"
 msgstr "ID:"
 
-#: qml/MobileQuickAuthDialog.qml:196 qml/QuickAuthDialog.qml:231
+#: qml/MobileQuickAuthDialog.qml:196 qml/QuickAuthDialog.qml:244
 #, kde-format
 msgid "Vendor:"
 msgstr "ベンダー:"
 
-#: qml/QuickAuthDialog.qml:158
+#: qml/QuickAuthDialog.qml:171
 #, kde-format
 msgid "Authenticating as %1"
 msgstr "%1 として認証しています"

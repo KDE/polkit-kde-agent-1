@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-16 00:40+0000\n"
+"POT-Creation-Date: 2025-01-16 00:43+0000\n"
 "PO-Revision-Date: 2013-10-07 04:38+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -83,7 +83,7 @@ msgstr ""
 msgid "Authentication Required"
 msgstr ""
 
-#: qml/MobileQuickAuthDialog.qml:47 qml/QuickAuthDialog.qml:58
+#: qml/MobileQuickAuthDialog.qml:47 qml/QuickAuthDialog.qml:68
 #, kde-format
 msgid "Authentication failure, please try again."
 msgstr "Аутентификация жаңылысы, қайталап көріңіз."
@@ -93,48 +93,48 @@ msgstr "Аутентификация жаңылысы, қайталап көрі
 msgid "User: %1"
 msgstr ""
 
-#: qml/MobileQuickAuthDialog.qml:133 qml/QuickAuthDialog.qml:164
+#: qml/MobileQuickAuthDialog.qml:133 qml/QuickAuthDialog.qml:177
 #, kde-format
 msgid "Switch…"
 msgstr ""
 
-#: qml/MobileQuickAuthDialog.qml:154 qml/QuickAuthDialog.qml:184
+#: qml/MobileQuickAuthDialog.qml:154 qml/QuickAuthDialog.qml:197
 #, fuzzy, kde-format
 #| msgid "Password:"
 msgid "Password…"
 msgstr "Паролі:"
 
-#: qml/MobileQuickAuthDialog.qml:162 qml/QuickAuthDialog.qml:193
+#: qml/MobileQuickAuthDialog.qml:162 qml/QuickAuthDialog.qml:206
 #, kde-format
 msgid "Details"
 msgstr ""
 
-#: qml/MobileQuickAuthDialog.qml:172 qml/QuickAuthDialog.qml:205
+#: qml/MobileQuickAuthDialog.qml:172 qml/QuickAuthDialog.qml:218
 #, kde-format
 msgid "OK"
 msgstr ""
 
-#: qml/MobileQuickAuthDialog.qml:178 qml/QuickAuthDialog.qml:211
+#: qml/MobileQuickAuthDialog.qml:178 qml/QuickAuthDialog.qml:224
 #, kde-format
 msgid "Cancel"
 msgstr "Айну"
 
-#: qml/MobileQuickAuthDialog.qml:188 qml/QuickAuthDialog.qml:223
+#: qml/MobileQuickAuthDialog.qml:188 qml/QuickAuthDialog.qml:236
 #, kde-format
 msgid "Action:"
 msgstr "Амалы:"
 
-#: qml/MobileQuickAuthDialog.qml:192 qml/QuickAuthDialog.qml:227
+#: qml/MobileQuickAuthDialog.qml:192 qml/QuickAuthDialog.qml:240
 #, kde-format
 msgid "ID:"
 msgstr ""
 
-#: qml/MobileQuickAuthDialog.qml:196 qml/QuickAuthDialog.qml:231
+#: qml/MobileQuickAuthDialog.qml:196 qml/QuickAuthDialog.qml:244
 #, kde-format
 msgid "Vendor:"
 msgstr "Жабдықтаушы:"
 
-#: qml/QuickAuthDialog.qml:158
+#: qml/QuickAuthDialog.qml:171
 #, kde-format
 msgid "Authenticating as %1"
 msgstr ""
