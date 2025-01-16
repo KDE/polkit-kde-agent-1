@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-16 00:40+0000\n"
+"POT-Creation-Date: 2025-01-16 02:32+0000\n"
 "PO-Revision-Date: 2024-12-24 20:39+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -81,7 +81,7 @@ msgstr "यथा प्रमाणीकरणं कर्तुं कोऽ
 msgid "Authentication Required"
 msgstr "प्रमाणीकरणम् आवश्यकम्"
 
-#: qml/MobileQuickAuthDialog.qml:47 qml/QuickAuthDialog.qml:58
+#: qml/MobileQuickAuthDialog.qml:47 qml/QuickAuthDialog.qml:68
 #, kde-format
 msgid "Authentication failure, please try again."
 msgstr "प्रमाणीकरणविफलता, कृपया पुनः प्रयासं कुर्वन्तु ।"
@@ -91,47 +91,47 @@ msgstr "प्रमाणीकरणविफलता, कृपया पु
 msgid "User: %1"
 msgstr "उपयोक्ता: %1"
 
-#: qml/MobileQuickAuthDialog.qml:133 qml/QuickAuthDialog.qml:164
+#: qml/MobileQuickAuthDialog.qml:133 qml/QuickAuthDialog.qml:177
 #, kde-format
 msgid "Switch…"
 msgstr "नुदति…"
 
-#: qml/MobileQuickAuthDialog.qml:154 qml/QuickAuthDialog.qml:184
+#: qml/MobileQuickAuthDialog.qml:154 qml/QuickAuthDialog.qml:197
 #, kde-format
 msgid "Password…"
 msgstr "समाभाष्…"
 
-#: qml/MobileQuickAuthDialog.qml:162 qml/QuickAuthDialog.qml:193
+#: qml/MobileQuickAuthDialog.qml:162 qml/QuickAuthDialog.qml:206
 #, kde-format
 msgid "Details"
 msgstr "वर्णन"
 
-#: qml/MobileQuickAuthDialog.qml:172 qml/QuickAuthDialog.qml:205
+#: qml/MobileQuickAuthDialog.qml:172 qml/QuickAuthDialog.qml:218
 #, kde-format
 msgid "OK"
 msgstr "अस्तु"
 
-#: qml/MobileQuickAuthDialog.qml:178 qml/QuickAuthDialog.qml:211
+#: qml/MobileQuickAuthDialog.qml:178 qml/QuickAuthDialog.qml:224
 #, kde-format
 msgid "Cancel"
 msgstr "निरसयतु"
 
-#: qml/MobileQuickAuthDialog.qml:188 qml/QuickAuthDialog.qml:223
+#: qml/MobileQuickAuthDialog.qml:188 qml/QuickAuthDialog.qml:236
 #, kde-format
 msgid "Action:"
 msgstr "नामपत्र:"
 
-#: qml/MobileQuickAuthDialog.qml:192 qml/QuickAuthDialog.qml:227
+#: qml/MobileQuickAuthDialog.qml:192 qml/QuickAuthDialog.qml:240
 #, kde-format
 msgid "ID:"
 msgstr "आईडी :"
 
-#: qml/MobileQuickAuthDialog.qml:196 qml/QuickAuthDialog.qml:231
+#: qml/MobileQuickAuthDialog.qml:196 qml/QuickAuthDialog.qml:244
 #, kde-format
 msgid "Vendor:"
 msgstr "व:"
 
-#: qml/QuickAuthDialog.qml:158
+#: qml/QuickAuthDialog.qml:171
 #, kde-format
 msgid "Authenticating as %1"
 msgstr "%1 इति प्रमाणीकरणम्"

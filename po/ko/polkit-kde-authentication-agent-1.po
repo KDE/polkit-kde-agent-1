@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-16 00:40+0000\n"
+"POT-Creation-Date: 2025-01-16 02:32+0000\n"
 "PO-Revision-Date: 2024-02-06 00:18+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -80,7 +80,7 @@ msgstr "인증할 사용자를 지정하지 않았습니다. 시스템 설정을
 msgid "Authentication Required"
 msgstr "인증 필요함"
 
-#: qml/MobileQuickAuthDialog.qml:47 qml/QuickAuthDialog.qml:58
+#: qml/MobileQuickAuthDialog.qml:47 qml/QuickAuthDialog.qml:68
 #, kde-format
 msgid "Authentication failure, please try again."
 msgstr "인증 실패, 다시 시도하십시오."
@@ -90,47 +90,47 @@ msgstr "인증 실패, 다시 시도하십시오."
 msgid "User: %1"
 msgstr "사용자: %1"
 
-#: qml/MobileQuickAuthDialog.qml:133 qml/QuickAuthDialog.qml:164
+#: qml/MobileQuickAuthDialog.qml:133 qml/QuickAuthDialog.qml:177
 #, kde-format
 msgid "Switch…"
 msgstr "전환…"
 
-#: qml/MobileQuickAuthDialog.qml:154 qml/QuickAuthDialog.qml:184
+#: qml/MobileQuickAuthDialog.qml:154 qml/QuickAuthDialog.qml:197
 #, kde-format
 msgid "Password…"
 msgstr "암호…"
 
-#: qml/MobileQuickAuthDialog.qml:162 qml/QuickAuthDialog.qml:193
+#: qml/MobileQuickAuthDialog.qml:162 qml/QuickAuthDialog.qml:206
 #, kde-format
 msgid "Details"
 msgstr "자세히"
 
-#: qml/MobileQuickAuthDialog.qml:172 qml/QuickAuthDialog.qml:205
+#: qml/MobileQuickAuthDialog.qml:172 qml/QuickAuthDialog.qml:218
 #, kde-format
 msgid "OK"
 msgstr "확인"
 
-#: qml/MobileQuickAuthDialog.qml:178 qml/QuickAuthDialog.qml:211
+#: qml/MobileQuickAuthDialog.qml:178 qml/QuickAuthDialog.qml:224
 #, kde-format
 msgid "Cancel"
 msgstr "취소"
 
-#: qml/MobileQuickAuthDialog.qml:188 qml/QuickAuthDialog.qml:223
+#: qml/MobileQuickAuthDialog.qml:188 qml/QuickAuthDialog.qml:236
 #, kde-format
 msgid "Action:"
 msgstr "동작:"
 
-#: qml/MobileQuickAuthDialog.qml:192 qml/QuickAuthDialog.qml:227
+#: qml/MobileQuickAuthDialog.qml:192 qml/QuickAuthDialog.qml:240
 #, kde-format
 msgid "ID:"
 msgstr "ID:"
 
-#: qml/MobileQuickAuthDialog.qml:196 qml/QuickAuthDialog.qml:231
+#: qml/MobileQuickAuthDialog.qml:196 qml/QuickAuthDialog.qml:244
 #, kde-format
 msgid "Vendor:"
 msgstr "제조사:"
 
-#: qml/QuickAuthDialog.qml:158
+#: qml/QuickAuthDialog.qml:171
 #, kde-format
 msgid "Authenticating as %1"
 msgstr "%1(으)로 인증"
