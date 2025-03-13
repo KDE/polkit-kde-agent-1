@@ -10,6 +10,7 @@ import QtQuick.Layouts
 import QtQuick.Controls as QQC2
 import org.kde.kirigami 2.19 as Kirigami
 import org.kde.polkitkde 1.0
+import org.kde.layershell as LayerShell
 
 Kirigami.AbstractApplicationWindow {
     id: root
@@ -21,6 +22,11 @@ Kirigami.AbstractApplicationWindow {
     maximumWidth: intendedWindowWidth
     width: intendedWindowWidth
     height: intendedWindowHeight
+
+    LayerShell.Window.scope: "dialog"
+    LayerShell.Window.layer: LayerShell.Window.LayerOverlay
+    LayerShell.Window.keyboardInteractivity: LayerShell.Window.KeyboardInteractivityExclusive
+    LayerShell.Window.anchors: LayerShell.Window.AnchorNone
 
     property alias password: passwordField.text
     property alias inlineMessageType: inlineMessage.type
@@ -113,12 +119,12 @@ Kirigami.AbstractApplicationWindow {
         }
     }
 
-    // add separator to window decorations
-    Kirigami.Separator {
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-    }
+    // // add separator to window decorations
+    // Kirigami.Separator {
+    //     anchors.top: parent.top
+    //     anchors.left: parent.left
+    //     anchors.right: parent.right
+    // }
 
     RejectPasswordAnimation {
         id: rejectPasswordAnim
@@ -152,12 +158,24 @@ Kirigami.AbstractApplicationWindow {
                 Layout.fillWidth: true
                 spacing: Kirigami.Units.largeSpacing
 
-                Kirigami.Heading {
-                    Layout.fillWidth: true
-                    level: 3
-                    text: root.mainText
-                    wrapMode: Text.Wrap
-                    font.weight: Font.Bold
+                RowLayout {
+                    Kirigami.Heading {
+                        id: header
+                        Layout.fillWidth: true
+                        level: 3
+                        text: root.mainText
+                        wrapMode: Text.Wrap
+                        font.weight: Font.Bold
+                    }
+
+                    QQC2.ToolButton {
+                        implicitHeight: Kirigami.Units.iconSizes.small
+                        action: Kirigami.Action {
+                checkable: true
+                checked: true
+                            icon.name: "window-pin-symbolic"
+                        }
+                    }
                 }
 
                 // user information, only shown if there is more than one user to select from
@@ -198,6 +216,23 @@ Kirigami.AbstractApplicationWindow {
                 }
 
                 RowLayout {
+                    Kirigami.Icon {
+                        property FontMetrics metrics: FontMetrics {
+                            font.pixelSize: Kirigami.Theme.smallFontSize
+                        }
+                        implicitHeight: Math.min(metrics.height, capsLockLabel.height)
+                        source: "input-caps-on-symbolic"
+                    }
+                    QQC2.Label {
+                        id: capsLockLabel
+                        Layout.fillWidth: true
+                        font.pixelSize: Kirigami.Theme.smallFontSize
+                        text: i18nc("@info", "Caps lock is on")
+                        wrapMode: Text.Wrap
+                    }
+                }
+
+                RowLayout {
                     id: passwordRow
                     Layout.fillWidth: true
 
@@ -234,16 +269,16 @@ Kirigami.AbstractApplicationWindow {
             Layout.bottomMargin: Kirigami.Units.largeSpacing
             QQC2.Label {
                 Kirigami.FormData.label: i18n("Action:")
-                text: descriptionString
+                text: root.descriptionString
             }
             QQC2.Label {
                 Kirigami.FormData.label: i18n("ID:")
-                text: descriptionActionId
+                text: root.descriptionActionId
             }
             Kirigami.UrlButton {
                 Kirigami.FormData.label: i18n("Vendor:")
-                text: descriptionVendorName
-                url: descriptionVendorUrl
+                text: root.descriptionVendorName
+                url: root.descriptionVendorUrl
             }
         }
     }
