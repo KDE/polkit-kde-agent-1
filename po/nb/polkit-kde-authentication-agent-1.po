@@ -6,14 +6,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-16 02:32+0000\n"
-"PO-Revision-Date: 2015-04-28 14:02+0200\n"
-"Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
+"PO-Revision-Date: 2025-03-23 19:40+0100\n"
+"Last-Translator: Martin Hansen <mh306602@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 24.12.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
@@ -22,12 +22,12 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Bjørn Steensrud"
+msgstr "Bjørn Steensrud,Martin Hansen"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "bjornst@skogkatt.homelinux.org"
+msgstr "bjornst@skogkatt.homelinux.org,mh306602@gmail.com"
 
 #: IdentitiesModel.cpp:27
 #, kde-format
@@ -68,39 +68,39 @@ msgstr "Tidligere vedlikeholder"
 #: policykitlistener.cpp:90
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
-msgstr "En annen klient autentiserer allerede, forsøk igjen senere."
+msgstr "En annen klient autentiserer allerede. Prøv på nytt senere."
 
 #: policykitlistener.cpp:97
 #, kde-format
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
-msgstr ""
+msgstr "Ingen bruker å autentisere som. Kontroller systemoppsettet."
 
 #: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:95
 #: qml/QuickAuthDialog.qml:16
 #, kde-format
 msgid "Authentication Required"
-msgstr "Autentisering er nødvendig"
+msgstr "Trenger autentisering"
 
 #: qml/MobileQuickAuthDialog.qml:47 qml/QuickAuthDialog.qml:68
 #, kde-format
 msgid "Authentication failure, please try again."
-msgstr "Autentiseringsfeil, forsøk igjen."
+msgstr "Autentiseringsfeil. Prøv på nytt."
 
 #: qml/MobileQuickAuthDialog.qml:128
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "Bruker: %1"
 
 #: qml/MobileQuickAuthDialog.qml:133 qml/QuickAuthDialog.qml:177
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Bytt …"
 
 #: qml/MobileQuickAuthDialog.qml:154 qml/QuickAuthDialog.qml:197
 #, kde-format
 msgid "Password…"
-msgstr ""
+msgstr "Passord …"
 
 #: qml/MobileQuickAuthDialog.qml:162 qml/QuickAuthDialog.qml:206
 #, kde-format
@@ -110,12 +110,12 @@ msgstr "Detaljer"
 #: qml/MobileQuickAuthDialog.qml:172 qml/QuickAuthDialog.qml:218
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: qml/MobileQuickAuthDialog.qml:178 qml/QuickAuthDialog.qml:224
 #, kde-format
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: qml/MobileQuickAuthDialog.qml:188 qml/QuickAuthDialog.qml:236
 #, kde-format
@@ -125,7 +125,7 @@ msgstr "Handling:"
 #: qml/MobileQuickAuthDialog.qml:192 qml/QuickAuthDialog.qml:240
 #, kde-format
 msgid "ID:"
-msgstr ""
+msgstr "ID:"
 
 #: qml/MobileQuickAuthDialog.qml:196 qml/QuickAuthDialog.qml:244
 #, kde-format
@@ -135,4 +135,4 @@ msgstr "Produsent:"
 #: qml/QuickAuthDialog.qml:171
 #, kde-format
 msgid "Authenticating as %1"
-msgstr ""
+msgstr "Autentiserer som %1"
