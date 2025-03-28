@@ -53,7 +53,7 @@ configure_file (config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
 find_package(PolkitQt6-1 REQUIRED 0.103.0)
 ecm_set_disabled_deprecation_versions(QT 6.8.1
-    KF 6.9.0
+    KF 6.12.0
 )
 
 add_definitions(-DQT_NO_KEYWORDS)
