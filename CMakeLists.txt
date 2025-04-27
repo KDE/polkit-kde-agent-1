@@ -30,6 +30,7 @@ find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED Core DBus Widgets Quick Qml)
 find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS
   I18n
   WindowSystem
+  Notifications
   DBusAddons
   CoreAddons
   Crash
@@ -78,6 +79,7 @@ target_link_libraries(polkit-kde-authentication-agent-1
     KF6::I18n
     KF6::Crash
     KF6::I18nQml
+    KF6::Notifications
     Qt::Qml
     Qt::Quick
     Qt::Widgets
@@ -93,7 +95,7 @@ install(FILES ${CMAKE_BINARY_DIR}/polkit-kde-authentication-agent-1.desktop DEST
 
 ecm_install_configured_files(INPUT plasma-polkit-agent.service.in DESTINATION ${KDE_INSTALL_SYSTEMDUSERUNITDIR})
 
-install(FILES policykit1-kde.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR})
+install(FILES polkit-kde-authentication-agent-1.notifyrc DESTINATION ${KDE_INSTALL_KNOTIFYRCDIR})
 
 # add clang-format target for all our real source files
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)

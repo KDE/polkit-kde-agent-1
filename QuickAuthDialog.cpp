@@ -4,7 +4,6 @@
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
-
 #include "QuickAuthDialog.h"
 #include "IdentitiesModel.h"
 
@@ -12,6 +11,7 @@
 
 #include <KLocalizedQmlContext>
 #include <KLocalizedString>
+#include <KNotification>
 #include <KRuntimePlatform>
 #include <KUser>
 
@@ -106,6 +106,9 @@ void QuickAuthDialog::authenticationFailure()
 
 void QuickAuthDialog::show()
 {
+    KNotification *notification = new KNotification("authenticate");
+    notification->setText(i18n("Authentication Required"));
+    notification->sendEvent();
     QTimer::singleShot(0, m_theDialog, SLOT(show()));
 }
 

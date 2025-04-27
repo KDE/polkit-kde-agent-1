@@ -218,4 +218,5 @@ Comment[vi]=Bạn được yêu cầu xác thực
 Comment[x-test]=xxYou are required to authenticatexx
 Comment[zh_CN]=您需要进行身份验证
 Comment[zh_TW]=您需要認證
-Action=Popup
+Action=Sound
+Sound=dialog-warning-auth
