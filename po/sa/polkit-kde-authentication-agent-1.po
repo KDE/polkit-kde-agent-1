@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-04 00:42+0000\n"
+"POT-Creation-Date: 2025-04-28 00:43+0000\n"
 "PO-Revision-Date: 2024-12-24 20:39+0530\n"
 "Last-Translator: kali <shreekantkalwar@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -76,7 +76,7 @@ msgid "No user to authenticate as. Please check your system configuration."
 msgstr "यथा प्रमाणीकरणं कर्तुं कोऽपि उपयोक्ता नास्ति। कृपया स्वस्य प्रणालीविन्यासं पश्यन्तु ।"
 
 #: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:108
-#: qml/QuickAuthDialog.qml:16
+#: qml/QuickAuthDialog.qml:16 QuickAuthDialog.cpp:110
 #, kde-format
 msgid "Authentication Required"
 msgstr "प्रमाणीकरणम् आवश्यकम्"

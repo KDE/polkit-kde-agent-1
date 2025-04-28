@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-04 00:42+0000\n"
+"POT-Creation-Date: 2025-04-28 00:43+0000\n"
 "PO-Revision-Date: 2024-05-20 19:37+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -76,7 +76,7 @@ msgid "No user to authenticate as. Please check your system configuration."
 msgstr "No user to authenticate as. Please check your system configuration."
 
 #: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:108
-#: qml/QuickAuthDialog.qml:16
+#: qml/QuickAuthDialog.qml:16 QuickAuthDialog.cpp:110
 #, kde-format
 msgid "Authentication Required"
 msgstr "Authentication Required"

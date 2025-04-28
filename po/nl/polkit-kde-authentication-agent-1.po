@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-04 00:42+0000\n"
+"POT-Creation-Date: 2025-04-28 00:43+0000\n"
 "PO-Revision-Date: 2024-01-25 10:35+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -78,7 +78,7 @@ msgstr ""
 "Geen gebruiker om te verifiëren als. Controleer uw systeemconfiguratie."
 
 #: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:108
-#: qml/QuickAuthDialog.qml:16
+#: qml/QuickAuthDialog.qml:16 QuickAuthDialog.cpp:110
 #, kde-format
 msgid "Authentication Required"
 msgstr "Authenticatie vereist"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-04 00:42+0000\n"
+"POT-Creation-Date: 2025-04-28 00:43+0000\n"
 "PO-Revision-Date: 2024-02-17 13:41-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -75,7 +75,7 @@ msgid "No user to authenticate as. Please check your system configuration."
 msgstr "ਪਰਮਾਣਿਤ ਕਰਨ ਲਈ ਕੋਈ ਵਰਤੋਂਕਾਰ ਨਹੀਂ ਹੈ। ਆਪਣੇ ਸਿਸਟਮ ਦੀ ਸੰਰਚਨਾ ਦੀ ਜਾਂਚ ਕਰੋ।"
 
 #: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:108
-#: qml/QuickAuthDialog.qml:16
+#: qml/QuickAuthDialog.qml:16 QuickAuthDialog.cpp:110
 #, kde-format
 msgid "Authentication Required"
 msgstr "ਪਰਮਾਣਕਿਤਾ ਦੀ ਲੋੜ ਹੈ"
