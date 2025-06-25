@@ -14,7 +14,7 @@ Kirigami.AbstractApplicationWindow {
     id: root
     flags: Qt.FramelessWindowHint | Qt.Dialog
     color: Qt.rgba(0, 0, 0, 0.5)
-    visibility: "FullScreen"
+    visibility: Window.Maximized
 
     property real contentWidth
     property alias contents: control.contentItem
