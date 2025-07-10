@@ -30,6 +30,8 @@ Kirigami.AbstractApplicationWindow {
     property alias identitiesCurrentIndex: identitiesCombo.currentIndex
     property alias selectedIdentity: identitiesCombo.currentValue
 
+    property bool waitingForAuthentication: false
+
     // passed in by QuickAuthDialog.cpp
     property string mainText
     property string subtitle
@@ -45,6 +47,7 @@ Kirigami.AbstractApplicationWindow {
     onSelectedIdentityChanged: userSelected()
 
     onAccept: {
+        waitingForAuthentication = true;
         // disable password field while password is being checked
         if (passwordField.text !== "") {
             passwordField.enabled = false;
@@ -60,6 +63,7 @@ Kirigami.AbstractApplicationWindow {
         passwordField.clear()
         passwordField.enabled = true
         passwordField.focus = true
+        waitingForAuthentication = false
         rejectPasswordAnim.start();
     }
 
@@ -70,7 +74,7 @@ Kirigami.AbstractApplicationWindow {
     }
 
     function request() {
-        if (passwordField.text !== "") {
+        if (passwordField.text !== "" && waitingForAuthentication) {
             rejectPassword()
         }
     }
