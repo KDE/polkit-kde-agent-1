@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-04-28 00:43+0000\n"
+"POT-Creation-Date: 2025-07-11 00:45+0000\n"
 "PO-Revision-Date: 2024-01-25 16:35+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -85,7 +85,7 @@ msgstr ""
 msgid "Authentication Required"
 msgstr "Слід пройти розпізнавання"
 
-#: qml/MobileQuickAuthDialog.qml:57 qml/QuickAuthDialog.qml:68
+#: qml/MobileQuickAuthDialog.qml:57 qml/QuickAuthDialog.qml:72
 #, kde-format
 msgid "Authentication failure, please try again."
 msgstr "Помилка розпізнавання. Спробуйте ще раз."
@@ -95,47 +95,47 @@ msgstr "Помилка розпізнавання. Спробуйте ще ра�
 msgid "User: %1"
 msgstr "Користувач: %1"
 
-#: qml/MobileQuickAuthDialog.qml:146 qml/QuickAuthDialog.qml:177
+#: qml/MobileQuickAuthDialog.qml:146 qml/QuickAuthDialog.qml:181
 #, kde-format
 msgid "Switch…"
 msgstr "Перемкнути…"
 
-#: qml/MobileQuickAuthDialog.qml:167 qml/QuickAuthDialog.qml:197
+#: qml/MobileQuickAuthDialog.qml:167 qml/QuickAuthDialog.qml:201
 #, kde-format
 msgid "Password…"
 msgstr "Пароль…"
 
-#: qml/MobileQuickAuthDialog.qml:175 qml/QuickAuthDialog.qml:206
+#: qml/MobileQuickAuthDialog.qml:175 qml/QuickAuthDialog.qml:210
 #, kde-format
 msgid "Details"
 msgstr "Подробиці"
 
-#: qml/MobileQuickAuthDialog.qml:185 qml/QuickAuthDialog.qml:218
+#: qml/MobileQuickAuthDialog.qml:185 qml/QuickAuthDialog.qml:222
 #, kde-format
 msgid "OK"
 msgstr "Гаразд"
 
-#: qml/MobileQuickAuthDialog.qml:191 qml/QuickAuthDialog.qml:224
+#: qml/MobileQuickAuthDialog.qml:191 qml/QuickAuthDialog.qml:228
 #, kde-format
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: qml/MobileQuickAuthDialog.qml:201 qml/QuickAuthDialog.qml:236
+#: qml/MobileQuickAuthDialog.qml:201 qml/QuickAuthDialog.qml:240
 #, kde-format
 msgid "Action:"
 msgstr "Дія:"
 
-#: qml/MobileQuickAuthDialog.qml:205 qml/QuickAuthDialog.qml:240
+#: qml/MobileQuickAuthDialog.qml:205 qml/QuickAuthDialog.qml:244
 #, kde-format
 msgid "ID:"
 msgstr "Ід.:"
 
-#: qml/MobileQuickAuthDialog.qml:209 qml/QuickAuthDialog.qml:244
+#: qml/MobileQuickAuthDialog.qml:209 qml/QuickAuthDialog.qml:248
 #, kde-format
 msgid "Vendor:"
 msgstr "Джерело запиту:"
 
-#: qml/QuickAuthDialog.qml:171
+#: qml/QuickAuthDialog.qml:175
 #, kde-format
 msgid "Authenticating as %1"
 msgstr "Розпізнавання як %1"
