@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-07-11 02:37+0000\n"
-"PO-Revision-Date: 2024-02-10 22:05+0400\n"
+"PO-Revision-Date: 2025-08-13 22:25+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -67,13 +67,13 @@ msgstr "المشرف السابق"
 #: policykitlistener.cpp:90
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
-msgstr "يوجد عميل أخر يقوم بالاستيثاق ، الرجاء المحاولة لاحقا."
+msgstr "يوجد عميل أخر يقوم بالاستيثاق، الرجاء المحاولة لاحقا."
 
 #: policykitlistener.cpp:97
 #, kde-format
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
-msgstr "لا يوجد مستخدم لتصريحه. الرجاء تأكد من ضبط النظام."
+msgstr "لا يوجد مستخدم للاستيثاق منه. يرجى التحقق من ضبط نظامك."
 
 #: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:108
 #: qml/QuickAuthDialog.qml:16 QuickAuthDialog.cpp:110
@@ -84,7 +84,7 @@ msgstr "الاستيثاق مطلوب"
 #: qml/MobileQuickAuthDialog.qml:57 qml/QuickAuthDialog.qml:72
 #, kde-format
 msgid "Authentication failure, please try again."
-msgstr "فشل الاستيثاق ، الرجاء المحاولة مجددا."
+msgstr "فشل الاستيثاق، الرجاء المحاولة مجددا."
 
 #: qml/MobileQuickAuthDialog.qml:141
 #, kde-format
