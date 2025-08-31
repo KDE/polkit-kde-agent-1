@@ -115,7 +115,7 @@ msgstr ""
 #: AuthDialog.cpp:204
 #, kde-format
 msgid "Select User"
-msgstr "Seleccioneu un usuari"
+msgstr "Trieu un usuari"
 
 #: AuthDialog.cpp:223
 #, kde-format
@@ -126,7 +126,7 @@ msgstr "%1 (%2)"
 #: AuthDialog.cpp:303
 #, kde-format
 msgid "Authentication failure, please try again."
-msgstr "No s'ha pogut fer l'autenticació, torneu-ho a intentar."
+msgstr "No s'ha pogut fer l'autenticació, torneu-ho a provar."
 
 #: AuthDialog.cpp:326
 #, kde-format
