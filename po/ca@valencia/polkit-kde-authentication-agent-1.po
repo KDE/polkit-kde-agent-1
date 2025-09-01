@@ -35,7 +35,7 @@ msgstr "manutortosa@gmail.com"
 #: IdentitiesModel.cpp:27
 #, kde-format
 msgid "Select User"
-msgstr "Seleccioneu un usuari"
+msgstr "Trieu un usuari"
 
 #: IdentitiesModel.cpp:45
 #, kde-format
@@ -90,7 +90,7 @@ msgstr "Es requerix autenticació"
 #: qml/MobileQuickAuthDialog.qml:57 qml/QuickAuthDialog.qml:72
 #, kde-format
 msgid "Authentication failure, please try again."
-msgstr "No s'ha pogut fer l'autenticació, torneu-ho a intentar."
+msgstr "No s'ha pogut fer l'autenticació, torneu-ho a provar."
 
 #: qml/MobileQuickAuthDialog.qml:141
 #, kde-format
