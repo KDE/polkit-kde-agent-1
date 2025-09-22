@@ -95,6 +95,7 @@ Name[tr]=Yetkilendirme Sistemi
 Name[uk]=Система розпізнавання
 Name[vi]=Hệ thống xác thực
 Name[zh_CN]=身份验证系统
+Name[zh_TW]=認證系統
 
 [Event/authenticate]
 Name=Authenticate
@@ -141,6 +142,7 @@ Name[tr]=Yetkilendir
 Name[uk]=Розпізнавання
 Name[vi]=Xác thực
 Name[zh_CN]=验证
+Name[zh_TW]=認證
 Comment=You are required to authenticate
 Comment[ar]=الاستيثاق مطلوب
 Comment[be]=Вам неабходна выканаць аўтэнтыфікацыю
