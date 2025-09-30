@@ -1,15 +1,15 @@
 # Spanish translations for polkit-kde-authentication-agent-1.po package.
-# Copyright (C) 2015 This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
-#
+# Copyright (C) 2015-2025 This file is copyright:
+# This file is distributed under the same license as the polkit-kde-agent-1 package.
 # Automatically generated, 2015.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2015, 2018.
+#
+# SPDX-FileCopyrightText: 2015, 2018, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-05-03 02:55+0000\n"
-"PO-Revision-Date: 2018-10-26 12:50+0100\n"
+"PO-Revision-Date: 2025-09-29 20:34+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -184,18 +184,3 @@ msgid "Another client is already authenticating, please try again later."
 msgstr ""
 "Ya se está autenticando otro cliente; por favor, vuelva a intentarlo más "
 "tarde."
-
-#~ msgid "Application:"
-#~ msgstr "Aplicación:"
-
-#~ msgid "Not Applicable"
-#~ msgstr "No aplicable"
-
-#~ msgid "Click to edit %1"
-#~ msgstr "Haga clic para editar %1"
-
-#~ msgid "Switch to dialog"
-#~ msgstr "Cambiar al diálogo"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
