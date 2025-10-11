@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2010, 2024 Johannes Obermayr <johannesobermayr@gmx.de>
-# Rolf Eike Beer <kde@opensource.sf-tec.de>, 2012.
-# Burkhard Lück <lueck@hube-lueck.de>, 2015, 2018.
+# SPDX-FileCopyrightText: 2012 Rolf Eike Beer <kde@opensource.sf-tec.de>
+# SPDX-FileCopyrightText: 2015, 2018 Burkhard Lück <lueck@hube-lueck.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
