@@ -16,7 +16,6 @@
 // Qt
 #include <QApplication>
 #include <QDebug>
-#include <QSessionManager>
 // std
 #if HAVE_SYS_PRCTL_H
 #include <sys/prctl.h>
@@ -38,6 +37,7 @@ int main(int argc, char *argv[])
 #endif
     KCrash::setFlags(KCrash::AutoRestart);
 
+    QCoreApplication::setAttribute(Qt::AA_DisableSessionManager);
     QApplication app(argc, argv);
     app.setQuitOnLastWindowClosed(false);
 
@@ -54,14 +54,6 @@ int main(int argc, char *argv[])
 
     // ensure singleton run
     KDBusService service(KDBusService::Unique | KDBusService::Replace);
-
-    // disable session management
-    auto disableSessionManagement = [](QSessionManager &sm) {
-        sm.setRestartHint(QSessionManager::RestartNever);
-    };
-
-    QObject::connect(&app, &QGuiApplication::commitDataRequest, disableSessionManagement);
-    QObject::connect(&app, &QGuiApplication::saveStateRequest, disableSessionManagement);
 
     // register agent
     PolicyKitListener *listener = new PolicyKitListener(&app);
