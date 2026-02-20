@@ -60,10 +60,9 @@ msgid "Jaroslav Reznik"
 msgstr "Jaroslav Reznik"
 
 #: main.cpp:50
-#, fuzzy, kde-format
-#| msgid "Maintainer"
+#, kde-format
 msgid "Former maintainer"
-msgstr "Cothaitheoir"
+msgstr ""
 
 #: policykitlistener.cpp:90
 #, kde-format
@@ -136,54 +135,3 @@ msgstr "Díoltóir:"
 #, kde-format
 msgid "Authenticating as %1"
 msgstr "Fíordheimhniú mar %1"
-
-#, fuzzy
-#~| msgid "Action:"
-#~ msgid "Action ID:"
-#~ msgstr "Gníomh:"
-
-#~ msgid "Password for root:"
-#~ msgstr "Focal faire an fhorúsáideora:"
-
-#~ msgid "Password for %1:"
-#~ msgstr "Focal faire %1:"
-
-#~ msgid "Password or swipe finger for root:"
-#~ msgstr "Focal faire an fhorúsáideora nó faidhpeáil méar:"
-
-#~ msgid "Password or swipe finger for %1:"
-#~ msgstr "Focal faire %1 nó faidhpeáil méar:"
-
-#~ msgid "Password or swipe finger:"
-#~ msgstr "Focal faire nó faidhpeáil méar:"
-
-#~ msgid ""
-#~ "An application is attempting to perform an action that requires "
-#~ "privileges. Authentication is required to perform this action."
-#~ msgstr ""
-#~ "Tá feidhmchlár ag iarraidh gníomh a dhéanamh agus ceadanna de dhíth air. "
-#~ "Caithfidh tú údarú a fháil chun an gníomh seo a dhéanamh."
-
-#~ msgctxt ""
-#~ "%1 is the name of a detail about the current action provided by polkit"
-#~ msgid "%1:"
-#~ msgstr "%1:"
-
-#~ msgid "Click to open %1"
-#~ msgstr "Cliceáil chun %1 a oscailt"
-
-#, fuzzy
-#~| msgid "Password:"
-#~ msgid "P&assword:"
-#~ msgstr "Focal Faire:"
-
-#, fuzzy
-#~| msgid "PolicyKit1-KDE"
-#~ msgid "PolicyKit1 KDE Agent"
-#~ msgstr "PolicyKit1-KDE"
-
-#~ msgid "Application:"
-#~ msgstr "Feidhmchlár:"
-
-#~ msgid "Click to edit %1"
-#~ msgstr "Cliceáil chun %1 a chur in eagar"
