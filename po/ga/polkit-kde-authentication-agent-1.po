@@ -49,10 +49,9 @@ msgstr "Díoltóir:"
 
 #. i18n: ectx: property (text), widget (QLabel, action_id_label)
 #: authdetails.ui:94
-#, fuzzy, kde-format
-#| msgid "Action:"
+#, kde-format
 msgid "Action ID:"
-msgstr "Gníomh:"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: authdetails.ui:113
@@ -149,10 +148,9 @@ msgid "P&assword:"
 msgstr "&Focal Faire:"
 
 #: main.cpp:50
-#, fuzzy, kde-format
-#| msgid "PolicyKit1-KDE"
+#, kde-format
 msgid "PolicyKit1 KDE Agent"
-msgstr "PolicyKit1-KDE"
+msgstr ""
 
 #: main.cpp:52
 #, kde-format
@@ -175,21 +173,11 @@ msgid "Jaroslav Reznik"
 msgstr "Jaroslav Reznik"
 
 #: main.cpp:54
-#, fuzzy, kde-format
-#| msgid "Maintainer"
+#, kde-format
 msgid "Former maintainer"
-msgstr "Cothaitheoir"
+msgstr ""
 
 #: policykitlistener.cpp:59
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "Tá cliant eile ag fíordheimhniú cheana.  Bain triail eile as ar ball."
-
-#~ msgid "Application:"
-#~ msgstr "Feidhmchlár:"
-
-#~ msgid "Click to edit %1"
-#~ msgstr "Cliceáil chun %1 a chur in eagar"
-
-#~ msgid "Cancel"
-#~ msgstr "Cealaigh"
