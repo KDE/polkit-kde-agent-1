@@ -13,8 +13,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 2.0\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 2.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -71,7 +71,7 @@ msgstr "Iný klient už vykonáva overovanie, prosím skúste to neskôr znovu."
 #, kde-format
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
-msgstr ""
+msgstr "No user to authenticate as. Please check your system configuration."
 
 #: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:108
 #: qml/QuickAuthDialog.qml:16 QuickAuthDialog.cpp:110
@@ -87,16 +87,15 @@ msgstr "Overenie zlyhalo, prosím, skúste to znovu."
 #: qml/MobileQuickAuthDialog.qml:141
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "User: %1"
 
 #: qml/MobileQuickAuthDialog.qml:146 qml/QuickAuthDialog.qml:181
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Prepínač…"
 
 #: qml/MobileQuickAuthDialog.qml:167 qml/QuickAuthDialog.qml:201
-#, fuzzy, kde-format
-#| msgid "Password:"
+#, kde-format
 msgid "Password…"
 msgstr "Heslo:"
 
@@ -108,7 +107,7 @@ msgstr "Detaily"
 #: qml/MobileQuickAuthDialog.qml:185 qml/QuickAuthDialog.qml:222
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: qml/MobileQuickAuthDialog.qml:191 qml/QuickAuthDialog.qml:228
 #, kde-format
@@ -131,10 +130,9 @@ msgid "Vendor:"
 msgstr "Predajca:"
 
 #: qml/QuickAuthDialog.qml:175
-#, fuzzy, kde-format
-#| msgid "Authentication Required"
+#, kde-format
 msgid "Authenticating as %1"
-msgstr "Vyžaduje sa overenie totožnosti"
+msgstr "Authenticating as %1"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
