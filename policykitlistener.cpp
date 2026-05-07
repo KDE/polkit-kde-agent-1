@@ -19,7 +19,6 @@
 #include <PolkitQt1/Details>
 #include <PolkitQt1/Identity>
 #include <PolkitQt1/Subject>
-#include <QDebug>
 
 #include "IdentitiesModel.h"
 #include "QuickAuthDialog.h"
