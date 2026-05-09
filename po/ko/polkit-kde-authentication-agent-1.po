@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"POT-Creation-Date: 2026-05-09 00:46+0000\n"
 "PO-Revision-Date: 2024-02-06 00:18+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -63,12 +63,12 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "이전 관리자"
 
-#: policykitlistener.cpp:90
+#: policykitlistener.cpp:89
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "다른 클라이언트가 실행 중입니다. 나중에 다시 시도하십시오."
 
-#: policykitlistener.cpp:97
+#: policykitlistener.cpp:96
 #, kde-format
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."

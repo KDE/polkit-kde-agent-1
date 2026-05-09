@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:54+0000\n"
+"POT-Creation-Date: 2026-05-09 00:46+0000\n"
 "PO-Revision-Date: 2024-02-17 13:41-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -63,12 +63,12 @@ msgstr "ਜਰੋਸਲਾਵ ਰੀਜਨਿਕ"
 msgid "Former maintainer"
 msgstr "ਪੁਰਾਣਾ ਪਰਬੰਧਕ"
 
-#: policykitlistener.cpp:90
+#: policykitlistener.cpp:89
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "ਹੋਰ ਕਲਾਇਟ ਪਹਿਲਾਂ ਹੀ ਪਰਮਾਣਕਿਤਾ ਕਰ ਰਿਹਾ ਹੈ, ਬਾਅਦ 'ਚ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
-#: policykitlistener.cpp:97
+#: policykitlistener.cpp:96
 #, kde-format
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
