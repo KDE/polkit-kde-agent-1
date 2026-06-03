@@ -10,7 +10,7 @@
 
         <method name="setWindowHandleForAction">
             <arg type="s" direction="in" name="action" />
-            <arg type="s" direction="in" name="handle" /> <!-- X11 window ID or Wayland XDG Foreign handle -->
+            <arg type="s" direction="in" name="handle" /> <!-- Wayland XDG Foreign handle -->
         </method>
 
         <method name="setActivationTokenForAction">

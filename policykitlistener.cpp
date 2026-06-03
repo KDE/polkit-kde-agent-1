@@ -12,7 +12,6 @@
 
 #include <KLocalizedString>
 #include <KWindowSystem>
-#include <KX11Extras>
 
 #include <PolkitQt1/ActionDescription>
 #include <PolkitQt1/Agent/Session>
@@ -64,11 +63,8 @@ void PolicyKitListener::setWindowHandleForAction(const QString &action, const QS
 
 void PolicyKitListener::setActivationTokenForAction(const QString &action, const QString &token)
 {
-    if (KWindowSystem::isPlatformWayland()) {
-        // On X we just forceActivateWindow, no need to store the token.
-        m_activationTokens[action] = token;
-        handleWaylandActivation(action, token);
-    }
+    m_activationTokens[action] = token;
+    handleWaylandActivation(action, token);
 }
 
 void PolicyKitListener::initiateAuthentication(const QString &actionId,
@@ -121,12 +117,8 @@ void PolicyKitListener::initiateAuthentication(const QString &actionId,
 
     m_dialog->show();
 
-    if (KWindowSystem::isPlatformWayland()) {
-        if (!activationToken.isEmpty()) {
-            handleWaylandActivation(actionId, activationToken);
-        }
-    } else if (KWindowSystem::isPlatformX11()) {
-        KX11Extras::forceActiveWindow(m_dialog->windowHandle()->winId());
+    if (!activationToken.isEmpty()) {
+        handleWaylandActivation(actionId, activationToken);
     }
 
     if (identities.length() == 1) {
