@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-09 00:46+0000\n"
+"POT-Creation-Date: 2026-07-17 00:46+0000\n"
 "PO-Revision-Date: 2026-06-01 18:30-0400\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -64,12 +64,12 @@ msgstr "Jaroslav Reznik"
 msgid "Former maintainer"
 msgstr "سابىق ئاسرىغۇچى"
 
-#: policykitlistener.cpp:89
+#: policykitlistener.cpp:85
 #, kde-format
 msgid "Another client is already authenticating, please try again later."
 msgstr "يەنە بىر خېرىدارى دەلىللىنىۋاتىدۇ، سەل تۇرۇپ قايتا سىناڭ."
 
-#: policykitlistener.cpp:96
+#: policykitlistener.cpp:92
 #, kde-format
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
