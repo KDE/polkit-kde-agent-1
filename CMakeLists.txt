@@ -36,6 +36,13 @@ find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS
   Crash
 )
 
+find_package(KF6Kirigami ${KF6_MIN_VERSION} CONFIG)
+set_package_properties(KF6Kirigami PROPERTIES
+    DESCRIPTION "A QtQuick based components set"
+    PURPOSE "Required at runtime"
+    TYPE RUNTIME
+)
+
 include(CheckIncludeFile)
 include(CheckSymbolExists)
 check_include_file("sys/prctl.h" HAVE_SYS_PRCTL_H)
