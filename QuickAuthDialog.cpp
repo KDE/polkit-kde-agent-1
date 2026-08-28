@@ -50,6 +50,9 @@ QuickAuthDialog::QuickAuthDialog(const QString &actionId,
     if (KRuntimePlatform::runtimePlatform().contains("phone")) {
         // If this is Plasma Mobile
         engine->load("qrc:/qml/MobileQuickAuthDialog.qml");
+    } else if (KRuntimePlatform::runtimePlatform().contains("mediacenter")) {
+        // If this is Plasma Bigscreen
+        engine->load("qrc:/qml/MediacenterQuickAuthDialog.qml");
     } else {
         // If this is Plasma Desktop, or other platforms
         engine->load("qrc:/qml/QuickAuthDialog.qml");
