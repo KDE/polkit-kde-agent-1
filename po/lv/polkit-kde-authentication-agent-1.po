@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-17 00:46+0000\n"
+"POT-Creation-Date: 2026-08-29 00:47+0000\n"
 "PO-Revision-Date: 2024-09-12 15:39+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -76,16 +76,46 @@ msgid "No user to authenticate as. Please check your system configuration."
 msgstr ""
 "Nav lietotāja, kura vārdā autentificēties. Pārbaudiet sistēmas konfigurāciju."
 
-#: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:108
-#: qml/QuickAuthDialog.qml:16 QuickAuthDialog.cpp:110
+#: qml/MediacenterQuickAuthDialog.qml:15 qml/MobileQuickAuthDialog.qml:16
+#: qml/MobileQuickAuthDialog.qml:108 qml/QuickAuthDialog.qml:16
+#: QuickAuthDialog.cpp:113
 #, kde-format
 msgid "Authentication Required"
 msgstr "Nepieciešama autentificēšanās"
 
-#: qml/MobileQuickAuthDialog.qml:57 qml/QuickAuthDialog.qml:72
+#: qml/MediacenterQuickAuthDialog.qml:58 qml/MobileQuickAuthDialog.qml:57
+#: qml/QuickAuthDialog.qml:72
 #, kde-format
 msgid "Authentication failure, please try again."
 msgstr "Autentificēšanās kļūda, mēģiniet vēlreiz."
+
+#: qml/MediacenterQuickAuthDialog.qml:78 qml/MediacenterQuickAuthDialog.qml:147
+#, kde-format
+msgid "Change user"
+msgstr ""
+
+#: qml/MediacenterQuickAuthDialog.qml:107 qml/QuickAuthDialog.qml:175
+#, kde-format
+msgid "Authenticating as %1"
+msgstr "Autentificēties kā %1"
+
+#: qml/MediacenterQuickAuthDialog.qml:125 qml/MobileQuickAuthDialog.qml:167
+#: qml/QuickAuthDialog.qml:201
+#, kde-format
+msgid "Password…"
+msgstr "Parole…"
+
+#: qml/MediacenterQuickAuthDialog.qml:158 qml/MobileQuickAuthDialog.qml:185
+#: qml/QuickAuthDialog.qml:222
+#, kde-format
+msgid "OK"
+msgstr "Labi"
+
+#: qml/MediacenterQuickAuthDialog.qml:168 qml/MobileQuickAuthDialog.qml:191
+#: qml/QuickAuthDialog.qml:228
+#, kde-format
+msgid "Cancel"
+msgstr "Atcelt"
 
 #: qml/MobileQuickAuthDialog.qml:141
 #, kde-format
@@ -97,25 +127,10 @@ msgstr "Lietotājs: %1"
 msgid "Switch…"
 msgstr "Pārslēgties…"
 
-#: qml/MobileQuickAuthDialog.qml:167 qml/QuickAuthDialog.qml:201
-#, kde-format
-msgid "Password…"
-msgstr "Parole…"
-
 #: qml/MobileQuickAuthDialog.qml:175 qml/QuickAuthDialog.qml:210
 #, kde-format
 msgid "Details"
 msgstr "Informācija"
-
-#: qml/MobileQuickAuthDialog.qml:185 qml/QuickAuthDialog.qml:222
-#, kde-format
-msgid "OK"
-msgstr "Labi"
-
-#: qml/MobileQuickAuthDialog.qml:191 qml/QuickAuthDialog.qml:228
-#, kde-format
-msgid "Cancel"
-msgstr "Atcelt"
 
 #: qml/MobileQuickAuthDialog.qml:201 qml/QuickAuthDialog.qml:240
 #, kde-format
@@ -131,8 +146,3 @@ msgstr "ID:"
 #, kde-format
 msgid "Vendor:"
 msgstr "Ražotājs:"
-
-#: qml/QuickAuthDialog.qml:175
-#, kde-format
-msgid "Authenticating as %1"
-msgstr "Autentificēties kā %1"

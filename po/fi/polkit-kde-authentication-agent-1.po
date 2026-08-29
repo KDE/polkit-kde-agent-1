@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-17 00:46+0000\n"
+"POT-Creation-Date: 2026-08-29 00:47+0000\n"
 "PO-Revision-Date: 2024-02-02 13:11+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -81,16 +81,46 @@ msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
 msgstr "Ei käyttäjää, joksi tunnistautua. Tarkista järjestelmän asetukset."
 
-#: qml/MobileQuickAuthDialog.qml:16 qml/MobileQuickAuthDialog.qml:108
-#: qml/QuickAuthDialog.qml:16 QuickAuthDialog.cpp:110
+#: qml/MediacenterQuickAuthDialog.qml:15 qml/MobileQuickAuthDialog.qml:16
+#: qml/MobileQuickAuthDialog.qml:108 qml/QuickAuthDialog.qml:16
+#: QuickAuthDialog.cpp:113
 #, kde-format
 msgid "Authentication Required"
 msgstr "Tunnistautumista vaaditaan"
 
-#: qml/MobileQuickAuthDialog.qml:57 qml/QuickAuthDialog.qml:72
+#: qml/MediacenterQuickAuthDialog.qml:58 qml/MobileQuickAuthDialog.qml:57
+#: qml/QuickAuthDialog.qml:72
 #, kde-format
 msgid "Authentication failure, please try again."
 msgstr "Tunnistautumisvirhe. Yritä uudelleen."
+
+#: qml/MediacenterQuickAuthDialog.qml:78 qml/MediacenterQuickAuthDialog.qml:147
+#, kde-format
+msgid "Change user"
+msgstr ""
+
+#: qml/MediacenterQuickAuthDialog.qml:107 qml/QuickAuthDialog.qml:175
+#, kde-format
+msgid "Authenticating as %1"
+msgstr "Tunnistaudutaan käyttäjänä %1"
+
+#: qml/MediacenterQuickAuthDialog.qml:125 qml/MobileQuickAuthDialog.qml:167
+#: qml/QuickAuthDialog.qml:201
+#, kde-format
+msgid "Password…"
+msgstr "Salasana…"
+
+#: qml/MediacenterQuickAuthDialog.qml:158 qml/MobileQuickAuthDialog.qml:185
+#: qml/QuickAuthDialog.qml:222
+#, kde-format
+msgid "OK"
+msgstr "OK"
+
+#: qml/MediacenterQuickAuthDialog.qml:168 qml/MobileQuickAuthDialog.qml:191
+#: qml/QuickAuthDialog.qml:228
+#, kde-format
+msgid "Cancel"
+msgstr "Peru"
 
 #: qml/MobileQuickAuthDialog.qml:141
 #, kde-format
@@ -102,25 +132,10 @@ msgstr "Käyttäjä: %1"
 msgid "Switch…"
 msgstr "Vaihda…"
 
-#: qml/MobileQuickAuthDialog.qml:167 qml/QuickAuthDialog.qml:201
-#, kde-format
-msgid "Password…"
-msgstr "Salasana…"
-
 #: qml/MobileQuickAuthDialog.qml:175 qml/QuickAuthDialog.qml:210
 #, kde-format
 msgid "Details"
 msgstr "Yksityiskohdat"
-
-#: qml/MobileQuickAuthDialog.qml:185 qml/QuickAuthDialog.qml:222
-#, kde-format
-msgid "OK"
-msgstr "OK"
-
-#: qml/MobileQuickAuthDialog.qml:191 qml/QuickAuthDialog.qml:228
-#, kde-format
-msgid "Cancel"
-msgstr "Peru"
 
 #: qml/MobileQuickAuthDialog.qml:201 qml/QuickAuthDialog.qml:240
 #, kde-format
@@ -136,11 +151,6 @@ msgstr "Tunniste:"
 #, kde-format
 msgid "Vendor:"
 msgstr "Toimittaja:"
-
-#: qml/QuickAuthDialog.qml:175
-#, kde-format
-msgid "Authenticating as %1"
-msgstr "Tunnistaudutaan käyttäjänä %1"
 
 #~ msgid "<null>"
 #~ msgstr "<tyhjä>"
