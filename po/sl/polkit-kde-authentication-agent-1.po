@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-29 00:47+0000\n"
-"PO-Revision-Date: 2024-01-25 07:49+0100\n"
+"PO-Revision-Date: 2026-08-29 12:39+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.9\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -93,7 +93,7 @@ msgstr "Overitev ni uspela. Poskusite znova."
 #: qml/MediacenterQuickAuthDialog.qml:78 qml/MediacenterQuickAuthDialog.qml:147
 #, kde-format
 msgid "Change user"
-msgstr ""
+msgstr "Spremeni uporabnika"
 
 #: qml/MediacenterQuickAuthDialog.qml:107 qml/QuickAuthDialog.qml:175
 #, kde-format
