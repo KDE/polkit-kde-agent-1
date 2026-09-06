@@ -11,6 +11,6 @@ Dependencies:
     'frameworks/ki18n': 'Frameworks/6.24'
     'frameworks/knotifications': 'Frameworks/6.24'
     'frameworks/kwindowsystem': 'Frameworks/6.24'
-    'libraries/polkit-qt-1': 'v0.200.0'
+    'libraries/polkit-qt-1': 'stable/0.200'
 Options:
  require-passing-tests-on: ['Linux', 'FreeBSD']
