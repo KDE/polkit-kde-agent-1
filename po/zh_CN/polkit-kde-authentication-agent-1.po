@@ -91,7 +91,7 @@ msgstr "身份验证失败，请重试。"
 #: qml/MediacenterQuickAuthDialog.qml:78 qml/MediacenterQuickAuthDialog.qml:147
 #, kde-format
 msgid "Change user"
-msgstr ""
+msgstr "更改用户"
 
 #: qml/MediacenterQuickAuthDialog.qml:107 qml/QuickAuthDialog.qml:175
 #, kde-format
