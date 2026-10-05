@@ -1,13 +1,14 @@
 # Translation of polkit-kde-authentication-agent-1.po into Serbian.
 # Chusslove Illich <caslav.ilic@gmx.net>, 2010, 2011, 2012, 2015.
 # Dalibor Djuric <daliborddjuric@gmail.com>, 2011.
+# Nemanja Hiršl <nemhirsl@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-29 00:47+0000\n"
-"PO-Revision-Date: 2015-01-17 13:25+0100\n"
-"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"PO-Revision-Date: 2026-10-03 22:09+0200\n"
+"Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -22,12 +23,12 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Часлав Илић"
+msgstr "Часлав Илић,Немања Хиршл"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "caslav.ilic@gmx.net"
+msgstr "caslav.ilic@gmx.net,nemhirsl@gmail.com"
 
 #: IdentitiesModel.cpp:27
 #, kde-format
@@ -74,7 +75,7 @@ msgstr "Тренутно се аутентификује други клијен
 #, kde-format
 msgctxt "Error response when polkit calls us with an empty list of identities"
 msgid "No user to authenticate as. Please check your system configuration."
-msgstr ""
+msgstr "Нема корисника за аутентификовање. Проверите поставу система."
 
 #: qml/MediacenterQuickAuthDialog.qml:15 qml/MobileQuickAuthDialog.qml:16
 #: qml/MobileQuickAuthDialog.qml:108 qml/QuickAuthDialog.qml:16
@@ -92,42 +93,40 @@ msgstr "Аутентификација није успела, покушајте
 #: qml/MediacenterQuickAuthDialog.qml:78 qml/MediacenterQuickAuthDialog.qml:147
 #, kde-format
 msgid "Change user"
-msgstr ""
+msgstr "Промени корисника"
 
 #: qml/MediacenterQuickAuthDialog.qml:107 qml/QuickAuthDialog.qml:175
-#, fuzzy, kde-format
-#| msgid "Authentication Required"
+#, kde-format
 msgid "Authenticating as %1"
-msgstr "Неопходна аутентификација"
+msgstr "Аутентификујете се као %1"
 
 #: qml/MediacenterQuickAuthDialog.qml:125 qml/MobileQuickAuthDialog.qml:167
 #: qml/QuickAuthDialog.qml:201
-#, fuzzy, kde-format
-#| msgid "Password:"
+#, kde-format
 msgid "Password…"
-msgstr "Лозинка:"
+msgstr "Лозинка…"
 
 #: qml/MediacenterQuickAuthDialog.qml:158 qml/MobileQuickAuthDialog.qml:185
 #: qml/QuickAuthDialog.qml:222
 #, kde-format
 msgid "OK"
-msgstr ""
+msgstr "У реду"
 
 #: qml/MediacenterQuickAuthDialog.qml:168 qml/MobileQuickAuthDialog.qml:191
 #: qml/QuickAuthDialog.qml:228
 #, kde-format
 msgid "Cancel"
-msgstr ""
+msgstr "Одустани"
 
 #: qml/MobileQuickAuthDialog.qml:141
 #, kde-format
 msgid "User: %1"
-msgstr ""
+msgstr "Корисник: %1"
 
 #: qml/MobileQuickAuthDialog.qml:146 qml/QuickAuthDialog.qml:181
 #, kde-format
 msgid "Switch…"
-msgstr ""
+msgstr "Промени…"
 
 #: qml/MobileQuickAuthDialog.qml:175 qml/QuickAuthDialog.qml:210
 #, kde-format
@@ -142,53 +141,9 @@ msgstr "Радња:"
 #: qml/MobileQuickAuthDialog.qml:205 qml/QuickAuthDialog.qml:244
 #, kde-format
 msgid "ID:"
-msgstr ""
+msgstr "ИД:"
 
 #: qml/MobileQuickAuthDialog.qml:209 qml/QuickAuthDialog.qml:248
 #, kde-format
 msgid "Vendor:"
 msgstr "Издавач:"
-
-#, fuzzy
-#~| msgid "Action:"
-#~ msgid "Action ID:"
-#~ msgstr "Радња:"
-
-#~ msgid "Password for root:"
-#~ msgstr "Лозинка корена:"
-
-# rewrite-msgid: /for/for account/
-#~ msgid "Password for %1:"
-#~ msgstr "Лозинка налога %1:"
-
-#~ msgid "Password or swipe finger for root:"
-#~ msgstr "Лозинка или отисак прста корена:"
-
-# rewrite-msgid: /for/for account/
-#~ msgid "Password or swipe finger for %1:"
-#~ msgstr "Лозинка или отисак прста налога %1:"
-
-#~ msgid "Password or swipe finger:"
-#~ msgstr "Лозинка или отисак прста:"
-
-#~ msgid ""
-#~ "An application is attempting to perform an action that requires "
-#~ "privileges. Authentication is required to perform this action."
-#~ msgstr ""
-#~ "Програм покушава да изведе радњу која захтева овлашћења. Зато је "
-#~ "неопходна аутентификација."
-
-#~ msgctxt ""
-#~ "%1 is the name of a detail about the current action provided by polkit"
-#~ msgid "%1:"
-#~ msgstr "%1:"
-
-#~ msgid "Click to open %1"
-#~ msgstr "Кликните да отворите %1"
-
-#~ msgid "P&assword:"
-#~ msgstr "&Лозинка:"
-
-# rewrite-msgid: /Agent//
-#~ msgid "PolicyKit1 KDE Agent"
-#~ msgstr "Полисикит1‑КДЕ"
