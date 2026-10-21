@@ -20,9 +20,9 @@ MobileDialogWindow {
     property alias inlineMessageType: inlineMessage.type
     property alias inlineMessageText: inlineMessage.text
     property alias inlineMessageIcon: inlineMessage.icon
-    property alias identitiesModel: identitiesCombo.model
-    property alias identitiesCurrentIndex: identitiesCombo.currentIndex
-    property alias selectedIdentity: identitiesCombo.currentValue
+    property alias identitiesModel: switchButton.model
+    property alias identitiesCurrentIndex: switchButton.currentIndex
+    property alias selectedIdentity: switchButton.currentValue
 
     // passed in by QuickAuthDialog.cpp
     property string mainText
@@ -81,16 +81,6 @@ MobileDialogWindow {
         }
     }
 
-    // select user combobox, we are displaying its popup
-    property QQC2.ComboBox selectIdentityCombobox: QQC2.ComboBox {
-        id: identitiesCombo
-        visible: false
-        textRole: "display"
-        valueRole: "userRole"
-        enabled: count > 0
-        model: IdentitiesModel {}
-    }
-
     RejectPasswordAnimation {
         id: rejectPasswordAnim
         target: root.contentItem
@@ -131,23 +121,18 @@ MobileDialogWindow {
 
         // user information, only shown if there is more than one user to select from
         RowLayout {
-            visible: identitiesCombo.count > 1
+            visible: switchButton.count > 1
             spacing: Kirigami.Units.smallSpacing
             Layout.alignment: Qt.AlignHCenter
             Layout.bottomMargin: Kirigami.Units.largeSpacing
 
             QQC2.Label {
                 color: Kirigami.Theme.disabledTextColor
-                text: i18n("User: %1", identitiesCombo.currentText)
+                text: i18n("User: %1", switchButton.currentDisplay)
                 wrapMode: Text.Wrap
             }
-            Kirigami.LinkButton {
+            SwitchButton {
                 id: switchButton
-                text: i18n("Switch…")
-                onClicked: {
-                    identitiesCombo.popup.parent = switchButton;
-                    identitiesCombo.popup.open();
-                }
             }
         }
 

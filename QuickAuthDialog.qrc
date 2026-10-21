@@ -6,5 +6,6 @@
         <file>qml/RejectPasswordPathAnimation.qml</file>
         <file>qml/MobileDialogWindow.qml</file>
         <file>qml/MediacenterQuickAuthDialog.qml</file>
+        <file>qml/SwitchButton.qml</file>
     </qresource>
 </RCC>

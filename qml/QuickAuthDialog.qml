@@ -26,9 +26,10 @@ Kirigami.AbstractApplicationWindow {
     property alias inlineMessageType: inlineMessage.type
     property alias inlineMessageText: inlineMessage.text
     property alias inlineMessageIcon: inlineMessage.icon
-    property alias identitiesModel: identitiesCombo.model
-    property alias identitiesCurrentIndex: identitiesCombo.currentIndex
-    property alias selectedIdentity: identitiesCombo.currentValue
+
+    property alias identitiesModel: identitiesSwitchButton.model
+    property alias identitiesCurrentIndex: identitiesSwitchButton.currentIndex
+    property alias selectedIdentity: identitiesSwitchButton.currentValue
 
     property bool waitingForAuthentication: false
 
@@ -105,18 +106,6 @@ Kirigami.AbstractApplicationWindow {
         }
     }
 
-    // select user combobox, we are displaying its popup
-    property QQC2.ComboBox selectIdentityCombobox: QQC2.ComboBox {
-        id: identitiesCombo
-        visible: false
-        textRole: "display"
-        valueRole: "userRole"
-        enabled: count > 0
-        model: IdentitiesModel {
-            id: identitiesModel
-        }
-    }
-
     // add separator to window decorations
     Kirigami.Separator {
         anchors.top: parent.top
@@ -172,18 +161,13 @@ Kirigami.AbstractApplicationWindow {
 
                     QQC2.Label {
                         color: Kirigami.Theme.disabledTextColor
-                        text: i18n("Authenticating as %1", identitiesCombo.currentText)
+                        text: i18n("Authenticating as %1", identitiesSwitchButton.currentDisplay)
                         wrapMode: Text.Wrap
                     }
 
-                    Kirigami.LinkButton {
-                        id: switchButton
-                        text: i18n("Switch…")
-                        visible: identitiesCombo.count > 1
-                        onClicked: {
-                            identitiesCombo.popup.parent = switchButton;
-                            identitiesCombo.popup.open();
-                        }
+                    SwitchButton {
+                        id: identitiesSwitchButton
+                        visible: count > 1
                     }
                 }
 
