@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-29 00:47+0000\n"
+"POT-Creation-Date: 2026-10-23 00:51+0000\n"
 "PO-Revision-Date: 2026-09-09 16:17+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -77,14 +77,14 @@ msgstr ""
 "настройките."
 
 #: qml/MediacenterQuickAuthDialog.qml:15 qml/MobileQuickAuthDialog.qml:16
-#: qml/MobileQuickAuthDialog.qml:108 qml/QuickAuthDialog.qml:16
+#: qml/MobileQuickAuthDialog.qml:98 qml/QuickAuthDialog.qml:16
 #: QuickAuthDialog.cpp:113
 #, kde-format
 msgid "Authentication Required"
 msgstr "Изисква се удостоверяване"
 
 #: qml/MediacenterQuickAuthDialog.qml:58 qml/MobileQuickAuthDialog.qml:57
-#: qml/QuickAuthDialog.qml:72
+#: qml/QuickAuthDialog.qml:73
 #, kde-format
 msgid "Authentication failure, please try again."
 msgstr "Грешка в удостоверяването, моля, опитайте отново."
@@ -94,55 +94,57 @@ msgstr "Грешка в удостоверяването, моля, опитай
 msgid "Change user"
 msgstr "Промяна на потребител"
 
-#: qml/MediacenterQuickAuthDialog.qml:107 qml/QuickAuthDialog.qml:175
+#: qml/MediacenterQuickAuthDialog.qml:107 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Authenticating as %1"
 msgstr "Удостоверяване като %1"
 
-#: qml/MediacenterQuickAuthDialog.qml:125 qml/MobileQuickAuthDialog.qml:167
-#: qml/QuickAuthDialog.qml:201
+#: qml/MediacenterQuickAuthDialog.qml:125 qml/MobileQuickAuthDialog.qml:152
+#: qml/QuickAuthDialog.qml:185
 #, kde-format
 msgid "Password…"
 msgstr "Парола…"
 
-#: qml/MediacenterQuickAuthDialog.qml:158 qml/MobileQuickAuthDialog.qml:185
-#: qml/QuickAuthDialog.qml:222
+#: qml/MediacenterQuickAuthDialog.qml:158 qml/MobileQuickAuthDialog.qml:170
+#: qml/QuickAuthDialog.qml:206
 #, kde-format
 msgid "OK"
 msgstr "Добре"
 
-#: qml/MediacenterQuickAuthDialog.qml:168 qml/MobileQuickAuthDialog.qml:191
-#: qml/QuickAuthDialog.qml:228
+#: qml/MediacenterQuickAuthDialog.qml:168 qml/MobileQuickAuthDialog.qml:176
+#: qml/QuickAuthDialog.qml:212
 #, kde-format
 msgid "Cancel"
 msgstr "Отказ"
 
-#: qml/MobileQuickAuthDialog.qml:141
+#: qml/MobileQuickAuthDialog.qml:131
 #, kde-format
 msgid "User: %1"
 msgstr "Потребител: %1"
 
-#: qml/MobileQuickAuthDialog.qml:146 qml/QuickAuthDialog.qml:181
-#, kde-format
-msgid "Switch…"
-msgstr "Превключване…"
-
-#: qml/MobileQuickAuthDialog.qml:175 qml/QuickAuthDialog.qml:210
+#: qml/MobileQuickAuthDialog.qml:160 qml/QuickAuthDialog.qml:194
 #, kde-format
 msgid "Details"
 msgstr "Подробности"
 
-#: qml/MobileQuickAuthDialog.qml:201 qml/QuickAuthDialog.qml:240
+#: qml/MobileQuickAuthDialog.qml:186 qml/QuickAuthDialog.qml:224
 #, kde-format
 msgid "Action:"
 msgstr "Действие:"
 
-#: qml/MobileQuickAuthDialog.qml:205 qml/QuickAuthDialog.qml:244
+#: qml/MobileQuickAuthDialog.qml:190 qml/QuickAuthDialog.qml:228
 #, kde-format
 msgid "ID:"
 msgstr "ID:"
 
-#: qml/MobileQuickAuthDialog.qml:209 qml/QuickAuthDialog.qml:248
+#: qml/MobileQuickAuthDialog.qml:194 qml/QuickAuthDialog.qml:232
 #, kde-format
 msgid "Vendor:"
 msgstr "Доставчик:"
+
+#: qml/SwitchButton.qml:26
+#, fuzzy, kde-format
+#| msgid "Switch…"
+msgctxt "@action:button Switches user used for authorization"
+msgid "Switch…"
+msgstr "Превключване…"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: polkit-kde-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-29 00:47+0000\n"
+"POT-Creation-Date: 2026-10-23 00:51+0000\n"
 "PO-Revision-Date: 2024-08-04 16:05+0700\n"
 "Last-Translator: OIS <mistresssilvara@hotmail.com>\n"
 "Language-Team: Interlingue <>\n"
@@ -76,14 +76,14 @@ msgstr ""
 "Null disponibil usator. Ples controlar li configuration de vor sistema."
 
 #: qml/MediacenterQuickAuthDialog.qml:15 qml/MobileQuickAuthDialog.qml:16
-#: qml/MobileQuickAuthDialog.qml:108 qml/QuickAuthDialog.qml:16
+#: qml/MobileQuickAuthDialog.qml:98 qml/QuickAuthDialog.qml:16
 #: QuickAuthDialog.cpp:113
 #, kde-format
 msgid "Authentication Required"
 msgstr "Autentication es besonat"
 
 #: qml/MediacenterQuickAuthDialog.qml:58 qml/MobileQuickAuthDialog.qml:57
-#: qml/QuickAuthDialog.qml:72
+#: qml/QuickAuthDialog.qml:73
 #, kde-format
 msgid "Authentication failure, please try again."
 msgstr "Autentication ne successat. Ples repenar denov."
@@ -93,58 +93,60 @@ msgstr "Autentication ne successat. Ples repenar denov."
 msgid "Change user"
 msgstr ""
 
-#: qml/MediacenterQuickAuthDialog.qml:107 qml/QuickAuthDialog.qml:175
+#: qml/MediacenterQuickAuthDialog.qml:107 qml/QuickAuthDialog.qml:164
 #, kde-format
 msgid "Authenticating as %1"
 msgstr "Autentication quam %1"
 
-#: qml/MediacenterQuickAuthDialog.qml:125 qml/MobileQuickAuthDialog.qml:167
-#: qml/QuickAuthDialog.qml:201
+#: qml/MediacenterQuickAuthDialog.qml:125 qml/MobileQuickAuthDialog.qml:152
+#: qml/QuickAuthDialog.qml:185
 #, kde-format
 msgid "Password…"
 msgstr "Contrasigne..."
 
-#: qml/MediacenterQuickAuthDialog.qml:158 qml/MobileQuickAuthDialog.qml:185
-#: qml/QuickAuthDialog.qml:222
+#: qml/MediacenterQuickAuthDialog.qml:158 qml/MobileQuickAuthDialog.qml:170
+#: qml/QuickAuthDialog.qml:206
 #, kde-format
 msgid "OK"
 msgstr "OK"
 
-#: qml/MediacenterQuickAuthDialog.qml:168 qml/MobileQuickAuthDialog.qml:191
-#: qml/QuickAuthDialog.qml:228
+#: qml/MediacenterQuickAuthDialog.qml:168 qml/MobileQuickAuthDialog.qml:176
+#: qml/QuickAuthDialog.qml:212
 #, kde-format
 msgid "Cancel"
 msgstr "Anullar"
 
-#: qml/MobileQuickAuthDialog.qml:141
+#: qml/MobileQuickAuthDialog.qml:131
 #, kde-format
 msgid "User: %1"
 msgstr "Usator: %1"
 
-#: qml/MobileQuickAuthDialog.qml:146 qml/QuickAuthDialog.qml:181
-#, kde-format
-msgid "Switch…"
-msgstr "Cambiar..."
-
-#: qml/MobileQuickAuthDialog.qml:175 qml/QuickAuthDialog.qml:210
+#: qml/MobileQuickAuthDialog.qml:160 qml/QuickAuthDialog.qml:194
 #, kde-format
 msgid "Details"
 msgstr "Detallies"
 
-#: qml/MobileQuickAuthDialog.qml:201 qml/QuickAuthDialog.qml:240
+#: qml/MobileQuickAuthDialog.qml:186 qml/QuickAuthDialog.qml:224
 #, kde-format
 msgid "Action:"
 msgstr "Action:"
 
-#: qml/MobileQuickAuthDialog.qml:205 qml/QuickAuthDialog.qml:244
+#: qml/MobileQuickAuthDialog.qml:190 qml/QuickAuthDialog.qml:228
 #, kde-format
 msgid "ID:"
 msgstr "ID:"
 
-#: qml/MobileQuickAuthDialog.qml:209 qml/QuickAuthDialog.qml:248
+#: qml/MobileQuickAuthDialog.qml:194 qml/QuickAuthDialog.qml:232
 #, kde-format
 msgid "Vendor:"
 msgstr "Venditor:"
+
+#: qml/SwitchButton.qml:26
+#, fuzzy, kde-format
+#| msgid "Switch…"
+msgctxt "@action:button Switches user used for authorization"
+msgid "Switch…"
+msgstr "Cambiar..."
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
