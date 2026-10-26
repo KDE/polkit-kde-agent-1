@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: polkit-kde-authentication-agent-1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-23 00:51+0000\n"
-"PO-Revision-Date: 2026-08-30 16:00+0300\n"
+"PO-Revision-Date: 2026-10-26 00:42+0200\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.10\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -148,8 +148,7 @@ msgid "Vendor:"
 msgstr "Tiekėjas:"
 
 #: qml/SwitchButton.qml:26
-#, fuzzy, kde-format
-#| msgid "Switch…"
+#, kde-format
 msgctxt "@action:button Switches user used for authorization"
 msgid "Switch…"
 msgstr "Perjungti…"

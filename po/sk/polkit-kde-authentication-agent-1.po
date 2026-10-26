@@ -140,11 +140,10 @@ msgid "Vendor:"
 msgstr "Predajca:"
 
 #: qml/SwitchButton.qml:26
-#, fuzzy, kde-format
-#| msgid "Switch…"
+#, kde-format
 msgctxt "@action:button Switches user used for authorization"
 msgid "Switch…"
-msgstr "Prepínač…"
+msgstr "Prepnúť…"
 
 #~ msgid "<null>"
 #~ msgstr "<null>"
