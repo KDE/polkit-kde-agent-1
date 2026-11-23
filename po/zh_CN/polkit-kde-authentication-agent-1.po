@@ -142,8 +142,7 @@ msgid "Vendor:"
 msgstr "发行组织："
 
 #: qml/SwitchButton.qml:26
-#, fuzzy, kde-format
-#| msgid "Switch…"
+#, kde-format
 msgctxt "@action:button Switches user used for authorization"
 msgid "Switch…"
 msgstr "切换…"
